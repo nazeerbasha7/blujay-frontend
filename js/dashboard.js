@@ -275,7 +275,7 @@ async function loadCoursesFromBackend() {
     try {
         console.log('🔄 Loading courses from backend...');
         
-        const response = await authenticatedFetch('/admin/courses');
+        const response = await authenticatedFetch('/courses');
         
         if (!response || !response.ok) {
             throw new Error('Failed to fetch courses');
