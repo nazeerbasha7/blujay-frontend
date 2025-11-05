@@ -10,7 +10,7 @@
 // HELPER FUNCTION FOR AUTHENTICATED API CALLS
 // ============================================
 async function authenticatedFetch(endpoint, options = {}) {
-    const API_URL = 'http://localhost:5000/api'; // ✅ MOVED INSIDE FUNCTION
+    const API_URL = 'https://blujay-backend.onrender.com/api'; // ✅ MOVED INSIDE FUNCTION
     const token = localStorage.getItem('authToken');
     
     if (!token) {

@@ -22,7 +22,7 @@ const db = firebase.firestore();
 // ============================================
 // BACKEND API CONFIGURATION
 // ============================================
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://blujay-backend.onrender.com/api';
 console.log('🔗 Backend API URL:', API_URL);
 
 // ============================================
@@ -119,7 +119,7 @@ async function verifyUserWithBackend(firebaseUser) {
             '⚠️ Authentication Error\n\n' +
             'Error: ' + error.message + '\n\n' +
             'Please ensure:\n' +
-            '1. Backend server is running on http://localhost:5000\n' +
+            '1. Backend server is running\n' +
             '2. MongoDB is connected\n' +
             '3. Firebase Admin SDK is configured correctly\n\n' +
             'Check browser console for detailed logs.'
@@ -220,7 +220,7 @@ window.onload = function() {
         .catch(error => {
             console.warn('⚠️ WARNING: Backend server not reachable!');
             console.warn('   Please start backend with: cd backend && npm start');
-            console.warn('   Backend should be running on: http://localhost:5000');
+            console.warn('   Backend API URL:', API_URL);
         });
     
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
