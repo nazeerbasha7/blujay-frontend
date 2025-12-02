@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse All Courses - Blujay Technologies">
+    <title>All Courses - Blujay Technologies</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+    * {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    
+    body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background: #f9fafb;
+    }
+    
+    html {
+        scroll-behavior: smooth;
+    }
+    
+    /* ===== BLUJAY BRAND COLORS ===== */
+    :root {
+        --blujay-primary: #1D5D7F;
+        --blujay-primary-hover: #236192;
+        --blujay-light: #E8F4F8;
+        --blujay-dark: #144A66;
+    }
+    
+    /* Override Tailwind blue-600 with brand color */
+    .bg-blue-600 {
+        background-color: #1D5D7F !important;
+    }
+    
+    .hover\:bg-blue-700:hover {
+        background-color: #236192 !important;
+    }
+    
+    .text-blue-600 {
+        color: #1D5D7F !important;
+    }
+    
+    .hover\:text-blue-600:hover {
+        color: #1D5D7F !important;
+    }
+    
+    .border-blue-600 {
+        border-color: #1D5D7F !important;
+    }
+    
+    .bg-blue-50 {
+        background-color: #E8F4F8 !important;
+    }
+    
+    .hover\:bg-blue-50:hover {
+        background-color: #E8F4F8 !important;
+    }
+    
+    .from-blue-600 {
+        --tw-gradient-from: #1D5D7F !important;
+    }
+    
+    .to-blue-500 {
+        --tw-gradient-to: #236192 !important;
+    }
+    
+    .text-blue-100 {
+        color: #B8D8E8 !important;
+    }
+    
+    .text-blue-50 {
+        color: #E8F4F8 !important;
+    }
+
+    /* Loading Animation */
+    .loader {
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #1D5D7F;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    /* Filter Active State */
+    .filter-active {
+        background-color: #1D5D7F !important;
+        color: white !important;
+        border-color: #1D5D7F !important;
+    }
+
+    /* ===== EXACT SAME COURSERA-STYLE COURSE CARDS FROM DASHBOARD ===== */
+    .course-card {
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid #e5e7eb;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        background: white;
+    }
+
+    .course-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        border-color: #1D5D7F;
+    }
+
+    .course-card .course-thumbnail {
+        position: relative;
+        overflow: hidden;
+        height: 180px;
+    }
+
+    .course-card .course-thumbnail img {
+        transition: transform 0.4s ease;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .course-card:hover .course-thumbnail img {
+        transform: scale(1.1);
+    }
+
+    .course-card .course-content {
+        padding: 1.25rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .course-card .course-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 0.5rem;
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .course-card .course-meta {
+        margin-top: auto;
+        padding-top: 0.75rem;
+        border-top: 1px solid #e5e7eb;
+    }
+
+    /* Center the grid */
+    #courses-grid {
+        justify-items: center;
+        max-width: 100%;
+    }
+
+    /* ===== MOBILE OPTIMIZATION (SINGLE COLUMN LAYOUT) ===== */
+    @media (max-width: 639px) {
+        #courses-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1rem !important;
+            padding: 0 0.5rem;
+        }
+
+        .course-card {
+            max-width: 100%;
+            width: 100%;
+        }
+
+        .course-card .course-thumbnail {
+            height: 160px;
+        }
+
+        .course-card .course-content {
+            padding: 1rem;
+        }
+
+        .course-card .course-title {
+            font-size: 0.9rem;
+            line-height: 1.3;
+        }
+
+        .course-card:active {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .footer-contact-section {
+            text-align: center !important;
+            grid-column: 1 / -1 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+        }
+
+        .footer-contact-section h4 {
+            text-align: center !important;
+        }
+
+        .footer-contact-section ul {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            list-style: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            width: 100% !important;
+        }
+
+        .footer-contact-section ul li {
+            width: 100% !important;
+            text-align: center !important;
+            display: flex !important;
+            justify-content: center !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        .footer-contact-section ul li a {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            width: 100% !important;
+        }
+
+        .footer-contact-social {
+            display: flex !important;
+            justify-content: center !important;
+            gap: 0.5rem !important;
+            width: 100% !important;
+        }
+    }
+
+    /* ===== TABLET OPTIMIZATION (2 COLUMNS) ===== */
+    @media (min-width: 640px) and (max-width: 1023px) {
+        #courses-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 1rem !important;
+        }
+
+        .course-card .course-thumbnail {
+            height: 170px;
+        }
+    }
+
+    /* ===== DESKTOP (4 COLUMNS) ===== */
+    @media (min-width: 1024px) {
+        #courses-grid {
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .course-card .course-thumbnail {
+            height: 180px;
+        }
+
+        .footer-contact-section {
+            text-align: left !important;
+        }
+
+        .footer-contact-section h4 {
+            text-align: left !important;
+        }
+
+        .footer-contact-section ul {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: flex-start !important;
+        }
+
+        .footer-contact-section ul li {
+            text-align: left !important;
+            justify-content: flex-start !important;
+        }
+
+        .footer-contact-section ul li a {
+            justify-content: flex-start !important;
+        }
+
+        .footer-contact-social {
+            justify-content: flex-start !important;
+        }
+    }
+
+    .category-scroll {
+        overflow-x: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    
+    .category-scroll::-webkit-scrollbar {
+        display: none;
+    }
+    </style>
+
+</head>
+<body class="bg-gray-50">
+    
+<!-- Navbar -->
+<nav class="fixed w-full top-0 z-50 bg-white shadow-sm">
+    <div class="px-4 lg:px-8">
+        <div class="flex justify-between items-center h-[60px] lg:h-[72px]">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center">
+                <img src="logo.png" alt="Blujay Technologies" class="h-9 lg:h-12 w-auto" loading="lazy">
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden lg:flex items-center gap-8 ml-auto">
+                <a href="index.html#courses" class="text-[13px] lg:text-[14px] font-medium text-gray-900 hover:text-blue-600 transition-colors">Courses</a>
+                <a href="index.html#centres" class="text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">Centres</a>
+                <a href="index.html#jobs" class="text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">Jobs</a>
+                
+                <div class="relative" id="desktop-more">
+                    <button id="desktop-more-btn" class="text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors flex items-center gap-1">
+                        More <i class="fas fa-chevron-down text-[9px]"></i>
+                    </button>
+                    <div id="desktop-more-menu" class="hidden absolute top-full right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border py-1">
+                        <a href="aboutus.html" class="block px-4 py-2 text-[12px] lg:text-[13px] text-gray-700 hover:bg-blue-50 transition-colors">About Us</a>
+                        <a href="blog.html" class="block px-4 py-2 text-[12px] lg:text-[13px] text-gray-700 hover:bg-blue-50 transition-colors">Blog</a>
+                    </div>
+                </div>
+                
+                <a href="login.html" class="border-2 border-blue-600 text-blue-600 px-4 py-1.5 rounded-lg text-[12px] lg:text-[13px] font-semibold hover:bg-blue-50 transition-all">Login</a>
+                <button onclick="alert('Request callback - connect this to your callback modal')" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-[12px] lg:text-[13px] font-semibold hover:bg-blue-700 transition-all flex items-center gap-2">
+                    <i class="fas fa-phone-alt text-[10px]"></i> Request Callback
+                </button>
+            </div>
+            
+            <!-- Mobile: Hamburger -->
+            <div class="flex lg:hidden items-center">
+                <button id="mobile-toggle" class="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-all">
+                    <i class="fas fa-bars text-[20px] text-gray-900"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-[100] transform translate-x-full transition-transform duration-300 lg:hidden">
+        <div class="flex justify-between items-center h-[60px] px-4 border-b">
+            <img src="logo.png" alt="Blujay Technologies" class="h-9" loading="lazy">
+            <button id="mobile-close" class="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-all">
+                <i class="fas fa-times text-[22px] text-gray-800"></i>
+            </button>
+        </div>
+        
+        <div class="overflow-y-auto h-[calc(100vh-60px)]">
+            <div class="px-4 py-4">
+                <a href="index.html#courses" class="block text-[14px] lg:text-[15px] font-medium text-gray-800 py-3 border-b hover:text-blue-600 transition-colors">Courses</a>
+                <a href="index.html#centres" class="block text-[14px] lg:text-[15px] font-medium text-gray-800 py-3 border-b hover:text-blue-600 transition-colors">Centres</a>
+                <a href="index.html#jobs" class="block text-[14px] lg:text-[15px] font-medium text-gray-800 py-3 border-b hover:text-blue-600 transition-colors">Jobs</a>
+                
+                <div class="border-b">
+                    <button id="mobile-more" class="w-full flex justify-between items-center text-[14px] lg:text-[15px] font-medium text-gray-800 py-3 hover:text-blue-600 transition-colors">
+                        More <i class="fas fa-chevron-down text-[11px] mobile-arrow transition-transform"></i>
+                    </button>
+                    <div id="mobile-more-content" class="hidden pb-2">
+                        <a href="aboutus.html" class="block text-[13px] lg:text-[14px] text-gray-600 py-2 pl-6 hover:text-blue-600 transition-colors">About Us</a>
+                        <a href="blog.html" class="block text-[13px] lg:text-[14px] text-gray-600 py-2 pl-6 hover:text-blue-600 transition-colors">Blog</a>
+                    </div>
+                </div>
+                
+                <button onclick="alert('Request callback')" class="block w-full text-center bg-blue-600 text-white py-2.5 rounded-lg text-[13px] lg:text-[14px] font-semibold mt-6 hover:bg-blue-700 transition-all shadow-md">
+                    Request Callback
+                </button>
+                
+                <a href="login.html" class="block w-full text-center border-2 border-blue-600 text-blue-600 py-2.5 rounded-lg text-[13px] lg:text-[14px] font-semibold mt-3 hover:bg-blue-50 transition-all">Login</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<main class="pt-[60px] lg:pt-[72px]">
+    
+    <!-- Page Header -->
+    <section class="py-10 lg:py-14 bg-gradient-to-r from-blue-600 to-blue-500">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+            <h1 class="text-[28px] sm:text-[36px] lg:text-[52px] font-bold text-white mb-3 lg:mb-4">
+                Explore Our <span class="text-cyan-300">Courses</span>
+            </h1>
+            <p class="text-[14px] lg:text-[18px] text-blue-100 mb-6 lg:mb-8">
+                Industry-ready training programs with 100% placement support
+            </p>
+            
+            <!-- Search Bar -->
+            <div class="max-w-2xl mx-auto">
+                <div class="relative">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="Search courses by name or instructor..." 
+                        class="w-full px-5 py-3 lg:py-4 pr-12 rounded-xl text-[14px] lg:text-[16px] focus:outline-none focus:ring-2 focus:ring-white shadow-lg"
+                    >
+                    <i class="fas fa-search absolute right-5 top-1/2 transform -translate-y-1/2 text-gray-400 text-[16px]"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters & Courses -->
+    <section class="py-8 lg:py-12">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            
+            <!-- Filter Tabs -->
+            <div class="mb-5">
+                <h3 class="text-[15px] lg:text-[17px] font-bold text-gray-900 mb-3">Filter by Category</h3>
+                <div class="category-scroll flex gap-2 overflow-x-auto pb-2">
+                    <button class="filter-btn filter-active px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-semibold whitespace-nowrap flex-shrink-0 shadow-sm" data-category="all">
+                        All Courses
+                    </button>
+                    <button class="filter-btn px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg text-sm font-semibold hover:bg-gray-50 whitespace-nowrap flex-shrink-0" data-category="full-stack">
+                        <i class="fas fa-code text-[11px]"></i> Full Stack
+                    </button>
+                    <button class="filter-btn px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg text-sm font-semibold hover:bg-gray-50 whitespace-nowrap flex-shrink-0" data-category="data-science">
+                        <i class="fas fa-robot text-[11px]"></i> Data Science
+                    </button>
+                    <button class="filter-btn px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg text-sm font-semibold hover:bg-gray-50 whitespace-nowrap flex-shrink-0" data-category="cybersecurity">
+                        <i class="fas fa-shield-alt text-[11px]"></i> Cybersecurity
+                    </button>
+                    <button class="filter-btn px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg text-sm font-semibold hover:bg-gray-50 whitespace-nowrap flex-shrink-0" data-category="cloud">
+                        <i class="fas fa-cloud text-[11px]"></i> Cloud
+                    </button>
+                    <button class="filter-btn px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg text-sm font-semibold hover:bg-gray-50 whitespace-nowrap flex-shrink-0" data-category="mobile">
+                        <i class="fas fa-mobile-alt text-[11px]"></i> Mobile
+                    </button>
+                </div>
+            </div>
+
+            <!-- Level Filter -->
+            <div class="mb-6">
+                <h3 class="text-[15px] lg:text-[17px] font-bold text-gray-900 mb-3">Filter by Level</h3>
+                <div class="flex flex-wrap gap-2">
+                    <button class="level-btn filter-active px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-semibold" data-level="all">
+                        All Levels
+                    </button>
+                    <button class="level-btn px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg text-sm font-semibold hover:bg-gray-50" data-level="beginner">
+                        Beginner
+                    </button>
+                    <button class="level-btn px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg text-sm font-semibold hover:bg-gray-50" data-level="intermediate">
+                        Intermediate
+                    </button>
+                    <button class="level-btn px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg text-sm font-semibold hover:bg-gray-50" data-level="advanced">
+                        Advanced
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results Count -->
+            <div class="flex justify-between items-center mb-5">
+                <p class="text-[13px] lg:text-[15px] text-gray-600 font-medium">
+                    Showing <span id="courseCount" class="font-bold text-blue-600">0</span> courses
+                </p>
+                <button id="clearFilters" class="text-[12px] lg:text-[14px] text-blue-600 hover:underline font-medium hidden">
+                    Clear All Filters
+                </button>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loading" class="flex justify-center items-center py-16">
+                <div class="loader"></div>
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="hidden text-center py-16">
+                <i class="fas fa-search text-gray-300 text-[64px] mb-4"></i>
+                <h3 class="text-[20px] lg:text-[24px] font-bold text-gray-900 mb-2">No courses found</h3>
+                <p class="text-[14px] lg:text-[16px] text-gray-600 mb-4">Try adjusting your filters or search query</p>
+                <button onclick="location.reload()" class="bg-blue-600 text-white px-6 py-2.5 rounded-lg text-[14px] font-semibold hover:bg-blue-700 transition-all">
+                    Reset All Filters
+                </button>
+            </div>
+
+            <!-- Courses Grid -->
+            <div id="courses-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 lg:gap-4 hidden">
+                <!-- Courses will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="bg-white">
+    
+    <!-- Main Footer Links -->
+    <div class="py-10 lg:py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-10">
+                <!-- Company -->
+                <div id="about">
+                    <h4 class="text-[13px] lg:text-[16px] font-bold text-gray-900 mb-3 lg:mb-4 uppercase">Company</h4>
+                    <ul class="space-y-2 lg:space-y-3 text-[12px] lg:text-[14px]">
+                        <li><a href="aboutus.html" class="text-gray-600 hover:text-blue-600 transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Our Team</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Careers</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Courses -->
+                <div>
+                    <h4 class="text-[13px] lg:text-[16px] font-bold text-gray-900 mb-3 lg:mb-4 uppercase">Courses</h4>
+                    <ul class="space-y-2 lg:space-y-3 text-[12px] lg:text-[14px]">
+                        <li><a href="courses.html" class="text-gray-600 hover:text-blue-600 transition-colors">MERN Full Stack</a></li>
+                        <li><a href="courses.html" class="text-gray-600 hover:text-blue-600 transition-colors">Java Full Stack</a></li>
+                        <li><a href="courses.html" class="text-gray-600 hover:text-blue-600 transition-colors">Data Science & AI</a></li>
+                        <li><a href="courses.html" class="text-gray-600 hover:text-blue-600 transition-colors">Data Analytics</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Quick Links -->
+                <div id="jobs">
+                    <h4 class="text-[13px] lg:text-[16px] font-bold text-gray-900 mb-3 lg:mb-4 uppercase">Quick Links</h4>
+                    <ul class="space-y-2 lg:space-y-3 text-[12px] lg:text-[14px]">
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Hiring Drives</a></li>
+                        <li><a href="index.html#centres" class="text-gray-600 hover:text-blue-600 transition-colors">Skill Centres</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Placement Report</a></li>
+                        <li><a href="#faq" class="text-gray-600 hover:text-blue-600 transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Resources -->
+                <div id="blog">
+                    <h4 class="text-[13px] lg:text-[16px] font-bold text-gray-900 mb-3 lg:mb-4 uppercase">Resources</h4>
+                    <ul class="space-y-2 lg:space-y-3 text-[12px] lg:text-[14px]">
+                        <li><a href="blog.html" class="text-gray-600 hover:text-blue-600 transition-colors">Blog</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Success Stories</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Free Webinars</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Download Brochure</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact - MOBILE CENTERED FIX -->
+                <div class="footer-contact-section">
+                    <h4 class="text-[13px] lg:text-[16px] font-bold text-gray-900 mb-3 lg:mb-4 uppercase">Contact Us</h4>
+                    <ul class="space-y-2 lg:space-y-3 text-[12px] lg:text-[14px]">
+                        <li>
+                            <a href="mailto:contact@blujay.com" class="text-gray-600 hover:text-blue-600 transition-colors flex items-center gap-2">
+                                <i class="fas fa-envelope text-blue-600 text-[10px]"></i>
+                                <span>contact@blujay.com</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="tel:+918595563221" class="text-gray-600 hover:text-blue-600 transition-colors flex items-center gap-2">
+                                <i class="fas fa-phone text-blue-600 text-[10px]"></i>
+                                <span>+91 8595563221</span>
+                            </a>
+                        </li>
+                        <li class="text-gray-600 flex items-center gap-2">
+                            <i class="fas fa-map-marker-alt text-blue-600 text-[10px]"></i>
+                            <span>Hyderabad & Pune</span>
+                        </li>
+                    </ul>
+                    
+                    <!-- Social Media -->
+                    <div class="footer-contact-social mt-4 lg:mt-5 flex gap-2">
+                        <a href="#" class="w-8 lg:w-9 h-8 lg:h-9 bg-blue-600 rounded-lg flex items-center justify-center text-white hover:bg-blue-700 transition-all">
+                            <i class="fab fa-facebook-f text-[12px]"></i>
+                        </a>
+                        <a href="#" class="w-8 lg:w-9 h-8 lg:h-9 bg-blue-600 rounded-lg flex items-center justify-center text-white hover:bg-blue-700 transition-all">
+                            <i class="fab fa-twitter text-[12px]"></i>
+                        </a>
+                        <a href="#" class="w-8 lg:w-9 h-8 lg:h-9 bg-blue-600 rounded-lg flex items-center justify-center text-white hover:bg-blue-700 transition-all">
+                            <i class="fab fa-linkedin-in text-[12px]"></i>
+                        </a>
+                        <a href="#" class="w-8 lg:w-9 h-8 lg:h-9 bg-blue-600 rounded-lg flex items-center justify-center text-white hover:bg-blue-700 transition-all">
+                            <i class="fab fa-instagram text-[12px]"></i>
+                        </a>
+                        <a href="#" class="w-8 lg:w-9 h-8 lg:h-9 bg-blue-600 rounded-lg flex items-center justify-center text-white hover:bg-blue-700 transition-all">
+                            <i class="fab fa-youtube text-[12px]"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bottom Bar -->
+    <div class="py-5 lg:py-6 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-3 lg:gap-4">
+                <div class="flex items-center gap-2 lg:gap-3">
+                    <img src="logo.png" alt="Blujay" class="h-7 lg:h-8" loading="lazy">
+                    <span class="text-gray-400 text-[11px] lg:text-[13px]">© 2025 Blujay Technologies. All rights reserved.</span>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-4 lg:gap-6 text-[11px] lg:text-[13px]">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Refund Policy</a>
+                </div>
+            </div>
+            
+            <!-- Payment & Security -->
+            <div class="mt-4 lg:mt-6 pt-4 lg:pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-3 lg:gap-4">
+                <div class="flex items-center gap-2 lg:gap-3 text-gray-400 text-[10px] lg:text-[12px]">
+                    <i class="fas fa-lock text-green-500"></i>
+                    <span>Secured Payment</span>
+                    <span class="mx-2 lg:mx-3">|</span>
+                    <i class="fas fa-shield-alt text-blue-500"></i>
+                    <span>SSL Encrypted</span>
+                </div>
+                
+                <div class="flex items-center gap-2 lg:gap-4">
+                    <span class="text-gray-500 text-[10px] lg:text-[12px]">We Accept:</span>
+                    <div class="flex gap-1 lg:gap-2">
+                        <div class="w-8 lg:w-10 h-6 lg:h-7 bg-white rounded flex items-center justify-center">
+                            <i class="fab fa-cc-visa text-blue-600 text-[14px] lg:text-[18px]"></i>
+                        </div>
+                        <div class="w-8 lg:w-10 h-6 lg:h-7 bg-white rounded flex items-center justify-center">
+                            <i class="fab fa-cc-mastercard text-red-600 text-[14px] lg:text-[18px]"></i>
+                        </div>
+                        <div class="w-8 lg:w-10 h-6 lg:h-7 bg-white rounded flex items-center justify-center">
+                            <i class="fab fa-google-pay text-blue-600 text-[14px] lg:text-[18px]"></i>
+                        </div>
+                        <div class="w-8 lg:w-10 h-6 lg:h-7 bg-white rounded flex items-center justify-center text-[8px] lg:text-[10px] font-bold text-purple-600">
+                            PP
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- JavaScript -->
+<script>
+    // ============================================
+    // API CONFIGURATION
+    // ============================================
+    const API_URL = 'https://blujay-backend.onrender.com/api'; // Change to production URL
+    
+    let allCourses = [];
+    let filteredCourses = [];
+    let selectedCategory = 'all';
+    let selectedLevel = 'all';
+    let searchQuery = '';
+
+    // ============================================
+    // FETCH ALL COURSES FROM MONGODB
+    // ============================================
+    async function fetchCourses() {
+        try {
+            console.log('🔄 Loading courses from MongoDB...');
+            
+            const response = await fetch(`${API_URL}/courses`);
+            const data = await response.json();
+            
+            if (data.success) {
+                // Filter only published courses
+                allCourses = data.courses.filter(course => course.status === 'published');
+                filteredCourses = allCourses;
+                renderCourses();
+                console.log(`✅ Loaded ${allCourses.length} published courses`);
+            } else {
+                showError('Failed to load courses');
+            }
+        } catch (error) {
+            console.error('❌ Error fetching courses:', error);
+            showError('Unable to connect to server. Please try again later.');
+        } finally {
+            document.getElementById('loading').style.display = 'none';
+        }
+    }
+
+    // ============================================
+    // RENDER COURSES (EXACT SAME AS DASHBOARD)
+    // ============================================
+    function renderCourses() {
+        const grid = document.getElementById('courses-grid');
+        const emptyState = document.getElementById('emptyState');
+        const countSpan = document.getElementById('courseCount');
+        
+        // Filter courses
+        filteredCourses = allCourses.filter(course => {
+            const matchesCategory = selectedCategory === 'all' || course.category === selectedCategory;
+            const matchesLevel = selectedLevel === 'all' || course.level === selectedLevel;
+            const matchesSearch = course.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                 course.instructor.toLowerCase().includes(searchQuery.toLowerCase());
+            
+            return matchesCategory && matchesLevel && matchesSearch;
+        });
+
+        countSpan.textContent = filteredCourses.length;
+
+        if (filteredCourses.length === 0) {
+            grid.classList.add('hidden');
+            emptyState.classList.remove('hidden');
+            return;
+        }
+
+        grid.classList.remove('hidden');
+        emptyState.classList.add('hidden');
+
+        // Render course cards
+        grid.innerHTML = filteredCourses.map(course => createCourseCard(course)).join('');
+    }
+
+    // ============================================
+    // CREATE COURSE CARD (EXACT SAME AS DASHBOARD)
+    // ============================================
+    function createCourseCard(course) {
+        const originalPrice = course.price || 4999;
+        const discountPrice = course.discountedPrice || originalPrice;
+        const discount = Math.round(((originalPrice - discountPrice) / originalPrice) * 100);
+        
+        return `
+            <div class="course-card rounded-xl overflow-hidden shadow-sm" 
+                 onclick="redirectToCourseDetail('${course.courseId}')" 
+                 data-course-id="${course.courseId}">
+                
+                <div class="course-thumbnail">
+                    <img src="${course.thumbnail || 'https://via.placeholder.com/400x225'}" 
+                         alt="${course.title}">
+                    ${discount > 0 ? `<div class="absolute top-3 left-3 bg-red-500 text-white px-2 py-1 rounded text-xs font-bold">${discount}% OFF</div>` : ''}
+                    <div class="absolute bottom-3 right-3 bg-blue-600 text-white px-3 py-1.5 rounded-full text-sm font-bold shadow-lg">
+                        ₹${discountPrice.toLocaleString()}
+                    </div>
+                </div>
+                
+                <div class="course-content">
+                    <h3 class="course-title">${course.title}</h3>
+                    <p class="text-xs text-gray-500 mb-3">${course.instructor || 'Blujay Technologies'}</p>
+                    
+                    <div class="course-meta flex items-center justify-between text-xs">
+                        <div class="flex items-center gap-1">
+                            <span class="text-yellow-500">⭐</span>
+                            <span class="font-semibold text-gray-700">${course.rating || '4.8'}</span>
+                            <span class="text-gray-500">(${course.students || 0})</span>
+                        </div>
+                        <div class="flex items-center gap-1 text-gray-500">
+                            <i class="far fa-clock"></i>
+                            <span>${course.duration || '8 months'}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    // ============================================
+    // ✅ REDIRECT TO COURSE DETAIL (NO LOGIN REQUIRED)
+    // User can view course details WITHOUT login
+    // Login is required only when clicking "Enroll Now" button
+    // ============================================
+    function redirectToCourseDetail(courseId) {
+        console.log('🔗 Redirecting to course detail:', courseId);
+        window.location.href = `course-detail.html?id=${courseId}`;
+    }
+
+    // Category filter
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('filter-active'));
+            this.classList.add('filter-active');
+            selectedCategory = this.dataset.category;
+            renderCourses();
+            updateClearButton();
+        });
+    });
+
+    // Level filter
+    document.querySelectorAll('.level-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('filter-active'));
+            this.classList.add('filter-active');
+            selectedLevel = this.dataset.level;
+            renderCourses();
+            updateClearButton();
+        });
+    });
+
+    // Search
+    document.getElementById('searchInput').addEventListener('input', function(e) {
+        searchQuery = e.target.value;
+        renderCourses();
+        updateClearButton();
+    });
+
+    // Clear filters
+    document.getElementById('clearFilters').addEventListener('click', function() {
+        selectedCategory = 'all';
+        selectedLevel = 'all';
+        searchQuery = '';
+        document.getElementById('searchInput').value = '';
+        document.querySelectorAll('.filter-btn')[0].click();
+        document.querySelectorAll('.level-btn')[0].click();
+        this.classList.add('hidden');
+    });
+
+    function updateClearButton() {
+        const clearBtn = document.getElementById('clearFilters');
+        if (selectedCategory !== 'all' || selectedLevel !== 'all' || searchQuery !== '') {
+            clearBtn.classList.remove('hidden');
+        } else {
+            clearBtn.classList.add('hidden');
+        }
+    }
+
+    function showError(message) {
+        const grid = document.getElementById('courses-grid');
+        grid.innerHTML = `
+            <div class="col-span-full text-center py-16">
+                <i class="fas fa-exclamation-triangle text-red-500 text-[64px] mb-4"></i>
+                <h3 class="text-[20px] font-bold text-gray-900 mb-2">Error</h3>
+                <p class="text-[14px] text-gray-600">${message}</p>
+            </div>
+        `;
+        grid.classList.remove('hidden');
+    }
+
+    // Mobile menu toggle
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileClose = document.getElementById('mobile-close');
+    const mobileMore = document.getElementById('mobile-more');
+    const mobileMoreContent = document.getElementById('mobile-more-content');
+    const desktopMoreBtn = document.getElementById('desktop-more-btn');
+    const desktopMoreMenu = document.getElementById('desktop-more-menu');
+
+    mobileToggle?.addEventListener('click', () => {
+        mobileMenu.classList.remove('translate-x-full');
+    });
+
+    mobileClose?.addEventListener('click', () => {
+        mobileMenu.classList.add('translate-x-full');
+    });
+
+    mobileMore?.addEventListener('click', () => {
+        mobileMoreContent.classList.toggle('hidden');
+        mobileMore.querySelector('.mobile-arrow').classList.toggle('rotate-180');
+    });
+
+    desktopMoreBtn?.addEventListener('click', () => {
+        desktopMoreMenu.classList.toggle('hidden');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!desktopMoreBtn?.contains(e.target) && !desktopMoreMenu?.contains(e.target)) {
+            desktopMoreMenu?.classList.add('hidden');
+        }
+    });
+
+    // Initialize - Load courses on page load
+    fetchCourses();
+    
+    console.log('✅ Courses page loaded!');
+    console.log('📝 Flow: courses.html → course-detail.html (NO LOGIN) → Enroll Now → login.html');
+</script>
+
+<script src="js/script.js"></script>
+</body>
+</html>

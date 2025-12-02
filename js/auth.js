@@ -23,6 +23,7 @@ const db = firebase.firestore();
 // BACKEND API CONFIGURATION
 // ============================================
 const API_URL = 'https://blujay-backend.onrender.com/api';
+//const API_URL = 'http://localhost:5000/api';
 console.log('🔗 Backend API URL:', API_URL);
 
 // ============================================

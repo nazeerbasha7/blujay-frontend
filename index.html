@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -239,13 +239,13 @@
                         More <i class="fas fa-chevron-down text-[9px]"></i>
                     </button>
                     <div id="desktop-more-menu" class="hidden absolute top-full right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border py-1">
-                        <a href="#about" class="block px-4 py-2 text-[12px] lg:text-[13px] text-gray-700 hover:bg-blue-50 transition-colors">About Us</a>
-                        <a href="#blog" class="block px-4 py-2 text-[12px] lg:text-[13px] text-gray-700 hover:bg-blue-50 transition-colors">Blog</a>
+                        <a href="aboutus.html" class="block px-4 py-2 text-[12px] lg:text-[13px] text-gray-700 hover:bg-blue-50 transition-colors">About Us</a>
+                        <a href="blog.html" class="block px-4 py-2 text-[12px] lg:text-[13px] text-gray-700 hover:bg-blue-50 transition-colors">Blog</a>
                     </div>
                 </div>
                 
                 <a href="login.html" class="border-2 border-blue-600 text-blue-600 px-4 py-1.5 rounded-lg text-[12px] lg:text-[13px] font-semibold hover:bg-blue-50 transition-all">Login</a>
-                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg text-[12px] lg:text-[13px] font-semibold hover:bg-blue-700 transition-all flex items-center gap-2">
+                <button onclick="openCallbackModal()" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-[12px] lg:text-[13px] font-semibold hover:bg-blue-700 transition-all flex items-center gap-2">
                     <i class="fas fa-phone-alt text-[10px]"></i> Request Callback
                 </button>
             </div>
@@ -279,12 +279,12 @@
                         More <i class="fas fa-chevron-down text-[11px] mobile-arrow transition-transform"></i>
                     </button>
                     <div id="mobile-more-content" class="hidden pb-2">
-                        <a href="#about" class="block text-[13px] lg:text-[14px] text-gray-600 py-2 pl-6 hover:text-blue-600 transition-colors">About Us</a>
-                        <a href="#blog" class="block text-[13px] lg:text-[14px] text-gray-600 py-2 pl-6 hover:text-blue-600 transition-colors">Blog</a>
+                        <a href="aboutus.html" class="block text-[13px] lg:text-[14px] text-gray-600 py-2 pl-6 hover:text-blue-600 transition-colors">About Us</a>
+                        <a href="blog.html" class="block text-[13px] lg:text-[14px] text-gray-600 py-2 pl-6 hover:text-blue-600 transition-colors">Blog</a>
                     </div>
                 </div>
                 
-                <button class="block w-full text-center bg-blue-600 text-white py-2.5 rounded-lg text-[13px] lg:text-[14px] font-semibold mt-6 hover:bg-blue-700 transition-all shadow-md">
+                <button onclick="openCallbackModal()" class="block w-full text-center bg-blue-600 text-white py-2.5 rounded-lg text-[13px] lg:text-[14px] font-semibold mt-6 hover:bg-blue-700 transition-all shadow-md">
                     Request Callback
                 </button>
                 
@@ -346,9 +346,10 @@
                     <div class="relative z-10">
                         <h3 class="text-[18px] lg:text-[24px] font-bold mb-2">COURSES</h3>
                         <p class="text-[12px] lg:text-[15px] text-blue-50 mb-4 lg:mb-6 leading-relaxed">Industry Ready Training to get you placed!</p>
-                        <button class="bg-white text-blue-600 px-4 lg:px-5 py-2 lg:py-2.5 rounded-lg text-[11px] lg:text-[14px] font-semibold hover:bg-blue-50 transition-all flex items-center gap-2 shadow-md">
-                            View Courses <i class="fas fa-arrow-right text-[10px]"></i>
-                        </button>
+                       <a href="courses.html" class="bg-white text-blue-600 px-4 lg:px-5 py-2 lg:py-2.5 rounded-lg text-11px lg:text-14px font-semibold hover:bg-blue-50 transition-all flex items-center gap-2 shadow-md" style="width: max-content;">
+    View Courses <i class="fas fa-arrow-right text-10px"></i>
+</a>
+
                     </div>
                     <div class="absolute right-0 bottom-0 w-2/5 lg:w-1/2 h-full opacity-90">
                         <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=240&fit=crop" class="w-full h-full object-cover" alt="Student" loading="lazy">
@@ -358,11 +359,12 @@
                 <!-- Jobs Card -->
                 <div class="bg-gradient-to-r from-purple-600 to-purple-500 rounded-2xl p-5 lg:p-7 text-white relative overflow-hidden min-h-[180px] lg:min-h-[240px] shadow-lg hover:shadow-xl transition-shadow">
                     <div class="relative z-10">
-                        <h3 class="text-[18px] lg:text-[24px] font-bold mb-2">JOBS</h3>
-                        <p class="text-[12px] lg:text-[15px] text-purple-50 mb-4 lg:mb-6 leading-relaxed">If you're skilled, get hired directly with our FREE verified hiring drives!</p>
-                        <button class="bg-white text-purple-600 px-4 lg:px-5 py-2 lg:py-2.5 rounded-lg text-[11px] lg:text-[14px] font-semibold hover:bg-purple-50 transition-all flex items-center gap-2 shadow-md">
-                            View Hiring Drives <i class="fas fa-arrow-right text-[10px]"></i>
-                        </button>
+                        <h3 class="text-[18px] lg:text-[24px] font-bold mb-2">SERVICES</h3>
+                        <p class="text-[12px] lg:text-[15px] text-purple-50 mb-4 lg:mb-6 leading-relaxed">Web Solutions - For web development services</p>
+                        <a href="services.html" class="bg-white text-purple-600 px-4 lg:px-5 py-2 lg:py-2.5 rounded-lg text-11px lg:text-14px font-semibold hover:bg-purple-50 transition-all flex items-center gap-2 shadow-md" style="width: max-content;">
+    View Services <i class="fas fa-arrow-right text-10px"></i>
+</a>
+
                     </div>
                     <div class="absolute right-0 bottom-0 w-2/5 lg:w-1/2 h-full opacity-90">
                         <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=240&fit=crop" class="w-full h-full object-cover" alt="Professional" loading="lazy">
@@ -424,215 +426,9 @@
 </section>
 
 
-<!-- Why Choose Us Section -->
-<section class="py-12 lg:py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="text-center mb-8 lg:mb-14">
-            <p class="text-[10px] lg:text-[11px] font-bold text-gray-600 mb-2 uppercase tracking-widest">WHY CHOOSE US</p>
-            <h2 class="text-[24px] sm:text-[28px] lg:text-[52px] font-bold text-gray-900 mb-3 lg:mb-4 leading-tight">
-                What Makes Us <span class="text-blue-600">Different</span>
-            </h2>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8">
-            <!-- Feature 1 -->
-            <div class="feature-box bg-gradient-to-br from-blue-50 to-white rounded-2xl p-5 lg:p-8 border border-gray-100 hover:shadow-xl transition-all group">
-                <div class="feature-icon w-12 lg:w-14 h-12 lg:h-14 bg-blue-600 rounded-xl flex items-center justify-center mb-4 lg:mb-5 group-hover:scale-110 transition-transform">
-                    <i class="fas fa-briefcase text-white text-[20px] lg:text-[24px]"></i>
-                </div>
-                <h3 class="text-[15px] lg:text-[20px] font-bold text-gray-900 mb-2 lg:mb-3">100% Placement Support</h3>
-                <p class="text-[12px] lg:text-[15px] text-gray-600 leading-relaxed">Dedicated placement team with 60+ hiring drives every month until you get placed</p>
-            </div>
-            
-            <!-- Feature 2 -->
-            <div class="feature-box bg-gradient-to-br from-purple-50 to-white rounded-2xl p-5 lg:p-8 border border-gray-100 hover:shadow-xl transition-all group">
-                <div class="feature-icon w-12 lg:w-14 h-12 lg:h-14 bg-purple-600 rounded-xl flex items-center justify-center mb-4 lg:mb-5 group-hover:scale-110 transition-transform">
-                    <i class="fas fa-chalkboard-teacher text-white text-[20px] lg:text-[24px]"></i>
-                </div>
-                <h3 class="text-[15px] lg:text-[20px] font-bold text-gray-900 mb-2 lg:mb-3">Industry Expert Mentors</h3>
-                <p class="text-[12px] lg:text-[15px] text-gray-600 leading-relaxed">Learn from professionals working at Google, Amazon, Microsoft with 10+ years experience</p>
-            </div>
-            
-            <!-- Feature 3 -->
-            <div class="feature-box bg-gradient-to-br from-green-50 to-white rounded-2xl p-5 lg:p-8 border border-gray-100 hover:shadow-xl transition-all group">
-                <div class="feature-icon w-12 lg:w-14 h-12 lg:h-14 bg-green-600 rounded-xl flex items-center justify-center mb-4 lg:mb-5 group-hover:scale-110 transition-transform">
-                    <i class="fas fa-certificate text-white text-[20px] lg:text-[24px]"></i>
-                </div>
-                <h3 class="text-[15px] lg:text-[20px] font-bold text-gray-900 mb-2 lg:mb-3">Govt. Recognized Certification</h3>
-                <p class="text-[12px] lg:text-[15px] text-gray-600 leading-relaxed">ISO certified courses recognized by NSDC and industry-validated curriculum</p>
-            </div>
-            
-            <!-- Feature 4 -->
-            <div class="feature-box bg-gradient-to-br from-orange-50 to-white rounded-2xl p-5 lg:p-8 border border-gray-100 hover:shadow-xl transition-all group">
-                <div class="feature-icon w-12 lg:w-14 h-12 lg:h-14 bg-orange-600 rounded-xl flex items-center justify-center mb-4 lg:mb-5 group-hover:scale-110 transition-transform">
-                    <i class="fas fa-laptop-code text-white text-[20px] lg:text-[24px]"></i>
-                </div>
-                <h3 class="text-[15px] lg:text-[20px] font-bold text-gray-900 mb-2 lg:mb-3">Hands-on Projects</h3>
-                <p class="text-[12px] lg:text-[15px] text-gray-600 leading-relaxed">Build 10+ real-world projects for your portfolio to showcase during interviews</p>
-            </div>
-            
-            <!-- Feature 5 -->
-            <div class="feature-box bg-gradient-to-br from-cyan-50 to-white rounded-2xl p-5 lg:p-8 border border-gray-100 hover:shadow-xl transition-all group">
-                <div class="feature-icon w-12 lg:w-14 h-12 lg:h-14 bg-cyan-600 rounded-xl flex items-center justify-center mb-4 lg:mb-5 group-hover:scale-110 transition-transform">
-                    <i class="fas fa-infinity text-white text-[20px] lg:text-[24px]"></i>
-                </div>
-                <h3 class="text-[15px] lg:text-[20px] font-bold text-gray-900 mb-2 lg:mb-3">Lifetime Access</h3>
-                <p class="text-[12px] lg:text-[15px] text-gray-600 leading-relaxed">Get lifetime access to course materials, recordings, and all future content updates</p>
-            </div>
-            
-            <!-- Feature 6 -->
-            <div class="feature-box bg-gradient-to-br from-pink-50 to-white rounded-2xl p-5 lg:p-8 border border-gray-100 hover:shadow-xl transition-all group">
-                <div class="feature-icon w-12 lg:w-14 h-12 lg:h-14 bg-pink-600 rounded-xl flex items-center justify-center mb-4 lg:mb-5 group-hover:scale-110 transition-transform">
-                    <i class="fas fa-headset text-white text-[20px] lg:text-[24px]"></i>
-                </div>
-                <h3 class="text-[15px] lg:text-[20px] font-bold text-gray-900 mb-2 lg:mb-3">24/7 Support</h3>
-                <p class="text-[12px] lg:text-[15px] text-gray-600 leading-relaxed">Round-the-clock doubt clearing, career guidance, and technical support</p>
-            </div>
-        </div>
-    </div>
-</section>
+ 
 
-
-<!-- Success Stories -->
-<section class="py-12 lg:py-20 bg-gray-50 relative overflow-hidden">
-    <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle, #d1d5db 1px, transparent 1px); background-size: 24px 24px;"></div>
-    
-    <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <h2 class="text-[24px] sm:text-[28px] lg:text-[52px] font-bold text-center mb-2 lg:mb-4 leading-tight">
-            Those <span class="text-blue-600">Who</span> Acted And Transformed
-        </h2>
-        <p class="text-center text-[13px] sm:text-[14px] lg:text-[18px] text-gray-600 mb-8 lg:mb-12">Real stories from students who changed their careers</p>
-        
-        <!-- Testimonial Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 mb-8 lg:mb-10">
-            <!-- Testimonial 1 -->
-            <div class="bg-white rounded-2xl p-5 lg:p-8 shadow-md hover:shadow-xl transition-all">
-                <div class="flex items-center gap-3 lg:gap-4 mb-4 lg:mb-5">
-                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Rahul Sharma" class="w-14 lg:w-16 h-14 lg:h-16 rounded-full border-4 border-blue-50">
-                    <div>
-                        <h4 class="text-[14px] lg:text-[17px] font-bold text-gray-900">Rahul Sharma</h4>
-                        <p class="text-[12px] lg:text-[13px] text-gray-600">Software Engineer @ Amazon</p>
-                        <div class="flex gap-1 mt-1">
-                            <i class="fas fa-star text-yellow-400 text-[9px] lg:text-[11px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[9px] lg:text-[11px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[9px] lg:text-[11px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[9px] lg:text-[11px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[9px] lg:text-[11px]"></i>
-                        </div>
-                    </div>
-                </div>
-                <p class="text-[12px] lg:text-[15px] text-gray-700 leading-relaxed mb-4">"The MERN course completely transformed my career. From earning ₹3.5 LPA to ₹18 LPA at Amazon!"</p>
-                <div class="flex items-center justify-between pt-4 border-t border-gray-100">
-                    <span class="text-[11px] lg:text-[12px] text-gray-500">MERN Stack</span>
-                    <span class="text-[12px] lg:text-[13px] font-bold text-blue-600">₹3.5L → ₹18L</span>
-                </div>
-            </div>
-            
-            <!-- Testimonial 2 -->
-            <div class="bg-white rounded-2xl p-5 lg:p-8 shadow-md hover:shadow-xl transition-all">
-                <div class="flex items-center gap-3 lg:gap-4 mb-4 lg:mb-5">
-                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Priya Verma" class="w-14 lg:w-16 h-14 lg:h-16 rounded-full border-4 border-purple-50">
-                    <div>
-                        <h4 class="text-[14px] lg:text-[17px] font-bold text-gray-900">Priya Verma</h4>
-                        <p class="text-[12px] lg:text-[13px] text-gray-600">Data Analyst @ Microsoft</p>
-                        <div class="flex gap-1 mt-1">
-                            <i class="fas fa-star text-yellow-400 text-[9px] lg:text-[11px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[9px] lg:text-[11px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[9px] lg:text-[11px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[9px] lg:text-[11px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[9px] lg:text-[11px]"></i>
-                        </div>
-                    </div>
-                </div>
-                <p class="text-[12px] lg:text-[15px] text-gray-700 leading-relaxed mb-4">"Best decision ever! The placement support was amazing. Got multiple offers and chose Microsoft!"</p>
-                <div class="flex items-center justify-between pt-4 border-t border-gray-100">
-                    <span class="text-[11px] lg:text-[12px] text-gray-500">Data Analytics</span>
-                    <span class="text-[12px] lg:text-[13px] font-bold text-purple-600">₹4L → ₹22L</span>
-                </div>
-            </div>
-            
-            <!-- Testimonial 3 -->
-            <div class="bg-white rounded-2xl p-5 lg:p-8 shadow-md hover:shadow-xl transition-all">
-                <div class="flex items-center gap-3 lg:gap-4 mb-4 lg:mb-5">
-                    <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Arjun Patel" class="w-14 lg:w-16 h-14 lg:h-16 rounded-full border-4 border-green-50">
-                    <div>
-                        <h4 class="text-[14px] lg:text-[17px] font-bold text-gray-900">Arjun Patel</h4>
-                        <p class="text-[12px] lg:text-[13px] text-gray-600">Java Developer @ TCS</p>
-                        <div class="flex gap-1 mt-1">
-                            <i class="fas fa-star text-yellow-400 text-[9px] lg:text-[11px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[9px] lg:text-[11px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[9px] lg:text-[11px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[9px] lg:text-[11px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[9px] lg:text-[11px]"></i>
-                        </div>
-                    </div>
-                </div>
-                <p class="text-[12px] lg:text-[15px] text-gray-700 leading-relaxed mb-4">"Industry-expert mentors made all the difference. Hands-on projects helped me crack interviews!"</p>
-                <div class="flex items-center justify-between pt-4 border-t border-gray-100">
-                    <span class="text-[11px] lg:text-[12px] text-gray-500">Java Full Stack</span>
-                    <span class="text-[12px] lg:text-[13px] font-bold text-green-600">₹2.8L → ₹12L</span>
-                </div>
-            </div>
-        </div>
-        
-        <div class="flex justify-center gap-3">
-            <button class="bg-blue-600 text-white px-5 lg:px-8 py-2 lg:py-3 rounded-xl text-[12px] lg:text-[15px] font-semibold hover:bg-blue-700 transition-all shadow-md flex items-center gap-2">
-                <i class="fas fa-download text-[11px]"></i>
-                Download Placement Report
-            </button>
-        </div>
-    </div>
-</section>
-
-
-<!-- Partner Companies -->
-<section class="py-10 lg:py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <h2 class="text-[20px] lg:text-[32px] font-bold text-center text-gray-900 mb-2">Our Students Work At</h2>
-        <p class="text-center text-[12px] lg:text-[16px] text-gray-600 mb-6 lg:mb-10">450+ partner companies hiring our graduates</p>
-        
-        <div class="company-slider overflow-hidden relative">
-            <div class="company-track flex gap-6 lg:gap-12 items-center">
-                <div class="company-logo flex-shrink-0 grayscale hover:grayscale-0 transition-all">
-                    <div class="w-28 lg:w-32 h-14 lg:h-16 bg-gray-100 rounded-lg flex items-center justify-center">
-                        <span class="text-gray-600 font-bold text-[12px] lg:text-[14px]">Amazon</span>
-                    </div>
-                </div>
-                <div class="company-logo flex-shrink-0 grayscale hover:grayscale-0 transition-all">
-                    <div class="w-28 lg:w-32 h-14 lg:h-16 bg-gray-100 rounded-lg flex items-center justify-center">
-                        <span class="text-gray-600 font-bold text-[12px] lg:text-[14px]">Google</span>
-                    </div>
-                </div>
-                <div class="company-logo flex-shrink-0 grayscale hover:grayscale-0 transition-all">
-                    <div class="w-28 lg:w-32 h-14 lg:h-16 bg-gray-100 rounded-lg flex items-center justify-center">
-                        <span class="text-gray-600 font-bold text-[12px] lg:text-[14px]">Microsoft</span>
-                    </div>
-                </div>
-                <div class="company-logo flex-shrink-0 grayscale hover:grayscale-0 transition-all">
-                    <div class="w-28 lg:w-32 h-14 lg:h-16 bg-gray-100 rounded-lg flex items-center justify-center">
-                        <span class="text-gray-600 font-bold text-[12px] lg:text-[14px]">TCS</span>
-                    </div>
-                </div>
-                <div class="company-logo flex-shrink-0 grayscale hover:grayscale-0 transition-all">
-                    <div class="w-28 lg:w-32 h-14 lg:h-16 bg-gray-100 rounded-lg flex items-center justify-center">
-                        <span class="text-gray-600 font-bold text-[12px] lg:text-[14px]">Infosys</span>
-                    </div>
-                </div>
-                <div class="company-logo flex-shrink-0 grayscale hover:grayscale-0 transition-all">
-                    <div class="w-28 lg:w-32 h-14 lg:h-16 bg-gray-100 rounded-lg flex items-center justify-center">
-                        <span class="text-gray-600 font-bold text-[12px] lg:text-[14px]">Wipro</span>
-                    </div>
-                </div>
-                <div class="company-logo flex-shrink-0 grayscale hover:grayscale-0 transition-all">
-                    <div class="w-28 lg:w-32 h-14 lg:h-16 bg-gray-100 rounded-lg flex items-center justify-center">
-                        <span class="text-gray-600 font-bold text-[12px] lg:text-[14px]">Accenture</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
+ 
 
 <!-- Centres Section -->
 <section id="centres" class="py-12 lg:py-20 bg-gray-50">
@@ -682,6 +478,187 @@
                         <i class="fas fa-map-marker-alt text-white text-[24px] lg:text-[36px]"></i>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+<!-- Online Learning Section - ADD THIS AFTER THE CENTRES SECTION -->
+<section id="online-learning" class="py-12 lg:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="mb-8 lg:mb-12 text-center">
+            <p class="text-[10px] lg:text-[11px] font-bold text-blue-600 mb-2 uppercase tracking-widest">EXPLORE ONLINE LEARNING</p>
+            <h2 class="text-[24px] sm:text-[28px] lg:text-[52px] font-bold text-blue-600 mb-2 lg:mb-3">
+                <span class="text-gray-900">Online</span> Learning Platform
+            </h2>
+            <p class="text-[13px] sm:text-[14px] lg:text-[18px] text-gray-600">Learn from anywhere with live interactive sessions and expert mentors from top companies.</p>
+        </div>
+
+        <!-- Image Grid + Info Card -->
+        <div class="flex justify-center">
+            <div class="w-full max-w-6xl">
+                
+                <!-- Centre Button -->
+                <div class="flex justify-center mb-6 lg:mb-8">
+                    <button class="px-4 lg:px-6 py-2.5 lg:py-3 bg-blue-50 text-blue-600 rounded-xl text-[12px] lg:text-[14px] font-medium hover:bg-blue-100 transition-colors">
+                        Online Learning Platform
+                    </button>
+                </div>
+
+                <!-- Image Grid -->
+                <div class="grid grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-3">
+                    
+                    <!-- Image 1 -->
+                    <div class="rounded-xl overflow-hidden h-32 lg:h-44 relative group">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform" 
+                             alt="Online Learning" loading="lazy">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all"></div>
+                    </div>
+
+                    <!-- Image 2 -->
+                    <div class="rounded-xl overflow-hidden h-32 lg:h-44 relative group">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform" 
+                             alt="Virtual Classes" loading="lazy">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all"></div>
+                    </div>
+
+                    <!-- Image 3 -->
+                    <div class="rounded-xl overflow-hidden h-32 lg:h-44 relative group">
+                        <img src="https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?w=400" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform" 
+                             alt="E-Learning" loading="lazy">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all"></div>
+                    </div>
+
+                    <!-- Image 4 -->
+                    <div class="rounded-xl overflow-hidden h-32 lg:h-44 relative group">
+                        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=400" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform" 
+                             alt="Online Study" loading="lazy">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all"></div>
+                    </div>
+
+                    <!-- Image 5 -->
+                    <div class="rounded-xl overflow-hidden h-32 lg:h-44 relative group">
+                        <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=400" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform" 
+                             alt="Video Learning" loading="lazy">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all"></div>
+                    </div>
+
+                    <!-- Info Card (Like Hyderabad Card) - BLUJAY THEME -->
+                    <div class="rounded-xl overflow-hidden bg-gradient-to-br from-blue-600 to-blue-500 flex flex-col items-center justify-center h-32 lg:h-44 hover:from-blue-700 hover:to-blue-600 transition-all relative">
+                        <!-- Decorative circles -->
+                        <div class="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+                        <div class="absolute bottom-0 left-0 w-16 h-16 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+                        
+                        <div class="relative z-10 text-center">
+                            <h3 class="text-[22px] lg:text-[32px] font-bold text-white mb-2">Online Learning</h3>
+                            <i class="fas fa-laptop text-white text-[24px] lg:text-[36px]"></i>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Features & CTA Below Grid -->
+                <div class="mt-6 lg:mt-8 bg-gradient-to-br from-blue-50 to-white border-2 border-blue-100 rounded-2xl p-6 lg:p-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-center">
+                        
+                        <!-- Left: Features -->
+                        <div>
+                            <h3 class="text-[18px] lg:text-[24px] font-bold text-gray-900 mb-4 lg:mb-5">Learn From Anywhere, Anytime</h3>
+                            <div class="space-y-3 lg:space-y-4">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-8 h-8 lg:w-10 lg:h-10 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-video text-white text-[14px] lg:text-[16px]"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-[14px] lg:text-[16px] font-bold text-gray-900 mb-1">Live Interactive Classes</h4>
+                                        <p class="text-[12px] lg:text-[14px] text-gray-600">Join live sessions with industry experts and ask questions in real-time.</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start gap-3">
+                                    <div class="w-8 h-8 lg:w-10 lg:h-10 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-clock text-white text-[14px] lg:text-[16px]"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-[14px] lg:text-[16px] font-bold text-gray-900 mb-1">24/7 Course Access</h4>
+                                        <p class="text-[12px] lg:text-[14px] text-gray-600">Access recorded sessions, study materials, and practice labs anytime.</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start gap-3">
+                                    <div class="w-8 h-8 lg:w-10 lg:h-10 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-users text-white text-[14px] lg:text-[16px]"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-[14px] lg:text-[16px] font-bold text-gray-900 mb-1">Expert Mentorship</h4>
+                                        <p class="text-[12px] lg:text-[14px] text-gray-600">Get personalized guidance from mentors working at top tech companies.</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start gap-3">
+                                    <div class="w-8 h-8 lg:w-10 lg:h-10 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-certificate text-white text-[14px] lg:text-[16px]"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-[14px] lg:text-[16px] font-bold text-gray-900 mb-1">Placement Support</h4>
+                                        <p class="text-[12px] lg:text-[14px] text-gray-600">100% placement assistance with unlimited hiring drives until you get placed.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: CTA & Stats -->
+                        <div class="bg-gradient-to-br from-blue-600 to-blue-500 rounded-2xl p-6 lg:p-8 text-center relative overflow-hidden">
+                            <!-- Background Decoration -->
+                            <div class="absolute inset-0 opacity-10">
+                                <div class="absolute top-0 right-0 w-32 h-32 bg-white rounded-full -translate-y-1/2 translate-x-1/2"></div>
+                                <div class="absolute bottom-0 left-0 w-24 h-24 bg-white rounded-full translate-y-1/2 -translate-x-1/2"></div>
+                            </div>
+
+                            <div class="relative z-10">
+                                <!-- Icon -->
+                                <div class="w-16 h-16 lg:w-20 lg:h-20 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-5 lg:mb-6">
+                                    <i class="fas fa-graduation-cap text-white text-[32px] lg:text-[40px]"></i>
+                                </div>
+
+                                <h3 class="text-[22px] lg:text-[32px] font-bold text-white mb-3 lg:mb-4">Start Learning Today!</h3>
+                                <p class="text-[13px] lg:text-[15px] text-white/90 mb-6 lg:mb-8 leading-relaxed">
+                                    Join thousands of students learning online and building successful tech careers.
+                                </p>
+
+                                <!-- CTA Button -->
+                                <a href="courses.html" class="inline-flex items-center gap-3 bg-white text-blue-600 px-6 lg:px-8 py-3 lg:py-4 rounded-xl text-[13px] lg:text-[16px] font-bold hover:bg-gray-50 transition-all shadow-xl hover:shadow-2xl hover:scale-105 transform mb-6">
+                                    <i class="fas fa-play-circle text-[20px] lg:text-[24px]"></i>
+                                    Start Learning Online!
+                                </a>
+
+                                <!-- Stats -->
+                                <div class="grid grid-cols-2 gap-4 pt-6 border-t border-white/20">
+                                    <div>
+                                        <div class="text-[24px] lg:text-[32px] font-bold text-white mb-1">11,000+</div>
+                                        <div class="text-[11px] lg:text-[12px] text-white/80 uppercase tracking-wider">Online Students</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-[24px] lg:text-[32px] font-bold text-white mb-1">100+</div>
+                                        <div class="text-[11px] lg:text-[12px] text-white/80 uppercase tracking-wider">Courses Available</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -753,8 +730,8 @@
                                     <span class="text-[10px] lg:text-[12px] text-gray-500">(2,340)</span>
                                 </div>
                                 <div class="text-right">
-                                    <p class="text-[16px] lg:text-[18px] font-bold text-blue-600">₹99,999</p>
-                                    <p class="text-[10px] lg:text-[12px] text-gray-500 line-through">₹1,49,999</p>
+                                    <p class="text-[16px] lg:text-[18px] font-bold text-blue-600">99,999</p>
+                                    <p class="text-[10px] lg:text-[12px] text-gray-500 line-through">1,49,999</p>
                                 </div>
                             </div>
                             
@@ -770,11 +747,11 @@
                             </div>
                             
                             <a href="login.html" class="block w-full bg-blue-600 text-white text-center py-2 lg:py-3 rounded-lg text-[12px] lg:text-[14px] font-semibold hover:bg-blue-700 transition-all mb-3">
-                                Enroll Now →
+                                Enroll Now
                             </a>
 
-                            <a href="login.html" class="block w-full bg-gray-100 text-gray-700 text-center py-2 lg:py-2.5 rounded-lg text-[11px] lg:text-[13px] font-semibold hover:bg-gray-200 transition-all">
-                                View All Courses 🔒
+                            <a href="courses.html" class="block w-full bg-gray-100 text-gray-700 text-center py-2 lg:py-2.5 rounded-lg text-[11px] lg:text-[13px] font-semibold hover:bg-gray-200 transition-all">
+                                View All Courses 
                             </a>
                         </div>
                     </div>
@@ -820,8 +797,8 @@
                                     <span class="text-[10px] lg:text-[12px] text-gray-500">(3,120)</span>
                                 </div>
                                 <div class="text-right">
-                                    <p class="text-[16px] lg:text-[18px] font-bold text-green-600">₹95,999</p>
-                                    <p class="text-[10px] lg:text-[12px] text-gray-500 line-through">₹1,45,999</p>
+                                    <p class="text-[16px] lg:text-[18px] font-bold text-green-600">9,999</p>
+                                    <p class="text-[10px] lg:text-[12px] text-gray-500 line-through">1,45,999</p>
                                 </div>
                             </div>
                             
@@ -837,11 +814,11 @@
                             </div>
                             
                             <a href="login.html" class="block w-full bg-green-600 text-white text-center py-2 lg:py-3 rounded-lg text-[12px] lg:text-[14px] font-semibold hover:bg-green-700 transition-all mb-3">
-                                Enroll Now →
+                                Enroll Now 
                             </a>
 
-                            <a href="login.html" class="block w-full bg-gray-100 text-gray-700 text-center py-2 lg:py-2.5 rounded-lg text-[11px] lg:text-[13px] font-semibold hover:bg-gray-200 transition-all">
-                                View All Courses 🔒
+                            <a href="courses.html" class="block w-full bg-gray-100 text-gray-700 text-center py-2 lg:py-2.5 rounded-lg text-[11px] lg:text-[13px] font-semibold hover:bg-gray-200 transition-all">
+                                View All Courses 
                             </a>
                         </div>
                     </div>
@@ -851,16 +828,159 @@
                 <div class="bg-gradient-to-r from-blue-50 to-purple-50 border-2 border-blue-200 rounded-2xl p-6 lg:p-8 text-center">
                     <h3 class="text-[18px] lg:text-[24px] font-bold text-gray-900 mb-2">Explore Complete Course Catalog</h3>
                     <p class="text-[12px] lg:text-[15px] text-gray-600 mb-5 lg:mb-6">Access 20+ professional courses, career paths, and learning bundles</p>
-                    <a href="login.html" class="inline-block bg-blue-600 text-white px-7 lg:px-10 py-3 lg:py-4 rounded-lg text-[13px] lg:text-[15px] font-bold hover:bg-blue-700 transition-all shadow-lg">
+                    <a href="courses.html" class="inline-block bg-blue-600 text-white px-7 lg:px-10 py-3 lg:py-4 rounded-lg text-[13px] lg:text-[15px] font-bold hover:bg-blue-700 transition-all shadow-lg">
                         View All Courses
                         <i class="fas fa-arrow-right ml-2"></i>
                     </a>
-                    <p class="text-[11px] lg:text-[13px] text-gray-500 mt-4">✓ Login to see all registered courses from database</p>
+                    <p class="text-[11px] lg:text-[13px] text-gray-500 mt-4">Ã¢Å“â€œ Login to see all registered courses from database</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+
+
+<!-- Success Stories -->
+<section class="py-12 lg:py-20 bg-gray-50 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle, #d1d5db 1px, transparent 1px); background-size: 24px 24px;"></div>
+    
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+        <h2 class="text-[24px] sm:text-[28px] lg:text-[52px] font-bold text-center mb-2 lg:mb-4 leading-tight">
+            Those <span class="text-blue-600">Who</span> Acted And Transformed
+        </h2>
+        <p class="text-center text-[13px] sm:text-[14px] lg:text-[18px] text-gray-600 mb-8 lg:mb-12">Real stories from students who changed their careers</p>
+        
+        <!-- Testimonial Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 mb-8 lg:mb-10">
+            <!-- Testimonial 1 -->
+            <div class="bg-white rounded-2xl p-5 lg:p-8 shadow-md hover:shadow-xl transition-all">
+                <div class="flex items-center gap-3 lg:gap-4 mb-4 lg:mb-5">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Rahul Sharma" class="w-14 lg:w-16 h-14 lg:h-16 rounded-full border-4 border-blue-50">
+                    <div>
+                        <h4 class="text-[14px] lg:text-[17px] font-bold text-gray-900">Rahul Sharma</h4>
+                        <p class="text-[12px] lg:text-[13px] text-gray-600">Software Engineer @ Amazon</p>
+                        <div class="flex gap-1 mt-1">
+                            <i class="fas fa-star text-yellow-400 text-[9px] lg:text-[11px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[9px] lg:text-[11px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[9px] lg:text-[11px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[9px] lg:text-[11px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[9px] lg:text-[11px]"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-[12px] lg:text-[15px] text-gray-700 leading-relaxed mb-4">"The MERN course completely transformed my career. From earning 3.5 LPA to 18 LPA at Amazon!"</p>
+                <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <span class="text-[11px] lg:text-[12px] text-gray-500">MERN Stack</span>
+                    <span class="text-[12px] lg:text-[13px] font-bold text-blue-600">3.5L Ã¢â€ â€™ 18L</span>
+                </div>
+            </div>
+            
+            <!-- Testimonial 2 -->
+            <div class="bg-white rounded-2xl p-5 lg:p-8 shadow-md hover:shadow-xl transition-all">
+                <div class="flex items-center gap-3 lg:gap-4 mb-4 lg:mb-5">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Priya Verma" class="w-14 lg:w-16 h-14 lg:h-16 rounded-full border-4 border-purple-50">
+                    <div>
+                        <h4 class="text-[14px] lg:text-[17px] font-bold text-gray-900">Priya Verma</h4>
+                        <p class="text-[12px] lg:text-[13px] text-gray-600">Data Analyst @ Microsoft</p>
+                        <div class="flex gap-1 mt-1">
+                            <i class="fas fa-star text-yellow-400 text-[9px] lg:text-[11px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[9px] lg:text-[11px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[9px] lg:text-[11px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[9px] lg:text-[11px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[9px] lg:text-[11px]"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-[12px] lg:text-[15px] text-gray-700 leading-relaxed mb-4">"Best decision ever! The placement support was amazing. Got multiple offers and chose Microsoft!"</p>
+                <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <span class="text-[11px] lg:text-[12px] text-gray-500">Data Analytics</span>
+                    <span class="text-[12px] lg:text-[13px] font-bold text-purple-600">4L Ã¢â€ â€™ 22L</span>
+                </div>
+            </div>
+            
+            <!-- Testimonial 3 -->
+            <div class="bg-white rounded-2xl p-5 lg:p-8 shadow-md hover:shadow-xl transition-all">
+                <div class="flex items-center gap-3 lg:gap-4 mb-4 lg:mb-5">
+                    <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Arjun Patel" class="w-14 lg:w-16 h-14 lg:h-16 rounded-full border-4 border-green-50">
+                    <div>
+                        <h4 class="text-[14px] lg:text-[17px] font-bold text-gray-900">Arjun Patel</h4>
+                        <p class="text-[12px] lg:text-[13px] text-gray-600">Java Developer @ TCS</p>
+                        <div class="flex gap-1 mt-1">
+                            <i class="fas fa-star text-yellow-400 text-[9px] lg:text-[11px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[9px] lg:text-[11px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[9px] lg:text-[11px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[9px] lg:text-[11px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[9px] lg:text-[11px]"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-[12px] lg:text-[15px] text-gray-700 leading-relaxed mb-4">"Industry-expert mentors made all the difference. Hands-on projects helped me crack interviews!"</p>
+                <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <span class="text-[11px] lg:text-[12px] text-gray-500">Java Full Stack</span>
+                    <span class="text-[12px] lg:text-[13px] font-bold text-green-600">2.8L Ã¢â€ â€™ 12L</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="flex justify-center gap-3">
+            <button class="bg-blue-600 text-white px-5 lg:px-8 py-2 lg:py-3 rounded-xl text-[12px] lg:text-[15px] font-semibold hover:bg-blue-700 transition-all shadow-md flex items-center gap-2">
+                <i class="fas fa-download text-[11px]"></i>
+                Download Placement Report
+            </button>
+        </div>
+    </div>
+</section>
+
+
+<!-- Partner Companies -->
+<section class="py-10 lg:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <h2 class="text-[20px] lg:text-[32px] font-bold text-center text-gray-900 mb-2">Our Students Work At</h2>
+        <p class="text-center text-[12px] lg:text-[16px] text-gray-600 mb-6 lg:mb-10">450+ partner companies hiring our graduates</p>
+        
+        <div class="company-slider overflow-hidden relative">
+            <div class="company-track flex gap-6 lg:gap-12 items-center">
+                <div class="company-logo flex-shrink-0 grayscale hover:grayscale-0 transition-all">
+                    <div class="w-28 lg:w-32 h-14 lg:h-16 bg-gray-100 rounded-lg flex items-center justify-center">
+                        <span class="text-gray-600 font-bold text-[12px] lg:text-[14px]">Amazon</span>
+                    </div>
+                </div>
+                <div class="company-logo flex-shrink-0 grayscale hover:grayscale-0 transition-all">
+                    <div class="w-28 lg:w-32 h-14 lg:h-16 bg-gray-100 rounded-lg flex items-center justify-center">
+                        <span class="text-gray-600 font-bold text-[12px] lg:text-[14px]">Google</span>
+                    </div>
+                </div>
+                <div class="company-logo flex-shrink-0 grayscale hover:grayscale-0 transition-all">
+                    <div class="w-28 lg:w-32 h-14 lg:h-16 bg-gray-100 rounded-lg flex items-center justify-center">
+                        <span class="text-gray-600 font-bold text-[12px] lg:text-[14px]">Microsoft</span>
+                    </div>
+                </div>
+                <div class="company-logo flex-shrink-0 grayscale hover:grayscale-0 transition-all">
+                    <div class="w-28 lg:w-32 h-14 lg:h-16 bg-gray-100 rounded-lg flex items-center justify-center">
+                        <span class="text-gray-600 font-bold text-[12px] lg:text-[14px]">TCS</span>
+                    </div>
+                </div>
+                <div class="company-logo flex-shrink-0 grayscale hover:grayscale-0 transition-all">
+                    <div class="w-28 lg:w-32 h-14 lg:h-16 bg-gray-100 rounded-lg flex items-center justify-center">
+                        <span class="text-gray-600 font-bold text-[12px] lg:text-[14px]">Infosys</span>
+                    </div>
+                </div>
+                <div class="company-logo flex-shrink-0 grayscale hover:grayscale-0 transition-all">
+                    <div class="w-28 lg:w-32 h-14 lg:h-16 bg-gray-100 rounded-lg flex items-center justify-center">
+                        <span class="text-gray-600 font-bold text-[12px] lg:text-[14px]">Wipro</span>
+                    </div>
+                </div>
+                <div class="company-logo flex-shrink-0 grayscale hover:grayscale-0 transition-all">
+                    <div class="w-28 lg:w-32 h-14 lg:h-16 bg-gray-100 rounded-lg flex items-center justify-center">
+                        <span class="text-gray-600 font-bold text-[12px] lg:text-[14px]">Accenture</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 
 <!-- Student Reviews -->
@@ -886,7 +1006,7 @@
                 </div>
                 <div class="p-3 lg:p-4">
                     <h4 class="font-bold text-[13px] lg:text-[15px] text-gray-900 mb-1">Amit Kumar</h4>
-                    <p class="text-[11px] lg:text-[13px] text-gray-600 mb-2">Placed @ Infosys • MERN Stack</p>
+                    <p class="text-[11px] lg:text-[13px] text-gray-600 mb-2">Placed @ Infosys Ã¢â‚¬Â¢ MERN Stack</p>
                     <div class="flex gap-1">
                         <i class="fas fa-star text-yellow-400 text-[9px]"></i>
                         <i class="fas fa-star text-yellow-400 text-[9px]"></i>
@@ -908,7 +1028,7 @@
                 </div>
                 <div class="p-3 lg:p-4">
                     <h4 class="font-bold text-[13px] lg:text-[15px] text-gray-900 mb-1">Sneha Reddy</h4>
-                    <p class="text-[11px] lg:text-[13px] text-gray-600 mb-2">Placed @ Wipro • Java Full Stack</p>
+                    <p class="text-[11px] lg:text-[13px] text-gray-600 mb-2">Placed @ Wipro Ã¢â‚¬Â¢ Java Full Stack</p>
                     <div class="flex gap-1">
                         <i class="fas fa-star text-yellow-400 text-[9px]"></i>
                         <i class="fas fa-star text-yellow-400 text-[9px]"></i>
@@ -930,7 +1050,7 @@
                 </div>
                 <div class="p-3 lg:p-4">
                     <h4 class="font-bold text-[13px] lg:text-[15px] text-gray-900 mb-1">Ravi Sharma</h4>
-                    <p class="text-[11px] lg:text-[13px] text-gray-600 mb-2">Placed @ TCS • Data Analytics</p>
+                    <p class="text-[11px] lg:text-[13px] text-gray-600 mb-2">Placed @ TCS Ã¢â‚¬Â¢ Data Analytics</p>
                     <div class="flex gap-1">
                         <i class="fas fa-star text-yellow-400 text-[9px]"></i>
                         <i class="fas fa-star text-yellow-400 text-[9px]"></i>
@@ -964,7 +1084,7 @@
                     <i class="fas fa-chevron-down text-blue-600 text-[12px] lg:text-[14px] transition-transform"></i>
                 </button>
                 <div class="faq-answer hidden px-4 lg:px-6 pb-4 lg:pb-5">
-                    <p class="text-[12px] lg:text-[15px] text-gray-600 leading-relaxed">Our courses are 6-8 months long with flexible payment options. MERN stack costs ₹95,999 and Java Full Stack costs ₹99,999. EMI options and scholarships are available for eligible students.</p>
+                    <p class="text-[12px] lg:text-[15px] text-gray-600 leading-relaxed">Our courses are 6-8 months long with flexible payment options. MERN stack costs 95,999 and Java Full Stack costs 99,999. EMI options and scholarships are available for eligible students.</p>
                 </div>
             </div>
             
@@ -1182,7 +1302,7 @@
             <div class="flex flex-col md:flex-row justify-between items-center gap-3 lg:gap-4">
                 <div class="flex items-center gap-2 lg:gap-3">
                     <img src="logo.png" alt="Blujay" class="h-7 lg:h-8" loading="lazy">
-                    <span class="text-gray-400 text-[11px] lg:text-[13px]">© 2025 Blujay Technologies. All rights reserved.</span>
+                    <span class="text-gray-400 text-[11px] lg:text-[13px]">Ã‚Â© 2025 Blujay Technologies. All rights reserved.</span>
                 </div>
                 
                 <div class="flex flex-wrap justify-center gap-4 lg:gap-6 text-[11px] lg:text-[13px]">
@@ -1225,6 +1345,173 @@
 </footer>
 
 
-<script src="js/script.js"></script>
+<script src="js/script.js">
+
+// ========== REQUEST CALLBACK MODAL ==========
+
+function openCallbackModal() {
+    const modal = document.getElementById('callbackModal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeCallbackModal() {
+    const modal = document.getElementById('callbackModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = 'auto';
+}
+
+// Close modal when clicking outside
+document.getElementById('callbackModal')?.addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeCallbackModal();
+    }
+});
+
+// Handle form submission to SheetDB
+const sheetdbForm = document.getElementById('sheetdb-form');
+sheetdbForm?.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const submitBtn = this.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Submitting...';
+    submitBtn.disabled = true;
+
+    fetch(this.action, {
+        method: "POST",
+        body: new FormData(this),
+    })
+    .then(response => response.json())
+    .then((data) => {
+        alert('Ã¢Å“â€¦ Form submitted successfully! We will contact you soon.');
+        closeCallbackModal();
+        sheetdbForm.reset();
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    })
+    .catch((error) => {
+        alert('Ã¢ÂÅ’ Error submitting form. Please try again.');
+        console.error('Error:', error);
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    });
+});
+
+</script>
+
+<!-- Request Callback Modal (REPLACE EXISTING BLOCK WITH THIS) -->
+<div id="callbackModal" class="fixed inset-0 bg-black/60 z-[200] hidden items-start sm:items-center justify-center p-4 pt-12 sm:pt-0">
+  <div
+    class="bg-white rounded-2xl w-full max-w-[360px] sm:max-w-md lg:max-w-lg shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto relative"
+    role="dialog" aria-modal="true" aria-labelledby="callbackTitle"
+  >
+    <!-- Close -->
+    <button onclick="closeCallbackModal()"
+            class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center hover:bg-gray-100 rounded-full transition-all z-10"
+            aria-label="Close modal">
+      <i class="fas fa-times text-gray-600 text-lg"></i>
+    </button>
+
+    <div class="p-6 sm:p-8 min-w-0">
+      <h2 id="callbackTitle" class="text-xl sm:text-2xl font-bold text-gray-900 mb-1">Request Callback</h2>
+      <p class="text-sm text-gray-600 mb-5">Request a callback from our team. Please fill out the form below and we will get back to you shortly.</p>
+
+      <form id="sheetdb-form" method="post" action="https://sheetdb.io/api/v1/7s7xiynldn2sf" class="space-y-3">
+        <input
+          type="text"
+          name="data[name]"
+          placeholder="Name"
+          required
+          class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
+        >
+
+        
+       <!-- Country Code + Mobile Number -->
+<!-- Country Code + Mobile Number -->
+<div class="flex gap-2">
+    <select 
+        name="data[countrycode]" 
+        id="countryCodeSelect" 
+        required 
+        class="w-16 sm:w-28 px-1 py-2 border border-gray-300 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-blue-600 text-gray-700"
+    >
+        <option value="+91" selected>India +91</option>
+        <option value="+93">Afghan +93</option>
+        <option value="+1">Canada +1</option>
+        <option value="+86">China +86</option>
+        <option value="+20">Egypt +20</option>
+        <option value="+33">France +33</option>
+        <option value="+49">Germany +49</option>
+        <option value="+852">HK +852</option>
+        <option value="+62">Indonesia +62</option>
+        <option value="+81">Japan +81</option>
+        <option value="+60">Malaysia +60</option>
+        <option value="+52">Mexico +52</option>
+        <option value="+977">Nepal +977</option>
+        <option value="+31">Netherlands +31</option>
+        <option value="+64">NZ +64</option>
+        <option value="+92">Pakistan +92</option>
+        <option value="+63">Philippines +63</option>
+        <option value="+7">Russia +7</option>
+        <option value="+966">Saudi +966</option>
+        <option value="+65">Singapore +65</option>
+        <option value="+82">S Korea +82</option>
+        <option value="+34">Spain +34</option>
+        <option value="+94">SriLanka +94</option>
+        <option value="+66">Thailand +66</option>
+        <option value="+90">Turkey +90</option>
+        <option value="+971">UAE +971</option>
+        <option value="+44">UK +44</option>
+        <option value="+1">USA +1</option>
+        <option value="+84">Vietnam +84</option>
+    </select>
+    
+    <input 
+        type="tel" 
+        name="data[mobile]" 
+        placeholder="Mobile Number" 
+        required 
+        pattern="[0-9]{7,15}"
+        class="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
+    />
+</div>
+
+
+
+        <select name="data[workexperience]" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 text-gray-700">
+    <option value="" disabled selected>Work Experience in years</option>
+    <option value="Currently a college student">Currently a college student</option>
+    <option value="0 Years">0 Years</option>
+    <option value="<1 Year">&lt;1 Year</option>
+    <option value="1-2 Years">1-2 Years</option>
+    <option value="2-3 Years">2-3 Years</option>
+    <option value="3-5 Years">3-5 Years</option>
+    <option value="5-8 Years">5-8 Years</option>
+    <option value="8-12 Years">8-12 Years</option>
+    <option value="12-15 Years">12-15 Years</option>
+    <option value=">15 Years">&gt;15 Years</option>
+</select>
+
+
+        <p class="text-xs text-gray-500">
+          By submitting this form, you consent to our <a href="#" class="text-blue-600 hover:underline">Terms of Use</a> &amp;
+          <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a> and to be contacted by us via Email/Call/Whatsapp/SMS.
+        </p>
+
+        <button
+          type="submit"
+          class="w-full bg-blue-600 text-white py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-700 transition-all"
+        >
+          Request Callback
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
+

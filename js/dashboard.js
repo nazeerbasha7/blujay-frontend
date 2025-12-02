@@ -1,6 +1,6 @@
 // ============================================
 // STUDENT DASHBOARD - Blujay Technologies
-// Complete Backend Integration (MongoDB)
+// Complete Backend Integration + Razorpay Payment
 // ============================================
 
 const firebaseConfig = {
@@ -24,6 +24,7 @@ const db = firebase.firestore();
 // BACKEND API CONFIGURATION
 // ============================================
 const API_URL = 'https://blujay-backend.onrender.com/api';
+//const API_URL = 'http://localhost:5000/api';
 
 // ============================================
 // HELPER FUNCTION FOR AUTHENTICATED API CALLS
@@ -315,7 +316,7 @@ async function loadCoursesFromBackend() {
 }
 
 // ============================================
-// CREATE COURSE CARD HTML
+// CREATE COURSE CARD HTML (COURSERA-STYLE - NO BUTTON)
 // ============================================
 function createCourseCard(course) {
     const originalPrice = course.price || 4999;
@@ -323,86 +324,45 @@ function createCourseCard(course) {
     const discount = Math.round(((originalPrice - discountPrice) / originalPrice) * 100);
     
     return `
-        <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
-            <div class="relative">
-                <img src="${course.thumbnail || 'https://via.placeholder.com/400x225'}" alt="${course.title}" class="w-full h-48 object-cover">
-                <div class="absolute top-3 right-3 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-bold">
+        <div class="course-card rounded-xl overflow-hidden shadow-sm" 
+             onclick="redirectToCourseDetail('${course.courseId}')" 
+             data-course-id="${course.courseId}">
+            
+            <div class="course-thumbnail">
+                <img src="${course.thumbnail || 'https://via.placeholder.com/400x225'}" 
+                     alt="${course.title}">
+                ${discount > 0 ? `<div class="absolute top-3 left-3 bg-red-500 text-white px-2 py-1 rounded text-xs font-bold">${discount}% OFF</div>` : ''}
+                <div class="absolute bottom-3 right-3 bg-blue-600 text-white px-3 py-1.5 rounded-full text-sm font-bold shadow-lg">
                     ₹${discountPrice.toLocaleString()}
                 </div>
-                ${discount > 0 ? `<div class="absolute top-3 left-3 bg-red-500 text-white px-2 py-1 rounded text-xs font-bold">${discount}% OFF</div>` : ''}
             </div>
-            <div class="p-5">
-                <h3 class="text-lg font-bold text-gray-900 mb-2 line-clamp-2">${course.title}</h3>
-                <p class="text-sm text-gray-600 mb-4 line-clamp-2">${course.description || 'Learn professional skills with expert instructors'}</p>
-                <div class="flex items-center justify-between mb-4">
-                    <div class="flex items-center gap-2">
+            
+            <div class="course-content">
+                <h3 class="course-title">${course.title}</h3>
+                <p class="text-xs text-gray-500 mb-3">${course.instructor || 'Blujay Technologies'}</p>
+                
+                <div class="course-meta flex items-center justify-between text-xs">
+                    <div class="flex items-center gap-1">
                         <span class="text-yellow-500">⭐</span>
-                        <span class="text-sm font-semibold text-gray-700">${course.rating || '4.8'}</span>
-                        <span class="text-sm text-gray-500">(${course.students || 0})</span>
+                        <span class="font-semibold text-gray-700">${course.rating || '4.8'}</span>
+                        <span class="text-gray-500">(${course.students || 0})</span>
                     </div>
-                    <span class="text-sm text-gray-500">
-                        <i class="far fa-clock mr-1"></i>${course.duration || '8 months'}
-                    </span>
+                    <div class="flex items-center gap-1 text-gray-500">
+                        <i class="far fa-clock"></i>
+                        <span>${course.duration || '8 months'}</span>
+                    </div>
                 </div>
-                <button onclick="viewCourseDetails('${course.courseId}')" 
-                    class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all">
-                    View Details
-                </button>
             </div>
         </div>
     `;
 }
 
 // ============================================
-// ✅ NEW: VIEW COURSE DETAILS (Redirect to detail page)
+// REDIRECT TO COURSE DETAIL PAGE
 // ============================================
-window.viewCourseDetails = function(courseId) {
-    console.log('📖 Viewing course details:', courseId);
-    window.location.href = `course-detail.html?courseId=${courseId}`;
-};
-
-// ============================================
-// ✅ ENROLL IN COURSE (BACKEND API) - KEPT FOR MY-LEARNING PAGE
-// ============================================
-window.enrollInCourse = async function(courseId, courseTitle) {
-    if (!currentUser) {
-        alert('Please login to enroll in courses');
-        window.location.href = 'login.html';
-        return;
-    }
-    
-    console.log('📚 Enrolling in course:', courseId);
-    
-    try {
-        const response = await authenticatedFetch('/enrollments', {
-            method: 'POST',
-            body: JSON.stringify({ courseId })
-        });
-        
-        if (!response || !response.ok) {
-            const errorData = await response?.json().catch(() => ({}));
-            
-            if (errorData.message && errorData.message.includes('already enrolled')) {
-                alert('You are already enrolled in this course!');
-                window.location.href = 'my-learning.html';
-                return;
-            }
-            
-            throw new Error(errorData.message || 'Failed to enroll');
-        }
-        
-        const data = await response.json();
-        
-        if (data.success) {
-            console.log('✅ Enrollment successful:', data.enrollment);
-            alert(`Successfully enrolled in ${courseTitle}!`);
-            window.location.href = 'my-learning.html';
-        }
-        
-    } catch (error) {
-        console.error('❌ Enrollment error:', error);
-        alert('Error enrolling in course: ' + error.message);
-    }
+window.redirectToCourseDetail = function(courseId) {
+    console.log('🔗 Redirecting to course detail:', courseId);
+    window.location.href = `course-detail.html?id=${courseId}`;
 };
 
 // ============================================
@@ -693,4 +653,4 @@ console.log('✅ Dashboard loaded - 100% Backend Integrated!');
 console.log('📚 Courses: MongoDB via Backend API');
 console.log('📝 Enrollment: MongoDB via Backend API');
 console.log('💾 Profile: MongoDB via Backend API');
-console.log('🔥 PHASE 3 COMPLETE - Course Detail Page Ready!');
+console.log('🎨 Coursera-style hovering cards with click-to-redirect!');

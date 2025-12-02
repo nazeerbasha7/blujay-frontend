@@ -6,6 +6,8 @@
     <title>Course Details - Blujay Technologies</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -25,12 +27,12 @@
             min-height: 100vh;
         }
         
-        /* ===== YOUR EXACT BLUJAY THEME COLORS ===== */
+        /* ===== BLUJAY BRAND COLORS ===== */
         :root {
             --blujay-primary: #1D5D7F;
             --blujay-primary-hover: #236192;
             --blujay-light: #E8F4F8;
-            --blujay-purple: #7c3aed;
+            --blujay-dark: #164257;
         }
         
         .bg-blue-600 { background-color: var(--blujay-primary) !important; }
@@ -39,19 +41,34 @@
         .border-blue-500 { border-color: var(--blujay-primary) !important; }
         .bg-blue-100 { background-color: var(--blujay-light) !important; }
         
-        /* ===== HEADER - MATCHING YOUR DASHBOARD ===== */
+        /* ===== HEADER ===== */
         header {
             background: white;
             border-bottom: 1px solid #e5e7eb;
+            backdrop-filter: blur(10px);
         }
         
         header a {
             transition: all 0.3s ease;
         }
         
-        /* ===== HERO SECTION - YOUR GRADIENT ===== */
+        /* ===== HERO SECTION - BLUJAY GRADIENT ===== */
         .hero-section {
-            background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+            background: linear-gradient(135deg, #1D5D7F 0%, #236192 50%, #2a7bb8 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".1" fill="%23ffffff"></path></svg>') no-repeat bottom;
+            background-size: cover;
+            opacity: 0.1;
         }
         
         /* ===== STICKY BUY BOX ===== */
@@ -59,25 +76,29 @@
             position: sticky;
             top: 90px;
             background: white;
-            border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
         }
         
         .sticky-buy-box:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 30px rgba(29, 93, 127, 0.15);
+            border-color: var(--blujay-primary);
         }
         
         /* ===== CLEAN CARDS ===== */
         .content-card {
             background: white;
-            border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
             transition: all 0.3s ease;
+            border: 1px solid #f3f4f6;
         }
         
         .content-card:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+            border-color: #e5e7eb;
         }
         
         /* ===== MODULE HEADER ===== */
@@ -85,12 +106,14 @@
             cursor: pointer;
             transition: all 0.3s ease;
             background: #f9fafb;
-            border-radius: 8px;
-            padding: 16px;
+            border-radius: 12px;
+            padding: 18px;
+            border: 1px solid #e5e7eb;
         }
         
         .module-header:hover {
-            background: #f3f4f6;
+            background: var(--blujay-light);
+            border-color: var(--blujay-primary);
         }
         
         .module-header i {
@@ -99,17 +122,17 @@
         
         /* ===== VIDEO ITEM ===== */
         .video-item {
-            padding: 12px 16px;
+            padding: 14px 18px;
             border-left: 3px solid transparent;
             transition: all 0.3s ease;
-            border-radius: 6px;
-            margin: 4px 0;
+            border-radius: 8px;
+            margin: 6px 0;
         }
         
         .video-item:hover {
             background: #f0f9ff;
             border-left-color: var(--blujay-primary);
-            transform: translateX(5px);
+            transform: translateX(8px);
         }
         
         .video-item.free {
@@ -121,16 +144,20 @@
             background: #dcfce7;
         }
         
-        /* ===== BUTTON - YOUR STYLE ===== */
+        /* ===== ENROLL BUTTON ===== */
         .btn-enroll {
-            background: var(--blujay-primary);
+            background: linear-gradient(135deg, var(--blujay-primary) 0%, var(--blujay-primary-hover) 100%);
             transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(29, 93, 127, 0.3);
         }
         
         .btn-enroll:hover {
-            background: var(--blujay-primary-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(29, 93, 127, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(29, 93, 127, 0.4);
+        }
+        
+        .btn-enroll:active {
+            transform: translateY(-1px);
         }
         
         /* ===== DISCOUNT BADGE ===== */
@@ -140,7 +167,37 @@
         
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            50% { transform: scale(1.08); }
+        }
+        
+        /* ===== LEARNING BENEFITS ===== */
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px;
+            background: #f9fafb;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-item:hover {
+            background: var(--blujay-light);
+            transform: translateX(5px);
+        }
+        
+        .benefit-icon {
+            width: 24px;
+            height: 24px;
+            background: #10b981;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+            margin-top: 2px;
         }
         
         /* ===== RESPONSIVE ===== */
@@ -152,22 +209,56 @@
             }
         }
         
+        @media (max-width: 640px) {
+            .hero-section {
+                padding: 2rem 0;
+            }
+            
+            .content-card {
+                border-radius: 12px;
+            }
+        }
+        
         html {
             scroll-behavior: smooth;
+        }
+        
+        /* ===== COURSE THUMBNAIL HOVER ===== */
+        .course-thumbnail-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+        
+        .course-thumbnail-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.3));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .course-thumbnail-container:hover::after {
+            opacity: 1;
         }
     </style>
 </head>
 <body>
     
-    <!-- Header - Clean like your dashboard -->
+    <!-- Header -->
     <header class="sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <a href="dashboard.html" class="flex items-center gap-2 text-gray-600 hover:text-gray-900 font-semibold">
+                <!-- ✅ SMART BACK BUTTON -->
+                <a id="back-btn" href="courses.html" class="flex items-center gap-2 text-gray-600 hover:text-gray-900 font-semibold transition-all hover:gap-3">
                     <i class="fas fa-arrow-left"></i>
                     <span class="hidden sm:inline">Back to Courses</span>
                 </a>
-                <a href="dashboard.html">
+                <a href="index.html">
                     <img src="logo.png" alt="Blujay" class="h-10">
                 </a>
             </div>
@@ -176,23 +267,23 @@
     
     <!-- Loading State -->
     <div id="loading-state" class="max-w-7xl mx-auto px-4 py-12 text-center">
-        <i class="fas fa-spinner fa-spin text-4xl text-blue-600 mb-4"></i>
-        <p class="text-gray-600">Loading course details...</p>
+        <i class="fas fa-spinner fa-spin text-5xl text-blue-600 mb-4"></i>
+        <p class="text-gray-600 font-medium">Loading course details...</p>
     </div>
     
     <!-- Main Content -->
     <div id="main-content" class="hidden">
-        <!-- Hero Section - YOUR GRADIENT -->
-        <div class="hero-section text-white py-12">
-            <div class="max-w-7xl mx-auto px-4 lg:px-8">
+        <!-- Hero Section -->
+        <div class="hero-section text-white py-12 lg:py-16">
+            <div class="max-w-7xl mx-auto px-4 lg:px-8 relative z-10">
                 <div class="max-w-3xl">
-                    <h1 id="course-title" class="text-3xl sm:text-4xl font-bold mb-4">Course Title</h1>
-                    <p id="course-description" class="text-lg text-blue-100 mb-6">Course description...</p>
+                    <h1 id="course-title" class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 leading-tight">Course Title</h1>
+                    <p id="course-description" class="text-lg sm:text-xl text-blue-100 mb-6 leading-relaxed">Course description...</p>
                     
-                    <div class="flex flex-wrap items-center gap-4 mb-4">
+                    <div class="flex flex-wrap items-center gap-4 sm:gap-6 mb-6">
                         <div class="flex items-center gap-2">
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <span class="font-semibold" id="course-rating">0.0</span>
+                            <i class="fas fa-star text-yellow-400 text-lg"></i>
+                            <span class="font-bold text-xl" id="course-rating">0.0</span>
                             <span class="text-blue-100" id="course-students">(0 students)</span>
                         </div>
                         <div class="flex items-center gap-2">
@@ -205,80 +296,92 @@
                         </div>
                     </div>
                     
-                    <div class="flex items-center gap-3">
-                        <i class="fas fa-user-circle text-2xl"></i>
-                        <span>Created by <span class="font-semibold" id="course-instructor">Instructor</span></span>
+                    <div class="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-lg px-4 py-3 w-fit">
+                        <i class="fas fa-user-circle text-3xl"></i>
+                        <div>
+                            <p class="text-sm text-blue-100">Created by</p>
+                            <p class="font-semibold text-lg" id="course-instructor">Instructor</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         
         <!-- Content Grid -->
-        <div class="max-w-7xl mx-auto px-4 lg:px-8 py-8">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8 py-8 lg:py-12">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
                 
                 <!-- Left Column -->
                 <div class="lg:col-span-2 space-y-6">
                     
                     <!-- What You'll Learn -->
-                    <div class="content-card p-6">
-                        <h2 class="text-2xl font-bold text-gray-900 mb-4">What you'll learn</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <div class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-600 mt-1"></i>
-                                <span class="text-gray-700">Build full-stack applications</span>
+                    <div class="content-card p-6 lg:p-8">
+                        <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-6">What you'll learn</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <span class="text-gray-700 font-medium">Build full-stack applications</span>
                             </div>
-                            <div class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-600 mt-1"></i>
-                                <span class="text-gray-700">Master modern frameworks</span>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <span class="text-gray-700 font-medium">Master modern frameworks</span>
                             </div>
-                            <div class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-600 mt-1"></i>
-                                <span class="text-gray-700">Deploy to production</span>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <span class="text-gray-700 font-medium">Deploy to production</span>
                             </div>
-                            <div class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-600 mt-1"></i>
-                                <span class="text-gray-700">Work with databases</span>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <span class="text-gray-700 font-medium">Work with databases</span>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Course Content -->
-                    <div class="content-card p-6">
-                        <h2 class="text-2xl font-bold text-gray-900 mb-2">Course Content</h2>
-                        <p class="text-gray-600 mb-4">
+                    <div class="content-card p-6 lg:p-8">
+                        <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">Course Content</h2>
+                        <p class="text-gray-600 mb-6 flex items-center gap-2">
+                            <i class="fas fa-list-ul text-blue-600"></i>
                             <span id="total-modules">0</span> sections • 
                             <span id="total-videos">0</span> lectures
                         </p>
                         
-                        <div id="curriculum-container" class="space-y-2">
+                        <div id="curriculum-container" class="space-y-3">
                             <!-- Modules loaded here -->
                         </div>
                     </div>
                     
                     <!-- Requirements -->
-                    <div class="content-card p-6">
-                        <h2 class="text-2xl font-bold text-gray-900 mb-4">Requirements</h2>
-                        <ul class="space-y-2">
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-circle text-xs text-gray-400 mt-1.5"></i>
+                    <div class="content-card p-6 lg:p-8">
+                        <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-6">Requirements</h2>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-circle text-xs text-blue-600 mt-2"></i>
                                 <span class="text-gray-700">Basic HTML, CSS, and JavaScript knowledge</span>
                             </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-circle text-xs text-gray-400 mt-1.5"></i>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-circle text-xs text-blue-600 mt-2"></i>
                                 <span class="text-gray-700">A computer with internet connection</span>
                             </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-circle text-xs text-gray-400 mt-1.5"></i>
-                                <span class="text-gray-700">Willingness to learn</span>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-circle text-xs text-blue-600 mt-2"></i>
+                                <span class="text-gray-700">Willingness to learn and practice</span>
                             </li>
                         </ul>
                     </div>
                     
                     <!-- Description -->
-                    <div class="content-card p-6">
-                        <h2 class="text-2xl font-bold text-gray-900 mb-4">Description</h2>
-                        <div id="course-description-full" class="text-gray-700 leading-relaxed">
+                    <div class="content-card p-6 lg:p-8">
+                        <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-6">Description</h2>
+                        <div id="course-description-full" class="text-gray-700 leading-relaxed text-base">
                             <!-- Full description -->
                         </div>
                     </div>
@@ -288,38 +391,42 @@
                 <!-- Right Column - Buy Box -->
                 <div class="lg:col-span-1">
                     <div class="sticky-buy-box p-6">
-                        <img id="course-thumbnail" src="https://via.placeholder.com/400x225" alt="Course" class="w-full rounded-lg mb-4">
+                        <div class="course-thumbnail-container mb-6">
+                            <img id="course-thumbnail" src="https://via.placeholder.com/400x225" alt="Course" class="w-full rounded-lg">
+                        </div>
                         
-                        <div class="mb-4">
-                            <div class="flex items-baseline gap-2">
-                                <span class="text-3xl font-bold text-gray-900" id="discount-price">₹999</span>
-                                <span class="text-lg text-gray-500 line-through" id="original-price">₹4,999</span>
+                        <div class="mb-6">
+                            <div class="flex items-baseline gap-2 mb-2">
+                                <span class="text-4xl font-bold text-gray-900" id="discount-price">₹999</span>
+                                <span class="text-xl text-gray-400 line-through" id="original-price">₹4,999</span>
                             </div>
-                            <span id="discount-badge" class="discount-badge inline-block mt-2 px-3 py-1 bg-red-500 text-white text-sm font-bold rounded">
+                            <span id="discount-badge" class="discount-badge inline-block px-3 py-1.5 bg-red-500 text-white text-sm font-bold rounded-lg shadow-md">
                                 80% OFF
                             </span>
                         </div>
                         
-                        <button id="enroll-btn" onclick="handleEnrollment()" class="btn-enroll w-full text-white py-3 rounded-lg font-semibold mb-4">
-                            <i class="fas fa-shopping-cart mr-2"></i>Enroll Now
+                        <!-- ✅ ENROLL BUTTON -->
+                        <button id="enroll-btn" class="btn-enroll w-full text-white py-4 rounded-xl font-bold text-lg mb-6 flex items-center justify-center gap-2">
+                            <i class="fas fa-shopping-cart"></i>
+                            Enroll Now
                         </button>
                         
-                        <div class="border-t border-gray-200 pt-4 space-y-3 text-sm">
+                        <div class="border-t border-gray-200 pt-5 space-y-4 text-sm">
                             <div class="flex items-center gap-3">
-                                <i class="fas fa-infinity text-blue-600"></i>
-                                <span class="text-gray-700">Lifetime access</span>
+                                <i class="fas fa-infinity text-blue-600 text-lg"></i>
+                                <span class="text-gray-700 font-medium">Lifetime access</span>
                             </div>
                             <div class="flex items-center gap-3">
-                                <i class="fas fa-mobile-alt text-blue-600"></i>
-                                <span class="text-gray-700">Access on mobile and desktop</span>
+                                <i class="fas fa-mobile-alt text-blue-600 text-lg"></i>
+                                <span class="text-gray-700 font-medium">Access on mobile and desktop</span>
                             </div>
                             <div class="flex items-center gap-3">
-                                <i class="fas fa-certificate text-blue-600"></i>
-                                <span class="text-gray-700">Certificate of completion</span>
+                                <i class="fas fa-certificate text-blue-600 text-lg"></i>
+                                <span class="text-gray-700 font-medium">Certificate of completion</span>
                             </div>
                             <div class="flex items-center gap-3">
-                                <i class="fas fa-undo text-blue-600"></i>
-                                <span class="text-gray-700">30-day money-back guarantee</span>
+                                <i class="fas fa-undo text-blue-600 text-lg"></i>
+                                <span class="text-gray-700 font-medium">30-day money-back guarantee</span>
                             </div>
                         </div>
                     </div>
@@ -329,6 +436,46 @@
         </div>
     </div>
     
+    <!-- ✅ FIREBASE + BACK BUTTON (NO auth VARIABLE) -->
+    <script>
+const firebaseConfig = {
+    apiKey: "AIzaSyCiedANEie5u-2XQOjdsUFgdkE7s08gArY",
+    authDomain: "blujay-tech.firebaseapp.com",
+    projectId: "blujay-tech",
+    storageBucket: "blujay-tech.firebasestorage.app",
+    messagingSenderId: "586422050005",
+    appId: "1:586422050005:web:737ba2502d1b283ea6165c",
+    measurementId: "G-1JE665W8D0"
+};
+
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+}
+
+// ✅ UPDATE BACK BUTTON BASED ON LOGIN STATUS
+function updateBackButton() {
+    const backBtn = document.getElementById('back-btn');
+    const authToken = localStorage.getItem('authToken');
+    
+    if (authToken) {
+        backBtn.href = 'dashboard.html';
+        backBtn.innerHTML = '<i class="fas fa-arrow-left"></i><span class="hidden sm:inline">Back to Dashboard</span>';
+        console.log('✅ Logged in → Back button goes to dashboard.html');
+    } else {
+        backBtn.href = 'courses.html';
+        backBtn.innerHTML = '<i class="fas fa-arrow-left"></i><span class="hidden sm:inline">Back to Courses</span>';
+        console.log('⚠️ Not logged in → Back button goes to courses.html');
+    }
+}
+
+updateBackButton();
+
+firebase.auth().onAuthStateChanged((user) => {
+    updateBackButton();
+});
+</script>
+    
+    <!-- ✅ Load course-detail.js -->
     <script src="js/course-detail.js"></script>
 </body>
 </html>

@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blujay Technologies - Professional Services & Plans">
+    <title>Services & Plans - Blujay Technologies</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* ===== BLUJAY BRAND COLORS ===== */
+        :root {
+            --blujay-primary: #1D5D7F;
+            --blujay-primary-hover: #236192;
+            --blujay-light: #E8F4F8;
+            --blujay-dark: #144A66;
+        }
+        
+        /* Override Tailwind blue-600 with brand color */
+        .bg-blue-600 {
+            background-color: #1D5D7F !important;
+        }
+        
+        .hover\:bg-blue-700:hover {
+            background-color: #236192 !important;
+        }
+        
+        .text-blue-600 {
+            color: #1D5D7F !important;
+        }
+        
+        .hover\:text-blue-600:hover {
+            color: #1D5D7F !important;
+        }
+        
+        .border-blue-600 {
+            border-color: #1D5D7F !important;
+        }
+        
+        .bg-blue-50 {
+            background-color: #E8F4F8 !important;
+        }
+        
+        .hover\:bg-blue-50:hover {
+            background-color: #E8F4F8 !important;
+        }
+        
+        .from-blue-600 {
+            --tw-gradient-from: #1D5D7F !important;
+        }
+        
+        .to-blue-500 {
+            --tw-gradient-to: #236192 !important;
+        }
+        
+        .text-blue-100 {
+            color: #B8D8E8 !important;
+        }
+        
+        .text-blue-50 {
+            color: #E8F4F8 !important;
+        }
+
+        /* MOBILE CENTER - FOOTER CONTACT */
+        @media (max-width: 1023px) {
+            .footer-contact-section {
+                text-align: center !important;
+                grid-column: 1 / -1 !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+            }
+
+            .footer-contact-section h4 {
+                text-align: center !important;
+            }
+
+            .footer-contact-section ul {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                list-style: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                width: 100% !important;
+            }
+
+            .footer-contact-section ul li {
+                width: 100% !important;
+                text-align: center !important;
+                display: flex !important;
+                justify-content: center !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            .footer-contact-section ul li a {
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+                width: 100% !important;
+            }
+
+            .footer-contact-social {
+                display: flex !important;
+                justify-content: center !important;
+                gap: 0.5rem !important;
+                width: 100% !important;
+            }
+        }
+
+        /* DESKTOP VIEW - KEEP FOOTER CONTACT LEFT ALIGNED */
+        @media (min-width: 1024px) {
+            .footer-contact-section {
+                text-align: left !important;
+            }
+
+            .footer-contact-section h4 {
+                text-align: left !important;
+            }
+
+            .footer-contact-section ul {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: flex-start !important;
+            }
+
+            .footer-contact-section ul li {
+                text-align: left !important;
+                justify-content: flex-start !important;
+            }
+
+            .footer-contact-section ul li a {
+                justify-content: flex-start !important;
+            }
+
+            .footer-contact-social {
+                justify-content: flex-start !important;
+            }
+        }
+
+        /* SERVICE CARD HOVER EFFECTS */
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(29, 93, 127, 0.15);
+        }
+
+        .service-card-icon {
+            transition: all 0.4s ease;
+        }
+
+        .service-card:hover .service-card-icon {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, #1D5D7F 0%, #236192 100%);
+        }
+
+        /* PRICING CARD ANIMATIONS */
+        .pricing-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #1D5D7F, transparent);
+            transition: left 0.6s ease;
+        }
+
+        .pricing-card:hover::before {
+            left: 100%;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 24px 48px rgba(29, 93, 127, 0.2);
+        }
+
+        .pricing-featured {
+            border: 2px solid #1D5D7F;
+            background: linear-gradient(135deg, #E8F4F8 0%, #ffffff 100%);
+        }
+
+        /* BENEFIT CARD EFFECTS */
+        .benefit-card {
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(29, 93, 127, 0.12);
+        }
+
+        .benefit-card:hover .benefit-icon-wrapper {
+            transform: rotate(5deg) scale(1.05);
+        }
+
+        .benefit-icon-wrapper {
+            transition: all 0.3s ease;
+        }
+
+        /* SMOOTH SCROLLING */
+        @media (prefers-reduced-motion: no-preference) {
+            * {
+                scroll-behavior: smooth;
+            }
+        }
+
+        /* RESPONSIVE UTILITIES */
+        @media (max-width: 640px) {
+            .section-title {
+                font-size: 28px !important;
+                line-height: 1.2 !important;
+            }
+
+            .section-subtitle {
+                font-size: 14px !important;
+            }
+        }
+    </style>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'blujay': {
+                            50: '#E8F4F8',
+                            100: '#B8D8E8',
+                            500: '#236192',
+                            600: '#1D5D7F',
+                            700: '#144A66',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white">
+    
+<!-- Navbar -->
+<nav class="fixed w-full top-0 z-50 bg-white shadow-sm">
+    <div class="px-4 lg:px-8">
+        <div class="flex justify-between items-center h-[60px] lg:h-[72px]">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center">
+                <img src="logo.png" alt="Blujay Technologies" class="h-9 lg:h-12 w-auto" loading="lazy">
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden lg:flex items-center gap-8 ml-auto">
+                <a href="index.html#courses" class="text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">Courses</a>
+                <a href="index.html#centres" class="text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">Centres</a>
+                <a href="index.html#jobs" class="text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">Jobs</a>
+                
+                <div class="relative" id="desktop-more">
+                    <button id="desktop-more-btn" class="text-[13px] lg:text-[14px] font-medium text-gray-900 hover:text-blue-600 transition-colors flex items-center gap-1">
+                        More <i class="fas fa-chevron-down text-[9px]"></i>
+                    </button>
+                    <div id="desktop-more-menu" class="hidden absolute top-full right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border py-1">
+                        <a href="aboutus.html" class="block px-4 py-2 text-[12px] lg:text-[13px] text-gray-700 hover:bg-blue-50 transition-colors">About Us</a>
+                        <a href="blog.html" class="block px-4 py-2 text-[12px] lg:text-[13px] text-gray-700 hover:bg-blue-50 transition-colors">Blog</a>
+                    </div>
+                </div>
+                
+                <a href="login.html" class="border-2 border-blue-600 text-blue-600 px-4 py-1.5 rounded-lg text-[12px] lg:text-[13px] font-semibold hover:bg-blue-50 transition-all">Login</a>
+                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg text-[12px] lg:text-[13px] font-semibold hover:bg-blue-700 transition-all flex items-center gap-2">
+                    <i class="fas fa-phone-alt text-[10px]"></i> Request Callback
+                </button>
+            </div>
+            
+            <!-- Mobile: Hamburger -->
+            <div class="flex lg:hidden items-center">
+                <button id="mobile-toggle" class="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-all">
+                    <i class="fas fa-bars text-[20px] text-gray-900"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-[100] transform translate-x-full transition-transform duration-300 lg:hidden">
+        <div class="flex justify-between items-center h-[60px] px-4 border-b">
+            <img src="logo.png" alt="Blujay Technologies" class="h-9" loading="lazy">
+            <button id="mobile-close" class="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-all">
+                <i class="fas fa-times text-[22px] text-gray-800"></i>
+            </button>
+        </div>
+        
+        <div class="overflow-y-auto h-[calc(100vh-60px)]">
+            <div class="px-4 py-4">
+                <a href="index.html#courses" class="block text-[14px] lg:text-[15px] font-medium text-gray-800 py-3 border-b hover:text-blue-600 transition-colors">Courses</a>
+                <a href="index.html#centres" class="block text-[14px] lg:text-[15px] font-medium text-gray-800 py-3 border-b hover:text-blue-600 transition-colors">Centres</a>
+                <a href="index.html#jobs" class="block text-[14px] lg:text-[15px] font-medium text-gray-800 py-3 border-b hover:text-blue-600 transition-colors">Jobs</a>
+                
+                <div class="border-b">
+                    <button id="mobile-more" class="w-full flex justify-between items-center text-[14px] lg:text-[15px] font-semibold text-gray-900 py-3 hover:text-blue-600 transition-colors">
+                        More <i class="fas fa-chevron-down text-[11px] mobile-arrow transition-transform"></i>
+                    </button>
+                    <div id="mobile-more-content" class="hidden pb-2">
+                        <a href="aboutus.html" class="block text-[13px] lg:text-[14px] text-gray-600 py-2 pl-6 hover:text-blue-600 transition-colors">About Us</a>
+                        <a href="blog.html" class="block text-[13px] lg:text-[14px] text-gray-600 py-2 pl-6 hover:text-blue-600 transition-colors">Blog</a>
+                    </div>
+                </div>
+                
+                <button class="block w-full text-center bg-blue-600 text-white py-2.5 rounded-lg text-[13px] lg:text-[14px] font-semibold mt-6 hover:bg-blue-700 transition-all shadow-md">
+                    Request Callback
+                </button>
+                
+                <a href="login.html" class="block w-full text-center border-2 border-blue-600 text-blue-600 py-2.5 rounded-lg text-[13px] lg:text-[14px] font-semibold mt-3 hover:bg-blue-50 transition-all">Login</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+<!-- Main Content -->
+<main class="pt-[60px] lg:pt-[72px]">
+
+    <!-- Hero Section - WITH EXACT BLUJAY LOGO BLUE COLOR -->
+<section class="py-12 lg:py-16" style="background: linear-gradient(135deg, #1D5D7F 0%, #236192 100%);">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8">
+        <div class="text-center max-w-4xl mx-auto">
+            <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-5">
+                <i class="fas fa-sparkles text-white text-[12px]"></i>
+                <span class="text-white text-[11px] lg:text-[13px] font-semibold tracking-wider uppercase">Professional Services</span>
+            </div>
+            
+            <h1 class="section-title text-[32px] lg:text-[48px] font-bold text-white mb-5 leading-tight">
+                Transform Your Digital <br class="hidden lg:block">Presence with Blujay
+            </h1>
+            
+            <p class="section-subtitle text-[15px] lg:text-[18px] text-white/90 mb-7 max-w-2xl mx-auto leading-relaxed">
+                Comprehensive digital marketing and web development solutions designed to help your business grow and succeed in the digital age.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#services" class="bg-white text-blue-600 px-8 py-3.5 rounded-xl text-[14px] lg:text-[15px] font-semibold hover:bg-gray-50 transition-all shadow-lg hover:shadow-xl inline-flex items-center gap-2">
+                    Explore Services <i class="fas fa-arrow-down text-[12px]"></i>
+                </a>
+                <a href="#pricing" class="bg-transparent border-2 border-white text-white px-8 py-3.5 rounded-xl text-[14px] lg:text-[15px] font-semibold hover:bg-white/10 backdrop-blur-sm transition-all inline-flex items-center gap-2">
+                    View Pricing <i class="fas fa-tag text-[12px]"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Digital Marketing Services -->
+    <section id="services" class="py-16 lg:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-12 lg:mb-16">
+                <div class="inline-flex items-center gap-2 bg-blue-50 px-4 py-2 rounded-full mb-4">
+                    <i class="fas fa-bullhorn text-blue-600 text-[12px]"></i>
+                    <span class="text-blue-600 text-[11px] lg:text-[12px] font-bold tracking-wider uppercase">Digital Marketing</span>
+                </div>
+                <h2 class="text-[28px] lg:text-[42px] font-bold text-gray-900 mb-4">Strategic Marketing Solutions</h2>
+                <p class="text-[14px] lg:text-[17px] text-gray-600 max-w-2xl mx-auto">
+                    Data-driven strategies to enhance visibility, engage audiences, and achieve measurable results.
+                </p>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                
+                <!-- Service Card 1 -->
+                <div class="service-card bg-white border border-gray-200 rounded-2xl p-6 lg:p-8 hover:border-blue-600">
+                    <div class="service-card-icon w-14 h-14 lg:w-16 lg:h-16 bg-blue-50 rounded-xl flex items-center justify-center mb-5">
+                        <i class="fas fa-search text-blue-600 text-[20px] lg:text-[24px]"></i>
+                    </div>
+                    <h3 class="text-[18px] lg:text-[22px] font-bold text-gray-900 mb-3">SEO Optimization</h3>
+                    <p class="text-[13px] lg:text-[15px] text-gray-600 mb-5 leading-relaxed">
+                        Improve organic visibility through technical excellence and strategic content optimization.
+                    </p>
+                    <ul class="space-y-2.5 mb-6">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fas fa-check text-blue-600 text-[12px] mt-1"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Technical SEO & Site Architecture</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fas fa-check text-blue-600 text-[12px] mt-1"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Keyword Strategy & Implementation</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fas fa-check text-blue-600 text-[12px] mt-1"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Performance Monitoring</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="text-blue-600 font-semibold text-[13px] lg:text-[14px] inline-flex items-center gap-2 hover:gap-3 transition-all">
+                        Learn More <i class="fas fa-arrow-right text-[11px]"></i>
+                    </a>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="service-card bg-white border border-gray-200 rounded-2xl p-6 lg:p-8 hover:border-blue-600">
+                    <div class="service-card-icon w-14 h-14 lg:w-16 lg:h-16 bg-blue-50 rounded-xl flex items-center justify-center mb-5">
+                        <i class="fas fa-share-alt text-blue-600 text-[20px] lg:text-[24px]"></i>
+                    </div>
+                    <h3 class="text-[18px] lg:text-[22px] font-bold text-gray-900 mb-3">Social Media Marketing</h3>
+                    <p class="text-[13px] lg:text-[15px] text-gray-600 mb-5 leading-relaxed">
+                        Build engaged communities and amplify brand presence across all major platforms.
+                    </p>
+                    <ul class="space-y-2.5 mb-6">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fas fa-check text-blue-600 text-[12px] mt-1"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Content Strategy & Creation</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fas fa-check text-blue-600 text-[12px] mt-1"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Platform Management & Growth</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fas fa-check text-blue-600 text-[12px] mt-1"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Social Analytics</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="text-blue-600 font-semibold text-[13px] lg:text-[14px] inline-flex items-center gap-2 hover:gap-3 transition-all">
+                        Learn More <i class="fas fa-arrow-right text-[11px]"></i>
+                    </a>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="service-card bg-white border border-gray-200 rounded-2xl p-6 lg:p-8 hover:border-blue-600">
+                    <div class="service-card-icon w-14 h-14 lg:w-16 lg:h-16 bg-blue-50 rounded-xl flex items-center justify-center mb-5">
+                        <i class="fas fa-bullhorn text-blue-600 text-[20px] lg:text-[24px]"></i>
+                    </div>
+                    <h3 class="text-[18px] lg:text-[22px] font-bold text-gray-900 mb-3">Paid Advertising</h3>
+                    <p class="text-[13px] lg:text-[15px] text-gray-600 mb-5 leading-relaxed">
+                        Drive qualified traffic with precision-targeted paid campaigns across channels.
+                    </p>
+                    <ul class="space-y-2.5 mb-6">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fas fa-check text-blue-600 text-[12px] mt-1"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Google Ads Management</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fas fa-check text-blue-600 text-[12px] mt-1"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Social Media Advertising</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fas fa-check text-blue-600 text-[12px] mt-1"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">ROI Tracking & Reporting</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="text-blue-600 font-semibold text-[13px] lg:text-[14px] inline-flex items-center gap-2 hover:gap-3 transition-all">
+                        Learn More <i class="fas fa-arrow-right text-[11px]"></i>
+                    </a>
+                </div>
+
+                <!-- Service Card 4 -->
+                <div class="service-card bg-white border border-gray-200 rounded-2xl p-6 lg:p-8 hover:border-blue-600">
+                    <div class="service-card-icon w-14 h-14 lg:w-16 lg:h-16 bg-blue-50 rounded-xl flex items-center justify-center mb-5">
+                        <i class="fas fa-pen-nib text-blue-600 text-[20px] lg:text-[24px]"></i>
+                    </div>
+                    <h3 class="text-[18px] lg:text-[22px] font-bold text-gray-900 mb-3">Content Marketing</h3>
+                    <p class="text-[13px] lg:text-[15px] text-gray-600 mb-5 leading-relaxed">
+                        Create compelling narratives that engage audiences and establish thought leadership.
+                    </p>
+                    <ul class="space-y-2.5 mb-6">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fas fa-check text-blue-600 text-[12px] mt-1"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Content Strategy Development</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fas fa-check text-blue-600 text-[12px] mt-1"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Visual Content & Design</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fas fa-check text-blue-600 text-[12px] mt-1"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Distribution & Amplification</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="text-blue-600 font-semibold text-[13px] lg:text-[14px] inline-flex items-center gap-2 hover:gap-3 transition-all">
+                        Learn More <i class="fas fa-arrow-right text-[11px]"></i>
+                    </a>
+                </div>
+
+                <!-- Service Card 5 -->
+                <div class="service-card bg-white border border-gray-200 rounded-2xl p-6 lg:p-8 hover:border-blue-600">
+                    <div class="service-card-icon w-14 h-14 lg:w-16 lg:h-16 bg-blue-50 rounded-xl flex items-center justify-center mb-5">
+                        <i class="fas fa-envelope-open-text text-blue-600 text-[20px] lg:text-[24px]"></i>
+                    </div>
+                    <h3 class="text-[18px] lg:text-[22px] font-bold text-gray-900 mb-3">Email Marketing</h3>
+                    <p class="text-[13px] lg:text-[15px] text-gray-600 mb-5 leading-relaxed">
+                        Nurture relationships with intelligent email automation and campaigns.
+                    </p>
+                    <ul class="space-y-2.5 mb-6">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fas fa-check text-blue-600 text-[12px] mt-1"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Campaign Design & Copywriting</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fas fa-check text-blue-600 text-[12px] mt-1"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Automation Workflow Setup</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fas fa-check text-blue-600 text-[12px] mt-1"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Performance Analytics</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="text-blue-600 font-semibold text-[13px] lg:text-[14px] inline-flex items-center gap-2 hover:gap-3 transition-all">
+                        Learn More <i class="fas fa-arrow-right text-[11px]"></i>
+                    </a>
+                </div>
+
+                <!-- Service Card 6 -->
+                <div class="service-card bg-white border border-gray-200 rounded-2xl p-6 lg:p-8 hover:border-blue-600">
+                    <div class="service-card-icon w-14 h-14 lg:w-16 lg:h-16 bg-blue-50 rounded-xl flex items-center justify-center mb-5">
+                        <i class="fas fa-chart-line text-blue-600 text-[20px] lg:text-[24px]"></i>
+                    </div>
+                    <h3 class="text-[18px] lg:text-[22px] font-bold text-gray-900 mb-3">Analytics & Insights</h3>
+                    <p class="text-[13px] lg:text-[15px] text-gray-600 mb-5 leading-relaxed">
+                        Transform data into actionable insights with comprehensive analytics frameworks.
+                    </p>
+                    <ul class="space-y-2.5 mb-6">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fas fa-check text-blue-600 text-[12px] mt-1"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Analytics Platform Setup</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fas fa-check text-blue-600 text-[12px] mt-1"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Custom Dashboard Development</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fas fa-check text-blue-600 text-[12px] mt-1"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Strategic Recommendations</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="text-blue-600 font-semibold text-[13px] lg:text-[14px] inline-flex items-center gap-2 hover:gap-3 transition-all">
+                        Learn More <i class="fas fa-arrow-right text-[11px]"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Website Development Pricing -->
+    <section id="pricing" class="py-16 lg:py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-12 lg:mb-16">
+                <div class="inline-flex items-center gap-2 bg-blue-600 px-4 py-2 rounded-full mb-4">
+                    <i class="fas fa-code text-white text-[12px]"></i>
+                    <span class="text-white text-[11px] lg:text-[12px] font-bold tracking-wider uppercase">Website Development</span>
+                </div>
+                <h2 class="text-[28px] lg:text-[42px] font-bold text-gray-900 mb-4">Professional Websites Built for Success</h2>
+                <p class="text-[14px] lg:text-[17px] text-gray-600 max-w-2xl mx-auto">
+                    Comprehensive development packages with hosting, domain, and ongoing support included.
+                </p>
+            </div>
+
+            <!-- Pricing Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                
+                <!-- Basic Plan -->
+                <div class="pricing-card bg-white rounded-2xl p-6 lg:p-8 border border-gray-200">
+                    <div class="mb-6">
+                        <div class="inline-flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-full mb-4">
+                            <span class="text-gray-700 text-[11px] lg:text-[12px] font-bold uppercase tracking-wider">Standard</span>
+                        </div>
+                        <div class="w-12 h-12 lg:w-14 lg:h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-4">
+                            <i class="fas fa-laptop-code text-blue-600 text-[20px] lg:text-[24px]"></i>
+                        </div>
+                        <h3 class="text-[20px] lg:text-[24px] font-bold text-gray-900 mb-2">Basic Website</h3>
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="text-[14px] text-gray-400 line-through">₹12,000</span>
+                        </div>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-[36px] lg:text-[44px] font-bold text-blue-600">₹9,999</span>
+                        </div>
+                        <p class="text-[12px] lg:text-[13px] text-gray-500 mt-1">+ 18% GST (₹1,440)</p>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">5 Pages Website</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">1 Year Free Domain & Hosting</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Premium Dynamic Design</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Admin Access Panel</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">24/7 Support</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">SSL Certificate & 5 Emails</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">100% Responsive Design</span>
+                        </li>
+                    </ul>
+                    
+                    <button class="w-full bg-blue-600 text-white py-3.5 rounded-xl text-[14px] lg:text-[15px] font-semibold hover:bg-blue-700 transition-all shadow-md hover:shadow-lg">
+                        Get Started
+                    </button>
+                </div>
+
+                <!-- Premium Plan (Featured) -->
+                <div class="pricing-card pricing-featured bg-white rounded-2xl p-6 lg:p-8 relative">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                        <span class="bg-blue-600 text-white px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider shadow-lg">
+                            Most Popular
+                        </span>
+                    </div>
+                    
+                    <div class="mb-6 mt-2">
+                        <div class="inline-flex items-center gap-2 bg-blue-100 px-3 py-1.5 rounded-full mb-4">
+                            <span class="text-blue-700 text-[11px] lg:text-[12px] font-bold uppercase tracking-wider">Premium</span>
+                        </div>
+                        <div class="w-12 h-12 lg:w-14 lg:h-14 bg-blue-600 rounded-xl flex items-center justify-center mb-4">
+                            <i class="fas fa-star text-white text-[20px] lg:text-[24px]"></i>
+                        </div>
+                        <h3 class="text-[20px] lg:text-[24px] font-bold text-gray-900 mb-2">Premium Website</h3>
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="text-[14px] text-gray-400 line-through">₹20,000</span>
+                        </div>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-[36px] lg:text-[44px] font-bold text-blue-600">₹14,999</span>
+                        </div>
+                        <p class="text-[12px] lg:text-[13px] text-gray-500 mt-1">+ 18% GST (₹2,520)</p>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">12 Pages Website</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">1 Year Free Domain & Hosting</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Premium Dynamic Design</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Admin Access Panel</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Google Search Console</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">24/7 Priority Support</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">SSL & 10 Email Accounts</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Advanced SEO Optimization</span>
+                        </li>
+                    </ul>
+                    
+                    <button class="w-full bg-blue-600 text-white py-3.5 rounded-xl text-[14px] lg:text-[15px] font-semibold hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl">
+                        Get Started Now
+                    </button>
+                </div>
+
+                <!-- Custom Plan -->
+                <div class="pricing-card bg-white rounded-2xl p-6 lg:p-8 border border-gray-200">
+                    <div class="mb-6">
+                        <div class="inline-flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-full mb-4">
+                            <span class="text-gray-700 text-[11px] lg:text-[12px] font-bold uppercase tracking-wider">Custom</span>
+                        </div>
+                        <div class="w-12 h-12 lg:w-14 lg:h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-4">
+                            <i class="fas fa-cog text-blue-600 text-[20px] lg:text-[24px]"></i>
+                        </div>
+                        <h3 class="text-[20px] lg:text-[24px] font-bold text-gray-900 mb-2">Custom Solution</h3>
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="text-[14px] text-gray-500">Based on Requirements</span>
+                        </div>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-[36px] lg:text-[44px] font-bold text-blue-600">Custom</span>
+                        </div>
+                        <p class="text-[12px] lg:text-[13px] text-gray-500 mt-1">+ 18% GST Applicable</p>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Unlimited Pages</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">1 Year Free Domain & Hosting</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Custom Design & Features</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Advanced Admin Panel</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">24/7 Dedicated Support</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Advanced SEO & All Integrations</span>
+                        </li>
+                    </ul>
+                    
+                    <button class="w-full bg-white border-2 border-blue-600 text-blue-600 py-3.5 rounded-xl text-[14px] lg:text-[15px] font-semibold hover:bg-blue-50 transition-all">
+                        Contact Us
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- E-Commerce Solutions -->
+    <section class="py-16 lg:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-12 lg:mb-16">
+                <div class="inline-flex items-center gap-2 bg-blue-50 px-4 py-2 rounded-full mb-4">
+                    <i class="fas fa-shopping-cart text-blue-600 text-[12px]"></i>
+                    <span class="text-blue-600 text-[11px] lg:text-[12px] font-bold tracking-wider uppercase">E-Commerce Solutions</span>
+                </div>
+                <h2 class="text-[28px] lg:text-[42px] font-bold text-gray-900 mb-4">Powerful Online Stores</h2>
+                <p class="text-[14px] lg:text-[17px] text-gray-600 max-w-2xl mx-auto">
+                    Full-featured e-commerce platforms with advanced management capabilities.
+                </p>
+            </div>
+
+            <!-- E-Commerce Pricing Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                
+                <!-- E-Commerce Basic -->
+                <div class="pricing-card bg-white rounded-2xl p-6 lg:p-8 border border-gray-200">
+                    <div class="mb-6">
+                        <div class="inline-flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-full mb-4">
+                            <span class="text-gray-700 text-[11px] lg:text-[12px] font-bold uppercase tracking-wider">E-Commerce</span>
+                        </div>
+                        <div class="w-12 h-12 lg:w-14 lg:h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-4">
+                            <i class="fas fa-shopping-cart text-blue-600 text-[20px] lg:text-[24px]"></i>
+                        </div>
+                        <h3 class="text-[20px] lg:text-[24px] font-bold text-gray-900 mb-2">Premium Store</h3>
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="text-[14px] text-gray-400 line-through">₹30,000</span>
+                        </div>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-[36px] lg:text-[44px] font-bold text-blue-600">₹24,999</span>
+                        </div>
+                        <p class="text-[12px] lg:text-[13px] text-gray-500 mt-1">+ 18% GST (₹3,960)</p>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">30 Pages E-Commerce Site</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">20 Product Categories</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Shopping Cart & Checkout</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Payment Gateway Integration</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Admin Dashboard</span>
+                        </li>
+                    </ul>
+                    
+                    <button class="w-full bg-blue-600 text-white py-3.5 rounded-xl text-[14px] lg:text-[15px] font-semibold hover:bg-blue-700 transition-all shadow-md hover:shadow-lg">
+                        Get Started
+                    </button>
+                </div>
+
+                <!-- Multi-Vendor (Featured) -->
+                <div class="pricing-card pricing-featured bg-white rounded-2xl p-6 lg:p-8 relative">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                        <span class="bg-blue-600 text-white px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider shadow-lg">
+                            Best Value
+                        </span>
+                    </div>
+                    
+                    <div class="mb-6 mt-2">
+                        <div class="inline-flex items-center gap-2 bg-blue-100 px-3 py-1.5 rounded-full mb-4">
+                            <span class="text-blue-700 text-[11px] lg:text-[12px] font-bold uppercase tracking-wider">Multi-Vendor</span>
+                        </div>
+                        <div class="w-12 h-12 lg:w-14 lg:h-14 bg-blue-600 rounded-xl flex items-center justify-center mb-4">
+                            <i class="fas fa-store text-white text-[20px] lg:text-[24px]"></i>
+                        </div>
+                        <h3 class="text-[20px] lg:text-[24px] font-bold text-gray-900 mb-2">Marketplace Platform</h3>
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="text-[14px] text-gray-400 line-through">₹60,000</span>
+                        </div>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-[36px] lg:text-[44px] font-bold text-blue-600">₹55,000</span>
+                        </div>
+                        <p class="text-[12px] lg:text-[13px] text-gray-500 mt-1">+ 18% GST (₹9,000)</p>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">50 Pages Multi-Vendor Site</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">50 Product Categories</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Vendor Management System</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Advanced Admin Panel</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Advanced SEO & Analytics</span>
+                        </li>
+                    </ul>
+                    
+                    <button class="w-full bg-blue-600 text-white py-3.5 rounded-xl text-[14px] lg:text-[15px] font-semibold hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl">
+                        Get Started Now
+                    </button>
+                </div>
+
+                <!-- Custom E-Commerce -->
+                <div class="pricing-card bg-white rounded-2xl p-6 lg:p-8 border border-gray-200">
+                    <div class="mb-6">
+                        <div class="inline-flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-full mb-4">
+                            <span class="text-gray-700 text-[11px] lg:text-[12px] font-bold uppercase tracking-wider">Enterprise</span>
+                        </div>
+                        <div class="w-12 h-12 lg:w-14 lg:h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-4">
+                            <i class="fas fa-rocket text-blue-600 text-[20px] lg:text-[24px]"></i>
+                        </div>
+                        <h3 class="text-[20px] lg:text-[24px] font-bold text-gray-900 mb-2">Custom Marketplace</h3>
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="text-[14px] text-gray-500">Based on Scale</span>
+                        </div>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-[36px] lg:text-[44px] font-bold text-blue-600">Custom</span>
+                        </div>
+                        <p class="text-[12px] lg:text-[13px] text-gray-500 mt-1">+ 18% GST Applicable</p>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Unlimited Pages & Features</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Custom Categories</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Advanced Vendor System</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Bespoke Design</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-blue-600 text-[16px] mt-0.5"></i>
+                            <span class="text-[13px] lg:text-[14px] text-gray-700">Dedicated Support Team</span>
+                        </li>
+                    </ul>
+                    
+                    <button class="w-full bg-white border-2 border-blue-600 text-blue-600 py-3.5 rounded-xl text-[14px] lg:text-[15px] font-semibold hover:bg-blue-50 transition-all">
+                        Contact Us
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-16 lg:py-24 bg-gradient-to-br from-gray-50 to-blue-50/30">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-12 lg:mb-16">
+                <div class="inline-flex items-center gap-2 bg-blue-600 px-4 py-2 rounded-full mb-4">
+                    <i class="fas fa-star text-white text-[12px]"></i>
+                    <span class="text-white text-[11px] lg:text-[12px] font-bold tracking-wider uppercase">Why Choose Us</span>
+                </div>
+                <h2 class="text-[28px] lg:text-[42px] font-bold text-gray-900 mb-4">Trusted by Businesses Across India</h2>
+                <p class="text-[14px] lg:text-[17px] text-gray-600 max-w-2xl mx-auto">
+                    We combine expertise, innovation, and dedication to deliver exceptional results.
+                </p>
+            </div>
+
+            <!-- Benefits Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                
+                <div class="benefit-card bg-white rounded-2xl p-6 lg:p-8 border border-gray-100">
+                    <div class="benefit-icon-wrapper w-14 h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-blue-600 to-blue-500 rounded-xl flex items-center justify-center mb-5">
+                        <i class="fas fa-server text-white text-[20px] lg:text-[24px]"></i>
+                    </div>
+                    <h3 class="text-[18px] lg:text-[20px] font-bold text-gray-900 mb-3">Free Domain & Hosting</h3>
+                    <p class="text-[13px] lg:text-[15px] text-gray-600 leading-relaxed">
+                        Get your domain and hosting completely free for the first year. Start without upfront costs.
+                    </p>
+                </div>
+
+                <div class="benefit-card bg-white rounded-2xl p-6 lg:p-8 border border-gray-100">
+                    <div class="benefit-icon-wrapper w-14 h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-blue-600 to-blue-500 rounded-xl flex items-center justify-center mb-5">
+                        <i class="fas fa-palette text-white text-[20px] lg:text-[24px]"></i>
+                    </div>
+                    <h3 class="text-[18px] lg:text-[20px] font-bold text-gray-900 mb-3">Premium Design</h3>
+                    <p class="text-[13px] lg:text-[15px] text-gray-600 leading-relaxed">
+                        Modern, attractive websites that are fully functional and user-friendly across all devices.
+                    </p>
+                </div>
+
+                <div class="benefit-card bg-white rounded-2xl p-6 lg:p-8 border border-gray-100">
+                    <div class="benefit-icon-wrapper w-14 h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-blue-600 to-blue-500 rounded-xl flex items-center justify-center mb-5">
+                        <i class="fas fa-money-bill-wave text-white text-[20px] lg:text-[24px]"></i>
+                    </div>
+                    <h3 class="text-[18px] lg:text-[20px] font-bold text-gray-900 mb-3">Affordable Pricing</h3>
+                    <p class="text-[13px] lg:text-[15px] text-gray-600 leading-relaxed">
+                        Quality services starting from ₹7,999. Best value for your investment with no hidden costs.
+                    </p>
+                </div>
+
+                <div class="benefit-card bg-white rounded-2xl p-6 lg:p-8 border border-gray-100">
+                    <div class="benefit-icon-wrapper w-14 h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-blue-600 to-blue-500 rounded-xl flex items-center justify-center mb-5">
+                        <i class="fas fa-clock text-white text-[20px] lg:text-[24px]"></i>
+                    </div>
+                    <h3 class="text-[18px] lg:text-[20px] font-bold text-gray-900 mb-3">On-Time Delivery</h3>
+                    <p class="text-[13px] lg:text-[15px] text-gray-600 leading-relaxed">
+                        Timely project completion with proper planning and schedule adherence. We respect deadlines.
+                    </p>
+                </div>
+
+                <div class="benefit-card bg-white rounded-2xl p-6 lg:p-8 border border-gray-100">
+                    <div class="benefit-icon-wrapper w-14 h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-blue-600 to-blue-500 rounded-xl flex items-center justify-center mb-5">
+                        <i class="fas fa-star text-white text-[20px] lg:text-[24px]"></i>
+                    </div>
+                    <h3 class="text-[18px] lg:text-[20px] font-bold text-gray-900 mb-3">Expert Assistance</h3>
+                    <p class="text-[13px] lg:text-[15px] text-gray-600 leading-relaxed">
+                        100% expert support with modern tools and proven methodologies to ensure project success.
+                    </p>
+                </div>
+
+                <div class="benefit-card bg-white rounded-2xl p-6 lg:p-8 border border-gray-100">
+                    <div class="benefit-icon-wrapper w-14 h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-blue-600 to-blue-500 rounded-xl flex items-center justify-center mb-5">
+                        <i class="fas fa-headset text-white text-[20px] lg:text-[24px]"></i>
+                    </div>
+                    <h3 class="text-[18px] lg:text-[20px] font-bold text-gray-900 mb-3">24/7 Support</h3>
+                    <p class="text-[13px] lg:text-[15px] text-gray-600 leading-relaxed">
+                        Round-the-clock customer support available every day. We're always here to help you.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 lg:py-20 bg-gradient-to-r from-blue-600 to-blue-500">
+        <div class="max-w-6xl mx-auto px-4 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-[28px] lg:text-[48px] font-bold text-white mb-4 lg:mb-6 leading-tight">
+                    Ready to Transform Your Business?
+                </h2>
+                <p class="text-[14px] lg:text-[18px] text-blue-50 mb-8 lg:mb-10 max-w-2xl mx-auto leading-relaxed">
+                    Partner with us to build a powerful digital presence that delivers measurable results.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="#" class="bg-white text-blue-600 px-8 py-3.5 rounded-xl text-[14px] lg:text-[15px] font-semibold hover:bg-gray-50 transition-all shadow-lg hover:shadow-xl inline-flex items-center gap-2">
+                        <i class="fas fa-rocket text-[14px]"></i> Get Started Now
+                    </a>
+                    <a href="https://wa.me/919876543210" target="_blank" class="bg-transparent border-2 border-white text-white px-8 py-3.5 rounded-xl text-[14px] lg:text-[15px] font-semibold hover:bg-white/10 backdrop-blur-sm transition-all inline-flex items-center gap-2">
+                        <i class="fab fa-whatsapp text-[16px]"></i> WhatsApp Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+
+<!-- WhatsApp Float Button -->
+<a href="https://wa.me/919876543210" target="_blank" class="fixed bottom-6 right-6 lg:bottom-8 lg:right-8 w-14 h-14 lg:w-16 lg:h-16 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-2xl hover:shadow-3xl transition-all z-50 hover:scale-110">
+    <i class="fab fa-whatsapp text-white text-[28px] lg:text-[32px]"></i>
+</a>
+
+
+<!-- Footer -->
+<footer class="bg-white">
+    
+    <!-- Main Footer Links -->
+    <div class="py-10 lg:py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-10">
+                <!-- Company -->
+                <div id="about">
+                    <h4 class="text-[13px] lg:text-[16px] font-bold text-gray-900 mb-3 lg:mb-4 uppercase">Company</h4>
+                    <ul class="space-y-2 lg:space-y-3 text-[12px] lg:text-[14px]">
+                        <li><a href="aboutus.html" class="text-gray-600 hover:text-blue-600 transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Our Team</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Careers</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Courses -->
+                <div>
+                    <h4 class="text-[13px] lg:text-[16px] font-bold text-gray-900 mb-3 lg:mb-4 uppercase">Courses</h4>
+                    <ul class="space-y-2 lg:space-y-3 text-[12px] lg:text-[14px]">
+                        <li><a href="index.html#courses" class="text-gray-600 hover:text-blue-600 transition-colors">MERN Full Stack</a></li>
+                        <li><a href="index.html#courses" class="text-gray-600 hover:text-blue-600 transition-colors">Java Full Stack</a></li>
+                        <li><a href="index.html#courses" class="text-gray-600 hover:text-blue-600 transition-colors">Data Science & AI</a></li>
+                        <li><a href="index.html#courses" class="text-gray-600 hover:text-blue-600 transition-colors">Data Analytics</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Quick Links -->
+                <div id="jobs">
+                    <h4 class="text-[13px] lg:text-[16px] font-bold text-gray-900 mb-3 lg:mb-4 uppercase">Quick Links</h4>
+                    <ul class="space-y-2 lg:space-y-3 text-[12px] lg:text-[14px]">
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Hiring Drives</a></li>
+                        <li><a href="index.html#centres" class="text-gray-600 hover:text-blue-600 transition-colors">Skill Centres</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Placement Report</a></li>
+                        <li><a href="#faq" class="text-gray-600 hover:text-blue-600 transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Resources -->
+                <div id="blog">
+                    <h4 class="text-[13px] lg:text-[16px] font-bold text-gray-900 mb-3 lg:mb-4 uppercase">Resources</h4>
+                    <ul class="space-y-2 lg:space-y-3 text-[12px] lg:text-[14px]">
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Blog</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Success Stories</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Free Webinars</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Download Brochure</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact - MOBILE CENTERED FIX -->
+                <div class="footer-contact-section">
+                    <h4 class="text-[13px] lg:text-[16px] font-bold text-gray-900 mb-3 lg:mb-4 uppercase">Contact Us</h4>
+                    <ul class="space-y-2 lg:space-y-3 text-[12px] lg:text-[14px]">
+                        <li>
+                            <a href="mailto:contact@blujay.com" class="text-gray-600 hover:text-blue-600 transition-colors flex items-center gap-2">
+                                <i class="fas fa-envelope text-blue-600 text-[10px]"></i>
+                                <span>contact@blujay.com</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="tel:+918595563221" class="text-gray-600 hover:text-blue-600 transition-colors flex items-center gap-2">
+                                <i class="fas fa-phone text-blue-600 text-[10px]"></i>
+                                <span>+91 8595563221</span>
+                            </a>
+                        </li>
+                        <li class="text-gray-600 flex items-center gap-2">
+                            <i class="fas fa-map-marker-alt text-blue-600 text-[10px]"></i>
+                            <span>Hyderabad & Pune</span>
+                        </li>
+                    </ul>
+                    
+                    <!-- Social Media -->
+                    <div class="footer-contact-social mt-4 lg:mt-5 flex gap-2">
+                        <a href="#" class="w-8 lg:w-9 h-8 lg:h-9 bg-blue-600 rounded-lg flex items-center justify-center text-white hover:bg-blue-700 transition-all">
+                            <i class="fab fa-facebook-f text-[12px]"></i>
+                        </a>
+                        <a href="#" class="w-8 lg:w-9 h-8 lg:h-9 bg-blue-600 rounded-lg flex items-center justify-center text-white hover:bg-blue-700 transition-all">
+                            <i class="fab fa-twitter text-[12px]"></i>
+                        </a>
+                        <a href="#" class="w-8 lg:w-9 h-8 lg:h-9 bg-blue-600 rounded-lg flex items-center justify-center text-white hover:bg-blue-700 transition-all">
+                            <i class="fab fa-linkedin-in text-[12px]"></i>
+                        </a>
+                        <a href="#" class="w-8 lg:w-9 h-8 lg:h-9 bg-blue-600 rounded-lg flex items-center justify-center text-white hover:bg-blue-700 transition-all">
+                            <i class="fab fa-instagram text-[12px]"></i>
+                        </a>
+                        <a href="#" class="w-8 lg:w-9 h-8 lg:h-9 bg-blue-600 rounded-lg flex items-center justify-center text-white hover:bg-blue-700 transition-all">
+                            <i class="fab fa-youtube text-[12px]"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bottom Bar -->
+    <div class="py-5 lg:py-6 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-3 lg:gap-4">
+                <div class="flex items-center gap-2 lg:gap-3">
+                    <img src="logo.png" alt="Blujay" class="h-7 lg:h-8" loading="lazy">
+                    <span class="text-gray-400 text-[11px] lg:text-[13px]">© 2025 Blujay Technologies. All rights reserved.</span>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-4 lg:gap-6 text-[11px] lg:text-[13px]">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Refund Policy</a>
+                </div>
+            </div>
+            
+            <!-- Payment & Security -->
+            <div class="mt-4 lg:mt-6 pt-4 lg:pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-3 lg:gap-4">
+                <div class="flex items-center gap-2 lg:gap-3 text-gray-400 text-[10px] lg:text-[12px]">
+                    <i class="fas fa-lock text-green-500"></i>
+                    <span>Secured Payment</span>
+                    <span class="mx-2 lg:mx-3">|</span>
+                    <i class="fas fa-shield-alt text-blue-500"></i>
+                    <span>SSL Encrypted</span>
+                </div>
+                
+                <div class="flex items-center gap-2 lg:gap-4">
+                    <span class="text-gray-500 text-[10px] lg:text-[12px]">We Accept:</span>
+                    <div class="flex gap-1 lg:gap-2">
+                        <div class="w-8 lg:w-10 h-6 lg:h-7 bg-white rounded flex items-center justify-center">
+                            <i class="fab fa-cc-visa text-blue-600 text-[14px] lg:text-[18px]"></i>
+                        </div>
+                        <div class="w-8 lg:w-10 h-6 lg:h-7 bg-white rounded flex items-center justify-center">
+                            <i class="fab fa-cc-mastercard text-red-600 text-[14px] lg:text-[18px]"></i>
+                        </div>
+                        <div class="w-8 lg:w-10 h-6 lg:h-7 bg-white rounded flex items-center justify-center">
+                            <i class="fab fa-google-pay text-blue-600 text-[14px] lg:text-[18px]"></i>
+                        </div>
+                        <div class="w-8 lg:w-10 h-6 lg:h-7 bg-white rounded flex items-center justify-center text-[8px] lg:text-[10px] font-bold text-purple-600">
+                            PP
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script src="js/script.js"></script>
+</body>
+</html>

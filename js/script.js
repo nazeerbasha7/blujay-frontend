@@ -5,14 +5,17 @@
  * ============================================
  */
 
+
 // ============================================
 // 1. MOBILE MENU FUNCTIONALITY
 // ============================================
+
 
 const mobileToggle = document.getElementById('mobile-toggle');
 const mobileClose = document.getElementById('mobile-close');
 const mobileMenu = document.getElementById('mobile-menu');
 const body = document.body;
+
 
 // Open Mobile Menu
 if (mobileToggle) {
@@ -22,6 +25,7 @@ if (mobileToggle) {
     });
 }
 
+
 // Close Mobile Menu
 if (mobileClose) {
     mobileClose.addEventListener('click', () => {
@@ -29,6 +33,7 @@ if (mobileClose) {
         body.style.overflow = 'auto';
     });
 }
+
 
 // Close menu when clicking on links
 const mobileMenuLinks = document.querySelectorAll('#mobile-menu a');
@@ -38,6 +43,7 @@ mobileMenuLinks.forEach(link => {
         body.style.overflow = 'auto';
     });
 });
+
 
 // Close menu when clicking buttons in mobile menu
 const mobileMenuButtons = document.querySelectorAll('#mobile-menu button');
@@ -51,13 +57,16 @@ mobileMenuButtons.forEach(button => {
 });
 
 
+
 // ============================================
 // 2. MOBILE MORE DROPDOWN
 // ============================================
 
+
 const mobileMore = document.getElementById('mobile-more');
 const mobileMoreContent = document.getElementById('mobile-more-content');
 const mobileArrow = document.querySelector('.mobile-arrow');
+
 
 if (mobileMore && mobileMoreContent) {
     mobileMore.addEventListener('click', () => {
@@ -72,13 +81,16 @@ if (mobileMore && mobileMoreContent) {
 }
 
 
+
 // ============================================
 // 3. DESKTOP MORE DROPDOWN
 // ============================================
 
+
 const desktopMoreBtn = document.getElementById('desktop-more-btn');
 const desktopMoreMenu = document.getElementById('desktop-more-menu');
 const desktopMore = document.getElementById('desktop-more');
+
 
 if (desktopMoreBtn && desktopMoreMenu) {
     // Toggle dropdown on button click
@@ -87,12 +99,14 @@ if (desktopMoreBtn && desktopMoreMenu) {
         desktopMoreMenu.classList.toggle('hidden');
     });
 
+
     // Close dropdown when clicking outside
     document.addEventListener('click', (e) => {
         if (desktopMore && !desktopMore.contains(e.target)) {
             desktopMoreMenu.classList.add('hidden');
         }
     });
+
 
     // Close dropdown when clicking on dropdown links
     const desktopDropdownLinks = desktopMoreMenu.querySelectorAll('a');
@@ -104,9 +118,11 @@ if (desktopMoreBtn && desktopMoreMenu) {
 }
 
 
+
 // ============================================
 // 4. SMOOTH SCROLLING WITH NAVBAR OFFSET
 // ============================================
+
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -124,6 +140,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 behavior: 'smooth'
             });
 
+
             // Close mobile menu if open
             if (!mobileMenu.classList.contains('translate-x-full')) {
                 mobileMenu.classList.add('translate-x-full');
@@ -134,12 +151,15 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 
+
 // ============================================
 // 5. NAVBAR SCROLL SHADOW EFFECT
 // ============================================
 
+
 let lastScroll = 0;
 const navbar = document.querySelector('nav');
+
 
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
@@ -155,12 +175,15 @@ window.addEventListener('scroll', () => {
 });
 
 
+
 // ============================================
 // 6. ACTIVE LINK HIGHLIGHTING
 // ============================================
 
+
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
 
 window.addEventListener('scroll', () => {
     let current = '';
@@ -175,6 +198,7 @@ window.addEventListener('scroll', () => {
         }
     });
 
+
     navLinks.forEach(link => {
         link.classList.remove('border-b-2', 'border-blue-600', 'text-gray-900');
         
@@ -185,9 +209,11 @@ window.addEventListener('scroll', () => {
 });
 
 
+
 // ============================================
 // 7. PREVENT BODY SCROLL WHEN MENU OPEN
 // ============================================
+
 
 const preventScroll = (e) => {
     if (body.style.overflow === 'hidden') {
@@ -195,12 +221,15 @@ const preventScroll = (e) => {
     }
 };
 
+
 document.addEventListener('touchmove', preventScroll, { passive: false });
+
 
 
 // ============================================
 // 8. PAGE LOAD ANIMATIONS
 // ============================================
+
 
 window.addEventListener('load', () => {
     // Add fade-in animation to sections
@@ -225,9 +254,11 @@ window.addEventListener('load', () => {
 });
 
 
+
 // ============================================
 // 9. ANIMATED COUNTERS FOR IMPACT SECTION
 // ============================================
+
 
 function animateCounter(element, target, duration = 2000) {
     let current = 0;
@@ -246,8 +277,10 @@ function animateCounter(element, target, duration = 2000) {
     }, 16);
 }
 
+
 // Initialize counters on scroll into view
 const counters = document.querySelectorAll('.counter');
+
 
 if (counters.length > 0) {
     const counterObserver = new IntersectionObserver((entries) => {
@@ -269,11 +302,14 @@ if (counters.length > 0) {
 }
 
 
+
 // ============================================
 // 10. FAQ ACCORDION FUNCTIONALITY
 // ============================================
 
+
 const faqItems = document.querySelectorAll('.faq-item');
+
 
 faqItems.forEach(item => {
     const question = item.querySelector('.faq-question');
@@ -306,9 +342,11 @@ faqItems.forEach(item => {
 });
 
 
+
 // ============================================
 // 11. COMPANY CAROUSEL ANIMATION
 // ============================================
+
 
 function animateCompanyCarousel() {
     const slider = document.querySelector('.company-slider');
@@ -343,55 +381,90 @@ function animateCompanyCarousel() {
     });
 }
 
+
 // Start carousel animation when page loads
 window.addEventListener('load', () => {
     animateCompanyCarousel();
 });
 
 
+
 // ============================================
-// 12. REQUEST CALLBACK BUTTON HANDLERS
+// 12. REQUEST CALLBACK MODAL FUNCTIONS
 // ============================================
 
-document.querySelectorAll('button').forEach(btn => {
-    if (btn.textContent.includes('Request Callback')) {
-        btn.addEventListener('click', () => {
-            handleRequestCallback();
+// REMOVED OLD PROMPT-BASED FUNCTION - NOW USING MODAL
+
+function openCallbackModal() {
+    const modal = document.getElementById('callbackModal');
+    if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeCallbackModal() {
+    const modal = document.getElementById('callbackModal');
+    if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// Close modal when clicking outside
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('callbackModal');
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCallbackModal();
+            }
         });
     }
 });
 
-function handleRequestCallback() {
-    // Create a modal or show alert for callback request
-    const userEmail = prompt('Enter your email to request a callback:');
-    
-    if (userEmail && validateEmail(userEmail)) {
-        // Store callback request
-        const callbackData = {
-            email: userEmail,
-            timestamp: new Date().toISOString(),
-            page: window.location.pathname
-        };
-        
-        console.log('Callback Request:', callbackData);
-        
-        // Here you would send to your backend
-        // fetch('/api/callback-request', {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify(callbackData)
-        // });
-        
-        alert('Thank you! Our team will contact you soon at ' + userEmail);
-    } else if (userEmail) {
-        alert('Please enter a valid email address');
+// Handle form submission to SheetDB
+document.addEventListener('DOMContentLoaded', () => {
+    const sheetdbForm = document.getElementById('sheetdb-form');
+    if (sheetdbForm) {
+        sheetdbForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.disabled = true;
+            
+            fetch(this.action, {
+                method: "POST",
+                body: new FormData(this),
+            })
+            .then(response => response.json())
+            .then((data) => {
+                alert('✅ Form submitted successfully! We will contact you soon.');
+                closeCallbackModal();
+                sheetdbForm.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            })
+            .catch((error) => {
+                alert('❌ Error submitting form. Please try again.');
+                console.error('Error:', error);
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
+        });
     }
-}
+});
+
 
 
 // ============================================
 // 13. CTA BUTTON HANDLERS
 // ============================================
+
 
 document.querySelectorAll('button').forEach(btn => {
     // View Courses Button
@@ -422,7 +495,7 @@ document.querySelectorAll('button').forEach(btn => {
             const courseCard = this.closest('.bg-white.rounded-2xl');
             if (courseCard) {
                 const courseName = courseCard.querySelector('h3').textContent;
-                const coursePrice = courseCard.querySelector('p.text-[16px] lg:text-[18px]')?.textContent || 'N/A';
+                const coursePrice = courseCard.querySelector('p.text-[16px] lg\\:text-[18px]')?.textContent || 'N/A';
                 
                 // Store in localStorage
                 localStorage.setItem('enrolledCourse', JSON.stringify({
@@ -439,9 +512,11 @@ document.querySelectorAll('button').forEach(btn => {
 });
 
 
+
 // ============================================
 // 14. VIEW ALL COURSES - REDIRECT TO LOGIN
 // ============================================
+
 
 document.querySelectorAll('[id^="view-all-courses"]').forEach(button => {
     button.addEventListener('click', function(e) {
@@ -472,11 +547,14 @@ document.querySelectorAll('[id^="view-all-courses"]').forEach(button => {
 });
 
 
+
 // ============================================
 // 15. NEWSLETTER SUBSCRIPTION
 // ============================================
 
+
 const newsletterForm = document.querySelector('form');
+
 
 if (newsletterForm) {
     newsletterForm.addEventListener('submit', (e) => {
@@ -525,9 +603,11 @@ if (newsletterForm) {
 }
 
 
+
 // ============================================
 // 16. DOWNLOAD BUTTONS
 // ============================================
+
 
 document.querySelectorAll('button').forEach(btn => {
     // Download Brochure
@@ -545,6 +625,7 @@ document.querySelectorAll('button').forEach(btn => {
     }
 });
 
+
 function downloadFile(filePath, fileName) {
     const link = document.createElement('a');
     link.href = filePath;
@@ -557,9 +638,11 @@ function downloadFile(filePath, fileName) {
 }
 
 
+
 // ============================================
 // 17. CONTACT US BUTTON
 // ============================================
+
 
 document.querySelectorAll('button').forEach(btn => {
     if (btn.textContent.includes('Contact Our Team')) {
@@ -573,9 +656,11 @@ document.querySelectorAll('button').forEach(btn => {
 });
 
 
+
 // ============================================
 // 18. VIDEO PLAY BUTTONS
 // ============================================
+
 
 document.querySelectorAll('button:has(i[class*="fa-play"])').forEach(btn => {
     btn.addEventListener('click', function() {
@@ -594,9 +679,11 @@ document.querySelectorAll('button:has(i[class*="fa-play"])').forEach(btn => {
 });
 
 
+
 // ============================================
 // 19. LOGIN BUTTON HANDLER
 // ============================================
+
 
 const loginButtons = document.querySelectorAll('a[href="login.html"]');
 loginButtons.forEach(btn => {
@@ -609,9 +696,11 @@ loginButtons.forEach(btn => {
 });
 
 
+
 // ============================================
 // 20. SOCIAL MEDIA LINKS
 // ============================================
+
 
 const socialLinks = {
     facebook: 'https://facebook.com/blujay',
@@ -620,6 +709,7 @@ const socialLinks = {
     instagram: 'https://instagram.com/blujay',
     youtube: 'https://youtube.com/@blujay'
 };
+
 
 document.querySelectorAll('a[href="#"]').forEach(link => {
     const icon = link.querySelector('i');
@@ -644,11 +734,14 @@ document.querySelectorAll('a[href="#"]').forEach(link => {
 });
 
 
+
 // ============================================
 // 21. COURSE FILTER TABS
 // ============================================
 
+
 const courseFilterButtons = document.querySelectorAll('.flex.flex-wrap.gap-2 button, .flex.flex-wrap.gap-3 button');
+
 
 courseFilterButtons.forEach(button => {
     button.addEventListener('click', function() {
@@ -684,6 +777,7 @@ courseFilterButtons.forEach(button => {
     });
 });
 
+
 function filterCourses(filterType) {
     const courseCards = document.querySelectorAll('.grid.grid-cols-1.md\\:grid-cols-2 > div');
     
@@ -696,11 +790,14 @@ function filterCourses(filterType) {
 }
 
 
+
 // ============================================
 // 22. OFFLINE CENTRE TABS
 // ============================================
 
+
 const centreButtons = document.querySelectorAll('.space-y-2 button');
+
 
 centreButtons.forEach(button => {
     button.addEventListener('click', function() {
@@ -723,15 +820,18 @@ centreButtons.forEach(button => {
     });
 });
 
+
 function updateCentreInfo(centreName) {
     console.log('Updating centre info for:', centreName);
     // Fetch and display centre-specific images and details
 }
 
 
+
 // ============================================
 // 23. RESPONSIVE IMAGE OPTIMIZATION
 // ============================================
+
 
 // Lazy load images for better performance
 if ('IntersectionObserver' in window) {
@@ -760,40 +860,56 @@ if ('IntersectionObserver' in window) {
 }
 
 
+
 // ============================================
 // 24. MOBILE MENU CLOSE ON ESCAPE KEY
 // ============================================
 
+
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mobileMenu && !mobileMenu.classList.contains('translate-x-full')) {
-        mobileMenu.classList.add('translate-x-full');
-        body.style.overflow = 'auto';
+    if (e.key === 'Escape') {
+        if (mobileMenu && !mobileMenu.classList.contains('translate-x-full')) {
+            mobileMenu.classList.add('translate-x-full');
+            body.style.overflow = 'auto';
+        }
+        
+        // Also close callback modal on Escape
+        const modal = document.getElementById('callbackModal');
+        if (modal && !modal.classList.contains('hidden')) {
+            closeCallbackModal();
+        }
     }
 });
+
 
 
 // ============================================
 // 25. FORM VALIDATION UTILITIES
 // ============================================
 
+
 function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
 }
+
 
 function validatePhone(phone) {
     const re = /^[0-9]{10}$/;
     return re.test(phone.replace(/[-\s]/g, ''));
 }
 
+
 function validateName(name) {
     return name && name.trim().length >= 2;
 }
 
 
+
 // ============================================
 // 26. ACCESSIBILITY: FOCUS VISIBLE
 // ============================================
+
 
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Tab') {
@@ -801,24 +917,29 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+
 document.addEventListener('mousedown', () => {
     document.body.classList.remove('tab-active');
 });
+
 
 
 // ============================================
 // 27. HANDLE LOGIN REDIRECT WITH PARAMS
 // ============================================
 
+
 // Check if redirected from a specific course
 const urlParams = new URLSearchParams(window.location.search);
 const redirectParam = urlParams.get('redirect');
 const courseParam = urlParams.get('course');
 
+
 if (redirectParam) {
     console.log('Redirected from:', redirectParam);
     // You can use this to show specific sections after login
 }
+
 
 if (courseParam) {
     console.log('Selected Course:', courseParam);
@@ -826,9 +947,11 @@ if (courseParam) {
 }
 
 
+
 // ============================================
 // 28. RETRIEVE INTERESTED COURSE AFTER LOGIN
 // ============================================
+
 
 function getInterestedCourse() {
     const interested = localStorage.getItem('interestedCourse');
@@ -843,6 +966,7 @@ function getInterestedCourse() {
     return null;
 }
 
+
 // On page load, check for interested course
 window.addEventListener('load', () => {
     const interestedCourse = getInterestedCourse();
@@ -853,9 +977,11 @@ window.addEventListener('load', () => {
 });
 
 
+
 // ============================================
 // 29. PERFORMANCE MONITORING
 // ============================================
+
 
 if (window.performance && window.performance.timing) {
     window.addEventListener('load', () => {
@@ -872,9 +998,11 @@ if (window.performance && window.performance.timing) {
 }
 
 
+
 // ============================================
 // 30. DETECT USER'S BROWSER & DEVICE
 // ============================================
+
 
 function getDeviceInfo() {
     const ua = navigator.userAgent;
@@ -889,13 +1017,16 @@ function getDeviceInfo() {
     };
 }
 
+
 const deviceInfo = getDeviceInfo();
 console.log('Device Info:', deviceInfo);
+
 
 
 // ============================================
 // 31. TRACK USER INTERACTIONS
 // ============================================
+
 
 function trackEvent(eventName, eventData = {}) {
     const event = {
@@ -911,11 +1042,13 @@ function trackEvent(eventName, eventData = {}) {
     // Example: sendToAnalytics(event);
 }
 
+
 // Track page view
 trackEvent('page_view', {
     page: document.title,
     referrer: document.referrer
 });
+
 
 // Track button clicks
 document.querySelectorAll('button').forEach(btn => {
@@ -928,11 +1061,14 @@ document.querySelectorAll('button').forEach(btn => {
 });
 
 
+
 // ============================================
 // 32. SMOOTH INITIAL PAGE LOAD
 // ============================================
 
+
 document.documentElement.style.scrollBehavior = 'smooth';
+
 
 // Hide loading state (if you have one)
 window.addEventListener('load', () => {
@@ -940,9 +1076,11 @@ window.addEventListener('load', () => {
 });
 
 
+
 // ============================================
 // 33. CONSOLE LOGGING & DEBUG INFO
 // ============================================
+
 
 console.log('%c✅ Blujay Website Ready!', 'color: #1D5D7F; font-size: 16px; font-weight: bold;');
 console.log('%c📱 Mobile Menu: Fully Functional', 'color: #236192; font-size: 12px;');
@@ -957,11 +1095,14 @@ console.log('  • View All Courses Redirect');
 console.log('  • Newsletter Subscription');
 console.log('  • Accessibility Features');
 console.log('  • Performance Monitoring');
+console.log('  • Request Callback Modal');
+
 
 
 // ============================================
 // 34. EXPORT UTILITIES (Optional)
 // ============================================
+
 
 // Make utilities available globally if needed
 window.BlujaySiteUtils = {
@@ -971,7 +1112,10 @@ window.BlujaySiteUtils = {
     getDeviceInfo,
     trackEvent,
     getInterestedCourse,
-    downloadFile
+    downloadFile,
+    openCallbackModal,
+    closeCallbackModal
 };
+
 
 console.log('Utils available as: window.BlujaySiteUtils');

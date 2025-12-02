@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Analytics - Blujay Admin</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        body { margin: 0; padding: 0; background: #f9fafb; }
+        
+        :root {
+            --blujay-primary: #1D5D7F;
+            --blujay-primary-hover: #236192;
+            --blujay-light: #E8F4F8;
+        }
+        
+        .bg-blue-600 { background-color: var(--blujay-primary) !important; }
+        .hover\:bg-blue-700:hover { background-color: var(--blujay-primary-hover) !important; }
+        .text-blue-600 { color: var(--blujay-primary) !important; }
+        
+        .stat-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: #E5E7EB;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #1D5D7F, #236192);
+            transition: width 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Header -->
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center gap-3">
+                    <a href="admin-dashboard.html" class="flex items-center">
+                        <img src="../logo.png" alt="Blujay" class="h-10 w-auto">
+                    </a>
+                    <span class="px-2 py-1 bg-red-100 text-red-600 text-xs font-bold rounded">ADMIN</span>
+                </div>
+                
+                <div class="flex items-center gap-3">
+                    <a href="admin-blogs.html" class="text-gray-600 hover:text-blue-600 transition-colors">
+                        <i class="fas fa-arrow-left mr-2"></i>Back to Blogs
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 lg:px-8 py-8">
+        
+        <!-- Page Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">
+                <i class="fas fa-chart-line text-blue-600 mr-3"></i>Blog Analytics
+            </h1>
+            <p class="text-gray-600">Track performance and engagement metrics</p>
+        </div>
+        
+        <!-- Loading State -->
+        <div id="loading" class="text-center py-12">
+            <i class="fas fa-spinner fa-spin text-4xl text-blue-600 mb-4"></i>
+            <p class="text-gray-600">Loading analytics...</p>
+        </div>
+        
+        <!-- Analytics Content -->
+        <div id="analytics-content" class="hidden space-y-6">
+            
+            <!-- Overview Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="stat-card bg-white rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-blog text-blue-600 text-xl"></i>
+                        </div>
+                        <span class="text-xs font-semibold text-gray-500 uppercase">Total</span>
+                    </div>
+                    <h3 id="total-blogs" class="text-3xl font-bold text-gray-900 mb-1">0</h3>
+                    <p class="text-sm text-gray-600">Blog Posts</p>
+                </div>
+                
+                <div class="stat-card bg-white rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-check-circle text-green-600 text-xl"></i>
+                        </div>
+                        <span class="text-xs font-semibold text-gray-500 uppercase">Live</span>
+                    </div>
+                    <h3 id="published-blogs" class="text-3xl font-bold text-green-600 mb-1">0</h3>
+                    <p class="text-sm text-gray-600">Published</p>
+                </div>
+                
+                <div class="stat-card bg-white rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-eye text-purple-600 text-xl"></i>
+                        </div>
+                        <span class="text-xs font-semibold text-gray-500 uppercase">Total</span>
+                    </div>
+                    <h3 id="total-views" class="text-3xl font-bold text-purple-600 mb-1">0</h3>
+                    <p class="text-sm text-gray-600">Total Views</p>
+                </div>
+                
+                <div class="stat-card bg-white rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-chart-bar text-yellow-600 text-xl"></i>
+                        </div>
+                        <span class="text-xs font-semibold text-gray-500 uppercase">Average</span>
+                    </div>
+                    <h3 id="avg-views" class="text-3xl font-bold text-yellow-600 mb-1">0</h3>
+                    <p class="text-sm text-gray-600">Avg Views/Blog</p>
+                </div>
+            </div>
+            
+            <!-- Top Performing Blogs -->
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                <div class="p-6 border-b border-gray-200">
+                    <h2 class="text-xl font-bold text-gray-900">
+                        <i class="fas fa-fire text-orange-500 mr-2"></i>Top Performing Blogs
+                    </h2>
+                </div>
+                
+                <div id="top-blogs-container" class="divide-y divide-gray-200">
+                    <!-- Top blogs will be inserted here -->
+                </div>
+            </div>
+            
+            <!-- Category Performance -->
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <h2 class="text-xl font-bold text-gray-900 mb-6">
+                    <i class="fas fa-tags text-blue-600 mr-2"></i>Performance by Category
+                </h2>
+                
+                <div id="category-stats" class="space-y-4">
+                    <!-- Category stats will be inserted here -->
+                </div>
+            </div>
+            
+            <!-- All Blogs Performance Table -->
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                <div class="p-6 border-b border-gray-200">
+                    <h2 class="text-xl font-bold text-gray-900">All Blogs Performance</h2>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gray-50 border-b border-gray-200">
+                            <tr>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Title</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Category</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Status</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Views</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Published</th>
+                            </tr>
+                        </thead>
+                        <tbody id="all-blogs-tbody" class="divide-y divide-gray-200">
+                            <!-- All blogs will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Firebase Config -->
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCiedANEie5u-2XQOjdsUFgdkE7s08gArY",
+            authDomain: "blujay-tech.firebaseapp.com",
+            projectId: "blujay-tech",
+            storageBucket: "blujay-tech.firebasestorage.app",
+            messagingSenderId: "586422050005",
+            appId: "1:586422050005:web:737ba2502d1b283ea6165c"
+        };
+        
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        
+        const auth = firebase.auth();
+    </script>
+    
+    <!-- Main Script -->
+    <script>
+        const API_URL = 'https://blujay-backend.onrender.com';
+        
+        // Check authentication
+        auth.onAuthStateChanged(async (user) => {
+            if (!user) {
+                window.location.href = '../login.html';
+                return;
+            }
+            
+            try {
+                const token = await user.getIdToken();
+                localStorage.setItem('token', token);
+                loadAnalytics();
+            } catch (error) {
+                console.error('Auth error:', error);
+                window.location.href = '../login.html';
+            }
+        });
+        
+        // Load analytics data
+        async function loadAnalytics() {
+            try {
+                const token = localStorage.getItem('token');
+                const response = await fetch(`${API_URL}/api/admin/blogs/analytics/stats`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    displayAnalytics(data.analytics);
+                } else {
+                    throw new Error(data.message);
+                }
+                
+            } catch (error) {
+                console.error('Error loading analytics:', error);
+                document.getElementById('loading').innerHTML = `
+                    <div class="text-center text-red-600">
+                        <i class="fas fa-exclamation-circle text-4xl mb-4"></i>
+                        <p>Failed to load analytics</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Display analytics
+        function displayAnalytics(analytics) {
+            document.getElementById('loading').classList.add('hidden');
+            document.getElementById('analytics-content').classList.remove('hidden');
+            
+            // Overview stats
+            document.getElementById('total-blogs').textContent = analytics.totalBlogs;
+            document.getElementById('published-blogs').textContent = analytics.publishedBlogs;
+            document.getElementById('total-views').textContent = analytics.totalViews.toLocaleString();
+            document.getElementById('avg-views').textContent = analytics.avgViewsPerBlog;
+            
+            // Top performing blogs
+            displayTopBlogs(analytics.topBlogs);
+            
+            // Category stats
+            displayCategoryStats(analytics.categoryStats);
+            
+            // All blogs table (fetch separately)
+            loadAllBlogsTable();
+        }
+        
+        // Display top blogs
+        function displayTopBlogs(topBlogs) {
+            const container = document.getElementById('top-blogs-container');
+            
+            if (topBlogs.length === 0) {
+                container.innerHTML = `
+                    <div class="p-8 text-center text-gray-500">
+                        <i class="fas fa-info-circle text-3xl mb-2"></i>
+                        <p>No published blogs yet</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = topBlogs.map((blog, index) => {
+                const date = new Date(blog.publishDate).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+                
+                const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `#${index + 1}`;
+                
+                return `
+                    <div class="p-6 hover:bg-gray-50 transition-colors">
+                        <div class="flex items-start justify-between gap-4">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <span class="text-2xl">${medal}</span>
+                                    <h3 class="font-semibold text-gray-900">${escapeHtml(blog.title)}</h3>
+                                </div>
+                                <div class="flex flex-wrap items-center gap-3 text-sm text-gray-600">
+                                    <span class="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs font-medium">
+                                        ${blog.category}
+                                    </span>
+                                    <span><i class="far fa-calendar mr-1"></i>${date}</span>
+                                    <a href="../blogs/${blog.slug}.html" target="_blank" class="text-blue-600 hover:underline">
+                                        <i class="fas fa-external-link-alt mr-1"></i>View
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-3xl font-bold text-blue-600">${blog.views.toLocaleString()}</div>
+                                <div class="text-sm text-gray-500">views</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // Display category stats
+        function displayCategoryStats(categoryStats) {
+            const container = document.getElementById('category-stats');
+            
+            if (categoryStats.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center text-gray-500 py-4">
+                        <p>No data available</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            const maxViews = Math.max(...categoryStats.map(c => c.views));
+            
+            container.innerHTML = categoryStats.map(cat => {
+                const percentage = maxViews > 0 ? (cat.views / maxViews) * 100 : 0;
+                
+                return `
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex items-center gap-2">
+                                <span class="font-semibold text-gray-900">${cat.category}</span>
+                                <span class="text-sm text-gray-500">(${cat.count} ${cat.count === 1 ? 'post' : 'posts'})</span>
+                            </div>
+                            <span class="font-bold text-blue-600">${cat.views.toLocaleString()} views</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${percentage}%"></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // Load all blogs for table
+        async function loadAllBlogsTable() {
+            try {
+                const token = localStorage.getItem('token');
+                const response = await fetch(`${API_URL}/api/admin/blogs`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    displayAllBlogsTable(data.blogs);
+                }
+                
+            } catch (error) {
+                console.error('Error loading blogs table:', error);
+            }
+        }
+        
+        // Display all blogs table
+        function displayAllBlogsTable(blogs) {
+            const tbody = document.getElementById('all-blogs-tbody');
+            
+            // Sort by views descending
+            blogs.sort((a, b) => (b.views || 0) - (a.views || 0));
+            
+            tbody.innerHTML = blogs.map(blog => {
+                const date = new Date(blog.publishDate || blog.createdAt).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+                
+                const statusClass = blog.status === 'published' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700';
+                
+                return `
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="px-6 py-4">
+                            <div class="font-medium text-gray-900">${escapeHtml(blog.title)}</div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded">
+                                ${blog.category}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="px-2 py-1 ${statusClass} text-xs font-semibold rounded uppercase">
+                                ${blog.status}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 font-semibold text-gray-900">
+                            ${(blog.views || 0).toLocaleString()}
+                        </td>
+                        <td class="px-6 py-4 text-gray-600 text-sm">
+                            ${date}
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+        
+        // Escape HTML
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
+</body>
+</html>

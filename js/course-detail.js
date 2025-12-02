@@ -1,67 +1,117 @@
 // ============================================
 // COURSE DETAIL PAGE - Blujay Technologies
-// Display complete course information
 // ============================================
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCiedANEie5u-2XQOjdsUFgdkE7s08gArY",
-  authDomain: "blujay-tech.firebaseapp.com",
-  projectId: "blujay-tech",
-  storageBucket: "blujay-tech.firebasestorage.app",
-  messagingSenderId: "586422050005",
-  appId: "1:586422050005:web:737ba2502d1b283ea6165c",
-  measurementId: "G-1JE665W8D0"
-};
-
-if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-}
+console.log('🚀 Starting course-detail.js...');
 
 const auth = firebase.auth();
 const API_URL = 'https://blujay-backend.onrender.com/api';
+//const API_URL = 'http://localhost:5000/api';
 
 let currentCourse = null;
 let currentCurriculum = null;
 
-// ============================================
-// GET COURSE ID FROM URL
-// ============================================
 const urlParams = new URLSearchParams(window.location.search);
-const courseId = urlParams.get('courseId');
+const courseId = urlParams.get('id') || urlParams.get('courseId');
+
+console.log('📌 Course ID:', courseId);
+console.log('📡 API URL:', API_URL);
 
 if (!courseId) {
     alert('No course selected');
-    window.location.href = 'dashboard.html';
+    window.location.href = 'courses.html';
+}
+
+// ============================================
+// AUTHENTICATED FETCH
+// ============================================
+async function authenticatedFetch(endpoint, options = {}) {
+    const token = localStorage.getItem('authToken');
+    
+    const headers = {
+        'Content-Type': 'application/json',
+        ...options.headers
+    };
+    
+    if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+    }
+    
+    console.log('📤 Fetching:', `${API_URL}${endpoint}`);
+    
+    try {
+        const response = await fetch(`${API_URL}${endpoint}`, {
+            ...options,
+            headers
+        });
+        
+        console.log('📥 Response:', response.status, response.statusText);
+        return response;
+    } catch (error) {
+        console.error('❌ FETCH ERROR:', error);
+        throw error;
+    }
 }
 
 // ============================================
 // LOAD COURSE DETAILS
 // ============================================
 async function loadCourseDetails() {
+    console.log('🔄 Loading course details...');
+    
     try {
-        console.log('🔄 Loading course details:', courseId);
-        
-        const response = await fetch(`${API_URL}/courses/${courseId}/full`);
+        const response = await authenticatedFetch(`/courses/${courseId}/full`);
         
         if (!response.ok) {
-            throw new Error('Course not found');
+            const errorText = await response.text();
+            console.error('❌ API Error:', errorText);
+            throw new Error(`API Error: ${response.status} - ${errorText}`);
         }
         
         const data = await response.json();
+        console.log('✅ Data received:', data);
         
         if (data.success) {
             currentCourse = data.course;
             currentCurriculum = data.curriculum;
             
             displayCourseDetails(data.course, data.curriculum, data.stats);
-            
-            console.log('✅ Course loaded:', currentCourse.title);
+        } else {
+            throw new Error(data.message || 'Failed to load course');
         }
         
     } catch (error) {
-        console.error('❌ Error loading course:', error);
-        alert('Error loading course details');
-        window.location.href = 'dashboard.html';
+        console.error('❌ ERROR:', error);
+        
+        const loadingState = document.getElementById('loading-state');
+        if (loadingState) {
+            loadingState.innerHTML = `
+                <div class="text-center py-12">
+                    <i class="fas fa-exclamation-circle text-4xl text-red-600 mb-4"></i>
+                    <p class="text-red-600 font-bold text-xl mb-2">Failed to Load Course</p>
+                    <p class="text-gray-800 mb-2">${error.message}</p>
+                    <p class="text-gray-600 text-sm mb-4">Course ID: ${courseId}</p>
+                    
+                    <div class="bg-yellow-50 border border-yellow-300 rounded p-4 mb-4 text-left max-w-2xl mx-auto">
+                        <p class="text-yellow-800 font-bold mb-2">🔍 Check:</p>
+                        <ol class="text-yellow-700 text-sm space-y-1 list-decimal list-inside">
+                            <li>Backend running on localhost:5000?</li>
+                            <li>Course exists in database?</li>
+                            <li>CORS enabled on backend?</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="flex gap-3 justify-center">
+                        <a href="courses.html" class="inline-block px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                            Back to Courses
+                        </a>
+                        <button onclick="location.reload()" class="px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700">
+                            Retry
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
     }
 }
 
@@ -69,44 +119,51 @@ async function loadCourseDetails() {
 // DISPLAY COURSE DETAILS
 // ============================================
 function displayCourseDetails(course, curriculum, stats) {
-    // Hide loading, show content
-    document.getElementById('loading-state').classList.add('hidden');
-    document.getElementById('main-content').classList.remove('hidden');
+    console.log('🎨 Displaying course...');
     
-    // Update page title
+    const loadingState = document.getElementById('loading-state');
+    const mainContent = document.getElementById('main-content');
+    
+    if (loadingState) loadingState.classList.add('hidden');
+    if (mainContent) mainContent.classList.remove('hidden');
+    
     document.title = `${course.title} - Blujay Technologies`;
     
-    // Hero Section
-    document.getElementById('course-title').textContent = course.title;
-    document.getElementById('course-description').textContent = course.description;
-    document.getElementById('course-rating').textContent = '4.8'; // Default
-    document.getElementById('course-students').textContent = '(1,234 students)'; // Default
-    document.getElementById('course-duration').textContent = course.duration || 'Self-paced';
-    document.getElementById('course-level').textContent = course.level || 'Beginner';
-    document.getElementById('course-instructor').textContent = course.instructor;
+    const updateElement = (id, content) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = content;
+    };
     
-    // Buy Box
-    document.getElementById('course-thumbnail').src = course.thumbnail || 'https://via.placeholder.com/400x225';
-    document.getElementById('discount-price').textContent = `₹${course.discountedPrice.toLocaleString()}`;
-    document.getElementById('original-price').textContent = `₹${course.price.toLocaleString()}`;
+    updateElement('course-title', course.title);
+    updateElement('course-description', course.description);
+    updateElement('course-rating', course.rating || '4.8');
+    updateElement('course-students', `(${course.students || 1234} students)`);
+    updateElement('course-duration', course.duration || 'Self-paced');
+    updateElement('course-level', course.level || 'Beginner');
+    updateElement('course-instructor', course.instructor || 'Blujay Technologies');
+    updateElement('course-description-full', course.description);
     
-    // Calculate discount percentage
+    const thumbnail = document.getElementById('course-thumbnail');
+    if (thumbnail) thumbnail.src = course.thumbnail || 'https://via.placeholder.com/400x225';
+    
+    const discountPriceEl = document.getElementById('discount-price');
+    const originalPriceEl = document.getElementById('original-price');
+    
+    if (discountPriceEl) discountPriceEl.textContent = `₹${course.discountedPrice.toLocaleString()}`;
+    if (originalPriceEl) originalPriceEl.textContent = `₹${course.price.toLocaleString()}`;
+    
     const discount = Math.round(((course.price - course.discountedPrice) / course.price) * 100);
-    if (discount > 0) {
-        document.getElementById('discount-badge').textContent = `${discount}% OFF`;
-    } else {
-        document.getElementById('discount-badge').classList.add('hidden');
+    const discountBadgeEl = document.getElementById('discount-badge');
+    if (discount > 0 && discountBadgeEl) {
+        discountBadgeEl.textContent = `${discount}% OFF`;
     }
     
-    // Stats
-    document.getElementById('total-modules').textContent = stats.totalModules;
-    document.getElementById('total-videos').textContent = stats.totalVideos;
+    updateElement('total-modules', stats.totalModules || 0);
+    updateElement('total-videos', stats.totalVideos || 0);
     
-    // Full Description
-    document.getElementById('course-description-full').textContent = course.description;
-    
-    // Curriculum
     renderCurriculum(curriculum, stats.freeVideos);
+    
+    console.log('✅ Course displayed successfully!');
 }
 
 // ============================================
@@ -115,6 +172,8 @@ function displayCourseDetails(course, curriculum, stats) {
 function renderCurriculum(curriculum, freeVideosCount) {
     const container = document.getElementById('curriculum-container');
     
+    if (!container) return;
+    
     if (!curriculum || curriculum.length === 0) {
         container.innerHTML = '<p class="text-gray-500">No curriculum available yet</p>';
         return;
@@ -122,7 +181,7 @@ function renderCurriculum(curriculum, freeVideosCount) {
     
     container.innerHTML = curriculum.map((module, index) => `
         <div class="border border-gray-200 rounded-lg">
-            <div class="module-header p-4 flex items-center justify-between" onclick="toggleModule('module-${index}')">
+            <div class="module-header flex items-center justify-between" onclick="toggleModule('module-${index}')">
                 <div class="flex items-center gap-3">
                     <i class="fas fa-chevron-down text-gray-400 transition-transform" id="icon-module-${index}"></i>
                     <div>
@@ -138,7 +197,7 @@ function renderCurriculum(curriculum, freeVideosCount) {
                             <i class="fas fa-play-circle ${video.isFree ? 'text-green-600' : 'text-gray-400'}"></i>
                             <div>
                                 <p class="text-sm font-medium text-gray-800">${video.title}</p>
-                                <p class="text-xs text-gray-500">${video.duration}</p>
+                                <p class="text-xs text-gray-500">${video.duration || '5 min'}</p>
                             </div>
                         </div>
                         ${video.isFree ? '<span class="text-xs font-semibold text-green-600">FREE PREVIEW</span>' : '<i class="fas fa-lock text-gray-400"></i>'}
@@ -147,25 +206,20 @@ function renderCurriculum(curriculum, freeVideosCount) {
             </div>
         </div>
     `).join('');
-    
-    if (freeVideosCount > 0) {
-        console.log(`✅ ${freeVideosCount} free preview videos available`);
-    }
 }
 
-// ============================================
-// TOGGLE MODULE (Expand/Collapse)
-// ============================================
 function toggleModule(moduleId) {
     const module = document.getElementById(moduleId);
     const icon = document.getElementById('icon-' + moduleId);
     
-    if (module.classList.contains('hidden')) {
-        module.classList.remove('hidden');
-        icon.style.transform = 'rotate(180deg)';
-    } else {
-        module.classList.add('hidden');
-        icon.style.transform = 'rotate(0deg)';
+    if (module && icon) {
+        if (module.classList.contains('hidden')) {
+            module.classList.remove('hidden');
+            icon.style.transform = 'rotate(180deg)';
+        } else {
+            module.classList.add('hidden');
+            icon.style.transform = 'rotate(0deg)';
+        }
     }
 }
 
@@ -175,35 +229,152 @@ window.toggleModule = toggleModule;
 // HANDLE ENROLLMENT
 // ============================================
 function handleEnrollment() {
+    console.log('🔘 Enroll clicked!');
+    
     if (!currentCourse) {
-        alert('Course data not loaded');
+        alert('Course not loaded. Please wait.');
         return;
     }
     
-    // Check if user is logged in
     const token = localStorage.getItem('authToken');
+    
     if (!token) {
+        console.log('⚠️ Not logged in → Redirect to login');
         alert('Please login to enroll');
-        window.location.href = 'login.html';
+        window.location.href = `login.html?redirect=course-detail&courseId=${courseId}`;
         return;
     }
     
-    // For now, redirect to payment page (we'll build this next)
-    console.log('📚 Enrolling in course:', currentCourse.courseId);
-    alert(`Enrollment feature coming soon!\nCourse: ${currentCourse.title}\nPrice: ₹${currentCourse.discountedPrice}`);
+    console.log('💳 Logged in → Start payment');
+    initiatePayment();
+}
+
+async function initiatePayment() {
+    try {
+        const response = await authenticatedFetch('/payments/create-order', {
+            method: 'POST',
+            body: JSON.stringify({ courseId: currentCourse.courseId })
+        });
+        
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+            
+            if (errorData.message && errorData.message.includes('already enrolled')) {
+                alert('Already enrolled!');
+                window.location.href = 'my-learning.html';
+                return;
+            }
+            
+            throw new Error(errorData.message || 'Payment failed');
+        }
+        
+        const orderData = await response.json();
+        
+        if (orderData.success) {
+            console.log('✅ Order created');
+            openRazorpayCheckout(orderData);
+        }
+        
+    } catch (error) {
+        console.error('❌ Payment error:', error);
+        alert('Error: ' + error.message);
+    }
+}
+
+function openRazorpayCheckout(orderData) {
+    const userName = localStorage.getItem('userName') || 'Student';
+    const userEmail = localStorage.getItem('userEmail') || '';
     
-    // TODO: Redirect to payment page
-    // window.location.href = `payment.html?courseId=${currentCourse.courseId}`;
+    const options = {
+        key: orderData.key,
+        amount: orderData.amount * 100,
+        currency: orderData.currency,
+        name: 'Blujay Technologies',
+        description: currentCourse.title,
+        image: 'logo.png',
+        order_id: orderData.orderId,
+        handler: async function (response) {
+            console.log('✅ Payment successful');
+            await verifyPayment(response);
+        },
+        prefill: {
+            name: userName,
+            email: userEmail,
+            contact: ''
+        },
+        notes: {
+            courseId: currentCourse.courseId,
+            courseName: currentCourse.title
+        },
+        theme: {
+            color: '#1D5D7F'
+        },
+        modal: {
+            ondismiss: function() {
+                console.log('⚠️ Payment cancelled');
+                alert('Payment cancelled');
+            }
+        }
+    };
+    
+    const rzp = new Razorpay(options);
+    
+    rzp.on('payment.failed', function (response) {
+        console.error('❌ Payment failed:', response.error);
+        alert('Payment failed: ' + response.error.description);
+    });
+    
+    rzp.open();
+}
+
+async function verifyPayment(paymentResponse) {
+    try {
+        const response = await authenticatedFetch('/payments/verify', {
+            method: 'POST',
+            body: JSON.stringify({
+                razorpay_order_id: paymentResponse.razorpay_order_id,
+                razorpay_payment_id: paymentResponse.razorpay_payment_id,
+                razorpay_signature: paymentResponse.razorpay_signature,
+                courseId: currentCourse.courseId,
+                amount: currentCourse.discountedPrice
+            })
+        });
+        
+        if (!response.ok) {
+            throw new Error('Verification failed');
+        }
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            console.log('✅ Payment verified!');
+            alert('🎉 Enrollment successful!');
+            
+            setTimeout(() => {
+                window.location.href = 'my-learning.html';
+            }, 1000);
+        }
+        
+    } catch (error) {
+        console.error('❌ Verification error:', error);
+        alert('Verification failed. Contact support with payment ID: ' + paymentResponse.razorpay_payment_id);
+    }
 }
 
 window.handleEnrollment = handleEnrollment;
 
-// ============================================
-// INITIALIZE
-// ============================================
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('📄 DOM loaded');
+    const enrollBtn = document.getElementById('enroll-btn');
+    if (enrollBtn) {
+        enrollBtn.addEventListener('click', handleEnrollment);
+        console.log('✅ Enroll button attached');
+    }
+});
+
 auth.onAuthStateChanged(async (user) => {
-    // Load course details (works for both logged in and guest users)
+    console.log('🔐 Auth:', user ? 'LOGGED IN' : 'GUEST');
     await loadCourseDetails();
 });
 
-console.log('✅ Course Detail page loaded');
+console.log('✅ course-detail.js loaded');

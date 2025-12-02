@@ -12,6 +12,8 @@ const db = firebase.firestore();
 // ============================================
 async function authenticatedFetch(endpoint, options = {}) {
     const API_URL = 'https://blujay-backend.onrender.com/api'; // ✅ MOVED INSIDE FUNCTION
+    //const API_URL = 'http://localhost:5000/api';
+
     const token = localStorage.getItem('authToken');
     
     if (!token) {

@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Blog - Blujay Admin</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Quill Rich Text Editor -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        body { margin: 0; padding: 0; background: #f9fafb; }
+        
+        :root {
+            --blujay-primary: #1D5D7F;
+            --blujay-primary-hover: #236192;
+            --blujay-light: #E8F4F8;
+        }
+        
+        .bg-blue-600 { background-color: var(--blujay-primary) !important; }
+        .hover\:bg-blue-700:hover { background-color: var(--blujay-primary-hover) !important; }
+        .text-blue-600 { color: var(--blujay-primary) !important; }
+        .border-blue-500 { border-color: var(--blujay-primary) !important; }
+        
+        /* Quill Editor Customization */
+        #editor {
+            height: 400px;
+            background: white;
+        }
+        
+        .ql-toolbar {
+            border: 1px solid #e5e7eb !important;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .ql-container {
+            border: 1px solid #e5e7eb !important;
+            border-radius: 0 0 8px 8px;
+            font-size: 16px;
+        }
+        
+        .required-label::after {
+            content: " *";
+            color: #EF4444;
+        }
+        
+        .tag-input {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 8px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            min-height: 50px;
+        }
+        
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--blujay-light);
+            color: var(--blujay-primary);
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .tag button {
+            background: none;
+            border: none;
+            color: var(--blujay-primary);
+            cursor: pointer;
+            font-size: 16px;
+            padding: 0;
+            width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Header -->
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center gap-3">
+                    <a href="admin-dashboard.html" class="flex items-center">
+                        <img src="../logo.png" alt="Blujay" class="h-10 w-auto">
+                    </a>
+                    <span class="px-2 py-1 bg-red-100 text-red-600 text-xs font-bold rounded">ADMIN</span>
+                </div>
+                
+                <div class="flex items-center gap-3">
+                    <a href="admin-blogs.html" class="text-gray-600 hover:text-blue-600 transition-colors">
+                        <i class="fas fa-arrow-left mr-2"></i>Back to Blogs
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto px-4 lg:px-8 py-8">
+        
+        <!-- Page Header -->
+        <div class="mb-8">
+            <h1 id="page-title" class="text-3xl font-bold text-gray-900 mb-2">Add New Blog</h1>
+            <p class="text-gray-600">Create engaging content for your audience</p>
+        </div>
+        
+        <!-- Blog Form -->
+        <form id="blog-form" class="space-y-6">
+            
+            <!-- Title -->
+            <div class="bg-white rounded-xl p-6 shadow-sm">
+                <label for="title" class="block text-sm font-semibold text-gray-700 mb-2 required-label">Blog Title</label>
+                <input 
+                    type="text" 
+                    id="title" 
+                    name="title" 
+                    required 
+                    placeholder="Enter an engaging title" 
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
+                >
+            </div>
+            
+            <!-- Category & Status -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <label for="category" class="block text-sm font-semibold text-gray-700 mb-2 required-label">Category</label>
+                    <select 
+                        id="category" 
+                        name="category" 
+                        required 
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    >
+                        <option value="">Select Category</option>
+                        <option value="Technology">Technology</option>
+                        <option value="Education">Education</option>
+                        <option value="Programming">Programming</option>
+                        <option value="Web Development">Web Development</option>
+                        <option value="Career">Career</option>
+                        <option value="General">General</option>
+                    </select>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <label for="status" class="block text-sm font-semibold text-gray-700 mb-2 required-label">Status</label>
+                    <select 
+                        id="status" 
+                        name="status" 
+                        required 
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    >
+                        <option value="draft">Draft (Save for later)</option>
+                        <option value="published">Published (Live immediately)</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Excerpt -->
+            <div class="bg-white rounded-xl p-6 shadow-sm">
+                <label for="excerpt" class="block text-sm font-semibold text-gray-700 mb-2 required-label">Excerpt (Short Description)</label>
+                <textarea 
+                    id="excerpt" 
+                    name="excerpt" 
+                    required 
+                    rows="3" 
+                    maxlength="200" 
+                    placeholder="Brief summary that appears on blog cards (max 200 characters)" 
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                ></textarea>
+                <div class="flex justify-between mt-2">
+                    <p class="text-xs text-gray-500">This appears on blog cards in the grid view</p>
+                    <p class="text-xs text-gray-500"><span id="excerpt-count">0</span>/200</p>
+                </div>
+            </div>
+            
+            <!-- Featured Image -->
+            <div class="bg-white rounded-xl p-6 shadow-sm">
+                <label for="featuredImage" class="block text-sm font-semibold text-gray-700 mb-2">Featured Image URL</label>
+                <input 
+                    type="url" 
+                    id="featuredImage" 
+                    name="featuredImage" 
+                    placeholder="https://example.com/image.jpg (leave empty for default)" 
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                >
+                <p class="text-xs text-gray-500 mt-2">💡 Tip: Use high-quality images (1200x630px recommended)</p>
+            </div>
+            
+            <!-- Tags -->
+            <div class="bg-white rounded-xl p-6 shadow-sm">
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Tags</label>
+                <div class="tag-input" id="tags-container">
+                    <!-- Tags will be added here -->
+                </div>
+                <div class="flex gap-2 mt-3">
+                    <input 
+                        type="text" 
+                        id="tag-input" 
+                        placeholder="Add a tag (press Enter)" 
+                        class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                    >
+                    <button type="button" onclick="addTag()" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Blog Content (Rich Text Editor) -->
+            <div class="bg-white rounded-xl p-6 shadow-sm">
+                <label class="block text-sm font-semibold text-gray-700 mb-2 required-label">Blog Content</label>
+                <div id="editor"></div>
+                <p class="text-xs text-gray-500 mt-2">Use the toolbar to format your content with headings, bold, lists, images, and more</p>
+            </div>
+            
+            <!-- SEO Section -->
+            <div class="bg-white rounded-xl p-6 shadow-sm">
+                <h3 class="text-lg font-bold text-gray-900 mb-4">
+                    <i class="fas fa-search text-blue-600 mr-2"></i>SEO Optimization
+                </h3>
+                
+                <div class="space-y-4">
+                    <div>
+                        <label for="metaDescription" class="block text-sm font-semibold text-gray-700 mb-2">Meta Description</label>
+                        <textarea 
+                            id="metaDescription" 
+                            name="metaDescription" 
+                            rows="2" 
+                            maxlength="160" 
+                            placeholder="SEO description (auto-filled from excerpt if empty)" 
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none text-sm"
+                        ></textarea>
+                        <p class="text-xs text-gray-500 mt-1"><span id="meta-count">0</span>/160 characters</p>
+                    </div>
+                    
+                    <div>
+                        <label for="metaKeywords" class="block text-sm font-semibold text-gray-700 mb-2">Meta Keywords (comma-separated)</label>
+                        <input 
+                            type="text" 
+                            id="metaKeywords" 
+                            name="metaKeywords" 
+                            placeholder="javascript, tutorial, web development" 
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                        >
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4">
+                <button 
+                    type="submit" 
+                    id="submit-btn"
+                    class="flex-1 bg-blue-600 text-white py-4 rounded-lg font-semibold hover:bg-blue-700 transition-all shadow-md text-lg"
+                >
+                    <i class="fas fa-save mr-2"></i>
+                    <span id="submit-text">Publish Blog</span>
+                </button>
+                
+                <button 
+                    type="button" 
+                    onclick="saveDraft()"
+                    class="flex-1 bg-gray-100 text-gray-700 py-4 rounded-lg font-semibold hover:bg-gray-200 transition-all text-lg"
+                >
+                    <i class="fas fa-file-alt mr-2"></i>Save as Draft
+                </button>
+            </div>
+        </form>
+    </main>
+    
+    <!-- Firebase Config -->
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCiedANEie5u-2XQOjdsUFgdkE7s08gArY",
+            authDomain: "blujay-tech.firebaseapp.com",
+            projectId: "blujay-tech",
+            storageBucket: "blujay-tech.firebasestorage.app",
+            messagingSenderId: "586422050005",
+            appId: "1:586422050005:web:737ba2502d1b283ea6165c"
+        };
+        
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        
+        const auth = firebase.auth();
+    </script>
+    
+    <!-- Main Script -->
+    <script>
+        const API_URL = 'https://blujay-backend.onrender.com';
+        let quill;
+        let tags = [];
+        let isEditMode = false;
+        let editBlogId = null;
+        
+        // Check if editing existing blog
+        const urlParams = new URLSearchParams(window.location.search);
+        const editId = urlParams.get('edit');
+        
+        if (editId) {
+            isEditMode = true;
+            editBlogId = editId;
+            document.getElementById('page-title').textContent = 'Edit Blog';
+            document.getElementById('submit-text').textContent = 'Update Blog';
+        }
+        
+        // Initialize Quill Rich Text Editor
+        quill = new Quill('#editor', {
+            theme: 'snow',
+            modules: {
+                toolbar: [
+                    [{ 'header': [1, 2, 3, false] }],
+                    ['bold', 'italic', 'underline', 'strike'],
+                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                    [{ 'color': [] }, { 'background': [] }],
+                    [{ 'align': [] }],
+                    ['link', 'image', 'video'],
+                    ['blockquote', 'code-block'],
+                    ['clean']
+                ]
+            },
+            placeholder: 'Write your blog content here...'
+        });
+        
+        // Character counters
+        document.getElementById('excerpt').addEventListener('input', (e) => {
+            document.getElementById('excerpt-count').textContent = e.target.value.length;
+        });
+        
+        document.getElementById('metaDescription').addEventListener('input', (e) => {
+            document.getElementById('meta-count').textContent = e.target.value.length;
+        });
+        
+        // Tags management
+        let tagInput = document.getElementById('tag-input');
+        
+        tagInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                addTag();
+            }
+        });
+        
+        function addTag() {
+            const value = tagInput.value.trim();
+            if (value && !tags.includes(value)) {
+                tags.push(value);
+                renderTags();
+                tagInput.value = '';
+            }
+        }
+        
+        function removeTag(tag) {
+            tags = tags.filter(t => t !== tag);
+            renderTags();
+        }
+        
+        function renderTags() {
+            const container = document.getElementById('tags-container');
+            container.innerHTML = tags.map(tag => `
+                <span class="tag">
+                    ${escapeHtml(tag)}
+                    <button type="button" onclick="removeTag('${escapeHtml(tag)}')">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </span>
+            `).join('');
+        }
+        
+        // Check authentication and load blog if editing
+        auth.onAuthStateChanged(async (user) => {
+            if (!user) {
+                window.location.href = '../login.html';
+                return;
+            }
+            
+            try {
+                const token = await user.getIdToken();
+                localStorage.setItem('token', token);
+                
+                if (isEditMode) {
+                    loadBlogForEdit();
+                }
+            } catch (error) {
+                console.error('Auth error:', error);
+                window.location.href = '../login.html';
+            }
+        });
+        
+        // Load blog data for editing
+        async function loadBlogForEdit() {
+            try {
+                const token = localStorage.getItem('token');
+                const response = await fetch(`${API_URL}/api/admin/blogs/${editBlogId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    const blog = data.blog;
+                    
+                    // Fill form fields
+                    document.getElementById('title').value = blog.title;
+                    document.getElementById('category').value = blog.category;
+                    document.getElementById('status').value = blog.status;
+                    document.getElementById('excerpt').value = blog.excerpt;
+                    document.getElementById('excerpt-count').textContent = blog.excerpt.length;
+                    
+                    if (blog.featuredImage) {
+                        document.getElementById('featuredImage').value = blog.featuredImage;
+                    }
+                    
+                    // Set tags
+                    tags = blog.tags || [];
+                    renderTags();
+                    
+                    // Set content in Quill
+                    quill.root.innerHTML = blog.content;
+                    
+                    // Set SEO fields
+                    if (blog.metaDescription) {
+                        document.getElementById('metaDescription').value = blog.metaDescription;
+                        document.getElementById('meta-count').textContent = blog.metaDescription.length;
+                    }
+                    
+                    if (blog.metaKeywords && blog.metaKeywords.length > 0) {
+                        document.getElementById('metaKeywords').value = blog.metaKeywords.join(', ');
+                    }
+                    
+                } else {
+                    throw new Error(data.message);
+                }
+                
+            } catch (error) {
+                console.error('Error loading blog:', error);
+                alert('Failed to load blog for editing');
+                window.location.href = 'admin-blogs.html';
+            }
+        }
+        
+        // Save as draft
+        function saveDraft() {
+            document.getElementById('status').value = 'draft';
+            document.getElementById('blog-form').dispatchEvent(new Event('submit'));
+        }
+        
+        // Form submission
+        document.getElementById('blog-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const content = quill.root.innerHTML;
+            if (content.trim() === '<p><br></p>' || content.trim() === '') {
+                alert('Please add blog content');
+                return;
+            }
+            
+            const submitBtn = document.getElementById('submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Publishing...';
+            
+            try {
+                const formData = {
+                    title: document.getElementById('title').value,
+                    content: content,
+                    excerpt: document.getElementById('excerpt').value,
+                    featuredImage: document.getElementById('featuredImage').value || undefined,
+                    category: document.getElementById('category').value,
+                    tags: tags,
+                    status: document.getElementById('status').value,
+                    metaDescription: document.getElementById('metaDescription').value,
+                    metaKeywords: document.getElementById('metaKeywords').value
+                };
+                
+                const token = localStorage.getItem('token');
+                const url = isEditMode 
+                    ? `${API_URL}/api/admin/blogs/${editBlogId}`
+                    : `${API_URL}/api/admin/blogs`;
+                
+                const method = isEditMode ? 'PUT' : 'POST';
+                
+                const response = await fetch(url, {
+                    method: method,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    const action = isEditMode ? 'updated' : 'created';
+                    alert(`Blog ${action} successfully!`);
+                    window.location.href = 'admin-blogs.html';
+                } else {
+                    throw new Error(data.message);
+                }
+                
+            } catch (error) {
+                console.error('Error saving blog:', error);
+                alert('Failed to save blog: ' + error.message);
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            }
+        });
+        
+        // Escape HTML
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
+</body>
+</html>
