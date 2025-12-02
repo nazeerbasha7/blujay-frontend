@@ -46,10 +46,16 @@ async function authenticatedFetch(endpoint, options = {}) {
     };
     
     try {
+        console.log('📡 Making request to:', `${API_URL}${endpoint}`);
+        
         const response = await fetch(`${API_URL}${endpoint}`, {
             ...options,
-            headers
+            headers,
+            // Add timeout handling for slow Render backend
+            signal: AbortSignal.timeout(30000) // 30 second timeout
         });
+        
+        console.log('📨 Response status:', response.status, response.statusText);
         
         if (response.status === 401) {
             console.error('❌ Authentication failed - token invalid');
@@ -59,9 +65,28 @@ async function authenticatedFetch(endpoint, options = {}) {
             return null;
         }
         
+        if (response.status === 404) {
+            console.error('❌ Resource not found:', endpoint);
+        }
+        
+        if (response.status >= 500) {
+            console.error('❌ Server error:', response.status);
+        }
+        
         return response;
     } catch (error) {
         console.error('❌ API request failed:', error);
+        console.error('❌ Error name:', error.name);
+        console.error('❌ Error message:', error.message);
+        
+        if (error.name === 'AbortError' || error.name === 'TimeoutError') {
+            throw new Error('Request timeout - backend server is slow or unavailable. Please try again.');
+        }
+        
+        if (error.message.includes('Failed to fetch')) {
+            throw new Error('Network error - unable to connect to backend server. Please check your internet connection.');
+        }
+        
         throw error;
     }
 }
@@ -156,36 +181,77 @@ auth.onAuthStateChanged(async (user) => {
 async function loadCourseAndEnrollment() {
     try {
         console.log('🔄 Loading course and enrollment from backend...');
+        console.log('📍 Course ID:', courseId);
+        console.log('📍 Enrollment ID:', enrollmentId);
         
         // Load curriculum
+        console.log('📡 Fetching curriculum from:', `${API_URL}/courses/${courseId}/curriculum`);
         const curriculumResponse = await authenticatedFetch(`/courses/${courseId}/curriculum`);
-        if (!curriculumResponse || !curriculumResponse.ok) {
-            throw new Error('Failed to load curriculum');
+        
+        if (!curriculumResponse) {
+            throw new Error('❌ No response from curriculum API (network error or authentication failed)');
+        }
+        
+        if (!curriculumResponse.ok) {
+            const errorText = await curriculumResponse.text();
+            console.error('❌ Curriculum API Error Response:', errorText);
+            throw new Error(`Failed to load curriculum: ${curriculumResponse.status} - ${errorText}`);
         }
         
         const curriculumData = await curriculumResponse.json();
+        console.log('📚 Curriculum data received:', curriculumData);
         
         // Load enrollment progress
+        console.log('📡 Fetching enrollment from:', `${API_URL}/enrollments/${enrollmentId}`);
         const enrollmentResponse = await authenticatedFetch(`/enrollments/${enrollmentId}`);
-        if (!enrollmentResponse || !enrollmentResponse.ok) {
-            throw new Error('Failed to load enrollment');
+        
+        if (!enrollmentResponse) {
+            throw new Error('❌ No response from enrollment API (network error or authentication failed)');
+        }
+        
+        if (!enrollmentResponse.ok) {
+            const errorText = await enrollmentResponse.text();
+            console.error('❌ Enrollment API Error Response:', errorText);
+            throw new Error(`Failed to load enrollment: ${enrollmentResponse.status} - ${errorText}`);
         }
         
         const enrollmentData = await enrollmentResponse.json();
+        console.log('🎓 Enrollment data received:', enrollmentData);
         
         if (curriculumData.success && enrollmentData.success) {
             currentCourse = curriculumData.curriculum;
             currentEnrollment = enrollmentData.enrollment;
             
             console.log('✅ Course loaded:', currentCourse);
+            console.log('📊 Course structure check:');
+            console.log('  - Has modules property?', !!currentCourse?.modules);
+            console.log('  - Type of currentCourse:', typeof currentCourse);
+            console.log('  - Is array?', Array.isArray(currentCourse));
+            console.log('  - Modules (if exists):', currentCourse?.modules);
+            console.log('  - Full curriculum data:', curriculumData);
             console.log('✅ Enrollment loaded:', currentEnrollment);
             
+            // Fix: If currentCourse is already the modules array, wrap it
+            if (Array.isArray(currentCourse)) {
+                console.warn('⚠️ currentCourse is an array, wrapping it in an object...');
+                currentCourse = { modules: currentCourse };
+            }
+            
+            // Validate that currentCourse has modules
+            if (!currentCourse || !currentCourse.modules || !Array.isArray(currentCourse.modules)) {
+                throw new Error('Invalid curriculum structure - missing modules array');
+            }
+            
             initializeCourse();
+        } else {
+            throw new Error(`API returned success=false. Curriculum: ${curriculumData.success}, Enrollment: ${enrollmentData.success}`);
         }
         
     } catch (error) {
         console.error('❌ Error loading course:', error);
-        alert('Failed to load course. Please try again.');
+        console.error('❌ Error details:', error.message);
+        console.error('❌ Full error:', error);
+        alert('Failed to load course. Error: ' + error.message + '\n\nCheck browser console for details.');
         window.location.href = 'my-learning.html';
     }
 }
