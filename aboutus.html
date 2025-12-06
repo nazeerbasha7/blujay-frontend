@@ -3,261 +3,1094 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Blujay Technologies - Best Tech Courses with 100% Placement Support">
-    <title>About Us - Blujay Technologies</title>
+    <title>About - Blujay Technologies</title>
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="style.css">
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     
     <style>
-    * {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    }
-    
-    body {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-    
-    html {
-        scroll-behavior: smooth;
-    }
-    
-    /* ===== BLUJAY BRAND COLORS ===== */
-    :root {
-        --blujay-primary: #1D5D7F;
-        --blujay-primary-hover: #236192;
-        --blujay-light: #E8F4F8;
-        --blujay-dark: #144A66;
-    }
-    
-    /* Override Tailwind blue-600 with brand color */
-    .bg-blue-600 {
-        background-color: #1D5D7F !important;
-    }
-    
-    .hover\:bg-blue-700:hover {
-        background-color: #236192 !important;
-    }
-    
-    .text-blue-600 {
-        color: #1D5D7F !important;
-    }
-    
-    .hover\:text-blue-600:hover {
-        color: #1D5D7F !important;
-    }
-    
-    .border-blue-600 {
-        border-color: #1D5D7F !important;
-    }
-    
-    .bg-blue-50 {
-        background-color: #E8F4F8 !important;
-    }
-    
-    .hover\:bg-blue-50:hover {
-        background-color: #E8F4F8 !important;
-    }
-    
-    .from-blue-600 {
-        --tw-gradient-from: #1D5D7F !important;
-    }
-    
-    .to-blue-500 {
-        --tw-gradient-to: #236192 !important;
-    }
-    
-    .text-blue-100 {
-        color: #B8D8E8 !important;
-    }
-    
-    .text-blue-50 {
-        color: #E8F4F8 !important;
-    }
-
-
-    /* CENTER FEATURE BOX ICONS */
-    .feature-box {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-
-    .feature-box .feature-icon {
-        margin-left: auto !important;
-        margin-right: auto !important;
-    }
-
-
-    /* MOBILE CENTER - HERO SECTION */
-    @media (max-width: 1023px) {
-        .hero-grid {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
+        :root {
+            --blujay-primary: #0057A0;
+            --blujay-primary-hover: #00447C;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-
-        .hero-left {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            order: 1;
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
+        body {
+            font-family: 'Inter', -apple-system, system-ui, sans-serif;
+            background: #fff;
+            color: #111827;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
 
-        .hero-right {
-            order: 2;
+        /* Material Icons Style */
+        .material-icons {
+            font-family: 'Material Icons';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            -moz-osx-font-smoothing: grayscale;
+            font-feature-settings: 'liga';
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 75vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 50px 24px;
+            background: linear-gradient(135deg, #0057A0 0%, #003366 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.08) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 18px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50px;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+        }
+
+        .hero-badge .material-icons {
+            font-size: 18px;
+        }
+
+        .hero h1 {
+            font-size: clamp(38px, 5.5vw, 58px);
+            font-weight: 600;
+            color: #fff;
+            line-height: 1.15;
+            letter-spacing: -0.01em;
+            margin-bottom: 16px;
+        }
+
+        .hero-highlight {
+            background: linear-gradient(90deg, #fff 0%, rgba(255,255,255,0.9) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: clamp(16px, 2vw, 19px);
+            color: rgba(255,255,255,0.88);
+            line-height: 1.6;
+            font-weight: 400;
+            max-width: 750px;
+            margin: 0 auto 30px;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: #fff;
+            color: #0057A0;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 50px rgba(0,0,0,0.25);
+        }
+
+        .hero-cta .material-icons {
+            font-size: 20px;
+        }
+
+        /* Stats */
+        .stats {
+            position: relative;
+            margin-top: -60px;
+            padding: 0 24px 50px;
+            z-index: 10;
+        }
+
+        .stats-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 18px;
+            padding: 40px 32px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.08);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+            position: relative;
+        }
+
+        .stat-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 45px;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, #e5e7eb, transparent);
+        }
+
+        .stat-number {
+            font-size: clamp(36px, 4vw, 46px);
+            font-weight: 600;
+            background: linear-gradient(135deg, #0057A0 0%, #003366 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Section */
+        .section {
+            text-align: center;
+            padding: 60px 24px;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto 40px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            background: linear-gradient(135deg, rgba(0,87,160,0.1) 0%, rgba(0,87,160,0.05) 100%);
+            border: 1px solid rgba(0,87,160,0.2);
+            border-radius: 50px;
+            color: #0057A0;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.3px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: clamp(30px, 4vw, 42px);
+            font-weight: 600;
+            color: #111827;
+            line-height: 1.25;
+            letter-spacing: -0.01em;
+            margin-bottom: 12px;
+        }
+
+        .section-subtitle {
+            font-size: 17px;
+            color: #6b7280;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        /* Content */
+        .content-text {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .content-text p {
+            font-size: 16px;
+            line-height: 1.75;
+            color: #374151;
+            margin-bottom: 16px;
+        }
+
+        .content-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .content-text strong {
+            font-weight: 600;
+            color: #111827;
+        }
+
+        /* Founders */
+        .founders {
+            background: linear-gradient(180deg, #f9fafb 0%, #fff 100%);
+        }
+
+        .founders-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .founder-card {
+            background: #fff;
+            border-radius: 14px;
+            padding: 36px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .founder-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #0057A0 0%, #003366 100%);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .founder-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 45px rgba(0,87,160,0.12);
+        }
+
+        .founder-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        /* Founder Image */
+        .founder-image {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            border: 4px solid #f3f4f6;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            position: relative;
+            background: linear-gradient(135deg, #0057A0 0%, #003366 100%);
+        }
+
+        .founder-image img {
             width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
+        .founder-image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 44px;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(135deg, #0057A0 0%, #003366 100%);
+        }
 
-        .student-avatars {
+        .founder-name {
+            font-size: 24px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 6px;
+            letter-spacing: -0.01em;
+            text-align: center;
+        }
+
+        .founder-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0057A0;
+            margin-bottom: 4px;
+            text-align: center;
+        }
+
+        .founder-exp {
+            font-size: 13px;
+            color: #9ca3af;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin: 20px 0;
             justify-content: center;
         }
 
-
-        /* FOOTER CONTACT CENTER ON MOBILE - STRONG FIX */
-        .footer-contact-section {
-            text-align: center !important;
-            grid-column: 1 / -1 !important;
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: center !important;
+        .badge {
+            padding: 5px 12px;
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #4b5563;
         }
 
-
-        .footer-contact-section h4 {
-            text-align: center !important;
+        .founder-bio {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #4b5563;
+            margin: 20px 0 0;
+            text-align: center;
         }
 
-
-        .footer-contact-section ul {
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: center !important;
-            list-style: none !important;
-            padding: 0 !important;
-            margin: 0 !important;
-            width: 100% !important;
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
-
-        .footer-contact-section ul li {
-            width: 100% !important;
-            text-align: center !important;
-            display: flex !important;
-            justify-content: center !important;
-            padding: 0 !important;
-            margin: 0 !important;
+        .card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 32px 24px;
+            transition: all 0.3s ease;
         }
 
-
-        .footer-contact-section ul li a {
-            display: flex !important;
-            justify-content: center !important;
-            align-items: center !important;
-            width: 100% !important;
+        .card:hover {
+            border-color: #0057A0;
+            box-shadow: 0 10px 35px rgba(0,87,160,0.1);
+            transform: translateY(-3px);
         }
 
-
-        .footer-contact-social {
-            display: flex !important;
-            justify-content: center !important;
-            gap: 0.5rem !important;
-            width: 100% !important;
-        }
-    }
-
-
-    /* DESKTOP VIEW - KEEP FOOTER CONTACT LEFT ALIGNED */
-    @media (min-width: 1024px) {
-        .footer-contact-section {
-            text-align: left !important;
+        .card-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, rgba(0,87,160,0.1) 0%, rgba(0,87,160,0.05) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
         }
 
-
-        .footer-contact-section h4 {
-            text-align: left !important;
+        .card-icon .material-icons {
+            font-size: 32px;
+            color: #0057A0;
         }
 
-
-        .footer-contact-section ul {
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: flex-start !important;
+        .card-title {
+            font-size: 19px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 10px;
         }
 
-
-        .footer-contact-section ul li {
-            text-align: left !important;
-            justify-content: flex-start !important;
+        .card-text {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #6b7280;
         }
 
-
-        .footer-contact-section ul li a {
-            justify-content: flex-start !important;
+        /* Steps */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 28px;
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
         }
 
-
-        .footer-contact-social {
-            justify-content: flex-start !important;
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 24px;
+            left: 12.5%;
+            right: 12.5%;
+            height: 2px;
+            background: linear-gradient(90deg, #e5e7eb 0%, #e5e7eb 100%);
+            z-index: 0;
         }
-    }
-</style>
 
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
 
+        .step-circle {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #0057A0 0%, #003366 100%);
+            border: 4px solid #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+            margin: 0 auto 16px;
+            box-shadow: 0 3px 15px rgba(0,87,160,0.25);
+        }
+
+        .step-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+
+        .step-desc {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #6b7280;
+        }
+
+        /* Features */
+        .features {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .feature {
+            padding: 20px 0;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            padding-left: 10px;
+        }
+
+        .feature:last-child {
+            border-bottom: none;
+        }
+
+        .check-mark {
+            flex-shrink: 0;
+            width: 26px;
+            height: 26px;
+            background: linear-gradient(135deg, #0057A0 0%, #003366 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            box-shadow: 0 3px 10px rgba(0,87,160,0.2);
+        }
+
+        .check-mark .material-icons {
+            font-size: 16px;
+        }
+
+        .feature-text {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #374151;
+        }
+
+        .feature-text strong {
+            font-weight: 600;
+            color: #111827;
+        }
+
+        /* Values */
+        .values {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .value {
+            text-align: center;
+            padding: 24px 18px;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .value:hover {
+            border-color: #0057A0;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(0,87,160,0.1);
+        }
+
+        .value-icon {
+            width: 66px;
+            height: 66px;
+            background: linear-gradient(135deg, rgba(0,87,160,0.1) 0%, rgba(0,87,160,0.05) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+        }
+
+        .value-icon .material-icons {
+            font-size: 36px;
+            color: #0057A0;
+        }
+
+        .value-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+
+        .value-desc {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #6b7280;
+        }
+
+        /* CTA */
+        .cta {
+            position: relative;
+            background: linear-gradient(135deg, #0057A0 0%, #003366 100%);
+            padding: 60px 40px;
+            text-align: center;
+            border-radius: 20px;
+            max-width: 1100px;
+            margin: 60px auto;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(255,255,255,0.08) 0%, transparent 50%);
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta h2 {
+            font-size: clamp(30px, 4vw, 40px);
+            font-weight: 600;
+            color: #fff;
+            line-height: 1.25;
+            margin-bottom: 14px;
+            letter-spacing: -0.01em;
+        }
+
+        .cta p {
+            font-size: 17px;
+            color: rgba(255,255,255,0.88);
+            max-width: 680px;
+            margin: 0 auto 28px;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: #fff;
+            color: #0057A0;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+        }
+
+        .cta-button .material-icons {
+            font-size: 20px;
+        }
+
+        /* Contact */
+        .contact {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            text-align: center;
+            padding: 28px 18px;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            background: #fff;
+            border-color: #0057A0;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,87,160,0.08);
+        }
+
+        .contact-icon {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, rgba(0,87,160,0.1) 0%, rgba(0,87,160,0.05) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+        }
+
+        .contact-icon .material-icons {
+            font-size: 28px;
+            color: #0057A0;
+        }
+
+        .contact-label {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #9ca3af;
+            margin-bottom: 6px;
+        }
+
+        .contact-value {
+            font-size: 14px;
+            font-weight: 500;
+            color: #111827;
+        }
+
+        .contact-value a {
+            color: #0057A0;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .contact-value a:hover {
+            color: #003366;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .stats-container { grid-template-columns: 1fr; gap: 32px; }
+            .stat-item::after { display: none; }
+            .founders-grid, .cards-grid { grid-template-columns: 1fr; }
+            .steps, .values, .contact { grid-template-columns: repeat(2, 1fr); }
+            .steps::before { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            .hero { min-height: 70vh; padding: 40px 20px; }
+            .section { padding: 50px 20px; }
+            .stats { margin-top: -45px; padding: 0 20px 40px; }
+            .stats-container { padding: 32px 20px; }
+            .founder-card { padding: 28px 20px; }
+            .founder-image { width: 95px; height: 95px; }
+            .card { padding: 24px 20px; }
+            .steps, .values, .contact { grid-template-columns: 1fr; gap: 18px; }
+            .cta { padding: 48px 24px; margin: 50px 20px; border-radius: 16px; }
+        }
+
+        /* ===== NAVBAR STYLES ===== */
+        .nav-glass {
+            backdrop-filter: blur(14px);
+            background: rgba(255, 255, 255, 0.97);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
+        }
+
+        .nav-glass.scrolled {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Desktop Dropdown */
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-toggle {
+            display: flex; align-items: center; gap: 6px; cursor: pointer;
+            transition: all 0.25s ease; background: none; border: none; padding: 0;
+        }
+        .dropdown-toggle i.chevron {
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 9px;
+        }
+        .dropdown:hover .dropdown-toggle,
+        .dropdown.active .dropdown-toggle { color: var(--blujay-primary) !important; }
+        .dropdown:hover .dropdown-toggle i.chevron,
+        .dropdown.active .dropdown-toggle i.chevron { transform: rotate(180deg); }
+
+        .dropdown-menu {
+            position: absolute; top: calc(100% + 14px); left: 50%;
+            transform: translateX(-50%) translateY(-10px); min-width: 240px;
+            background: #ffffff; border-radius: 14px;
+            box-shadow: 0 22px 60px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(15, 23, 42, 0.04);
+            opacity: 0; visibility: hidden;
+            transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000; padding: 10px;
+        }
+        .dropdown:hover .dropdown-menu,
+        .dropdown.active .dropdown-menu {
+            opacity: 1; visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: flex; align-items: center; padding: 11px 14px;
+            color: #111827; text-decoration: none; font-size: 13px;
+            font-weight: 500; transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 10px; margin-bottom: 4px;
+        }
+        .dropdown-menu a:last-child { margin-bottom: 0; }
+        .dropdown-menu a i {
+            margin-right: 10px; font-size: 13px; width: 18px;
+            text-align: center; color: var(--blujay-primary); opacity: 0.9;
+        }
+        .dropdown-menu a:hover {
+            background: var(--blujay-primary); color: #ffffff;
+            padding-left: 18px; transform: translateX(2px);
+        }
+        .dropdown-menu a:hover i { color: #ffffff; }
+
+        /* Mobile Dropdowns */
+        .mobile-dropdown-wrapper { border-bottom: 1px solid #e5e7eb; padding: 0; }
+        .mobile-dropdown-toggle {
+            width: 100%; display: flex; justify-content: space-between;
+            align-items: center; cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: none; border: none; text-align: left;
+            padding: 10px 0; user-select: none;
+        }
+        .mobile-dropdown-toggle i.arrow {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 9px; color: #9ca3af;
+        }
+        .mobile-dropdown-toggle.active i.arrow {
+            transform: rotate(180deg); color: var(--blujay-primary);
+        }
+        .mobile-dropdown-toggle.active {
+            color: var(--blujay-primary); font-weight: 600;
+        }
+
+        .mobile-dropdown-content {
+            display: grid; grid-template-rows: 0fr;
+            transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .mobile-dropdown-content.active { grid-template-rows: 1fr; }
+        .mobile-dropdown-inner { overflow: hidden; min-height: 0; }
+        .mobile-dropdown-content.active .mobile-dropdown-inner {
+            padding: 8px 3px 10px 3px;
+        }
+
+        .mobile-dropdown-content a {
+            display: flex; align-items: center; padding: 8px 12px;
+            color: #374151; background: #ffffff; margin-bottom: 5px;
+            border-radius: 8px; font-size: 12.5px; font-weight: 500;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none; border: 1px solid #e5e7eb;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+        }
+        .mobile-dropdown-content a:last-child { margin-bottom: 0; }
+        .mobile-dropdown-content a i {
+            margin-right: 9px; font-size: 11px; width: 14px;
+            text-align: center; opacity: 0.8; color: var(--blujay-primary);
+        }
+        .mobile-dropdown-content a:active {
+            background: var(--blujay-primary) !important;
+            color: #ffffff !important;
+            border-color: var(--blujay-primary) !important;
+            transform: scale(0.97);
+        }
+        .mobile-dropdown-content a:active i { opacity: 1; color: #ffffff; }
+
+        #mobile-menu { backdrop-filter: blur(10px); }
+        body.mobile-menu-open { overflow: hidden; position: fixed; width: 100%; }
+
+        /* ===== CALLBACK MODAL STYLES ===== */
+        #callbackModal {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #callbackModal.flex {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal-content {
+            animation: slideUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            max-height: 85vh;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(40px) scale(0.95);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .modal-content {
+                max-width: 95%;
+                margin: 0 auto;
+                max-height: 90vh;
+            }
+            #callbackModal {
+                padding: 0.75rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .modal-content { max-width: 800px; }
+        }
+
+        @media (min-width: 1024px) {
+            .modal-content { max-width: 920px; }
+        }
+
+        /* Service Dropdown */
+        .service-dropdown-wrapper { position: relative; width: 100%; }
+        .service-dropdown-trigger {
+            width: 100%; display: flex; align-items: center; justify-content: space-between;
+            padding: 0.5rem 0.875rem; border: 1px solid #d1d5db; border-radius: 0.5rem;
+            background: #ffffff; cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 13px; font-weight: 500; color: #111827; user-select: none;
+        }
+        @media (min-width: 1024px) {
+            .service-dropdown-trigger { padding: 0.625rem 1rem; font-size: 14px; }
+        }
+        .service-dropdown-trigger:hover { border-color: #0057A0; background-color: #f8fafc; }
+        .service-dropdown-trigger.active { border-color: #0057A0; box-shadow: 0 0 0 3px rgba(0, 87, 160, 0.1); }
+        .service-dropdown-trigger .placeholder { color: #9ca3af; font-style: italic; }
+        .service-dropdown-trigger .selected-text { color: #111827; font-weight: 500; }
+        .service-dropdown-trigger i.chevron {
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 9px; color: #0057A0; margin-left: 8px;
+        }
+        .service-dropdown-trigger.active i.chevron { transform: rotate(180deg); }
+
+        .service-dropdown-menu {
+            position: absolute; bottom: calc(100% + 8px); left: 0; right: 0;
+            background: #ffffff; border-radius: 14px;
+            box-shadow: 0 22px 60px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(15, 23, 42, 0.04);
+            opacity: 0; visibility: hidden; transform: translateY(10px);
+            transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 10000; padding: 10px; max-height: none; overflow: visible;
+        }
+        .service-dropdown-menu.active {
+            opacity: 1; visibility: visible; transform: translateY(0);
+        }
+
+        .service-dropdown-item {
+            display: flex; align-items: center; padding: 11px 14px;
+            color: #111827; font-size: 13px; font-weight: 500;
+            transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 10px; margin-bottom: 4px; cursor: pointer; user-select: none;
+        }
+        .service-dropdown-item:last-child { margin-bottom: 0; }
+        .service-dropdown-item i {
+            margin-right: 10px; font-size: 13px; width: 18px;
+            text-align: center; color: #0057A0; opacity: 0.9;
+        }
+        .service-dropdown-item:hover {
+            background: #0057A0; color: #ffffff;
+            padding-left: 18px; transform: translateX(2px);
+        }
+        .service-dropdown-item:hover i { color: #ffffff; }
+        .service-dropdown-item.selected { background: #eff6ff; color: #0057A0; font-weight: 600; }
+        .service-dropdown-item.selected:hover { background: #0057A0; color: #ffffff; }
+
+        #callbackForm input:focus,
+        #callbackForm textarea:focus {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(0, 87, 160, 0.12);
+        }
+
+        #submitBtn.loading { pointer-events: none; opacity: 0.75; }
+        #submitBtn.loading span::after {
+            content: ''; width: 12px; height: 12px;
+            border: 2px solid #ffffff; border-top-color: transparent;
+            border-radius: 50%; display: inline-block;
+            animation: spin 0.7s linear infinite; margin-left: 6px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .pulse-animation { animation: pulse 2.5s ease-in-out infinite; }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+    </style>
 </head>
-<body class="bg-white">
-    
-<!-- Navbar -->
-<nav class="fixed w-full top-0 z-50 bg-white shadow-sm">
+<body>
+
+<!-- Navbar - Improved Design with Scroll Effect -->
+<nav class="fixed w-full top-0 z-50 nav-glass" id="navbar">
     <div class="px-4 lg:px-8">
         <div class="flex justify-between items-center h-[60px] lg:h-[72px]">
             <!-- Logo -->
             <a href="index.html" class="flex items-center">
                 <img src="logo.png" alt="Blujay Technologies" class="h-9 lg:h-12 w-auto" loading="lazy">
             </a>
-            
+
             <!-- Desktop Menu -->
             <div class="hidden lg:flex items-center gap-8 ml-auto">
-                <a href="index.html#courses" class="text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">Courses</a>
-                <a href="index.html#centres" class="text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">Centres</a>
-                <a href="index.html#jobs" class="text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">Jobs</a>
-                
-                <div class="relative" id="desktop-more">
-                    <button id="desktop-more-btn" class="text-[13px] lg:text-[14px] font-medium text-gray-900 hover:text-blue-600 transition-colors flex items-center gap-1">
-                        More <i class="fas fa-chevron-down text-[9px]"></i>
+                <!-- Courses Dropdown -->
+                <div class="dropdown">
+                    <button class="dropdown-toggle text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
+                        Offerings <i class="fas fa-chevron-down chevron"></i>
                     </button>
-                    <div id="desktop-more-menu" class="hidden absolute top-full right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border py-1">
-                        <a href="aboutus.html" class="block px-4 py-2 text-[12px] lg:text-[13px] text-gray-700 hover:bg-blue-50 transition-colors">About Us</a>
-                        <a href="blog.html" class="block px-4 py-2 text-[12px] lg:text-[13px] text-gray-700 hover:bg-blue-50 transition-colors">Blog</a>
+                    <div class="dropdown-menu">
+                        <a href="#fullstack"><i class="fas fa-code"></i>Profile Pushing</a>
+                        <a href="#mern"><i class="fas fa-layer-group"></i>Job support</a>
+                        <a href="#java"><i class="fab fa-java"></i>Courses</a>
+                        <a href="#datascience"><i class="fas fa-chart-line"></i>Interview Training</a>
                     </div>
                 </div>
-                
+
+                <!-- Centres Dropdown -->
+                <div class="dropdown">
+                    <button class="dropdown-toggle text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
+                        Insights <i class="fas fa-chevron-down chevron"></i>
+                    </button>
+                </div>
+
+                <!-- Jobs Dropdown -->
+                <div class="dropdown">
+                    <button class="dropdown-toggle text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
+                        Jobs <i class="fas fa-chevron-down chevron"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="#browse-jobs"><i class="fas fa-briefcase"></i>Browse Jobs</a>
+                        <a href="#hiring-drives"><i class="fas fa-users"></i>Hiring Drives</a>
+                        <a href="#post-job"><i class="fas fa-plus-circle"></i>Post a Job</a>
+                        <a href="#career-resources"><i class="fas fa-book"></i>Career Resources</a>
+                    </div>
+                </div>
+
+                <!-- More Dropdown -->
+                <div class="dropdown">
+                    <button class="dropdown-toggle text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
+                        About Us <i class="fas fa-chevron-down chevron"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="aboutus.html"><i class="fas fa-info-circle"></i>About Us</a>
+                        <a href="blog.html"><i class="fas fa-blog"></i>Blog</a>
+                    </div>
+                </div>
+
                 <a href="login.html" class="border-2 border-blue-600 text-blue-600 px-4 py-1.5 rounded-lg text-[12px] lg:text-[13px] font-semibold hover:bg-blue-50 transition-all">Login</a>
-                <button onclick="openCallbackModal()" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-[12px] lg:text-[13px] font-semibold hover:bg-blue-700 transition-all flex items-center gap-2">
+                <button onclick="openCallbackModal()" class="bg-gradient-to-r from-[#0057A0] to-[#00447C] text-white px-4 py-2 rounded-lg text-[12px] lg:text-[13px] font-semibold hover:from-[#00447C] hover:to-[#003366] transition-all flex items-center gap-2 pulse-animation">
                     <i class="fas fa-phone-alt text-[10px]"></i> Request Callback
                 </button>
             </div>
-            
+
             <!-- Mobile: Hamburger -->
             <div class="flex lg:hidden items-center">
                 <button id="mobile-toggle" class="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-all">
@@ -266,517 +1099,858 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="fixed inset-0 bg-white z-[100] transform translate-x-full transition-transform duration-300 lg:hidden">
-        <div class="flex justify-between items-center h-[60px] px-4 border-b">
+    <div id="mobile-menu" class="fixed inset-0 z-[100] transform translate-x-full transition-transform duration-300 lg:hidden" style="background-color: #ffffff !important;">
+        <div class="flex justify-between items-center h-[60px] px-4 border-b" style="background-color: #ffffff !important;">
             <img src="logo.png" alt="Blujay Technologies" class="h-9" loading="lazy">
             <button id="mobile-close" class="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-all">
                 <i class="fas fa-times text-[22px] text-gray-800"></i>
             </button>
         </div>
-        
-        <div class="overflow-y-auto h-[calc(100vh-60px)]">
+
+        <div class="overflow-y-auto h-[calc(100vh-60px)]" style="background-color: #ffffff !important;">
             <div class="px-4 py-4">
-                <a href="index.html#courses" class="block text-[14px] lg:text-[15px] font-medium text-gray-800 py-3 border-b hover:text-blue-600 transition-colors">Courses</a>
-                <a href="index.html#centres" class="block text-[14px] lg:text-[15px] font-medium text-gray-800 py-3 border-b hover:text-blue-600 transition-colors">Centres</a>
-                <a href="index.html#jobs" class="block text-[14px] lg:text-[15px] font-medium text-gray-800 py-3 border-b hover:text-blue-600 transition-colors">Jobs</a>
-                
-                <div class="border-b">
-                    <button id="mobile-more" class="w-full flex justify-between items-center text-[14px] lg:text-[15px] font-semibold text-gray-900 py-3 hover:text-blue-600 transition-colors">
-                        More <i class="fas fa-chevron-down text-[11px] mobile-arrow transition-transform"></i>
+                <div class="mobile-dropdown-wrapper">
+                    <button class="mobile-dropdown-toggle text-[14px] font-semibold text-gray-900" type="button">
+                        Offerings <i class="fas fa-chevron-down arrow"></i>
                     </button>
-                    <div id="mobile-more-content" class="hidden pb-2">
-                        <a href="aboutus.html" class="block text-[13px] lg:text-[14px] text-gray-600 py-2 pl-6 hover:text-blue-600 transition-colors">About Us</a>
-                        <a href="blog.html" class="block text-[13px] lg:text-[14px] text-gray-600 py-2 pl-6 hover:text-blue-600 transition-colors">Blog</a>
+                    <div class="mobile-dropdown-content">
+                        <div class="mobile-dropdown-inner">
+                            <a href="#fullstack"><i class="fas fa-code"></i>Profile Pushing</a>
+                            <a href="#mern"><i class="fas fa-layer-group"></i>Job support</a>
+                            <a href="#java"><i class="fab fa-java"></i>Courses</a>
+                            <a href="#datascience"><i class="fas fa-chart-line"></i>Interview Training</a>
+                        </div>
                     </div>
                 </div>
-                
-                <button onclick="openCallbackModal()" class="block w-full text-center bg-blue-600 text-white py-2.5 rounded-lg text-[13px] lg:text-[14px] font-semibold mt-6 hover:bg-blue-700 transition-all shadow-md">
+
+                <div class="mobile-dropdown-wrapper">
+                    <button class="mobile-dropdown-toggle text-[14px] font-semibold text-gray-900" type="button">
+                        Jobs <i class="fas fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="mobile-dropdown-content">
+                        <div class="mobile-dropdown-inner">
+                            <a href="#browse-jobs"><i class="fas fa-briefcase"></i>Browse Jobs</a>
+                            <a href="#hiring-drives"><i class="fas fa-users"></i>Hiring Drives</a>
+                            <a href="#post-job"><i class="fas fa-plus-circle"></i>Post a Job</a>
+                            <a href="#career-resources"><i class="fas fa-book"></i>Career Resources</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mobile-dropdown-wrapper">
+                    <button class="mobile-dropdown-toggle text-[14px] font-medium text-gray-800" type="button">
+                        About Us <i class="fas fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="mobile-dropdown-content">
+                        <div class="mobile-dropdown-inner">
+                            <a href="aboutus.html"><i class="fas fa-info-circle"></i>About Us</a>
+                            <a href="blog.html"><i class="fas fa-blog"></i>Blog</a>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="openCallbackModal()" class="block w-full text-center bg-gradient-to-r from-[#0057A0] to-[#00447C] text-white py-2.5 rounded-lg text-[13px] font-semibold mt-6 hover:from-[#00447C] hover:to-[#003366] transition-all shadow-md">
                     Request Callback
                 </button>
-                
-                <a href="login.html" class="block w-full text-center border-2 border-blue-600 text-blue-600 py-2.5 rounded-lg text-[13px] lg:text-[14px] font-semibold mt-3 hover:bg-blue-50 transition-all">Login</a>
+
+                <a href="login.html" class="block w-full text-center border-2 border-blue-600 text-blue-600 py-2.5 rounded-lg text-[13px] font-semibold mt-3 hover:bg-blue-50 transition-all">Login</a>
             </div>
         </div>
     </div>
 </nav>
 
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="material-icons">rocket_launch</span>
+                <span>Since 2020</span>
+            </div>
+            <h1>
+                About <span class="hero-highlight">Blujay Technologies</span>
+            </h1>
+            <p>Empowering 1 million careers through world-class technical education and real-world industry experience.</p>
+            <a href="#contact" class="hero-cta">
+                <span>Get Started Today</span>
+                <span class="material-icons">arrow_forward</span>
+            </a>
+        </div>
+    </section>
 
-<!-- Main Content - About Us Section -->
-<main class="pt-[60px] lg:pt-[72px]">
-    <!-- Hero Section with Image and Text -->
-    <section class="py-12 lg:py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-                <!-- Left: Image -->
-                <div class="order-2 lg:order-1">
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop" 
-                         alt="Students learning together" 
-                         class="rounded-2xl shadow-2xl w-full h-auto object-cover">
-                </div>
+    <!-- Stats -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number">3,000+</div>
+                <p class="stat-label">Professionals Trained</p>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">27+</div>
+                <p class="stat-label">Years Experience</p>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2020</div>
+                <p class="stat-label">Year Founded</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who We Are -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Who We Are</span>
+                <h2 class="section-title">Building India's Tech Future</h2>
+                <p class="section-subtitle">A comprehensive ecosystem combining technical education with professional digital services</p>
+            </div>
+            <div class="content-text">
+                <p>Founded in 2020 by <strong>Cheruku Hari Krishna</strong> and <strong>Arjun Thumati</strong>, Blujay Technologies emerged with a clear vision: bridge the gap between academic learning and industry demands while creating meaningful employment opportunities across India.</p>
                 
-                <!-- Right: Content -->
-                <div class="order-1 lg:order-2">
-                    <h1 class="text-[32px] lg:text-[48px] font-bold text-gray-900 mb-4 lg:mb-6 leading-tight">
-                        What We Believe
-                    </h1>
+                <p>From our strategic location in Ameerpet, Hyderabad's premier IT hub, we've successfully trained over 3,000 professionals through our unique dual-force model—combining cutting-edge technical training with professional digital services.</p>
+                
+                <p>Our ambitious <strong>1 Million Jobs mission</strong> drives everything we do, as we work to transform India's tech workforce with industry-ready skills and practical experience.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founders -->
+    <section class="section founders">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Leadership</span>
+                <h2 class="section-title">Meet Our Founders</h2>
+                <p class="section-subtitle">27+ years of combined industry expertise driving our vision</p>
+            </div>
+            <div class="founders-grid">
+                <div class="founder-card">
+                    <div class="founder-image">
+                        <!-- <img src="path/to/hari-krishna.jpg" alt="Cheruku Hari Krishna"> -->
+                        <div class="founder-image-placeholder">HK</div>
+                    </div>
                     
-                    <p class="text-[15px] lg:text-[18px] text-gray-700 leading-relaxed mb-6">
-                        Blujay Technologies launches careers with practical, affordable training, expert teachers, hands-on projects and full placement support. Join <span class="font-bold text-blue-600">11,000+ success stories</span>.
-                    </p>
+                    <h3 class="founder-name">Cheruku Hari Krishna</h3>
+                    <p class="founder-title">Founder & Chief Executive Officer</p>
+                    <p class="founder-exp">Sr. DevOps Consultant & Solution Architect | 12+ years</p>
                     
-                    <p class="text-[15px] lg:text-[18px] text-gray-700 leading-relaxed mb-6">
-                        Our programs are curated for industry outcomes: MERN Stack, Java, Data Science, and more — backed by dedicated mentors and <span class="font-bold text-blue-600">450+ top companies</span>. Your future is our mission.
-                    </p>
+                    <div class="badges">
+                        <span class="badge">AWS Solutions Architect</span>
+                        <span class="badge">Red Hat Certified</span>
+                        <span class="badge">Kubernetes Administrator</span>
+                        <span class="badge">ITIL V3</span>
+                    </div>
                     
-                    <p class="text-[15px] lg:text-[18px] text-gray-700 leading-relaxed">
-                        Be part of Blujay for real opportunities, real skills and real growth.
-                    </p>
+                    <p class="founder-bio">A seasoned DevOps specialist with extensive experience in building cloud-native infrastructure, automating delivery pipelines, and training professionals with practical, industry-ready skills.</p>
+                </div>
+
+                <div class="founder-card">
+                    <div class="founder-image">
+                        <!-- <img src="path/to/arjun-thumati.jpg" alt="Arjun Thumati"> -->
+                        <div class="founder-image-placeholder">AT</div>
+                    </div>
+                    
+                    <h3 class="founder-name">Arjun Thumati</h3>
+                    <p class="founder-title">Co-Founder & Engineering Manager</p>
+                    <p class="founder-exp">Engineering Leader | 15+ years</p>
+                    
+                    <div class="badges">
+                        <span class="badge">Java Expert</span>
+                        <span class="badge">Spring Boot</span>
+                        <span class="badge">Microservices</span>
+                        <span class="badge">AWS</span>
+                        <span class="badge">Docker</span>
+                        <span class="badge">Kafka</span>
+                    </div>
+                    
+                    <p class="founder-bio">An engineering leader with deep expertise in architecting scalable systems, driving microservices adoption, and leading high-performing Agile teams.</p>
                 </div>
             </div>
         </div>
     </section>
 
-
-    <!-- Why Choose Us Section -->
-    <section class="py-12 lg:py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="text-center mb-8 lg:mb-14">
-                <p class="text-[10px] lg:text-[11px] font-bold text-gray-600 mb-2 uppercase tracking-widest">WHY CHOOSE US</p>
-                <h2 class="text-[24px] sm:text-[28px] lg:text-[52px] font-bold text-gray-900 mb-3 lg:mb-4 leading-tight">
-                    What Makes Us <span class="text-blue-600">Different</span>
-                </h2>
+    <!-- Mission -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Our Mission</span>
+                <h2 class="section-title">1 Million Jobs Initiative</h2>
+                <p class="section-subtitle">Quality technical education as the cornerstone of economic empowerment</p>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8">
-                <!-- Feature 1 -->
-                <div class="feature-box bg-gradient-to-br from-blue-50 to-white rounded-2xl p-5 lg:p-8 border border-gray-100 hover:shadow-xl transition-all group">
-                    <div class="feature-icon w-12 lg:w-14 h-12 lg:h-14 bg-blue-600 rounded-xl flex items-center justify-center mb-4 lg:mb-5 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-briefcase text-white text-[20px] lg:text-[24px]"></i>
-                    </div>
-                    <h3 class="text-[15px] lg:text-[20px] font-bold text-gray-900 mb-2 lg:mb-3">100% Placement Support</h3>
-                    <p class="text-[12px] lg:text-[15px] text-gray-600 leading-relaxed">Dedicated placement team with 60+ hiring drives every month until you get placed</p>
-                </div>
+            <div class="content-text">
+                <p>Through industry-aligned training programs, hands-on project experience, and dedicated placement support, we're committed to making our ambitious goal a reality—one skilled professional at a time.</p>
                 
-                <!-- Feature 2 -->
-                <div class="feature-box bg-gradient-to-br from-purple-50 to-white rounded-2xl p-5 lg:p-8 border border-gray-100 hover:shadow-xl transition-all group">
-                    <div class="feature-icon w-12 lg:w-14 h-12 lg:h-14 bg-purple-600 rounded-xl flex items-center justify-center mb-4 lg:mb-5 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-chalkboard-teacher text-white text-[20px] lg:text-[24px]"></i>
+                <p>This isn't just about numbers. It's about transforming lives, strengthening India's IT ecosystem, and contributing to the nation's growth as a global technology leader.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- What We Offer -->
+    <section class="section" style="background: linear-gradient(180deg, #f9fafb 0%, #fff 100%);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Our Offerings</span>
+                <h2 class="section-title">Comprehensive Solutions</h2>
+                <p class="section-subtitle">Training programs and digital services for individuals and businesses</p>
+            </div>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">
+                        <span class="material-icons">school</span>
                     </div>
-                    <h3 class="text-[15px] lg:text-[20px] font-bold text-gray-900 mb-2 lg:mb-3">Industry Expert Mentors</h3>
-                    <p class="text-[12px] lg:text-[15px] text-gray-600 leading-relaxed">Learn from professionals working at Google, Amazon, Microsoft with 10+ years experience</p>
+                    <h3 class="card-title">Professional Training</h3>
+                    <p class="card-text">Industry-aligned courses in Cybersecurity, Cloud Computing (AWS & Azure), Generative AI, Python, Java, DevOps, and Software Testing with hands-on projects.</p>
                 </div>
-                
-                <!-- Feature 3 -->
-                <div class="feature-box bg-gradient-to-br from-green-50 to-white rounded-2xl p-5 lg:p-8 border border-gray-100 hover:shadow-xl transition-all group">
-                    <div class="feature-icon w-12 lg:w-14 h-12 lg:h-14 bg-green-600 rounded-xl flex items-center justify-center mb-4 lg:mb-5 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-certificate text-white text-[20px] lg:text-[24px]"></i>
+                <div class="card">
+                    <div class="card-icon">
+                        <span class="material-icons">campaign</span>
                     </div>
-                    <h3 class="text-[15px] lg:text-[20px] font-bold text-gray-900 mb-2 lg:mb-3">Govt. Recognized Certification</h3>
-                    <p class="text-[12px] lg:text-[15px] text-gray-600 leading-relaxed">ISO certified courses recognized by NSDC and industry-validated curriculum</p>
+                    <h3 class="card-title">Digital Marketing</h3>
+                    <p class="card-text">Complete SEO, social media marketing, content strategy, and online brand building services for growing businesses.</p>
                 </div>
-                
-                <!-- Feature 4 -->
-                <div class="feature-box bg-gradient-to-br from-orange-50 to-white rounded-2xl p-5 lg:p-8 border border-gray-100 hover:shadow-xl transition-all group">
-                    <div class="feature-icon w-12 lg:w-14 h-12 lg:h-14 bg-orange-600 rounded-xl flex items-center justify-center mb-4 lg:mb-5 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-laptop-code text-white text-[20px] lg:text-[24px]"></i>
+                <div class="card">
+                    <div class="card-icon">
+                        <span class="material-icons">code</span>
                     </div>
-                    <h3 class="text-[15px] lg:text-[20px] font-bold text-gray-900 mb-2 lg:mb-3">Hands-on Projects</h3>
-                    <p class="text-[12px] lg:text-[15px] text-gray-600 leading-relaxed">Build 10+ real-world projects for your portfolio to showcase during interviews</p>
+                    <h3 class="card-title">Website Development</h3>
+                    <p class="card-text">Custom websites, web applications, and e-commerce solutions tailored to your specific business needs.</p>
                 </div>
-                
-                <!-- Feature 5 -->
-                <div class="feature-box bg-gradient-to-br from-cyan-50 to-white rounded-2xl p-5 lg:p-8 border border-gray-100 hover:shadow-xl transition-all group">
-                    <div class="feature-icon w-12 lg:w-14 h-12 lg:h-14 bg-cyan-600 rounded-xl flex items-center justify-center mb-4 lg:mb-5 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-infinity text-white text-[20px] lg:text-[24px]"></i>
+                <div class="card">
+                    <div class="card-icon">
+                        <span class="material-icons">engineering</span>
                     </div>
-                    <h3 class="text-[15px] lg:text-[20px] font-bold text-gray-900 mb-2 lg:mb-3">Lifetime Access</h3>
-                    <p class="text-[12px] lg:text-[15px] text-gray-600 leading-relaxed">Get lifetime access to course materials, recordings, and all future content updates</p>
-                </div>
-                
-                <!-- Feature 6 -->
-                <div class="feature-box bg-gradient-to-br from-pink-50 to-white rounded-2xl p-5 lg:p-8 border border-gray-100 hover:shadow-xl transition-all group">
-                    <div class="feature-icon w-12 lg:w-14 h-12 lg:h-14 bg-pink-600 rounded-xl flex items-center justify-center mb-4 lg:mb-5 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-headset text-white text-[20px] lg:text-[24px]"></i>
-                    </div>
-                    <h3 class="text-[15px] lg:text-[20px] font-bold text-gray-900 mb-2 lg:mb-3">24/7 Support</h3>
-                    <p class="text-[12px] lg:text-[15px] text-gray-600 leading-relaxed">Round-the-clock doubt clearing, career guidance, and technical support</p>
+                    <h3 class="card-title">IT Consulting</h3>
+                    <p class="card-text">Strategic technology consulting and implementation services for businesses of all sizes.</p>
                 </div>
             </div>
         </div>
     </section>
 
-
-    <!-- Simple Message Section -->
-    <section class="py-12 lg:py-20" style="background: linear-gradient(135deg, #1D5D7F 0%, #236192 100%);">
-        <div class="max-w-6xl mx-auto px-6 lg:px-8">
-            <div class="flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-8">
-                <!-- Icon -->
-                <div class="flex-shrink-0">
-                    <div class="w-16 h-16 lg:w-20 lg:h-20 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
-                        <i class="fas fa-graduation-cap text-white text-[32px] lg:text-[40px]"></i>
-                    </div>
+    <!-- Our Approach -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Our Approach</span>
+                <h2 class="section-title">Learn. Build. Get Hired.</h2>
+                <p class="section-subtitle">A proven four-step methodology for career success</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-circle">1</div>
+                    <h3 class="step-title">Learn</h3>
+                    <p class="step-desc">Industry-relevant curriculum from experienced professionals</p>
                 </div>
-                
-                <!-- Text Content -->
-                <div class="flex-1 text-center lg:text-left">
-                    <h2 class="text-[24px] lg:text-[36px] font-bold text-white mb-2 lg:mb-3 leading-tight">
-                        Empowering 11,000+ Students Across India
-                    </h2>
-                    <p class="text-[14px] lg:text-[18px] text-white/90 leading-relaxed max-w-3xl mx-auto lg:mx-0">
-                        With industry-expert mentors, hands-on projects, and 100% placement support, we're committed to transforming careers through quality tech education.
-                    </p>
+                <div class="step">
+                    <div class="step-circle">2</div>
+                    <h3 class="step-title">Build</h3>
+                    <p class="step-desc">Hands-on training with real-world projects</p>
                 </div>
-                
-                <!-- Stats Badge -->
-                <div class="flex-shrink-0">
-                    <div class="bg-white/20 backdrop-blur-sm rounded-2xl px-6 py-4 lg:px-8 lg:py-5 text-center border border-white/30">
-                        <div class="text-[28px] lg:text-[36px] font-bold text-white leading-none">450+</div>
-                        <div class="text-[11px] lg:text-[13px] text-white/90 mt-1 font-medium">Hiring Partners</div>
-                    </div>
+                <div class="step">
+                    <div class="step-circle">3</div>
+                    <h3 class="step-title">Get Hired</h3>
+                    <p class="step-desc">Placement assistance and interview preparation</p>
+                </div>
+                <div class="step">
+                    <div class="step-circle">4</div>
+                    <h3 class="step-title">Succeed</h3>
+                    <p class="step-desc">Lifetime access and continuous support</p>
                 </div>
             </div>
         </div>
     </section>
-</main>
 
-
-<!-- Footer -->
-<footer class="bg-white">
-    <!-- Main Footer Links -->
-    <div class="py-10 lg:py-16 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-10">
-                <!-- Company -->
-                <div id="about">
-                    <h4 class="text-[13px] lg:text-[16px] font-bold text-gray-900 mb-3 lg:mb-4 uppercase">Company</h4>
-                    <ul class="space-y-2 lg:space-y-3 text-[12px] lg:text-[14px]">
-                        <li><a href="aboutus.html" class="text-gray-600 hover:text-blue-600 transition-colors">About Us</a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Our Team</a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Careers</a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Courses -->
-                <div>
-                    <h4 class="text-[13px] lg:text-[16px] font-bold text-gray-900 mb-3 lg:mb-4 uppercase">Courses</h4>
-                    <ul class="space-y-2 lg:space-y-3 text-[12px] lg:text-[14px]">
-                        <li><a href="index.html#courses" class="text-gray-600 hover:text-blue-600 transition-colors">MERN Full Stack</a></li>
-                        <li><a href="index.html#courses" class="text-gray-600 hover:text-blue-600 transition-colors">Java Full Stack</a></li>
-                        <li><a href="index.html#courses" class="text-gray-600 hover:text-blue-600 transition-colors">Data Science & AI</a></li>
-                        <li><a href="index.html#courses" class="text-gray-600 hover:text-blue-600 transition-colors">Data Analytics</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Quick Links -->
-                <div id="jobs">
-                    <h4 class="text-[13px] lg:text-[16px] font-bold text-gray-900 mb-3 lg:mb-4 uppercase">Quick Links</h4>
-                    <ul class="space-y-2 lg:space-y-3 text-[12px] lg:text-[14px]">
-                        <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Hiring Drives</a></li>
-                        <li><a href="index.html#centres" class="text-gray-600 hover:text-blue-600 transition-colors">Skill Centres</a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Placement Report</a></li>
-                        <li><a href="index.html#faq" class="text-gray-600 hover:text-blue-600 transition-colors">FAQ</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Resources -->
-                <div id="blog">
-                    <h4 class="text-[13px] lg:text-[16px] font-bold text-gray-900 mb-3 lg:mb-4 uppercase">Resources</h4>
-                    <ul class="space-y-2 lg:space-y-3 text-[12px] lg:text-[14px]">
-                        <li><a href="blog.html" class="text-gray-600 hover:text-blue-600 transition-colors">Blog</a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Success Stories</a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Free Webinars</a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Download Brochure</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Contact -->
-                <div class="footer-contact-section">
-                    <h4 class="text-[13px] lg:text-[16px] font-bold text-gray-900 mb-3 lg:mb-4 uppercase">Contact Us</h4>
-                    <ul class="space-y-2 lg:space-y-3 text-[12px] lg:text-[14px]">
-                        <li>
-                            <a href="mailto:contact@blujay.com" class="text-gray-600 hover:text-blue-600 transition-colors flex items-center gap-2">
-                                <i class="fas fa-envelope text-blue-600 text-[10px]"></i>
-                                <span>contact@blujay.com</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="tel:+918595563221" class="text-gray-600 hover:text-blue-600 transition-colors flex items-center gap-2">
-                                <i class="fas fa-phone text-blue-600 text-[10px]"></i>
-                                <span>+91 8595563221</span>
-                            </a>
-                        </li>
-                        <li class="text-gray-600 flex items-center gap-2">
-                            <i class="fas fa-map-marker-alt text-blue-600 text-[10px]"></i>
-                            <span>Hyderabad & Pune</span>
-                        </li>
-                    </ul>
-                    
-                    <!-- Social Media -->
-                    <div class="footer-contact-social mt-4 lg:mt-5 flex gap-2">
-                        <a href="#" class="w-8 lg:w-9 h-8 lg:h-9 bg-blue-600 rounded-lg flex items-center justify-center text-white hover:bg-blue-700 transition-all">
-                            <i class="fab fa-facebook-f text-[12px]"></i>
-                        </a>
-                        <a href="#" class="w-8 lg:w-9 h-8 lg:h-9 bg-blue-600 rounded-lg flex items-center justify-center text-white hover:bg-blue-700 transition-all">
-                            <i class="fab fa-twitter text-[12px]"></i>
-                        </a>
-                        <a href="#" class="w-8 lg:w-9 h-8 lg:h-9 bg-blue-600 rounded-lg flex items-center justify-center text-white hover:bg-blue-700 transition-all">
-                            <i class="fab fa-linkedin-in text-[12px]"></i>
-                        </a>
-                        <a href="#" class="w-8 lg:w-9 h-8 lg:h-9 bg-blue-600 rounded-lg flex items-center justify-center text-white hover:bg-blue-700 transition-all">
-                            <i class="fab fa-instagram text-[12px]"></i>
-                        </a>
-                        <a href="#" class="w-8 lg:w-9 h-8 lg:h-9 bg-blue-600 rounded-lg flex items-center justify-center text-white hover:bg-blue-700 transition-all">
-                            <i class="fab fa-youtube text-[12px]"></i>
-                        </a>
+    <!-- What Makes Us Different -->
+    <section class="section" style="background: linear-gradient(180deg, #f9fafb 0%, #fff 100%);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Why Choose Us</span>
+                <h2 class="section-title">What Makes Us Different</h2>
+                <p class="section-subtitle">Premium features designed for your success</p>
+            </div>
+            <div class="features">
+                <div class="feature">
+                    <div class="check-mark">
+                        <span class="material-icons">check</span>
                     </div>
+                    <p class="feature-text"><strong>Small Batch Sizes:</strong> Just 6-10 students per batch ensuring personalized attention and effective learning outcomes</p>
                 </div>
+                <div class="feature">
+                    <div class="check-mark">
+                        <span class="material-icons">check</span>
+                    </div>
+                    <p class="feature-text"><strong>1-on-1 Training Available:</strong> Get individual mentoring sessions tailored to your specific learning pace and career goals</p>
+                </div>
+                <div class="feature">
+                    <div class="check-mark">
+                        <span class="material-icons">check</span>
+                    </div>
+                    <p class="feature-text"><strong>Free Demo Classes:</strong> Experience our teaching methodology and course quality before making any commitment</p>
+                </div>
+                <div class="feature">
+                    <div class="check-mark">
+                        <span class="material-icons">check</span>
+                    </div>
+                    <p class="feature-text"><strong>Lifetime Access:</strong> Once enrolled, access all course materials forever with no expiration dates</p>
+                </div>
+                <div class="feature">
+                    <div class="check-mark">
+                        <span class="material-icons">check</span>
+                    </div>
+                    <p class="feature-text"><strong>Expert Leadership:</strong> Learn directly from founders with 27+ years of combined industry experience</p>
+                </div>
+                <div class="feature">
+                    <div class="check-mark">
+                        <span class="material-icons">check</span>
+                    </div>
+                    <p class="feature-text"><strong>Strategic Location:</strong> Based in Ameerpet, Hyderabad's most accessible and prominent IT training hub</p>
+                </div>
+                <div class="feature">
+                    <div class="check-mark">
+                        <span class="material-icons">check</span>
+                    </div>
+                    <p class="feature-text"><strong>Real Project Experience:</strong> Work on actual client projects during training to build an impressive portfolio</p>
+                </div>
+                <div class="feature">
+                    <div class="check-mark">
+                        <span class="material-icons">check</span>
+                    </div>
+                    <p class="feature-text"><strong>End-to-End Support:</strong> Comprehensive guidance from your first class to landing your first job</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Our Values</span>
+                <h2 class="section-title">Principles That Guide Us</h2>
+                <p class="section-subtitle">The foundation of everything we do</p>
+            </div>
+            <div class="values">
+                <div class="value">
+                    <div class="value-icon">
+                        <span class="material-icons">star</span>
+                    </div>
+                    <h3 class="value-title">Excellence</h3>
+                    <p class="value-desc">Maintaining the highest standards in everything we deliver</p>
+                </div>
+                <div class="value">
+                    <div class="value-icon">
+                        <span class="material-icons">handshake</span>
+                    </div>
+                    <h3 class="value-title">Integrity</h3>
+                    <p class="value-desc">Transparent communication and ethical practices</p>
+                </div>
+                <div class="value">
+                    <div class="value-icon">
+                        <span class="material-icons">lightbulb</span>
+                    </div>
+                    <h3 class="value-title">Innovation</h3>
+                    <p class="value-desc">Continuously staying ahead of industry trends</p>
+                </div>
+                <div class="value">
+                    <div class="value-icon">
+                        <span class="material-icons">emoji_events</span>
+                    </div>
+                    <h3 class="value-title">Success</h3>
+                    <p class="value-desc">Your growth is our ultimate measure</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="container">
+        <div class="cta">
+            <div class="cta-content">
+                <h2>Join the Blujay Family</h2>
+                <p>Be part of our mission to reach 1 million jobs. Join 3,000+ professionals who have successfully transformed their careers with us.</p>
+                <button onclick="openCallbackModal()" class="cta-button">
+                    <span>Book Your Free Demo Class</span>
+                    <span class="material-icons">arrow_forward</span>
+                </button>
             </div>
         </div>
     </div>
-    
-    <!-- Bottom Bar -->
-    <div class="py-5 lg:py-6 bg-gray-900">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-3 lg:gap-4">
-                <div class="flex items-center gap-2 lg:gap-3">
-                    <img src="logo.png" alt="Blujay" class="h-7 lg:h-8" loading="lazy">
-                    <span class="text-gray-400 text-[11px] lg:text-[13px]">© 2025 Blujay Technologies. All rights reserved.</span>
-                </div>
-                
-                <div class="flex flex-wrap justify-center gap-4 lg:gap-6 text-[11px] lg:text-[13px]">
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Refund Policy</a>
-                </div>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Get In Touch</span>
+                <h2 class="section-title">Start Your Journey Today</h2>
+                <p class="section-subtitle">We're here to help you achieve your career goals</p>
             </div>
-            
-            <!-- Payment & Security -->
-            <div class="mt-4 lg:mt-6 pt-4 lg:pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-3 lg:gap-4">
-                <div class="flex items-center gap-2 lg:gap-3 text-gray-400 text-[10px] lg:text-[12px]">
-                    <i class="fas fa-lock text-green-500"></i>
-                    <span>Secured Payment</span>
-                    <span class="mx-2 lg:mx-3">|</span>
-                    <i class="fas fa-shield-alt text-blue-500"></i>
-                    <span>SSL Encrypted</span>
-                </div>
-                
-                <div class="flex items-center gap-2 lg:gap-4">
-                    <span class="text-gray-500 text-[10px] lg:text-[12px]">We Accept:</span>
-                    <div class="flex gap-1 lg:gap-2">
-                        <div class="w-8 lg:w-10 h-6 lg:h-7 bg-white rounded flex items-center justify-center">
-                            <i class="fab fa-cc-visa text-blue-600 text-[14px] lg:text-[18px]"></i>
-                        </div>
-                        <div class="w-8 lg:w-10 h-6 lg:h-7 bg-white rounded flex items-center justify-center">
-                            <i class="fab fa-cc-mastercard text-red-600 text-[14px] lg:text-[18px]"></i>
-                        </div>
-                        <div class="w-8 lg:w-10 h-6 lg:h-7 bg-white rounded flex items-center justify-center">
-                            <i class="fab fa-google-pay text-blue-600 text-[14px] lg:text-[18px]"></i>
-                        </div>
-                        <div class="w-8 lg:w-10 h-6 lg:h-7 bg-white rounded flex items-center justify-center text-[8px] lg:text-[10px] font-bold text-purple-600">
-                            PP
-                        </div>
+            <div class="contact">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <span class="material-icons">location_on</span>
                     </div>
+                    <p class="contact-label">Location</p>
+                    <p class="contact-value">Ameerpet, Hyderabad</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <span class="material-icons">email</span>
+                    </div>
+                    <p class="contact-label">Email</p>
+                    <p class="contact-value"><a href="mailto:hr@blujaytech.com">hr@blujaytech.com</a></p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <span class="material-icons">phone</span>
+                    </div>
+                    <p class="contact-label">Phone</p>
+                    <p class="contact-value"><a href="tel:+919618721797">+91 9618 721 797</a></p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <span class="material-icons">language</span>
+                    </div>
+                    <p class="contact-label">Website</p>
+                    <p class="contact-value"><a href="https://blujaytech.com">blujaytech.com</a></p>
                 </div>
             </div>
+        </div>
+    </section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-12 lg:py-16 text-center lg:text-left">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-8">
+            
+            <div>
+                <img src="logo.png" alt="Blujay" class="h-10 mb-4 mx-auto lg:mx-0" loading="lazy">
+                <p class="text-[13px] text-gray-400 leading-relaxed">
+                    Empowering careers through quality tech education and 100% placement support.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="text-[15px] font-bold mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-[13px]">
+                    <li><a href="aboutus.html" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                    <li><a href="courses.html" class="text-gray-400 hover:text-white transition-colors">Courses</a></li>
+                    <li><a href="placements.html" class="text-gray-400 hover:text-white transition-colors">Placements</a></li>
+                    <li><a href="blog.html" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-[15px] font-bold mb-4">Popular Courses</h4>
+                <ul class="space-y-2 text-[13px]">
+                    <li><a href="#fullstack" class="text-gray-400 hover:text-white transition-colors">Full Stack Development</a></li>
+                    <li><a href="#mern" class="text-gray-400 hover:text-white transition-colors">MERN Stack</a></li>
+                    <li><a href="#java" class="text-gray-400 hover:text-white transition-colors">Java Full Stack</a></li>
+                    <li><a href="#datascience" class="text-gray-400 hover:text-white transition-colors">Data Science</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-[15px] font-bold mb-4">Contact Us</h4>
+                <ul class="space-y-3 text-[13px]">
+                    <li class="flex items-center gap-2 text-gray-400 justify-center lg:justify-start">
+                        <i class="fas fa-phone text-blue-600"></i>
+                        <span>+91 98765 43210</span>
+                    </li>
+                    <li class="flex items-center gap-2 text-gray-400 justify-center lg:justify-start">
+                        <i class="fas fa-envelope text-blue-600"></i>
+                        <span>info@blujay.tech</span>
+                    </li>
+                    <li class="flex items-center gap-2 text-gray-400 justify-center lg:justify-start">
+                        <i class="fas fa-map-marker-alt text-blue-600"></i>
+                        <span>Hyderabad, India</span>
+                    </li>
+                </ul>
+
+                <div class="flex gap-3 mt-4 justify-center lg:justify-start">
+                    <a href="#" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all hover:scale-110">
+                        <i class="fab fa-linkedin text-[14px]"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all hover:scale-110">
+                        <i class="fab fa-instagram text-[14px]"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all hover:scale-110">
+                        <i class="fab fa-facebook text-[14px]"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all hover:scale-110">
+                        <i class="fab fa-youtube text-[14px]"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="border-t border-gray-800 pt-6 text-center">
+            <p class="text-[12px] text-gray-500">
+                © 2025 Blujay Technologies. All rights reserved. | Privacy Policy | Terms & Conditions
+            </p>
         </div>
     </div>
 </footer>
 
-
-<!-- Request Callback Modal -->
-<div id="callbackModal" class="fixed inset-0 bg-black/60 z-[200] hidden items-start sm:items-center justify-center p-4 pt-12 sm:pt-0">
-    <div class="bg-white rounded-2xl w-full max-w-[360px] sm:max-w-md lg:max-w-lg shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto relative" role="dialog" aria-modal="true" aria-labelledby="callbackTitle">
+<!-- ===== CALLBACK MODAL - PROFESSIONAL COMPACT DESIGN ===== -->
+<div id="callbackModal" class="fixed inset-0 bg-black bg-opacity-60 z-[200] hidden items-center justify-center p-4 backdrop-blur-sm">
+    <div class="bg-white rounded-xl max-w-3xl w-full shadow-2xl transform transition-all scale-95 modal-content overflow-visible">
         
-        <!-- Close Button -->
-        <button onclick="closeCallbackModal()" class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center hover:bg-gray-100 rounded-full transition-all z-10" aria-label="Close modal">
-            <i class="fas fa-times text-gray-600 text-lg"></i>
-        </button>
-
-        <div class="p-6 sm:p-8 min-w-0">
-            <h2 id="callbackTitle" class="text-xl sm:text-2xl font-bold text-gray-900 mb-1">Request Callback</h2>
-            <p class="text-sm text-gray-600 mb-5">Request a callback from our team. Please fill out the form below and we will get back to you shortly.</p>
-
-            <!-- Form -->
-            <form id="sheetdb-form" method="post" action="https://sheetdb.io/api/v1/7s7xiynldn2sf" class="space-y-3">
-                <!-- Name -->
-                <input type="text" name="data[name]" placeholder="Name" required 
-                       class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600">
-
-                <!-- Country Code + Mobile Number -->
-                <div class="flex gap-2">
-                    <select name="data[countrycode]" id="countryCodeSelect" required 
-                            class="w-16 sm:w-28 px-1 py-2 border border-gray-300 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-blue-600 text-gray-700">
-                        <option value="+91" selected>India +91</option>
-                        <option value="+93">Afghan +93</option>
-                        <option value="+1">Canada +1</option>
-                        <option value="+86">China +86</option>
-                        <option value="+20">Egypt +20</option>
-                        <option value="+33">France +33</option>
-                        <option value="+49">Germany +49</option>
-                        <option value="+852">HK +852</option>
-                        <option value="+62">Indonesia +62</option>
-                        <option value="+81">Japan +81</option>
-                        <option value="+60">Malaysia +60</option>
-                        <option value="+52">Mexico +52</option>
-                        <option value="+977">Nepal +977</option>
-                        <option value="+31">Netherlands +31</option>
-                        <option value="+64">NZ +64</option>
-                        <option value="+92">Pakistan +92</option>
-                        <option value="+63">Philippines +63</option>
-                        <option value="+7">Russia +7</option>
-                        <option value="+966">Saudi +966</option>
-                        <option value="+65">Singapore +65</option>
-                        <option value="+82">S Korea +82</option>
-                        <option value="+34">Spain +34</option>
-                        <option value="+94">SriLanka +94</option>
-                        <option value="+66">Thailand +66</option>
-                        <option value="+90">Turkey +90</option>
-                        <option value="+971">UAE +971</option>
-                        <option value="+44">UK +44</option>
-                        <option value="+1">USA +1</option>
-                        <option value="+84">Vietnam +84</option>
-                    </select>
-                    <input type="tel" name="data[mobile]" placeholder="Mobile Number" required pattern="[0-9]{7,15}" 
-                           class="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600">
+        <div class="flex flex-col lg:flex-row max-h-[85vh] overflow-visible">
+            <!-- Left Side - Branding Section (Desktop/Tablet) -->
+            <div class="hidden md:flex md:w-[45%] lg:w-[40%] bg-gradient-to-br from-[#0057A0] via-[#0057A0] to-[#00447C] text-white p-6 lg:p-8 flex-col justify-between relative overflow-hidden">
+                <!-- Background Pattern -->
+                <div class="absolute inset-0 opacity-10">
+                    <div class="absolute top-0 right-0 w-48 h-48 bg-white rounded-full -mr-24 -mt-24"></div>
+                    <div class="absolute bottom-0 left-0 w-32 h-32 bg-white rounded-full -ml-16 -mb-16"></div>
+                </div>
+                
+                <div class="relative z-10">
+                    <div class="w-14 h-14 lg:w-16 lg:h-16 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mb-4 backdrop-blur-sm">
+                        <i class="fas fa-phone-alt text-[24px] lg:text-[28px]"></i>
+                    </div>
+                    <h2 class="text-[20px] lg:text-[24px] font-bold leading-tight mb-2">We're here to<br>support you</h2>
+                    <h3 class="text-[18px] lg:text-[22px] font-semibold mb-3">every step of<br>the way.</h3>
+                    <p class="text-blue-100 text-[13px] leading-relaxed">Let's talk!</p>
+                    
+                    <div class="mt-4">
+                        <p class="text-[12px] text-blue-50 leading-relaxed">
+                            We carefully listen to your app requirements, thoroughly analyze them, and recommend the most effective approach for your development needs.
+                        </p>
+                    </div>
                 </div>
 
-                <!-- Work Experience -->
-                <select name="data[workexperience]" required 
-                        class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 text-gray-700">
-                    <option value="" disabled selected>Work Experience (in years)</option>
-                    <option value="Currently a college student">Currently a college student</option>
-                    <option value="0 Years">0 Years</option>
-                    <option value="<1 Year">&lt;1 Year</option>
-                    <option value="1-2 Years">1-2 Years</option>
-                    <option value="2-3 Years">2-3 Years</option>
-                    <option value="3-5 Years">3-5 Years</option>
-                    <option value="5-8 Years">5-8 Years</option>
-                    <option value="8-12 Years">8-12 Years</option>
-                    <option value="12-15 Years">12-15 Years</option>
-                    <option value=">15 Years">&gt;15 Years</option>
-                </select>
+                <div class="relative z-10 mt-4">
+                    <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-3 border border-white border-opacity-20">
+                        <p class="text-[10px] font-semibold text-white text-opacity-70 mb-2 uppercase tracking-wider">Contact Information</p>
+                        <div class="space-y-1.5">
+                            <div class="flex items-center gap-2 text-[12px]">
+                                <i class="fas fa-phone text-white text-opacity-80 text-[11px]"></i>
+                                <span>+91 98765 43210</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-[12px]">
+                                <i class="fas fa-envelope text-white text-opacity-80 text-[11px]"></i>
+                                <span>info@blujay.tech</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                <!-- Terms -->
-                <p class="text-xs text-gray-500">
-                    By submitting this form, you consent to our 
-                    <a href="#" class="text-blue-600 hover:underline">Terms of Use</a> &amp; 
-                    <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a> 
-                    and to be contacted by us via Email/Call/Whatsapp/SMS.
-                </p>
+            <!-- Right Side - Form Section -->
+            <div class="w-full md:w-[55%] lg:w-[60%] relative bg-white max-h-[85vh] md:max-h-none overflow-visible">
+                <!-- Mobile Header -->
+                <div class="md:hidden bg-gradient-to-r from-[#0057A0] to-[#00447C] text-white p-5 relative">
+                    <button onclick="closeCallbackModal()" class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full hover:bg-white hover:bg-opacity-20 transition-all">
+                        <i class="fas fa-times text-[16px]"></i>
+                    </button>
+                    <div class="text-center pr-8">
+                        <div class="w-14 h-14 bg-white bg-opacity-20 rounded-xl mx-auto mb-2 flex items-center justify-center">
+                            <i class="fas fa-phone-alt text-[20px]"></i>
+                        </div>
+                        <h3 class="text-[19px] font-bold mb-1">Request a Callback</h3>
+                        <p class="text-[12px] text-white text-opacity-80">We'll get back to you within 24 hours</p>
+                    </div>
+                </div>
 
-                <!-- Submit Button -->
-                <button type="submit" class="w-full bg-blue-600 text-white py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-700 transition-all">
-                    Request Callback
+                <!-- Desktop Close Button -->
+                <button onclick="closeCallbackModal()" class="hidden md:flex absolute top-3 right-3 w-9 h-9 items-center justify-center rounded-full hover:bg-gray-100 transition-all z-20">
+                    <i class="fas fa-times text-[18px] text-gray-600"></i>
                 </button>
-            </form>
+
+                <!-- Form -->
+                <form id="callbackForm" class="p-5 lg:p-6 space-y-3.5 lg:space-y-4 overflow-visible">
+                    <div class="hidden md:block mb-4 lg:mb-5">
+                        <h3 class="text-[20px] lg:text-[24px] font-bold text-gray-900 mb-1">Get in Touch</h3>
+                        <p class="text-[13px] lg:text-[14px] text-gray-600">Fill out the form and we'll contact you soon</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Full Name *</label>
+                        <input type="text" name="name" required 
+                            class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0057A0] focus:border-[#0057A0] outline-none text-[13px] lg:text-[14px] transition-all"
+                            placeholder="John Doe">
+                    </div>
+
+                    <div>
+                        <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Email Address *</label>
+                        <input type="email" name="email" required 
+                            class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0057A0] focus:border-[#0057A0] outline-none text-[13px] lg:text-[14px] transition-all"
+                            placeholder="john@example.com">
+                    </div>
+
+                    <div>
+                        <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Phone Number *</label>
+                        <input type="tel" name="phone" required 
+                            class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0057A0] focus:border-[#0057A0] outline-none text-[13px] lg:text-[14px] transition-all"
+                            placeholder="+91 XXXXX XXXXX">
+                    </div>
+
+                    <div>
+                        <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Choose Services *</label>
+                        <div class="service-dropdown-wrapper">
+                            <div class="service-dropdown-trigger" id="serviceDropdownTrigger">
+                                <span class="placeholder" id="serviceSelectedText">Select a service...</span>
+                                <i class="fas fa-chevron-down chevron"></i>
+                            </div>
+                            <div class="service-dropdown-menu" id="serviceDropdownMenu">
+                                <div class="service-dropdown-item" data-value="Web Development">
+                                    <i class="fas fa-code"></i>
+                                    <span>Web Development</span>
+                                </div>
+                                <div class="service-dropdown-item" data-value="Mobile App Development">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <span>Mobile App Development</span>
+                                </div>
+                                <div class="service-dropdown-item" data-value="Digital Marketing">
+                                    <i class="fas fa-chart-line"></i>
+                                    <span>Digital Marketing</span>
+                                </div>
+                                <div class="service-dropdown-item" data-value="Cloud Solutions">
+                                    <i class="fas fa-cloud"></i>
+                                    <span>Cloud Solutions</span>
+                                </div>
+                            </div>
+                            <select name="service" id="serviceHiddenSelect" required style="position: absolute; opacity: 0; pointer-events: none; width: 1px; height: 1px;">
+                                <option value="" selected></option>
+                                <option value="Web Development">Web Development</option>
+                                <option value="Mobile App Development">Mobile App Development</option>
+                                <option value="Digital Marketing">Digital Marketing</option>
+                                <option value="Cloud Solutions">Cloud Solutions</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" id="submitBtn"
+                        class="w-full bg-[#0057A0] text-white py-2.5 lg:py-3 rounded-lg font-semibold text-[14px] lg:text-[15px] hover:bg-[#00447C] transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 mt-4 lg:mt-5">
+                        <span>Submit Now</span>
+                        <i class="fas fa-arrow-right text-[12px]"></i>
+                    </button>
+
+                    <!-- Success Message -->
+                    <div id="successMessage" class="hidden bg-green-50 border border-green-200 text-green-800 px-3 py-2.5 rounded-lg text-[12px] text-center">
+                        <i class="fas fa-check-circle mr-1"></i>
+                        <strong>Success!</strong> We'll contact you soon.
+                    </div>
+
+                    <!-- Error Message -->
+                    <div id="errorMessage" class="hidden bg-red-50 border border-red-200 text-red-800 px-3 py-2.5 rounded-lg text-[12px] text-center">
+                        <i class="fas fa-exclamation-circle mr-1"></i>
+                        <strong>Error!</strong> Please try again.
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
 
-
 <script>
-// Desktop More Dropdown
-const desktopMoreBtn = document.getElementById('desktop-more-btn');
-const desktopMoreMenu = document.getElementById('desktop-more-menu');
-
-if (desktopMoreBtn) {
-    desktopMoreBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        desktopMoreMenu.classList.toggle('hidden');
-    });
-}
-
-document.addEventListener('click', function() {
-    if (desktopMoreMenu) {
-        desktopMoreMenu.classList.add('hidden');
+// Navbar scroll effect
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 100) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
     }
 });
 
-// Mobile Menu Toggle
+// Mobile menu
 const mobileToggle = document.getElementById('mobile-toggle');
-const mobileMenu = document.getElementById('mobile-menu');
 const mobileClose = document.getElementById('mobile-close');
+const mobileMenu = document.getElementById('mobile-menu');
 
-if (mobileToggle) {
-    mobileToggle.addEventListener('click', function() {
-        mobileMenu.classList.remove('translate-x-full');
-    });
-}
+mobileToggle?.addEventListener('click', () => {
+    mobileMenu.classList.remove('translate-x-full');
+    document.body.classList.add('mobile-menu-open');
+});
 
-if (mobileClose) {
-    mobileClose.addEventListener('click', function() {
-        mobileMenu.classList.add('translate-x-full');
-    });
-}
+mobileClose?.addEventListener('click', () => {
+    mobileMenu.classList.add('translate-x-full');
+    document.body.classList.remove('mobile-menu-open');
+});
 
-// Mobile More Dropdown
-const mobileMore = document.getElementById('mobile-more');
-const mobileMoreContent = document.getElementById('mobile-more-content');
-
-if (mobileMore) {
-    mobileMore.addEventListener('click', function() {
-        mobileMoreContent.classList.toggle('hidden');
-        const arrow = mobileMore.querySelector('.mobile-arrow');
-        if (arrow) {
-            arrow.style.transform = mobileMoreContent.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+// Mobile Dropdowns
+document.querySelectorAll('.mobile-dropdown-toggle').forEach(toggle => {
+    toggle.addEventListener('click', () => {
+        const content = toggle.nextElementSibling;
+        const isActive = toggle.classList.contains('active');
+        
+        document.querySelectorAll('.mobile-dropdown-toggle').forEach(t => {
+            t.classList.remove('active');
+            t.nextElementSibling.classList.remove('active');
+        });
+        
+        if (!isActive) {
+            toggle.classList.add('active');
+            content.classList.add('active');
         }
     });
-}
+});
 
-// Open Callback Modal
+// SheetDB Configuration
+const SHEETDB_URL = 'https://sheetdb.io/api/v1/7s7xiynldn2sf';
+
+// Callback Modal Functions
 function openCallbackModal() {
     const modal = document.getElementById('callbackModal');
     modal.classList.remove('hidden');
     modal.classList.add('flex');
     document.body.style.overflow = 'hidden';
+    
+    document.getElementById('callbackForm').reset();
+    document.getElementById('successMessage').classList.add('hidden');
+    document.getElementById('errorMessage').classList.add('hidden');
+    
+    const serviceText = document.getElementById('serviceSelectedText');
+    const serviceSelect = document.getElementById('serviceHiddenSelect');
+    if (serviceText && serviceSelect) {
+        serviceText.textContent = 'Select a service...';
+        serviceText.classList.add('placeholder');
+        serviceText.classList.remove('selected-text');
+        serviceSelect.value = '';
+        document.querySelectorAll('.service-dropdown-item').forEach(item => {
+            item.classList.remove('selected');
+        });
+    }
 }
 
-// Close Callback Modal
 function closeCallbackModal() {
     const modal = document.getElementById('callbackModal');
-    modal.classList.add('hidden');
     modal.classList.remove('flex');
+    modal.classList.add('hidden');
     document.body.style.overflow = 'auto';
+    
+    const dropdownMenu = document.getElementById('serviceDropdownMenu');
+    const dropdownTrigger = document.getElementById('serviceDropdownTrigger');
+    if (dropdownMenu && dropdownTrigger) {
+        dropdownMenu.classList.remove('active');
+        dropdownTrigger.classList.remove('active');
+    }
 }
 
-// Close modal when clicking outside
 document.getElementById('callbackModal')?.addEventListener('click', function(e) {
     if (e.target === this) {
         closeCallbackModal();
     }
 });
 
-// Handle form submission to SheetDB
-const sheetdbForm = document.getElementById('sheetdb-form');
-sheetdbForm?.addEventListener('submit', function(e) {
+// Service Dropdown
+const serviceDropdownTrigger = document.getElementById('serviceDropdownTrigger');
+const serviceDropdownMenu = document.getElementById('serviceDropdownMenu');
+const serviceSelectedText = document.getElementById('serviceSelectedText');
+const serviceHiddenSelect = document.getElementById('serviceHiddenSelect');
+const serviceDropdownItems = document.querySelectorAll('.service-dropdown-item');
+
+serviceDropdownTrigger?.addEventListener('click', function(e) {
+    e.stopPropagation();
+    const isActive = serviceDropdownMenu.classList.contains('active');
+    
+    if (isActive) {
+        serviceDropdownMenu.classList.remove('active');
+        serviceDropdownTrigger.classList.remove('active');
+    } else {
+        serviceDropdownMenu.classList.add('active');
+        serviceDropdownTrigger.classList.add('active');
+    }
+});
+
+serviceDropdownItems.forEach(item => {
+    item.addEventListener('click', function(e) {
+        e.stopPropagation();
+        
+        const value = this.getAttribute('data-value');
+        const text = this.querySelector('span').textContent;
+        
+        serviceSelectedText.textContent = text;
+        serviceSelectedText.classList.remove('placeholder');
+        serviceSelectedText.classList.add('selected-text');
+        
+        serviceHiddenSelect.value = value;
+        
+        serviceDropdownItems.forEach(i => i.classList.remove('selected'));
+        this.classList.add('selected');
+        
+        serviceDropdownMenu.classList.remove('active');
+        serviceDropdownTrigger.classList.remove('active');
+    });
+});
+
+document.addEventListener('click', function(e) {
+    if (serviceDropdownMenu && serviceDropdownTrigger) {
+        if (!serviceDropdownTrigger.contains(e.target) && !serviceDropdownMenu.contains(e.target)) {
+            serviceDropdownMenu.classList.remove('active');
+            serviceDropdownTrigger.classList.remove('active');
+        }
+    }
+});
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        if (serviceDropdownMenu?.classList.contains('active')) {
+            serviceDropdownMenu.classList.remove('active');
+            serviceDropdownTrigger?.classList.remove('active');
+        }
+        closeCallbackModal();
+    }
+});
+
+// Form Submission
+document.getElementById('callbackForm')?.addEventListener('submit', async function(e) {
     e.preventDefault();
     
-    const submitBtn = this.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
-    submitBtn.textContent = 'Submitting...';
-    submitBtn.disabled = true;
+    const submitBtn = document.getElementById('submitBtn');
+    const successMsg = document.getElementById('successMessage');
+    const errorMsg = document.getElementById('errorMessage');
     
-    fetch(this.action, {
-        method: 'POST',
-        body: new FormData(this),
-    })
-    .then(response => response.json())
-    .then(data => {
-        alert('Form submitted successfully! We will contact you soon.');
-        closeCallbackModal();
-        sheetdbForm.reset();
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-    })
-    .catch(error => {
-        alert('Error submitting form. Please try again.');
+    successMsg.classList.add('hidden');
+    errorMsg.classList.add('hidden');
+    
+    submitBtn.classList.add('loading');
+    submitBtn.querySelector('span').textContent = 'Submitting...';
+    
+    const formData = new FormData(this);
+    const data = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        phone: formData.get('phone'),
+        service: formData.get('service') || 'Not specified',
+        company: formData.get('course') || 'Not specified',
+        newsletter: formData.get('newsletter') ? 'Yes' : 'No',
+        timestamp: new Date().toLocaleString('en-IN', { 
+            timeZone: 'Asia/Kolkata',
+            dateStyle: 'medium',
+            timeStyle: 'short'
+        }),
+        status: 'New'
+    };
+    
+    try {
+        const response = await fetch(SHEETDB_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ data: [data] })
+        });
+        
+        if (response.ok) {
+            successMsg.classList.remove('hidden');
+            this.reset();
+            
+            setTimeout(() => {
+                closeCallbackModal();
+            }, 2500);
+        } else {
+            throw new Error('Submission failed');
+        }
+    } catch (error) {
         console.error('Error:', error);
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-    });
+        errorMsg.classList.remove('hidden');
+    } finally {
+        submitBtn.classList.remove('loading');
+        submitBtn.querySelector('span').textContent = 'Submit Now';
+    }
 });
 </script>
 

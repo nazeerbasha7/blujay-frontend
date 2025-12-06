@@ -5,80 +5,8 @@
  * ============================================
  */
 
-
-// ============================================
-// 1. MOBILE MENU FUNCTIONALITY
-// ============================================
-
-
-const mobileToggle = document.getElementById('mobile-toggle');
-const mobileClose = document.getElementById('mobile-close');
-const mobileMenu = document.getElementById('mobile-menu');
-const body = document.body;
-
-
-// Open Mobile Menu
-if (mobileToggle) {
-    mobileToggle.addEventListener('click', () => {
-        mobileMenu.classList.remove('translate-x-full');
-        body.style.overflow = 'hidden';
-    });
-}
-
-
-// Close Mobile Menu
-if (mobileClose) {
-    mobileClose.addEventListener('click', () => {
-        mobileMenu.classList.add('translate-x-full');
-        body.style.overflow = 'auto';
-    });
-}
-
-
-// Close menu when clicking on links
-const mobileMenuLinks = document.querySelectorAll('#mobile-menu a');
-mobileMenuLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        mobileMenu.classList.add('translate-x-full');
-        body.style.overflow = 'auto';
-    });
-});
-
-
-// Close menu when clicking buttons in mobile menu
-const mobileMenuButtons = document.querySelectorAll('#mobile-menu button');
-mobileMenuButtons.forEach(button => {
-    if (!button.id.includes('mobile-more')) {
-        button.addEventListener('click', () => {
-            mobileMenu.classList.add('translate-x-full');
-            body.style.overflow = 'auto';
-        });
-    }
-});
-
-
-
-// ============================================
-// 2. MOBILE MORE DROPDOWN
-// ============================================
-
-
-const mobileMore = document.getElementById('mobile-more');
-const mobileMoreContent = document.getElementById('mobile-more-content');
-const mobileArrow = document.querySelector('.mobile-arrow');
-
-
-if (mobileMore && mobileMoreContent) {
-    mobileMore.addEventListener('click', () => {
-        mobileMoreContent.classList.toggle('hidden');
-        
-        if (mobileArrow) {
-            mobileArrow.style.transform = mobileMoreContent.classList.contains('hidden') 
-                ? 'rotate(0deg)' 
-                : 'rotate(180deg)';
-        }
-    });
-}
+// NOTE: Mobile menu and dropdown functionality is now handled in index.html inline script
+// to avoid conflicts and ensure proper event handling order
 
 
 
