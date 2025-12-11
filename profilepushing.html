@@ -1,0 +1,2021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Pushing ₹199 | Blujay Technologies</title>
+    <meta name="description" content="Get your profile job-ready with professional resume optimization and LinkedIn enhancement - 10X more interview calls guaranteed">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f9fafb;
+            color: #1e293b;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --blujay-primary: #0057A0;
+            --blujay-primary-hover: #00447C;
+            --blujay-light: #E8F4F8;
+            --blujay-dark: #00345E;
+            --accent: #FF6B6B;
+            --success: #10B981;
+            --orange: #FF8C42;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 90vh;
+            background: linear-gradient(135deg, #00345E 0%, #0057A0 50%, #00447C 100%);
+            display: flex;
+            align-items: center;
+            padding: 80px 20px 100px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+            bottom: -100px;
+            left: -100px;
+            animation: float 20s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-30px, -30px) scale(1.1); }
+        }
+
+        .hero-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            animation: slideInLeft 1s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            color: #FFFFFF;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            backdrop-filter: blur(5px);
+            margin-bottom: 24px;
+        }
+
+        .hero-badge i {
+            font-size: 14px;
+            color: #FF8C42;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero-highlight {
+            color: #FF8C42;
+            font-weight: 800;
+        }
+
+        .hero-content p {
+            font-size: 17px;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 28px;
+            line-height: 1.6;
+        }
+
+        .price-box {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 28px;
+            animation: bounceIn 1s ease-out 0.3s both;
+        }
+
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { transform: scale(1.05); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .current-price {
+            font-size: 64px;
+            font-weight: 900;
+            color: #fff;
+            line-height: 1;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .price-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .old-price {
+            font-size: 20px;
+            color: rgba(255,255,255,0.6);
+            text-decoration: line-through;
+        }
+
+        .save-badge {
+            padding: 4px 12px;
+            background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+            color: #fff;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+            animation: wiggle 2s ease-in-out infinite;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-3deg); }
+            75% { transform: rotate(3deg); }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            animation: slideInUp 1s ease-out 0.5s both;
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8C42 100%);
+            color: #fff;
+            box-shadow: 0 8px 24px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(255, 107, 107, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: #fff;
+            transform: translateY(-3px);
+        }
+
+        .btn i {
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn:hover i {
+            transform: scale(1.2);
+        }
+
+        .hero-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            animation: fadeIn 1s ease-out 0.7s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hero-feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255,255,255,0.95);
+            font-size: 14px;
+            transition: transform 0.3s ease;
+        }
+
+        .hero-feature:hover {
+            transform: translateX(5px);
+        }
+
+        .hero-feature i {
+            color: #FF8C42;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .stats-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 32px 24px;
+            animation: slideInRight 1s ease-out;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 16px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            animation: scaleIn 0.5s ease-out both;
+        }
+
+        .stat-item:nth-child(1) { animation-delay: 0.1s; }
+        .stat-item:nth-child(2) { animation-delay: 0.2s; }
+        .stat-item:nth-child(3) { animation-delay: 0.3s; }
+        .stat-item:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .stat-item:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 800;
+            color: #FF8C42;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: rgba(255,255,255,0.9);
+            text-transform: uppercase;
+        }
+
+        /* ===== SECTION ===== */
+        .section {
+            padding: 80px 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 50px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .section-header.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: var(--blujay-light);
+            border: 2px solid rgba(29, 93, 127, 0.2);
+            border-radius: 30px;
+            color: var(--blujay-primary);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            animation: shimmer 2s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { box-shadow: 0 0 0 rgba(29, 93, 127, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(29, 93, 127, 0.6); }
+        }
+
+        .section-badge i {
+            font-size: 13px;
+        }
+
+        .section-title {
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            font-size: 17px;
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* ===== SERVICES ===== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: #fff;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 32px 24px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(30px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(29, 93, 127, 0.08), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-card:hover {
+            border-color: var(--blujay-primary);
+            box-shadow: 0 12px 36px rgba(29, 93, 127, 0.15);
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        .service-icon {
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, var(--blujay-light) 0%, rgba(29, 93, 127, 0.08) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            transition: all 0.4s ease;
+        }
+
+        .service-card:hover .service-icon {
+            background: linear-gradient(135deg, var(--blujay-primary) 0%, var(--blujay-dark) 100%);
+            transform: rotateY(360deg);
+        }
+
+        .service-icon i {
+            font-size: 36px;
+            color: var(--blujay-primary);
+            transition: color 0.4s ease;
+        }
+
+        .service-card:hover .service-icon i {
+            color: #fff;
+        }
+
+        .service-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 12px;
+            transition: color 0.3s ease;
+        }
+
+        .service-card:hover h3 {
+            color: var(--blujay-primary);
+        }
+
+        .service-card p {
+            font-size: 15px;
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* ===== PRICING ===== */
+        .pricing-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #f8fafc 0%, #fff 100%);
+            border: 3px solid var(--blujay-primary);
+            border-radius: 24px;
+            padding: 48px 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(29, 93, 127, 0.18);
+            position: relative;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.8s ease;
+        }
+
+        .pricing-card.animate {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 8px 20px;
+            background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+            color: #fff;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
+            animation: wiggle 2s ease-in-out infinite;
+        }
+
+        .pricing-card h3 {
+            font-size: 32px;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 24px;
+        }
+
+        .pricing-amount {
+            font-size: 80px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--blujay-primary) 0%, #FF6B6B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .pricing-original {
+            font-size: 24px;
+            color: #94a3b8;
+            text-decoration: line-through;
+            margin-bottom: 32px;
+        }
+
+        .pricing-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 32px 0;
+        }
+
+        .pricing-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            font-size: 15px;
+            color: #334155;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-feature:hover {
+            border-color: var(--blujay-primary);
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(29, 93, 127, 0.1);
+        }
+
+        .pricing-feature i {
+            color: var(--success);
+            font-size: 20px;
+        }
+
+        .pricing-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 48px;
+            background: linear-gradient(135deg, var(--blujay-primary) 0%, var(--blujay-dark) 100%);
+            color: #fff;
+            border-radius: 14px;
+            font-size: 17px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 24px rgba(29, 93, 127, 0.35);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-cta::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .pricing-cta:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .pricing-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(29, 93, 127, 0.5);
+        }
+
+        .pricing-cta i,
+        .pricing-cta span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: #fff;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 28px 24px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .testimonial-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--blujay-primary);
+            box-shadow: 0 12px 36px rgba(29, 93, 127, 0.15);
+            transform: translateY(-8px);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+
+        .testimonial-avatar {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, var(--blujay-primary) 0%, var(--blujay-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 800;
+            color: #fff;
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-card:hover .testimonial-avatar {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .testimonial-info h4 {
+            font-size: 17px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .testimonial-info p {
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .testimonial-rating {
+            color: #FF8C42;
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+
+        .testimonial-rating i {
+            animation: starPulse 1.5s ease-in-out infinite;
+        }
+
+        .testimonial-rating i:nth-child(1) { animation-delay: 0s; }
+        .testimonial-rating i:nth-child(2) { animation-delay: 0.1s; }
+        .testimonial-rating i:nth-child(3) { animation-delay: 0.2s; }
+        .testimonial-rating i:nth-child(4) { animation-delay: 0.3s; }
+        .testimonial-rating i:nth-child(5) { animation-delay: 0.4s; }
+
+        @keyframes starPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .testimonial-text {
+            font-size: 15px;
+            color: #475569;
+            line-height: 1.7;
+        }
+
+        /* ===== CTA FINAL ===== */
+        .cta-final {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #00345E 0%, #0057A0 50%, #00447C 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-final::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: float 12s ease-in-out infinite;
+        }
+
+        .cta-final-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-final h2 {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .cta-final p {
+            font-size: 18px;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .cta-final-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .stats-card {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 16px 80px 16px;
+                min-height: 80vh;
+            }
+
+            .hero-badge {
+                font-size: 9px;
+                padding: 8px 16px;
+                gap: 6px;
+            }
+
+            .hero-badge i {
+                font-size: 12px;
+            }
+
+            .current-price {
+                font-size: 48px;
+            }
+
+            .old-price {
+                font-size: 18px;
+            }
+
+            .section {
+                padding: 60px 16px;
+            }
+
+            .services-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-features {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card {
+                padding: 36px 24px;
+            }
+
+            .pricing-amount {
+                font-size: 64px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta-final {
+                padding: 80px 16px;
+            }
+
+            .cta-final-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+
+        /* ===== NAVBAR STYLES ===== */
+        .nav-glass {
+            backdrop-filter: blur(14px);
+            background: rgba(255, 255, 255, 0.97);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
+        }
+
+        .nav-glass.scrolled {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Desktop Dropdown */
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-toggle {
+            display: flex; align-items: center; gap: 6px; cursor: pointer;
+            transition: all 0.25s ease; background: none; border: none; padding: 0;
+        }
+        .dropdown-toggle i.chevron {
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 9px;
+        }
+        .dropdown:hover .dropdown-toggle,
+        .dropdown.active .dropdown-toggle { color: #1D5D7F !important; }
+        .dropdown:hover .dropdown-toggle i.chevron,
+        .dropdown.active .dropdown-toggle i.chevron { transform: rotate(180deg); }
+
+        .dropdown-menu {
+            position: absolute; top: calc(100% + 14px); left: 50%;
+            transform: translateX(-50%) translateY(-10px); min-width: 240px;
+            background: #ffffff; border-radius: 14px;
+            box-shadow: 0 22px 60px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(15, 23, 42, 0.04);
+            opacity: 0; visibility: hidden;
+            transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000; padding: 10px;
+        }
+        .dropdown:hover .dropdown-menu,
+        .dropdown.active .dropdown-menu {
+            opacity: 1; visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: flex; align-items: center; padding: 11px 14px;
+            color: #111827; text-decoration: none; font-size: 13px;
+            font-weight: 500; transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 10px; margin-bottom: 4px; position: relative;
+        }
+        .dropdown-menu a:last-child { margin-bottom: 0; }
+        .dropdown-menu a i {
+            margin-right: 10px; font-size: 13px; width: 18px;
+            text-align: center; color: #1D5D7F; opacity: 0.9;
+        }
+        .dropdown-menu a:hover {
+            background: #1D5D7F; color: #ffffff;
+            padding-left: 18px; transform: translateX(2px);
+        }
+        .dropdown-menu a:hover i { color: #ffffff; }
+
+        /* Mobile Dropdowns */
+        .mobile-dropdown-wrapper { border-bottom: 1px solid #e5e7eb; padding: 0; }
+        .mobile-dropdown-toggle {
+            width: 100%; display: flex; justify-content: space-between;
+            align-items: center; cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: none; border: none; text-align: left;
+            padding: 10px 0; user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .mobile-dropdown-toggle i.arrow {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 9px; color: #9ca3af;
+        }
+        .mobile-dropdown-toggle.active i.arrow {
+            transform: rotate(180deg); color: #1D5D7F;
+        }
+        .mobile-dropdown-toggle.active {
+            color: #1D5D7F; font-weight: 600;
+        }
+
+        .mobile-dropdown-content {
+            display: grid; grid-template-rows: 0fr;
+            transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .mobile-dropdown-content.active { grid-template-rows: 1fr; }
+        .mobile-dropdown-inner { overflow: hidden; min-height: 0; }
+        .mobile-dropdown-content.active .mobile-dropdown-inner {
+            padding: 8px 3px 10px 3px;
+        }
+
+        .mobile-dropdown-content a {
+            display: flex; align-items: center; padding: 8px 12px;
+            color: #374151; background: #ffffff; margin-bottom: 5px;
+            border-radius: 8px; font-size: 12.5px; font-weight: 500;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none; border: 1px solid #e5e7eb;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+            user-select: none; -webkit-tap-highlight-color: transparent;
+        }
+        .mobile-dropdown-content a:last-child { margin-bottom: 0; }
+        .mobile-dropdown-content a i {
+            margin-right: 9px; font-size: 11px; width: 14px;
+            text-align: center; opacity: 0.8; color: #1D5D7F;
+        }
+        .mobile-dropdown-content a:active {
+            background: #1D5D7F !important;
+            color: #ffffff !important;
+            border-color: #1D5D7F !important;
+            transform: scale(0.97);
+        }
+        .mobile-dropdown-content a:active i { opacity: 1; color: #ffffff; }
+
+        #mobile-menu { backdrop-filter: blur(10px); }
+        body.mobile-menu-open { overflow: hidden; position: fixed; width: 100%; }
+
+        /* ===== CALLBACK MODAL STYLES ===== */
+        #callbackModal {
+            animation: fadeInModal 0.3s ease-out;
+        }
+
+        #callbackModal.flex {
+            display: flex !important;
+        }
+
+        .modal-content {
+            animation: slideUpModal 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes fadeInModal {
+            from {
+                opacity: 0;
+                backdrop-filter: blur(0px);
+            }
+            to {
+                opacity: 1;
+                backdrop-filter: blur(4px);
+            }
+        }
+
+        @keyframes slideUpModal {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .modal-content {
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+        }
+
+        /* Service Custom Dropdown */
+        .service-dropdown-wrapper { position: relative; width: 100%; }
+
+        .service-dropdown-trigger {
+            width: 100%; padding: 10px 16px; border: 2px solid #d1d5db;
+            border-radius: 10px; background: #ffffff; cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center;
+            transition: all 0.3s ease; font-size: 13px;
+        }
+
+        @media (min-width: 1024px) {
+            .service-dropdown-trigger { padding: 11px 18px; font-size: 14px; }
+        }
+
+        .service-dropdown-trigger:hover { border-color: #1D5D7F; background-color: #f8fafc; }
+        .service-dropdown-trigger.active { border-color: #1D5D7F; box-shadow: 0 0 0 3px rgba(29, 93, 127, 0.1); }
+        .service-dropdown-trigger .placeholder { color: #9ca3af; font-style: italic; }
+        .service-dropdown-trigger .selected-text { color: #111827; font-weight: 500; }
+        .service-dropdown-trigger i.chevron {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 10px; color: #6b7280;
+        }
+        .service-dropdown-trigger.active i.chevron { transform: rotate(180deg); }
+
+        .service-dropdown-menu {
+            position: absolute; top: calc(100% + 8px); left: 0; right: 0;
+            background: #ffffff; border-radius: 12px; padding: 8px;
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(15, 23, 42, 0.04);
+            opacity: 0; visibility: hidden; transform: translateY(-10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1000;
+        }
+
+        .service-dropdown-menu.active { opacity: 1; visibility: visible; transform: translateY(0); }
+
+        .service-dropdown-item {
+            display: flex; align-items: center; padding: 10px 14px; border-radius: 8px;
+            cursor: pointer; transition: all 0.2s ease; margin-bottom: 4px;
+        }
+        .service-dropdown-item:last-child { margin-bottom: 0; }
+        .service-dropdown-item i {
+            margin-right: 10px; font-size: 14px; color: #1D5D7F;
+            width: 20px; text-align: center;
+        }
+        .service-dropdown-item:hover {
+            background: #1D5D7F; color: #ffffff;
+        }
+        .service-dropdown-item:hover i { color: #ffffff; }
+        .service-dropdown-item.selected { background: #eff6ff; color: #1D5D7F; font-weight: 600; }
+        .service-dropdown-item.selected:hover { background: #1D5D7F; color: #ffffff; }
+
+        /* Navbar Button Colors to match jobsupport.html */
+        nav .bg-blue-600 { background-color: #1D5D7F !important; }
+        nav .hover\:bg-blue-700:hover { background-color: #144A66 !important; }
+        nav .border-blue-600 { border-color: #1D5D7F !important; }
+        nav .text-blue-600 { color: #1D5D7F !important; }
+        nav .hover\:bg-blue-50:hover { background-color: rgba(29, 93, 127, 0.05) !important; }
+    </style>
+</head>
+<body>
+
+<!-- Navbar - Improved Design with Scroll Effect -->
+<nav class="fixed w-full top-0 z-50 nav-glass" id="navbar">
+    <div class="px-4 lg:px-8">
+        <div class="flex justify-between items-center h-[60px] lg:h-[72px]">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center">
+                <img src="logo.png" alt="Blujay Technologies" class="h-9 lg:h-12 w-auto" loading="lazy">
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden lg:flex items-center gap-8 ml-auto">
+                <!-- Courses Dropdown -->
+                <div class="dropdown">
+                    <button class="dropdown-toggle text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
+                        Offerings <i class="fas fa-chevron-down chevron"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="profilepushing.html"><i class="fas fa-code"></i>Profile Pushing</a>
+                        <a href="jobsupport.html"><i class="fas fa-layer-group"></i>Job support</a>
+                        <a href="courses.html"><i class="fab fa-java"></i>Courses-Recorded</a>
+                        <a href="courses-online.html"><i class="fab fa-java"></i>Courses-Online</a>
+                        <a href="#datascience"><i class="fas fa-chart-line"></i>Interview Training</a>
+                         
+                    </div>
+                </div>
+
+                <!-- Centres Dropdown -->
+                <div class="dropdown">
+                    <button class="dropdown-toggle text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
+                        Insights <i class="fas fa-chevron-down chevron"></i>
+                    </button>
+                    
+                </div>
+
+                <!-- Jobs Dropdown -->
+                <div class="dropdown">
+                    <button class="dropdown-toggle text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
+                        Jobs <i class="fas fa-chevron-down chevron"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="#browse-jobs"><i class="fas fa-briefcase"></i>Browse Jobs</a>
+                        <a href="#hiring-drives"><i class="fas fa-users"></i>Hiring Drives</a>
+                        <a href="#post-job"><i class="fas fa-plus-circle"></i>Post a Job</a>
+                        <a href="#career-resources"><i class="fas fa-book"></i>Career Resources</a>
+                    </div>
+                </div>
+
+                <!-- More Dropdown -->
+                <div class="dropdown">
+                    <button class="dropdown-toggle text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
+                        More  <i class="fas fa-chevron-down chevron"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="aboutus.html"><i class="fas fa-info-circle"></i>About Us</a>
+                        <a href="blog.html"><i class="fas fa-blog"></i>Blog</a>
+                    </div>
+                </div>
+                
+
+                <a href="login.html" class="border-2 border-blue-600 text-blue-600 px-4 py-1.5 rounded-lg text-[12px] lg:text-[13px] font-semibold hover:bg-blue-50 transition-all">Login</a>
+                <button onclick="openCallbackModal()" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-[12px] lg:text-[13px] font-semibold hover:bg-blue-700 transition-all flex items-center gap-2 pulse-animation">
+                    <i class="fas fa-phone-alt text-[10px]"></i> Request Callback
+                </button>
+            </div>
+
+            <!-- Mobile: Hamburger -->
+            <div class="flex lg:hidden items-center">
+                <button id="mobile-toggle" class="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-all">
+                    <i class="fas fa-bars text-[20px] text-gray-900"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 z-[100] transform translate-x-full transition-transform duration-300 lg:hidden" style="background-color: #ffffff !important;">
+        <div class="flex justify-between items-center h-[60px] px-4 border-b" style="background-color: #ffffff !important;">
+            <img src="logo.png" alt="Blujay Technologies" class="h-9" loading="lazy">
+            <button id="mobile-close" class="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-all">
+                <i class="fas fa-times text-[22px] text-gray-800"></i>
+            </button>
+        </div>
+
+        <div class="overflow-y-auto h-[calc(100vh-60px)]" style="background-color: #ffffff !important;">
+            <div class="px-4 py-4">
+                <div class="mobile-dropdown-wrapper">
+                    <button class="mobile-dropdown-toggle text-[14px] font-semibold text-gray-900" type="button">
+                        Offerings <i class="fas fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="mobile-dropdown-content">
+                        <div class="mobile-dropdown-inner">
+                        <a href="profilepushing.html"><i class="fas fa-code"></i>Profile Pushing</a>
+                        <a href="jobsupport.html"><i class="fas fa-layer-group"></i>Job support</a>
+                        <a href="courses.html"><i class="fab fa-java"></i>Courses</a>
+                        <a href="#datascience"><i class="fas fa-chart-line"></i>Interview Training</a>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="mobile-dropdown-wrapper">
+                    <button class="mobile-dropdown-toggle text-[14px] font-semibold text-gray-900" type="button">
+                        Insights <i class="fas fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="mobile-dropdown-content">
+                        <div class="mobile-dropdown-inner">
+                            <a href="#hyderabad"><i class="fas fa-map-marker-alt"></i>Hyderabad Centre</a>
+                            <a href="#bangalore"><i class="fas fa-map-marker-alt"></i>Bangalore Centre</a>
+                            <a href="#mumbai"><i class="fas fa-map-marker-alt"></i>Mumbai Centre</a>
+                            <a href="#online"><i class="fas fa-laptop"></i>Online Learning</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mobile-dropdown-wrapper">
+                    <button class="mobile-dropdown-toggle text-[14px] font-semibold text-gray-900" type="button">
+                        Jobs <i class="fas fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="mobile-dropdown-content">
+                        <div class="mobile-dropdown-inner">
+                            <a href="#browse-jobs"><i class="fas fa-briefcase"></i>Browse Jobs</a>
+                            <a href="#hiring-drives"><i class="fas fa-users"></i>Hiring Drives</a>
+                            <a href="#post-job"><i class="fas fa-plus-circle"></i>Post a Job</a>
+                            <a href="#career-resources"><i class="fas fa-book"></i>Career Resources</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mobile-dropdown-wrapper">
+                    <button class="mobile-dropdown-toggle text-[14px] font-medium text-gray-800" type="button">
+                        About Us <i class="fas fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="mobile-dropdown-content">
+                        <div class="mobile-dropdown-inner">
+                            <a href="aboutus.html"><i class="fas fa-info-circle"></i>About Us</a>
+                            <a href="blog.html"><i class="fas fa-blog"></i>Blog</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mobile-dropdown-wrapper">
+                    <button class="mobile-dropdown-toggle text-[14px] font-medium text-gray-800" type="button">
+                        Blogs <i class="fas fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="mobile-dropdown-content">
+                        <div class="mobile-dropdown-inner">
+                            <a href="aboutus.html"><i class="fas fa-info-circle"></i>About Us</a>
+                            <a href="blog.html"><i class="fas fa-blog"></i>Blog</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <button onclick="openCallbackModal()" class="block w-full text-center bg-blue-600 text-white py-2.5 rounded-lg text-[13px] font-semibold mt-6 hover:bg-blue-700 transition-all shadow-md">
+                    Request Callback
+                </button>
+
+                <a href="login.html" class="block w-full text-center border-2 border-blue-600 text-blue-600 py-2.5 rounded-lg text-[13px] font-semibold mt-3 hover:bg-blue-50 transition-all">Login</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-fire"></i>
+                    <span>LIMITED TIME OFFER - 80% OFF</span>
+                </div>
+                
+                <h1>Get Your Profile <span class="hero-highlight">Job-Ready</span></h1>
+                <p>Professional resume optimization and LinkedIn enhancement to get 10X more interview calls guaranteed</p>
+
+                <div class="price-box">
+                    <div class="current-price">₹199</div>
+                    <div class="price-info">
+                        <div class="old-price">₹999</div>
+                        <div class="save-badge">Save ₹800</div>
+                    </div>
+                </div>
+
+                <div class="cta-buttons">
+                    <a href="tel:+919618721797" class="btn btn-primary">
+                        <i class="fas fa-phone"></i>
+                        <span>Call Now</span>
+                    </a>
+                    <a href="https://wa.me/919618721797?text=Hi! I want Profile Pushing for ₹199" class="btn btn-secondary" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp</span>
+                    </a>
+                </div>
+
+                <div class="hero-features">
+                    <div class="hero-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>100% ATS Compatible</span>
+                    </div>
+                    <div class="hero-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Money Back Guarantee</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-card">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Happy Clients</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">10X</div>
+                        <div class="stat-label">More Calls</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">ATS Pass</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4.9★</div>
+                        <div class="stat-label">Rating</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section">
+        <div class="section-header scroll-animate">
+            <div class="section-badge">
+                <i class="fas fa-gift"></i>
+                What's Included
+            </div>
+            <h2 class="section-title">Complete Profile Package</h2>
+            <p class="section-subtitle">Everything you need to land your dream job in one affordable package</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card scroll-animate" style="transition-delay: 0.1s;">
+                <div class="service-icon">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <h3>Resume Optimization</h3>
+                <p>ATS-friendly resume with professional formatting in 3 different formats tailored to your industry</p>
+            </div>
+
+            <div class="service-card scroll-animate" style="transition-delay: 0.2s;">
+                <div class="service-icon">
+                    <i class="fab fa-linkedin"></i>
+                </div>
+                <h3>LinkedIn Enhancement</h3>
+                <p>Complete profile makeover with SEO keywords to boost visibility and attract recruiters</p>
+            </div>
+
+            <div class="service-card scroll-animate" style="transition-delay: 0.3s;">
+                <div class="service-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3>Job Portal Setup</h3>
+                <p>Optimize profiles on Naukri, Indeed, and LinkedIn with keyword-rich descriptions</p>
+            </div>
+
+            <div class="service-card scroll-animate" style="transition-delay: 0.4s;">
+                <div class="service-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>Cover Letter Template</h3>
+                <p>Professional cover letter template customized for your target role and industry</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="section" style="background: linear-gradient(180deg, #f8fafc 0%, #fff 100%);">
+        <div class="section-header scroll-animate">
+            <div class="section-badge">
+                <i class="fas fa-tag"></i>
+                Special Offer
+            </div>
+            <h2 class="section-title">Unbeatable Price</h2>
+            <p class="section-subtitle">Professional career services at a fraction of the cost</p>
+        </div>
+
+        <div class="pricing-card scroll-animate">
+            <div class="pricing-badge">🔥 80% OFF TODAY</div>
+            <h3>Profile Pushing Package</h3>
+            
+            <div class="pricing-amount">₹199</div>
+            <div class="pricing-original">Original: ₹999</div>
+
+            <div class="pricing-features">
+                <div class="pricing-feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>ATS Resume (3 formats)</span>
+                </div>
+                <div class="pricing-feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>LinkedIn Enhancement</span>
+                </div>
+                <div class="pricing-feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Cover Letter Template</span>
+                </div>
+                <div class="pricing-feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Job Portal Setup</span>
+                </div>
+                <div class="pricing-feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Skills Optimization</span>
+                </div>
+                <div class="pricing-feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>1 Year Free Updates</span>
+                </div>
+            </div>
+
+            <a href="tel:+919618721797" class="pricing-cta">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Book Now - ₹199 Only</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section">
+        <div class="section-header scroll-animate">
+            <div class="section-badge">
+                <i class="fas fa-star"></i>
+                Success Stories
+            </div>
+            <h2 class="section-title">What Clients Say</h2>
+            <p class="section-subtitle">Real results from real professionals who transformed their careers</p>
+        </div>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card scroll-animate" style="transition-delay: 0.1s;">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">RK</div>
+                    <div class="testimonial-info">
+                        <h4>Rajesh Kumar</h4>
+                        <p>AWS Solutions Architect</p>
+                    </div>
+                </div>
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">Got 5 interview calls in just 2 weeks after profile optimization! Best ₹199 I ever spent. The ATS-friendly resume really works!</p>
+            </div>
+
+            <div class="testimonial-card scroll-animate" style="transition-delay: 0.2s;">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">PS</div>
+                    <div class="testimonial-info">
+                        <h4>Priya Sharma</h4>
+                        <p>Java Developer</p>
+                    </div>
+                </div>
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">LinkedIn profile views increased by 300%! Got placed in Wipro with 6 LPA package. Highly recommend this service to everyone!</p>
+            </div>
+
+            <div class="testimonial-card scroll-animate" style="transition-delay: 0.3s;">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">AM</div>
+                    <div class="testimonial-info">
+                        <h4>Anil Mehta</h4>
+                        <p>Data Analyst</p>
+                    </div>
+                </div>
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">Professional service at such an affordable price! The team optimized my profile perfectly. Worth every single rupee!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="cta-final">
+        <div class="cta-final-content">
+            <h2>Ready to Get 10X More Calls?</h2>
+            <p>Join 500+ professionals who transformed their careers with our expert profile optimization service. Limited time offer - Don't miss out!</p>
+
+            <div class="cta-final-buttons">
+                <a href="tel:+919618721797" class="btn btn-primary">
+                    <i class="fas fa-phone"></i>
+                    <span>Call +91 9618 721 797</span>
+                </a>
+                <a href="https://wa.me/919618721797?text=Hi! I want Profile Pushing for ₹199" class="btn btn-secondary" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>WhatsApp Us Now</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-12 lg:py-16 text-center lg:text-left">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-8">
+            
+            <div>
+                <img src="logo.png" alt="Blujay" class="h-10 mb-4 mx-auto lg:mx-0" loading="lazy">
+                <p class="text-[13px] text-gray-400 leading-relaxed">
+                    Empowering careers through quality tech education and 100% placement support.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="text-[15px] font-bold mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-[13px]">
+                    <li><a href="aboutus.html" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                    <li><a href="courses.html" class="text-gray-400 hover:text-white transition-colors">Courses</a></li>
+                    <li><a href="placements.html" class="text-gray-400 hover:text-white transition-colors">Placements</a></li>
+                    <li><a href="blog.html" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-[15px] font-bold mb-4">Popular Courses</h4>
+                <ul class="space-y-2 text-[13px]">
+                    <li><a href="#fullstack" class="text-gray-400 hover:text-white transition-colors">Full Stack Development</a></li>
+                    <li><a href="#mern" class="text-gray-400 hover:text-white transition-colors">MERN Stack</a></li>
+                    <li><a href="#java" class="text-gray-400 hover:text-white transition-colors">Java Full Stack</a></li>
+                    <li><a href="#datascience" class="text-gray-400 hover:text-white transition-colors">Data Science</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-[15px] font-bold mb-4">Contact Us</h4>
+                <ul class="space-y-3 text-[13px]">
+                    <li class="flex items-center gap-2 text-gray-400 justify-center lg:justify-start">
+                        <i class="fas fa-phone text-blue-600"></i>
+                        <span>+91 98765 43210</span>
+                    </li>
+                    <li class="flex items-center gap-2 text-gray-400 justify-center lg:justify-start">
+                        <i class="fas fa-envelope text-blue-600"></i>
+                        <span>info@blujay.tech</span>
+                    </li>
+                    <li class="flex items-center gap-2 text-gray-400 justify-center lg:justify-start">
+                        <i class="fas fa-map-marker-alt text-blue-600"></i>
+                        <span>Hyderabad, India</span>
+                    </li>
+                </ul>
+
+                 <div class="flex gap-3 mt-4">
+                    <a href="https://linkedin.com/company/blujay-technologies" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all hover:scale-110">
+                        <i class="fab fa-linkedin text-[14px]"></i>
+                    </a>
+                    <a href="https://instagram.com/blujaytech" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all hover:scale-110">
+                        <i class="fab fa-instagram text-[14px]"></i>
+                    </a>
+                    <a href="https://facebook.com/blujaytechnologies" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all hover:scale-110">
+                        <i class="fab fa-facebook text-[14px]"></i>
+                    </a>
+                    <a href="https://youtube.com/@blujaytech" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all hover:scale-110">
+                        <i class="fab fa-youtube text-[14px]"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="border-t border-gray-800 pt-6 text-center">
+            <p class="text-[12px] text-gray-500">
+                © 2025 Blujay Technologies. All rights reserved. | Privacy Policy | Terms & Conditions
+            </p>
+        </div>
+    </div>
+</footer>
+
+<!-- Callback Modal -->
+<div id="callbackModal" class="fixed inset-0 bg-black bg-opacity-60 z-[200] hidden items-center justify-center p-4 backdrop-blur-sm">
+    <div class="bg-white rounded-xl max-w-3xl w-full shadow-2xl transform transition-all scale-95 modal-content overflow-visible">
+        
+        <div class="flex flex-col lg:flex-row max-h-[85vh] overflow-visible">
+            <!-- Left Side - Branding Section (Desktop/Tablet) -->
+            <div class="hidden md:flex md:w-[45%] lg:w-[40%] bg-gradient-to-br from-[#1D5D7F] via-[#1D5D7F] to-[#144A66] text-white p-6 lg:p-8 flex-col justify-between relative overflow-hidden">
+                <!-- Background Pattern -->
+                <div class="absolute inset-0 opacity-10">
+                    <div class="absolute top-0 right-0 w-48 h-48 bg-white rounded-full -mr-24 -mt-24"></div>
+                    <div class="absolute bottom-0 left-0 w-32 h-32 bg-white rounded-full -ml-16 -mb-16"></div>
+                </div>
+                
+                <div class="relative z-10">
+                    <div class="w-14 h-14 lg:w-16 lg:h-16 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mb-4 backdrop-blur-sm">
+                        <i class="fas fa-phone-alt text-[24px] lg:text-[28px]"></i>
+                    </div>
+                    <h2 class="text-[20px] lg:text-[24px] font-bold leading-tight mb-2">We're here to<br>support you</h2>
+                    <h3 class="text-[18px] lg:text-[22px] font-semibold mb-3">every step of<br>the way.</h3>
+                    <p class="text-blue-100 text-[13px] leading-relaxed">Let's talk!</p>
+                    
+                    <div class="mt-4">
+                        <p class="text-[12px] text-blue-50 leading-relaxed">
+                            We carefully listen to your app requirements, thoroughly analyze them, and recommend the most effective approach for your development needs.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="relative z-10 mt-4">
+                    <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-3 border border-white border-opacity-20">
+                        <p class="text-[10px] font-semibold text-white text-opacity-70 mb-2 uppercase tracking-wider">Contact Information</p>
+                        <div class="space-y-1.5">
+                            <div class="flex items-center gap-2 text-[12px]">
+                                <i class="fas fa-phone text-white text-opacity-80 text-[11px]"></i>
+                                <span>+91 98765 43210</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-[12px]">
+                                <i class="fas fa-envelope text-white text-opacity-80 text-[11px]"></i>
+                                <span>info@blujay.tech</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side - Form Section -->
+            <div class="w-full md:w-[55%] lg:w-[60%] relative bg-white max-h-[85vh] md:max-h-none overflow-visible">
+                <!-- Mobile Header -->
+                <div class="md:hidden bg-gradient-to-r from-[#1D5D7F] to-[#144A66] text-white p-5 relative">
+                    <button onclick="closeCallbackModal()" class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full hover:bg-white hover:bg-opacity-20 transition-all">
+                        <i class="fas fa-times text-[16px]"></i>
+                    </button>
+                    <div class="text-center pr-8">
+                        <div class="w-14 h-14 bg-white bg-opacity-20 rounded-xl mx-auto mb-2 flex items-center justify-center">
+                            <i class="fas fa-phone-alt text-[20px]"></i>
+                        </div>
+                        <h3 class="text-[19px] font-bold mb-1">Request a Callback</h3>
+                        <p class="text-[12px] text-white text-opacity-80">We'll get back to you within 24 hours</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Close Button -->
+                <button onclick="closeCallbackModal()" class="hidden md:flex absolute top-3 right-3 w-9 h-9 items-center justify-center rounded-full hover:bg-gray-100 transition-all z-20">
+                    <i class="fas fa-times text-[18px] text-gray-600"></i>
+                </button>
+
+                <!-- Form -->
+                <form id="callbackForm" class="p-5 lg:p-6 space-y-3.5 lg:space-y-4 overflow-visible">
+                    <div class="hidden md:block mb-4 lg:mb-5">
+                        <h3 class="text-[20px] lg:text-[24px] font-bold text-gray-900 mb-1">Get in Touch</h3>
+                        <p class="text-[13px] lg:text-[14px] text-gray-600">Fill out the form and we'll contact you soon</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Full Name *</label>
+                        <input type="text" name="name" required 
+                            class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D5D7F] focus:border-[#1D5D7F] outline-none text-[13px] lg:text-[14px] transition-all"
+                            placeholder="John Doe">
+                    </div>
+
+                    <div>
+                        <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Email Address *</label>
+                        <input type="email" name="email" required 
+                            class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D5D7F] focus:border-[#1D5D7F] outline-none text-[13px] lg:text-[14px] transition-all"
+                            placeholder="john@example.com">
+                    </div>
+
+                    <div>
+                        <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Phone Number *</label>
+                        <input type="tel" name="phone" required 
+                            class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D5D7F] focus:border-[#1D5D7F] outline-none text-[13px] lg:text-[14px] transition-all"
+                            placeholder="+91 XXXXX XXXXX">
+                    </div>
+
+                    <div>
+                        <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Choose Services *</label>
+                        <div class="service-dropdown-wrapper">
+                            <div class="service-dropdown-trigger" id="serviceDropdownTrigger">
+                                <span class="placeholder" id="serviceSelectedText">Select a service...</span>
+                                <i class="fas fa-chevron-down chevron"></i>
+                            </div>
+                            <div class="service-dropdown-menu" id="serviceDropdownMenu">
+                                <div class="service-dropdown-item" data-value="Profile Pushing">
+                                    <i class="fas fa-code"></i>
+                                    <span>Profile Pushing</span>
+                                </div>
+                                <div class="service-dropdown-item" data-value="Job Support">
+                                    <i class="fas fa-layer-group"></i>
+                                    <span>Job Support</span>
+                                </div>
+                                <div class="service-dropdown-item" data-value="Courses - Recorded">
+                                    <i class="fas fa-laptop-code"></i>
+                                    <span>Courses - Recorded</span>
+                                </div>
+                                <div class="service-dropdown-item" data-value="Courses - Online">
+                                    <i class="fas fa-video"></i>
+                                    <span>Courses - Online</span>
+                                </div>
+                                <div class="service-dropdown-item" data-value="Interview Training">
+                                    <i class="fas fa-user-tie"></i>
+                                    <span>Interview Training</span>
+                                </div>
+                            </div>
+                            <select name="service" id="serviceHiddenSelect" required style="position: absolute; opacity: 0; pointer-events: none; width: 1px; height: 1px;">
+                                <option value="" selected></option>
+                                <option value="Profile Pushing">Profile Pushing</option>
+                                <option value="Job Support">Job Support</option>
+                                <option value="Courses - Recorded">Courses - Recorded</option>
+                                <option value="Courses - Online">Courses - Online</option>
+                                <option value="Interview Training">Interview Training</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" id="submitBtn"
+                        class="w-full bg-[#1D5D7F] text-white py-2.5 lg:py-3 rounded-lg font-semibold text-[14px] lg:text-[15px] hover:bg-[#144A66] transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 mt-4 lg:mt-5">
+                        <span>Submit Now</span>
+                        <i class="fas fa-arrow-right text-[12px]"></i>
+                    </button>
+
+                    <!-- Success Message -->
+                    <div id="successMessage" class="hidden bg-green-50 border border-green-200 text-green-800 px-3 py-2.5 rounded-lg text-[12px] text-center">
+                        <i class="fas fa-check-circle mr-1"></i>
+                        <strong>Success!</strong> We'll contact you soon.
+                    </div>
+
+                    <!-- Error Message -->
+                    <div id="errorMessage" class="hidden bg-red-50 border border-red-200 text-red-800 px-3 py-2.5 rounded-lg text-[12px] text-center">
+                        <i class="fas fa-exclamation-circle mr-1"></i>
+                        <strong>Error!</strong> Please try again.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// ===== NAVBAR SCROLL EFFECT =====
+window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 100) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
+// ===== MOBILE MENU =====
+const mobileToggle = document.getElementById('mobile-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
+const mobileClose = document.getElementById('mobile-close');
+
+mobileToggle.addEventListener('click', () => {
+    mobileMenu.classList.remove('translate-x-full');
+    document.body.classList.add('mobile-menu-open');
+});
+
+mobileClose.addEventListener('click', () => {
+    mobileMenu.classList.add('translate-x-full');
+    document.body.classList.remove('mobile-menu-open');
+});
+
+// Close mobile menu on link click
+mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.add('translate-x-full');
+        document.body.classList.remove('mobile-menu-open');
+    });
+});
+
+// ===== MOBILE DROPDOWN ACCORDIONS =====
+const mobileDropdowns = document.querySelectorAll('.mobile-dropdown-toggle');
+mobileDropdowns.forEach(toggle => {
+    toggle.addEventListener('click', () => {
+        const content = toggle.nextElementSibling;
+        const isActive = toggle.classList.contains('active');
+
+        // Close all other dropdowns
+        mobileDropdowns.forEach(otherToggle => {
+            if (otherToggle !== toggle) {
+                otherToggle.classList.remove('active');
+                otherToggle.nextElementSibling.classList.remove('active');
+            }
+        });
+
+        // Toggle current dropdown
+        toggle.classList.toggle('active');
+        content.classList.toggle('active');
+    });
+});
+
+// ===== CALLBACK MODAL =====
+function openCallbackModal() {
+    const modal = document.getElementById('callbackModal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+    
+    document.getElementById('callbackForm').reset();
+    document.getElementById('successMessage').classList.add('hidden');
+    document.getElementById('errorMessage').classList.add('hidden');
+    
+    const serviceText = document.getElementById('serviceSelectedText');
+    const serviceSelect = document.getElementById('serviceHiddenSelect');
+    if (serviceText && serviceSelect) {
+        serviceText.textContent = 'Select a service...';
+        serviceText.classList.add('placeholder');
+        serviceText.classList.remove('selected-text');
+        serviceSelect.value = '';
+    }
+}
+
+function closeCallbackModal() {
+    const modal = document.getElementById('callbackModal');
+    modal.classList.remove('flex');
+    modal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+    
+    const dropdownMenu = document.getElementById('serviceDropdownMenu');
+    const dropdownTrigger = document.getElementById('serviceDropdownTrigger');
+    if (dropdownMenu && dropdownTrigger) {
+        dropdownMenu.classList.remove('active');
+        dropdownTrigger.classList.remove('active');
+    }
+}
+
+document.getElementById('callbackModal')?.addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeCallbackModal();
+    }
+});
+
+// ===== SERVICE DROPDOWN =====
+const serviceDropdownTrigger = document.getElementById('serviceDropdownTrigger');
+const serviceDropdownMenu = document.getElementById('serviceDropdownMenu');
+const serviceSelectedText = document.getElementById('serviceSelectedText');
+const serviceHiddenSelect = document.getElementById('serviceHiddenSelect');
+const serviceDropdownItems = document.querySelectorAll('.service-dropdown-item');
+
+serviceDropdownTrigger?.addEventListener('click', function(e) {
+    e.stopPropagation();
+    const isActive = serviceDropdownMenu.classList.contains('active');
+    
+    if (isActive) {
+        serviceDropdownMenu.classList.remove('active');
+        serviceDropdownTrigger.classList.remove('active');
+    } else {
+        serviceDropdownMenu.classList.add('active');
+        serviceDropdownTrigger.classList.add('active');
+    }
+});
+
+serviceDropdownItems.forEach(item => {
+    item.addEventListener('click', function(e) {
+        e.stopPropagation();
+        
+        const value = this.getAttribute('data-value');
+        const icon = this.querySelector('i').className;
+        
+        serviceSelectedText.innerHTML = `<i class="${icon}"></i> ${value}`;
+        serviceSelectedText.classList.remove('placeholder');
+        serviceSelectedText.classList.add('selected-text');
+        
+        serviceHiddenSelect.value = value;
+        
+        serviceDropdownItems.forEach(i => i.classList.remove('selected'));
+        this.classList.add('selected');
+        
+        serviceDropdownMenu.classList.remove('active');
+        serviceDropdownTrigger.classList.remove('active');
+    });
+});
+
+document.addEventListener('click', function(e) {
+    if (serviceDropdownMenu && serviceDropdownTrigger) {
+        if (!serviceDropdownTrigger.contains(e.target) && !serviceDropdownMenu.contains(e.target)) {
+            serviceDropdownMenu.classList.remove('active');
+            serviceDropdownTrigger.classList.remove('active');
+        }
+    }
+});
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        if (serviceDropdownMenu?.classList.contains('active')) {
+            serviceDropdownMenu.classList.remove('active');
+            serviceDropdownTrigger.classList.remove('active');
+        }
+    }
+});
+
+// ===== FORM SUBMISSION =====
+document.getElementById('callbackForm')?.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const submitBtn = document.getElementById('submitBtn');
+    const successMsg = document.getElementById('successMessage');
+    const errorMsg = document.getElementById('errorMessage');
+    
+    successMsg.classList.add('hidden');
+    errorMsg.classList.add('hidden');
+    
+    submitBtn.classList.add('loading');
+    submitBtn.querySelector('span').textContent = 'Submitting...';
+    
+    const formData = new FormData(this);
+    const data = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        phone: formData.get('phone'),
+        service: formData.get('service'),
+        timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+        page: 'Profile Pushing',
+        status: 'New Lead'
+    };
+    
+    try {
+        const response = await fetch('https://sheetdb.io/api/v1/7s7xiynldn2sf', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ data: [data] })
+        });
+        
+        if (response.ok) {
+            successMsg.classList.remove('hidden');
+            this.reset();
+            
+            const serviceText = document.getElementById('serviceSelectedText');
+            const serviceSelect = document.getElementById('serviceHiddenSelect');
+            if (serviceText && serviceSelect) {
+                serviceText.textContent = 'Select a service...';
+                serviceText.classList.add('placeholder');
+                serviceText.classList.remove('selected-text');
+                serviceSelect.value = '';
+            }
+            
+            setTimeout(() => { closeCallbackModal(); }, 3000);
+        } else {
+            throw new Error('Failed');
+        }
+    } catch (error) {
+        console.error(error);
+        errorMsg.classList.remove('hidden');
+    } finally {
+        submitBtn.classList.remove('loading');
+        submitBtn.querySelector('span').textContent = 'Submit Now';
+    }
+});
+
+// ===== SCROLL ANIMATIONS (PRESERVED FROM ORIGINAL) =====
+const observerOptions = {
+    threshold: 0.15,
+    rootMargin: '0px 0px -80px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            if (entry.target.classList.contains('service-card')) {
+                entry.target.classList.add('animate');
+            }
+            if (entry.target.classList.contains('testimonial-card')) {
+                entry.target.classList.add('animate');
+            }
+            if (entry.target.classList.contains('pricing-card')) {
+                entry.target.classList.add('animate');
+            }
+            if (entry.target.classList.contains('section-header')) {
+                entry.target.classList.add('animate');
+            }
+            if (entry.target.classList.contains('scroll-animate')) {
+                entry.target.classList.add('animate');
+            }
+        }
+    });
+}, observerOptions);
+
+// Observe all animated elements
+document.querySelectorAll('.service-card, .testimonial-card, .pricing-card, .section-header, .scroll-animate').forEach(el => {
+    observer.observe(el);
+});
+
+// ===== SMOOTH SCROLL =====
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && document.querySelector(href)) {
+            e.preventDefault();
+            document.querySelector(href).scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+</script>
+
+</body>
+</html>

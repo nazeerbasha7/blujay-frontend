@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse All Courses - Blujay Technologies">
+    <title>All Courses - Blujay Technologies</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+    <style>
+    * {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+        background: #ffffff;
+        color: #374151;
+        line-height: 1.7;
+        overflow-x: hidden;
+    }
+
+    /* ===== BLUJAY BRAND COLORS ===== */
+    :root {
+        --blujay-primary: #1D5D7F;
+        --blujay-primary-hover: #236192;
+        --blujay-light: #E8F4F8;
+        --blujay-dark: #144A66;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+        position: relative;
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 100px 24px 60px;
+        background: linear-gradient(135deg, #1D5D7F 0%, #236192 50%, #2980B9 100%);
+        overflow: hidden;
+    }
+
+    .hero::before {
+        content: '';
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        top: -200px;
+        right: -150px;
+        animation: float 20s ease-in-out infinite;
+    }
+
+    .hero::after {
+        content: '';
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+        bottom: -150px;
+        left: -100px;
+        animation: float 25s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translate(0, 0); }
+        50% { transform: translate(-20px, -20px); }
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 900px;
+        animation: fadeInUp 1s ease;
+    }
+
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 20px;
+        background: rgba(255,255,255,0.12);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 50px;
+        color: #fff;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+    }
+
+    .hero h1 {
+        font-size: clamp(32px, 5vw, 52px);
+        font-weight: 600;
+        color: #fff;
+        line-height: 1.25;
+        margin-bottom: 16px;
+    }
+
+    .hero p {
+        font-size: clamp(16px, 2vw, 19px);
+        color: rgba(255,255,255,0.92);
+        line-height: 1.7;
+        max-width: 700px;
+        margin: 0 auto 28px;
+    }
+
+    .hero-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 32px;
+        background: #fff;
+        color: #1D5D7F;
+        border-radius: 12px;
+        font-size: 15px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .hero-cta:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+    }
+
+    /* ===== FILTERS ===== */
+    .filters {
+        padding: 40px 24px;
+        background: #f9fafb;
+        border-bottom: 1px solid #e5e7eb;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(10px);
+    }
+
+    .filters-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        gap: 12px;
+        overflow-x: auto;
+        padding-bottom: 8px;
+    }
+
+    .filters-container::-webkit-scrollbar {
+        height: 4px;
+    }
+
+    .filters-container::-webkit-scrollbar-thumb {
+        background: #1D5D7F;
+        border-radius: 4px;
+    }
+
+    .filter-btn {
+        padding: 10px 24px;
+        background: #fff;
+        color: #6b7280;
+        border: 2px solid #e5e7eb;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+    }
+
+    .filter-btn:hover {
+        border-color: #1D5D7F;
+        color: #1D5D7F;
+    }
+
+    .filter-btn.active {
+        background: linear-gradient(135deg, #1D5D7F 0%, #236192 100%);
+        color: #fff;
+        border-color: #1D5D7F;
+    }
+
+    /* ===== SECTION ===== */
+    .section {
+        padding: 70px 24px;
+    }
+
+    /* ===== COURSES GRID ===== */
+    .courses-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 28px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .course-card {
+        background: #fff;
+        border-radius: 18px;
+        overflow: hidden;
+        border: 2px solid #e5e7eb;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        cursor: pointer;
+    }
+
+    .course-card:hover {
+        transform: translateY(-8px);
+        border-color: #1D5D7F;
+        box-shadow: 0 20px 50px rgba(29,93,127,0.15);
+    }
+
+    .course-image {
+        position: relative;
+        height: 200px;
+        background: linear-gradient(135deg, #1D5D7F 0%, #236192 100%);
+        overflow: hidden;
+    }
+
+    .course-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+    }
+
+    .course-card:hover .course-image img {
+        transform: scale(1.1);
+    }
+
+    .course-badge {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        padding: 6px 14px;
+        background: #FFD700;
+        color: #1D5D7F;
+        border-radius: 8px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+    }
+
+    .course-content {
+        padding: 24px;
+    }
+
+    .course-title {
+        font-size: 20px;
+        font-weight: 600;
+        color: #111827;
+        margin-bottom: 10px;
+        line-height: 1.3;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .course-desc {
+        font-size: 14px;
+        color: #6b7280;
+        line-height: 1.6;
+        margin-bottom: 16px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .course-meta {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-bottom: 16px;
+    }
+
+    .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: #6b7280;
+    }
+
+    .meta-item i {
+        color: #1D5D7F;
+        font-size: 16px;
+    }
+
+    .course-rating {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 16px;
+    }
+
+    .stars {
+        color: #FFD700;
+        font-size: 14px;
+    }
+
+    .rating-text {
+        font-size: 13px;
+        color: #6b7280;
+        font-weight: 500;
+    }
+
+    .course-price {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 16px;
+        padding-top: 16px;
+        border-top: 1px solid #e5e7eb;
+    }
+
+    .current-price {
+        font-size: 26px;
+        font-weight: 700;
+        color: #1D5D7F;
+    }
+
+    .original-price {
+        font-size: 18px;
+        color: #9ca3af;
+        text-decoration: line-through;
+    }
+
+    .discount-badge {
+        padding: 4px 10px;
+        background: #10B981;
+        color: #fff;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    .course-buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .btn {
+        padding: 12px 20px;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #1D5D7F 0%, #236192 100%);
+        color: #fff;
+        border: none;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(29,93,127,0.3);
+    }
+
+    .btn-secondary {
+        background: #fff;
+        color: #1D5D7F;
+        border: 2px solid #1D5D7F;
+    }
+
+    .btn-secondary:hover {
+        background: #E8F4F8;
+    }
+
+    /* ===== LOADING STATE ===== */
+    .loader {
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #1D5D7F;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    /* ===== EMPTY STATE ===== */
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+    }
+
+    .empty-state i {
+        font-size: 64px;
+        color: #d1d5db;
+        margin-bottom: 20px;
+    }
+
+    .empty-state h3 {
+        font-size: 24px;
+        font-weight: 600;
+        color: #111827;
+        margin-bottom: 10px;
+    }
+
+    .empty-state p {
+        font-size: 16px;
+        color: #6b7280;
+        margin-bottom: 20px;
+    }
+
+    /* ===== FADE IN ===== */
+    .fade-in-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-in-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+        .hero {
+            min-height: 60vh;
+            padding: 80px 20px 40px;
+        }
+
+        .section {
+            padding: 50px 20px;
+        }
+
+        .courses-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .course-buttons {
+            grid-template-columns: 1fr;
+        }
+
+        .filters-container {
+            gap: 8px;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            font-size: 13px;
+        }
+    }
+    </style>
+
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-graduation-cap"></i>
+                <span id="coursesCountBadge">Loading Courses...</span>
+            </div>
+            <h1>Transform Your Career with Industry-Ready Courses</h1>
+            <p>Learn from industry experts with 27+ years of combined experience. Small batches, hands-on projects, and lifetime access.</p>
+            <a href="#courses" class="hero-cta">
+                <span>Explore All Courses</span>
+                <i class="fas fa-arrow-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="filters" id="courses">
+        <div class="max-width: 1200px; margin: 0 auto;">
+            <div class="flex justify-between items-center mb-4 px-4">
+                <p class="text-sm text-gray-600">
+                    Showing <span id="courseCount" class="font-bold text-blue-600">0</span> courses
+                </p>
+            </div>
+            <div class="filters-container" id="filterContainer">
+                <button class="filter-btn active" data-category="all">All Courses</button>
+                <!-- More filter buttons will be dynamically added -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Grid -->
+    <section class="section">
+        <!-- Loading State -->
+        <div id="loading" class="text-center py-16">
+            <div class="loader"></div>
+            <p class="mt-4 text-gray-600">Loading courses...</p>
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="empty-state hidden">
+            <i class="fas fa-search"></i>
+            <h3>No courses found</h3>
+            <p>Try adjusting your filters or check back later</p>
+            <button onclick="resetFilters()" class="btn btn-primary">Reset Filters</button>
+        </div>
+
+        <!-- Courses Grid Container -->
+        <div class="courses-grid" id="courses-grid">
+            <!-- Courses will be dynamically inserted here -->
+        </div>
+    </section>
+
+
+
+
+    
+
+
+<!-- JavaScript -->
+<script>
+    // ============================================
+    // API CONFIGURATION
+    // ============================================
+    const API_URL = 'https://blujay-backend.onrender.com/api';
+    
+    let allCourses = [];
+    let filteredCourses = [];
+    let selectedCategory = 'all';
+    let selectedLevel = 'all';
+    let searchQuery = '';
+
+    // ============================================
+    // FETCH ALL COURSES FROM MONGODB
+    // ============================================
+    async function fetchCourses() {
+        try {
+            console.log('🔄 Loading courses from MongoDB...');
+            
+            const response = await fetch(`${API_URL}/courses`);
+            const data = await response.json();
+            
+            if (data.success) {
+                // Filter only published courses
+                allCourses = data.courses.filter(course => course.status === 'published');
+                filteredCourses = allCourses;
+                
+                // Update badge count
+                updateCoursesCountBadge();
+                
+                // Generate dynamic category filters
+                generateCategoryFilters();
+                
+                // Render courses
+                renderCourses();
+                
+                console.log(`✅ Loaded ${allCourses.length} published courses`);
+            } else {
+                throw new Error(data.message);
+            }
+        } catch (error) {
+            console.error('❌ Error fetching courses:', error);
+            showError('Unable to connect to server. Please try again later.');
+        } finally {
+            document.getElementById('loading').style.display = 'none';
+        }
+    }
+
+    // ============================================
+    // UPDATE COURSES COUNT IN HERO BADGE
+    // ============================================
+    function updateCoursesCountBadge() {
+        const badge = document.getElementById('coursesCountBadge');
+        if (badge && allCourses.length > 0) {
+            badge.textContent = `${allCourses.length}+ Professional Courses`;
+        }
+    }
+
+    // ============================================
+    // GENERATE DYNAMIC CATEGORY FILTERS
+    // ============================================
+    function generateCategoryFilters() {
+        const filterContainer = document.getElementById('filterContainer');
+        const categories = [...new Set(allCourses.map(course => course.category))];
+        
+        // Clear existing filters except "All Courses"
+        const allButton = filterContainer.querySelector('.filter-btn[data-category="all"]');
+        filterContainer.innerHTML = '';
+        filterContainer.appendChild(allButton);
+        
+        // Add category filters
+        categories.forEach(category => {
+            const btn = document.createElement('button');
+            btn.className = 'filter-btn';
+            btn.setAttribute('data-category', category);
+            btn.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+            filterContainer.appendChild(btn);
+        });
+        
+        // Attach event listeners
+        attachFilterListeners();
+    }
+
+    // ============================================
+    // ATTACH FILTER LISTENERS
+    // ============================================
+    function attachFilterListeners() {
+        // Category filters
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                selectedCategory = this.dataset.category;
+                filterAndRenderCourses();
+            });
+        });
+
+        // Level filters
+        document.querySelectorAll('.level-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                selectedLevel = this.dataset.level;
+                filterAndRenderCourses();
+            });
+        });
+    }
+
+    // ============================================
+    // FILTER AND RENDER COURSES
+    // ============================================
+    function filterAndRenderCourses() {
+        filteredCourses = allCourses.filter(course => {
+            const matchesCategory = selectedCategory === 'all' || course.category === selectedCategory;
+            const matchesLevel = selectedLevel === 'all' || course.level === selectedLevel;
+            const matchesSearch = searchQuery === '' || 
+                course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                (course.instructor && course.instructor.toLowerCase().includes(searchQuery.toLowerCase()));
+            
+            return matchesCategory && matchesLevel && matchesSearch;
+        });
+        
+        renderCourses();
+    }
+
+    // ============================================
+    // RENDER COURSES WITH NEW DESIGN
+    // ============================================
+    function renderCourses() {
+        const grid = document.getElementById('courses-grid');
+        const emptyState = document.getElementById('emptyState');
+        const countSpan = document.getElementById('courseCount');
+        
+        if (countSpan) {
+            countSpan.textContent = filteredCourses.length;
+        }
+
+        if (filteredCourses.length === 0) {
+            grid.classList.add('hidden');
+            emptyState.classList.remove('hidden');
+            return;
+        }
+
+        grid.classList.remove('hidden');
+        emptyState.classList.add('hidden');
+
+        // Render course cards with new design
+        grid.innerHTML = filteredCourses.map((course, index) => createCourseCard(course, index)).join('');
+        
+        // Scroll reveal animations
+        setTimeout(() => {
+            document.querySelectorAll('.fade-in-up').forEach(el => {
+                fadeInObserver.observe(el);
+            });
+        }, 100);
+    }
+
+    // ============================================
+    // CREATE COURSE CARD WITH NEW DESIGN
+    // ============================================
+    function createCourseCard(course, index) {
+        const originalPrice = course.price || 4999;
+        const discountPrice = course.discountedPrice || originalPrice;
+        const discount = Math.round(((originalPrice - discountPrice) / originalPrice) * 100);
+        const isBestseller = course.students > 100;
+        
+        return `
+            <div class="course-card fade-in-up" 
+                 style="animation-delay: ${index * 0.1}s;"
+                 onclick="redirectToCourseDetail('${course.courseId}')" 
+                 data-course-id="${course.courseId}">
+                
+                <div class="course-image">
+                    <img src="${course.thumbnail || 'https://via.placeholder.com/400x225'}" 
+                         alt="${course.title}">
+                    ${isBestseller ? '<span class="course-badge">Bestseller</span>' : ''}
+                </div>
+                
+                <div class="course-content">
+                    <h3 class="course-title">${course.title}</h3>
+                    <p class="course-desc">${course.description || 'Master industry-relevant skills with expert instructors'}</p>
+                    
+                    <div class="course-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>${course.duration || '8 months'}</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-users"></i>
+                            <span>${course.students || 0} Students</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-laptop"></i>
+                            <span>Online/Offline</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-certificate"></i>
+                            <span>Certified</span>
+                        </div>
+                    </div>
+
+                    <div class="course-rating">
+                        <div class="stars">
+                            ${generateStars(course.rating || 4.8)}
+                        </div>
+                        <span class="rating-text">${course.rating || '4.8'} (${course.students || 0} reviews)</span>
+                    </div>
+
+                    <div class="course-price">
+                        <span class="current-price">₹${discountPrice.toLocaleString()}</span>
+                        ${discount > 0 ? `
+                            <span class="original-price">₹${originalPrice.toLocaleString()}</span>
+                            <span class="discount-badge">${discount}% OFF</span>
+                        ` : ''}
+                    </div>
+
+                    <div class="course-buttons">
+                        <button onclick="event.stopPropagation(); redirectToCourseDetail('${course.courseId}')" class="btn btn-primary">
+                            View Details
+                        </button>
+                        <button onclick="event.stopPropagation(); alert('Book demo for ${course.title}')" class="btn btn-secondary">
+                            Book Demo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+
+
+
+
+
+    
+
+    // ============================================
+    // GENERATE STAR RATING
+    // ============================================
+    function generateStars(rating) {
+        const fullStars = Math.floor(rating);
+        const hasHalfStar = rating % 1 >= 0.5;
+        let stars = '';
+        
+        for (let i = 0; i < fullStars; i++) {
+            stars += '<i class="fas fa-star"></i>';
+        }
+        
+        if (hasHalfStar) {
+            stars += '<i class="fas fa-star-half-alt"></i>';
+        }
+        
+        const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+        for (let i = 0; i < emptyStars; i++) {
+            stars += '<i class="far fa-star"></i>';
+        }
+        
+        return stars;
+    }
+
+    // ============================================
+    // ✅ REDIRECT TO COURSE DETAIL (NO LOGIN REQUIRED)
+    // ============================================
+    function redirectToCourseDetail(courseId) {
+        console.log('🔗 Redirecting to course detail:', courseId);
+        window.location.href = `course-detail.html?id=${courseId}`;
+    }
+
+    // ============================================
+    // SEARCH FUNCTIONALITY
+    // ============================================
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.addEventListener('input', function(e) {
+            searchQuery = e.target.value;
+            filterAndRenderCourses();
+        });
+    }
+
+    // ============================================
+    // RESET FILTERS
+    // ============================================
+    function resetFilters() {
+        selectedCategory = 'all';
+        selectedLevel = 'all';
+        searchQuery = '';
+        if (searchInput) searchInput.value = '';
+        document.querySelectorAll('.filter-btn').forEach((b, i) => {
+            b.classList.remove('active');
+            if (i === 0) b.classList.add('active');
+        });
+        document.querySelectorAll('.level-btn').forEach((b, i) => {
+            b.classList.remove('active');
+            if (i === 0) b.classList.add('active');
+        });
+        filterAndRenderCourses();
+    }
+
+    // ============================================
+    // SHOW ERROR
+    // ============================================
+    function showError(message) {
+        const grid = document.getElementById('courses-grid');
+        grid.innerHTML = `
+            <div class="empty-state">
+                <i class="fas fa-exclamation-triangle" style="color: #ef4444;"></i>
+                <h3>Error</h3>
+                <p>${message}</p>
+                <button onclick="location.reload()" class="btn btn-primary">Retry</button>
+            </div>
+        `;
+        grid.classList.remove('hidden');
+    }
+
+    // ============================================
+    // SCROLL REVEAL ANIMATIONS
+    // ============================================
+    const fadeInObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { 
+        threshold: 0.1,
+        rootMargin: '0px 0px -80px 0px'
+    });
+
+    // ============================================
+    // SMOOTH SCROLL
+    // ============================================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // ============================================
+    // INITIALIZE - LOAD COURSES ON PAGE LOAD
+    // ============================================
+    fetchCourses();
+    
+    console.log('✅ Courses page loaded with new design!');
+    console.log('📝 Flow: courses.html → course-detail.html (NO LOGIN) → Enroll Now → login.html');
+</script>
+
+</body>
+</html>
+

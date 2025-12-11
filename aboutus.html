@@ -1026,6 +1026,13 @@
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
         }
+
+        /* Navbar Button Colors to match jobsupport.html */
+        nav .bg-blue-600 { background-color: #1D5D7F !important; }
+        nav .hover\:bg-blue-700:hover { background-color: #144A66 !important; }
+        nav .border-blue-600 { border-color: #1D5D7F !important; }
+        nav .text-blue-600 { color: #1D5D7F !important; }
+        nav .hover\:bg-blue-50:hover { background-color: rgba(29, 93, 127, 0.05) !important; }
     </style>
 </head>
 <body>
@@ -1047,10 +1054,12 @@
                         Offerings <i class="fas fa-chevron-down chevron"></i>
                     </button>
                     <div class="dropdown-menu">
-                        <a href="#fullstack"><i class="fas fa-code"></i>Profile Pushing</a>
-                        <a href="#mern"><i class="fas fa-layer-group"></i>Job support</a>
-                        <a href="#java"><i class="fab fa-java"></i>Courses</a>
+                        <a href="profilepushing.html"><i class="fas fa-code"></i>Profile Pushing</a>
+                        <a href="jobsupport.html"><i class="fas fa-layer-group"></i>Job support</a>
+                        <a href="courses.html"><i class="fab fa-java"></i>Courses-Recorded</a>
+                        <a href="courses-online.html"><i class="fab fa-java"></i>Courses-Online</a>
                         <a href="#datascience"><i class="fas fa-chart-line"></i>Interview Training</a>
+                         
                     </div>
                 </div>
 
@@ -1059,6 +1068,7 @@
                     <button class="dropdown-toggle text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
                         Insights <i class="fas fa-chevron-down chevron"></i>
                     </button>
+                    
                 </div>
 
                 <!-- Jobs Dropdown -->
@@ -1077,16 +1087,17 @@
                 <!-- More Dropdown -->
                 <div class="dropdown">
                     <button class="dropdown-toggle text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
-                        About Us <i class="fas fa-chevron-down chevron"></i>
+                        More  <i class="fas fa-chevron-down chevron"></i>
                     </button>
                     <div class="dropdown-menu">
                         <a href="aboutus.html"><i class="fas fa-info-circle"></i>About Us</a>
                         <a href="blog.html"><i class="fas fa-blog"></i>Blog</a>
                     </div>
                 </div>
+                
 
                 <a href="login.html" class="border-2 border-blue-600 text-blue-600 px-4 py-1.5 rounded-lg text-[12px] lg:text-[13px] font-semibold hover:bg-blue-50 transition-all">Login</a>
-                <button onclick="openCallbackModal()" class="bg-gradient-to-r from-[#0057A0] to-[#00447C] text-white px-4 py-2 rounded-lg text-[12px] lg:text-[13px] font-semibold hover:from-[#00447C] hover:to-[#003366] transition-all flex items-center gap-2 pulse-animation">
+                <button onclick="openCallbackModal()" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-[12px] lg:text-[13px] font-semibold hover:bg-blue-700 transition-all flex items-center gap-2 pulse-animation">
                     <i class="fas fa-phone-alt text-[10px]"></i> Request Callback
                 </button>
             </div>
@@ -1117,10 +1128,24 @@
                     </button>
                     <div class="mobile-dropdown-content">
                         <div class="mobile-dropdown-inner">
-                            <a href="#fullstack"><i class="fas fa-code"></i>Profile Pushing</a>
-                            <a href="#mern"><i class="fas fa-layer-group"></i>Job support</a>
-                            <a href="#java"><i class="fab fa-java"></i>Courses</a>
-                            <a href="#datascience"><i class="fas fa-chart-line"></i>Interview Training</a>
+                        <a href="profilepushing.html"><i class="fas fa-code"></i>Profile Pushing</a>
+                        <a href="jobsupport.html"><i class="fas fa-layer-group"></i>Job support</a>
+                        <a href="courses.html"><i class="fab fa-java"></i>Courses</a>
+                        <a href="#datascience"><i class="fas fa-chart-line"></i>Interview Training</a>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="mobile-dropdown-wrapper">
+                    <button class="mobile-dropdown-toggle text-[14px] font-semibold text-gray-900" type="button">
+                        Insights <i class="fas fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="mobile-dropdown-content">
+                        <div class="mobile-dropdown-inner">
+                            <a href="#hyderabad"><i class="fas fa-map-marker-alt"></i>Hyderabad Centre</a>
+                            <a href="#bangalore"><i class="fas fa-map-marker-alt"></i>Bangalore Centre</a>
+                            <a href="#mumbai"><i class="fas fa-map-marker-alt"></i>Mumbai Centre</a>
+                            <a href="#online"><i class="fas fa-laptop"></i>Online Learning</a>
                         </div>
                     </div>
                 </div>
@@ -1151,7 +1176,20 @@
                     </div>
                 </div>
 
-                <button onclick="openCallbackModal()" class="block w-full text-center bg-gradient-to-r from-[#0057A0] to-[#00447C] text-white py-2.5 rounded-lg text-[13px] font-semibold mt-6 hover:from-[#00447C] hover:to-[#003366] transition-all shadow-md">
+                <div class="mobile-dropdown-wrapper">
+                    <button class="mobile-dropdown-toggle text-[14px] font-medium text-gray-800" type="button">
+                        Blogs <i class="fas fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="mobile-dropdown-content">
+                        <div class="mobile-dropdown-inner">
+                            <a href="aboutus.html"><i class="fas fa-info-circle"></i>About Us</a>
+                            <a href="blog.html"><i class="fas fa-blog"></i>Blog</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <button onclick="openCallbackModal()" class="block w-full text-center bg-blue-600 text-white py-2.5 rounded-lg text-[13px] font-semibold mt-6 hover:bg-blue-700 transition-all shadow-md">
                     Request Callback
                 </button>
 
@@ -1160,7 +1198,6 @@
         </div>
     </div>
 </nav>
-
     <!-- Hero -->
     <section class="hero">
         <div class="hero-content">
@@ -1565,17 +1602,17 @@
                     </li>
                 </ul>
 
-                <div class="flex gap-3 mt-4 justify-center lg:justify-start">
-                    <a href="#" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all hover:scale-110">
+                <div class="flex gap-3 mt-4">
+                    <a href="https://linkedin.com/company/blujay-technologies" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all hover:scale-110">
                         <i class="fab fa-linkedin text-[14px]"></i>
                     </a>
-                    <a href="#" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all hover:scale-110">
+                    <a href="https://instagram.com/blujaytech" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all hover:scale-110">
                         <i class="fab fa-instagram text-[14px]"></i>
                     </a>
-                    <a href="#" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all hover:scale-110">
+                    <a href="https://facebook.com/blujaytechnologies" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all hover:scale-110">
                         <i class="fab fa-facebook text-[14px]"></i>
                     </a>
-                    <a href="#" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all hover:scale-110">
+                    <a href="https://youtube.com/@blujaytech" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all hover:scale-110">
                         <i class="fab fa-youtube text-[14px]"></i>
                     </a>
                 </div>

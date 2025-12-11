@@ -1,0 +1,2176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - Blujay Technologies</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background: #ffffff;
+            color: #374151;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ===== BLUJAY BRAND COLORS ===== */
+        :root {
+            --blujay-primary: #0057A0;
+            --blujay-primary-hover: #00447C;
+            --blujay-light: #E8F4F8;
+            --blujay-dark: #144A66;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 24px 60px;
+            background: linear-gradient(135deg, #1D5D7F 0%, #236192 50%, #2980B9 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            top: -200px;
+            right: -150px;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+            bottom: -150px;
+            left: -100px;
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-20px, -20px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50px;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 5vw, 52px);
+            font-weight: 600;
+            color: #fff;
+            line-height: 1.25;
+            margin-bottom: 16px;
+        }
+
+        .hero p {
+            font-size: clamp(16px, 2vw, 19px);
+            color: rgba(255,255,255,0.92);
+            line-height: 1.7;
+            max-width: 700px;
+            margin: 0 auto 28px;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: #fff;
+            color: #1D5D7F;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+        }
+
+        /* ===== FILTERS ===== */
+        .filters {
+            padding: 40px 24px;
+            background: #f9fafb;
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .filters-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+        }
+
+        .filters-container::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .filters-container::-webkit-scrollbar-thumb {
+            background: #1D5D7F;
+            border-radius: 4px;
+        }
+
+        .filter-btn {
+            padding: 10px 24px;
+            background: #fff;
+            color: #6b7280;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .filter-btn:hover {
+            border-color: #1D5D7F;
+            color: #1D5D7F;
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, #1D5D7F 0%, #236192 100%);
+            color: #fff;
+            border-color: #1D5D7F;
+        }
+
+        /* ===== SECTION ===== */
+        .section {
+            padding: 70px 24px;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto 50px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 18px;
+            background: linear-gradient(135deg, rgba(29,93,127,0.08) 0%, rgba(29,93,127,0.04) 100%);
+            border: 1px solid rgba(29,93,127,0.2);
+            border-radius: 50px;
+            color: #1D5D7F;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.3px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 600;
+            color: #111827;
+            line-height: 1.3;
+            margin-bottom: 14px;
+        }
+
+        .section-subtitle {
+            font-size: 17px;
+            color: #6b7280;
+            line-height: 1.7;
+        }
+
+        /* ===== COURSES GRID ===== */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 28px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .course-card {
+            background: #fff;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 2px solid #e5e7eb;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            border-color: #1D5D7F;
+            box-shadow: 0 20px 50px rgba(29,93,127,0.15);
+        }
+
+        .course-image {
+            position: relative;
+            height: 200px;
+            background: linear-gradient(135deg, #1D5D7F 0%, #236192 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .course-image i {
+            font-size: 64px;
+            color: rgba(255,255,255,0.9);
+            transition: all 0.4s ease;
+        }
+
+        .course-card:hover .course-image i {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .course-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            padding: 6px 14px;
+            background: #FFD700;
+            color: #1D5D7F;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .course-content {
+            padding: 24px;
+        }
+
+        .course-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .course-desc {
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .course-meta {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .meta-item i {
+            color: #1D5D7F;
+            font-size: 16px;
+        }
+
+        .course-rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .stars {
+            color: #FFD700;
+            font-size: 14px;
+        }
+
+        .rating-text {
+            font-size: 13px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .course-price {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .current-price {
+            font-size: 26px;
+            font-weight: 700;
+            color: #1D5D7F;
+        }
+
+        .original-price {
+            font-size: 18px;
+            color: #9ca3af;
+            text-decoration: line-through;
+        }
+
+        .discount-badge {
+            padding: 4px 10px;
+            background: #10B981;
+            color: #fff;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .course-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #1D5D7F 0%, #236192 100%);
+            color: #fff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(29,93,127,0.3);
+        }
+
+        .btn-secondary {
+            background: #fff;
+            color: #1D5D7F;
+            border: 2px solid #1D5D7F;
+        }
+
+        .btn-secondary:hover {
+            background: #E8F4F8;
+        }
+
+        /* ===== HIGHLIGHTS ===== */
+        .highlights {
+            background: linear-gradient(180deg, #f9fafb 0%, #fff 100%);
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .highlight-card {
+            text-align: center;
+            padding: 28px 20px;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .highlight-card:hover {
+            border-color: #1D5D7F;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(29,93,127,0.1);
+        }
+
+        .highlight-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, rgba(29,93,127,0.1) 0%, rgba(29,93,127,0.05) 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            transition: all 0.3s ease;
+        }
+
+        .highlight-card:hover .highlight-icon {
+            transform: scale(1.1);
+        }
+
+        .highlight-icon i {
+            font-size: 32px;
+            color: #1D5D7F;
+        }
+
+        .highlight-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+
+        .highlight-desc {
+            font-size: 13px;
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* ===== LEARNING PATH ===== */
+        .learning-path {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .path-step {
+            text-align: center;
+            padding: 24px 16px;
+            background: #fff;
+            border: 2px solid #e5e7eb;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .path-step:hover {
+            border-color: #1D5D7F;
+            transform: scale(1.05);
+        }
+
+        .path-number {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #1D5D7F 0%, #236192 100%);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 20px;
+            font-weight: 700;
+            box-shadow: 0 4px 16px rgba(29,93,127,0.3);
+        }
+
+        .path-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #111827;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta {
+            position: relative;
+            background: linear-gradient(135deg, #1D5D7F 0%, #236192 50%, #2980B9 100%);
+            padding: 70px 40px;
+            text-align: center;
+            border-radius: 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%);
+            top: -150px;
+            right: -100px;
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta h2 {
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 14px;
+        }
+
+        .cta p {
+            font-size: 17px;
+            color: rgba(255,255,255,0.92);
+            max-width: 650px;
+            margin: 0 auto 30px;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: #fff;
+            color: #1D5D7F;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+        }
+
+        .cta-button.secondary:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* ===== FADE IN ===== */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 60vh;
+                padding: 80px 20px 40px;
+            }
+
+            .section {
+                padding: 50px 20px;
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .course-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .filters-container {
+                gap: 8px;
+            }
+
+            .filter-btn {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta {
+                padding: 50px 24px;
+                margin: 0 20px;
+            }
+        }
+
+        /* ===== NAVBAR & DROPDOWN STYLES ===== */
+        .nav-glass {
+            backdrop-filter: blur(14px);
+            background: rgba(255, 255, 255, 0.97);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
+        }
+
+        .nav-glass.scrolled {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-toggle {
+            display: flex; align-items: center; gap: 6px; cursor: pointer;
+            transition: all 0.25s ease; background: none; border: none; padding: 0;
+        }
+        .dropdown-toggle i.chevron {
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 9px;
+        }
+        .dropdown:hover .dropdown-toggle,
+        .dropdown.active .dropdown-toggle { color: var(--blujay-primary) !important; }
+        .dropdown:hover .dropdown-toggle i.chevron,
+        .dropdown.active .dropdown-toggle i.chevron { transform: rotate(180deg); }
+
+        .dropdown-menu {
+            position: absolute; top: calc(100% + 14px); left: 50%;
+            transform: translateX(-50%) translateY(-10px); min-width: 240px;
+            background: #ffffff; border-radius: 14px;
+            box-shadow: 0 22px 60px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(15, 23, 42, 0.04);
+            opacity: 0; visibility: hidden;
+            transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000; padding: 10px;
+        }
+        .dropdown:hover .dropdown-menu,
+        .dropdown.active .dropdown-menu {
+            opacity: 1; visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: flex; align-items: center; padding: 11px 14px;
+            color: #111827; text-decoration: none; font-size: 13px;
+            font-weight: 500; transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 10px; margin-bottom: 4px; position: relative;
+        }
+        .dropdown-menu a:last-child { margin-bottom: 0; }
+        .dropdown-menu a i {
+            margin-right: 10px; font-size: 13px; width: 18px;
+            text-align: center; color: var(--blujay-primary); opacity: 0.9;
+        }
+        .dropdown-menu a:hover {
+            background: var(--blujay-primary); color: #ffffff;
+            padding-left: 18px; transform: translateX(2px);
+        }
+        .dropdown-menu a:hover i { color: #ffffff; }
+
+        .mobile-dropdown-wrapper { border-bottom: 1px solid #e5e7eb; padding: 0; }
+        .mobile-dropdown-toggle {
+            width: 100%; display: flex; justify-content: space-between;
+            align-items: center; cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: none; border: none; text-align: left;
+            padding: 10px 0; user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .mobile-dropdown-toggle i.arrow {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 9px; color: #9ca3af;
+        }
+        .mobile-dropdown-toggle.active i.arrow {
+            transform: rotate(180deg); color: var(--blujay-primary);
+        }
+        .mobile-dropdown-toggle.active {
+            color: var(--blujay-primary); font-weight: 600;
+        }
+
+        .mobile-dropdown-content {
+            display: grid; grid-template-rows: 0fr;
+            transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .mobile-dropdown-content.active { grid-template-rows: 1fr; }
+        .mobile-dropdown-inner { overflow: hidden; min-height: 0; }
+        .mobile-dropdown-content.active .mobile-dropdown-inner {
+            padding: 8px 3px 10px 3px;
+        }
+
+        .mobile-dropdown-content a {
+            display: flex; align-items: center; padding: 8px 12px;
+            color: #374151; background: #ffffff; margin-bottom: 5px;
+            border-radius: 8px; font-size: 12.5px; font-weight: 500;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none; border: 1px solid #e5e7eb;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+            user-select: none; -webkit-tap-highlight-color: transparent;
+        }
+        .mobile-dropdown-content a:last-child { margin-bottom: 0; }
+        .mobile-dropdown-content a i {
+            margin-right: 9px; font-size: 11px; width: 14px;
+            text-align: center; opacity: 0.8; color: var(--blujay-primary);
+        }
+        .mobile-dropdown-content a:active {
+            background: var(--blujay-primary) !important;
+            color: #ffffff !important;
+            border-color: var(--blujay-primary) !important;
+            transform: scale(0.97);
+        }
+        .mobile-dropdown-content a:active i { opacity: 1; color: #ffffff; }
+
+        #mobile-menu { backdrop-filter: blur(10px); }
+        body.mobile-menu-open { overflow: hidden; position: fixed; width: 100%; }
+
+        /* ===== CALLBACK MODAL ===== */
+        #callbackModal { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        #callbackModal.flex { animation: fadeIn 0.3s ease-out; }
+        .modal-content { animation: slideUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); max-height: 85vh; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(40px) scale(0.95); opacity: 0; }
+            to { transform: translateY(0) scale(1); opacity: 1; }
+        }
+
+        @media (max-width: 767px) {
+            .modal-content { max-width: 95%; margin: 0 auto; max-height: 90vh; }
+            #callbackModal { padding: 0.75rem; }
+        }
+
+        .service-dropdown-wrapper { position: relative; width: 100%; }
+        .service-dropdown-trigger {
+            width: 100%; display: flex; align-items: center; justify-content: space-between;
+            padding: 0.5rem 0.875rem; border: 1px solid #d1d5db; border-radius: 0.5rem;
+            background: #ffffff; cursor: pointer; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 13px; font-weight: 500; color: #111827; user-select: none;
+        }
+        .service-dropdown-trigger:hover { border-color: #1D5D7F; background-color: #f8fafc; }
+        .service-dropdown-trigger.active { border-color: #1D5D7F; box-shadow: 0 0 0 3px rgba(29, 93, 127, 0.1); }
+        .service-dropdown-trigger .placeholder { color: #9ca3af; font-style: italic; }
+        .service-dropdown-trigger .selected-text { color: #111827; font-weight: 500; }
+        .service-dropdown-trigger i.chevron {
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 9px; color: #1D5D7F; margin-left: 8px;
+        }
+        .service-dropdown-trigger.active i.chevron { transform: rotate(180deg); }
+
+        .service-dropdown-menu {
+            position: absolute; bottom: calc(100% + 8px); left: 0; right: 0;
+            background: #ffffff; border-radius: 14px;
+            box-shadow: 0 22px 60px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(15, 23, 42, 0.04);
+            opacity: 0; visibility: hidden; transform: translateY(10px);
+            transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1); z-index: 10000;
+            padding: 10px; overflow: visible;
+        }
+        .service-dropdown-menu.active { opacity: 1; visibility: visible; transform: translateY(0); }
+        .service-dropdown-item {
+            display: flex; align-items: center; padding: 11px 14px; color: #111827;
+            font-size: 13px; font-weight: 500; transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 10px; margin-bottom: 4px; cursor: pointer; user-select: none;
+        }
+        .service-dropdown-item:last-child { margin-bottom: 0; }
+        .service-dropdown-item i {
+            margin-right: 10px; font-size: 13px; width: 18px;
+            text-align: center; color: #1D5D7F; opacity: 0.9;
+        }
+        .service-dropdown-item:hover {
+            background: #1D5D7F; color: #ffffff; padding-left: 18px; transform: translateX(2px);
+        }
+        .service-dropdown-item:hover i { color: #ffffff; }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="fixed w-full top-0 z-50 nav-glass" id="navbar">
+    <div class="px-4 lg:px-8">
+        <div class="flex justify-between items-center h-[60px] lg:h-[72px]">
+            <a href="index.html" class="flex items-center">
+                <img src="logo.png" alt="Blujay Technologies" class="h-9 lg:h-12 w-auto" loading="lazy">
+            </a>
+
+            <div class="hidden lg:flex items-center gap-8 ml-auto">
+                <div class="dropdown">
+                    <button class="dropdown-toggle text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
+                        Offerings <i class="fas fa-chevron-down chevron"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="#fullstack"><i class="fas fa-code"></i>Profile Pushing</a>
+                        <a href="#mern"><i class="fas fa-layer-group"></i>Job support</a>
+                        <a href="courses.html"><i class="fab fa-java"></i>Courses-Recorded</a>
+                        <a href="courses-online.html"><i class="fab fa-java"></i>Courses-Online</a>
+                        <a href="#datascience"><i class="fas fa-chart-line"></i>Interview Training</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropdown-toggle text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
+                        Insights <i class="fas fa-chevron-down chevron"></i>
+                    </button>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropdown-toggle text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
+                        Jobs <i class="fas fa-chevron-down chevron"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="#browse-jobs"><i class="fas fa-briefcase"></i>Browse Jobs</a>
+                        <a href="#hiring-drives"><i class="fas fa-users"></i>Hiring Drives</a>
+                        <a href="#post-job"><i class="fas fa-plus-circle"></i>Post a Job</a>
+                        <a href="#career-resources"><i class="fas fa-book"></i>Career Resources</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropdown-toggle text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
+                        More  <i class="fas fa-chevron-down chevron"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="aboutus.html"><i class="fas fa-info-circle"></i>About Us</a>
+                        <a href="blog.html"><i class="fas fa-blog"></i>Blog</a>
+                    </div>
+                </div>
+
+                <a href="login.html" class="border-2 border-blue-600 text-blue-600 px-4 py-1.5 rounded-lg text-[12px] lg:text-[13px] font-semibold hover:bg-blue-50 transition-all">Login</a>
+                <button onclick="openCallbackModal()" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-[12px] lg:text-[13px] font-semibold hover:bg-blue-700 transition-all flex items-center gap-2">
+                    <i class="fas fa-phone-alt text-[10px]"></i> Request Callback
+                </button>
+            </div>
+
+            <div class="flex lg:hidden items-center">
+                <button id="mobile-toggle" class="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-all">
+                    <i class="fas fa-bars text-[20px] text-gray-900"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="mobile-menu" class="fixed inset-0 z-[100] transform translate-x-full transition-transform duration-300 lg:hidden" style="background-color: #ffffff !important;">
+        <div class="flex justify-between items-center h-[60px] px-4 border-b" style="background-color: #ffffff !important;">
+            <img src="logo.png" alt="Blujay Technologies" class="h-9" loading="lazy">
+            <button id="mobile-close" class="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-all">
+                <i class="fas fa-times text-[22px] text-gray-800"></i>
+            </button>
+        </div>
+
+        <div class="overflow-y-auto h-[calc(100vh-60px)]" style="background-color: #ffffff !important;">
+            <div class="px-4 py-4">
+                <div class="mobile-dropdown-wrapper">
+                    <button class="mobile-dropdown-toggle text-[14px] font-semibold text-gray-900" type="button">
+                        Offerings <i class="fas fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="mobile-dropdown-content">
+                        <div class="mobile-dropdown-inner">
+                        <a href="#fullstack"><i class="fas fa-code"></i>Profile Pushing</a>
+                        <a href="#mern"><i class="fas fa-layer-group"></i>Job support</a>
+                        <a href="courses.html"><i class="fab fa-java"></i>Courses</a>
+                        <a href="#datascience"><i class="fas fa-chart-line"></i>Interview Training</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mobile-dropdown-wrapper">
+                    <button class="mobile-dropdown-toggle text-[14px] font-semibold text-gray-900" type="button">
+                        Insights <i class="fas fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="mobile-dropdown-content">
+                        <div class="mobile-dropdown-inner">
+                            <a href="#hyderabad"><i class="fas fa-map-marker-alt"></i>Hyderabad Centre</a>
+                            <a href="#bangalore"><i class="fas fa-map-marker-alt"></i>Bangalore Centre</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mobile-dropdown-wrapper">
+                    <button class="mobile-dropdown-toggle text-[14px] font-semibold text-gray-900" type="button">
+                        Jobs <i class="fas fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="mobile-dropdown-content">
+                        <div class="mobile-dropdown-inner">
+                            <a href="#browse-jobs"><i class="fas fa-briefcase"></i>Browse Jobs</a>
+                            <a href="#hiring-drives"><i class="fas fa-users"></i>Hiring Drives</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mobile-dropdown-wrapper">
+                    <button class="mobile-dropdown-toggle text-[14px] font-medium text-gray-800" type="button">
+                        More <i class="fas fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="mobile-dropdown-content">
+                        <div class="mobile-dropdown-inner">
+                            <a href="aboutus.html"><i class="fas fa-info-circle"></i>About Us</a>
+                            <a href="blog.html"><i class="fas fa-blog"></i>Blog</a>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="openCallbackModal()" class="block w-full text-center bg-blue-600 text-white py-2.5 rounded-lg text-[13px] font-semibold mt-6 hover:bg-blue-700 transition-all shadow-md">
+                    Request Callback
+                </button>
+                <a href="login.html" class="block w-full text-center border-2 border-blue-600 text-blue-600 py-2.5 rounded-lg text-[13px] font-semibold mt-3 hover:bg-blue-50 transition-all">Login</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-graduation-cap"></i>
+                <span>16+ Professional Courses</span>
+            </div>
+            <h1>Transform Your Career with Industry-Ready Courses</h1>
+            <p>Learn from industry experts with 27+ years of combined experience. Small batches, hands-on projects, and lifetime access.</p>
+            <a href="#courses" class="hero-cta">
+                <span>Explore All Courses</span>
+                <i class="fas fa-arrow-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="filters" id="courses">
+        <div class="filters-container">
+            <button class="filter-btn active" data-category="all">All Courses</button>
+            <button class="filter-btn" data-category="cloud">Cloud & DevOps</button>
+            <button class="filter-btn" data-category="programming">Programming</button>
+            <button class="filter-btn" data-category="ai">AI & Data Science</button>
+            <button class="filter-btn" data-category="cybersecurity">Cybersecurity</button>
+            <button class="filter-btn" data-category="testing">Software Testing</button>
+            <button class="filter-btn" data-category="marketing">Digital Marketing</button>
+        </div>
+    </section>
+
+    <!-- Courses Grid -->
+    <section class="section">
+        <div class="courses-grid">
+            
+            <!-- Course 1: AWS -->
+            <div class="course-card fade-in-up" data-category="cloud">
+                <div class="course-image" style="background: linear-gradient(135deg, #FF9900 0%, #FF6B35 100%);">
+                    <i class="fab fa-aws"></i>
+                    <span class="course-badge">Bestseller</span>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">AWS Solutions Architect</h3>
+                    <p class="course-desc">Master AWS cloud services, architecture, and deployment strategies for enterprise solutions.</p>
+                    
+                    <div class="course-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>45 Hours</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-users"></i>
+                            <span>6-10 Students</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-laptop"></i>
+                            <span>Online/Offline</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-certificate"></i>
+                            <span>Certified</span>
+                        </div>
+                    </div>
+
+                    <div class="course-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="rating-text">4.8 (156 reviews)</span>
+                    </div>
+
+                    <div class="course-price">
+                        <span class="current-price">₹15,000</span>
+                        <span class="original-price">₹20,000</span>
+                        <span class="discount-badge">25% OFF</span>
+                    </div>
+
+                    <div class="course-buttons">
+                        <a href="#" class="btn btn-primary">View Details</a>
+                        <a href="#" class="btn btn-secondary">Book Demo</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 2: Azure -->
+            <div class="course-card fade-in-up" data-category="cloud">
+                <div class="course-image" style="background: linear-gradient(135deg, #0078D4 0%, #50E6FF 100%);">
+                    <i class="fab fa-microsoft"></i>
+                    <span class="course-badge">Popular</span>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">Azure Cloud Engineer</h3>
+                    <p class="course-desc">Learn Microsoft Azure services, deployment, and management for cloud infrastructure.</p>
+                    
+                    <div class="course-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>40 Hours</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-users"></i>
+                            <span>6-10 Students</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-laptop"></i>
+                            <span>Online/Offline</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-certificate"></i>
+                            <span>Certified</span>
+                        </div>
+                    </div>
+
+                    <div class="course-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="rating-text">4.9 (124 reviews)</span>
+                    </div>
+
+                    <div class="course-price">
+                        <span class="current-price">₹14,000</span>
+                        <span class="original-price">₹18,000</span>
+                        <span class="discount-badge">22% OFF</span>
+                    </div>
+
+                    <div class="course-buttons">
+                        <a href="#" class="btn btn-primary">View Details</a>
+                        <a href="#" class="btn btn-secondary">Book Demo</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 3: DevOps -->
+            <div class="course-card fade-in-up" data-category="cloud">
+                <div class="course-image" style="background: linear-gradient(135deg, #326CE5 0%, #00D9FF 100%);">
+                    <i class="fas fa-infinity"></i>
+                    <span class="course-badge">New</span>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">DevOps with Docker & Kubernetes</h3>
+                    <p class="course-desc">Master containerization, orchestration, CI/CD pipelines, and DevOps best practices.</p>
+                    
+                    <div class="course-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>50 Hours</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-users"></i>
+                            <span>6-10 Students</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-laptop"></i>
+                            <span>Online/Offline</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-certificate"></i>
+                            <span>Certified</span>
+                        </div>
+                    </div>
+
+                    <div class="course-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="rating-text">4.7 (98 reviews)</span>
+                    </div>
+
+                    <div class="course-price">
+                        <span class="current-price">₹16,000</span>
+                        <span class="original-price">₹22,000</span>
+                        <span class="discount-badge">27% OFF</span>
+                    </div>
+
+                    <div class="course-buttons">
+                        <a href="#" class="btn btn-primary">View Details</a>
+                        <a href="#" class="btn btn-secondary">Book Demo</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 4: Python Full Stack -->
+            <div class="course-card fade-in-up" data-category="programming">
+                <div class="course-image" style="background: linear-gradient(135deg, #3776AB 0%, #FFD43B 100%);">
+                    <i class="fab fa-python"></i>
+                    <span class="course-badge">Bestseller</span>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">Python Full Stack Development</h3>
+                    <p class="course-desc">Learn Python, Django, React, and database design to build complete web applications.</p>
+                    
+                    <div class="course-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>60 Hours</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-users"></i>
+                            <span>6-10 Students</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-laptop"></i>
+                            <span>Online/Offline</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-certificate"></i>
+                            <span>Certified</span>
+                        </div>
+                    </div>
+
+                    <div class="course-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="rating-text">5.0 (210 reviews)</span>
+                    </div>
+
+                    <div class="course-price">
+                        <span class="current-price">₹18,000</span>
+                        <span class="original-price">₹25,000</span>
+                        <span class="discount-badge">28% OFF</span>
+                    </div>
+
+                    <div class="course-buttons">
+                        <a href="#" class="btn btn-primary">View Details</a>
+                        <a href="#" class="btn btn-secondary">Book Demo</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 5: Java Full Stack -->
+            <div class="course-card fade-in-up" data-category="programming">
+                <div class="course-image" style="background: linear-gradient(135deg, #E76F00 0%, #5382A1 100%);">
+                    <i class="fab fa-java"></i>
+                    <span class="course-badge">Popular</span>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">Java Full Stack Development</h3>
+                    <p class="course-desc">Master Java, Spring Boot, Angular, and enterprise application development.</p>
+                    
+                    <div class="course-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>65 Hours</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-users"></i>
+                            <span>6-10 Students</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-laptop"></i>
+                            <span>Online/Offline</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-certificate"></i>
+                            <span>Certified</span>
+                        </div>
+                    </div>
+
+                    <div class="course-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="rating-text">4.8 (187 reviews)</span>
+                    </div>
+
+                    <div class="course-price">
+                        <span class="current-price">₹19,000</span>
+                        <span class="original-price">₹26,000</span>
+                        <span class="discount-badge">27% OFF</span>
+                    </div>
+
+                    <div class="course-buttons">
+                        <a href="#" class="btn btn-primary">View Details</a>
+                        <a href="#" class="btn btn-secondary">Book Demo</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 6: MERN Stack -->
+            <div class="course-card fade-in-up" data-category="programming">
+                <div class="course-image" style="background: linear-gradient(135deg, #61DAFB 0%, #764ABC 100%);">
+                    <i class="fab fa-react"></i>
+                    <span class="course-badge">Trending</span>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">MERN Stack Development</h3>
+                    <p class="course-desc">Build modern web apps with MongoDB, Express, React, and Node.js.</p>
+                    
+                    <div class="course-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>55 Hours</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-users"></i>
+                            <span>6-10 Students</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-laptop"></i>
+                            <span>Online/Offline</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-certificate"></i>
+                            <span>Certified</span>
+                        </div>
+                    </div>
+
+                    <div class="course-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="rating-text">4.9 (165 reviews)</span>
+                    </div>
+
+                    <div class="course-price">
+                        <span class="current-price">₹17,000</span>
+                        <span class="original-price">₹24,000</span>
+                        <span class="discount-badge">29% OFF</span>
+                    </div>
+
+                    <div class="course-buttons">
+                        <a href="#" class="btn btn-primary">View Details</a>
+                        <a href="#" class="btn btn-secondary">Book Demo</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 7: Generative AI -->
+            <div class="course-card fade-in-up" data-category="ai">
+                <div class="course-image" style="background: linear-gradient(135deg, #10A37F 0%, #FF6B6B 100%);">
+                    <i class="fas fa-brain"></i>
+                    <span class="course-badge">New</span>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">Generative AI & ChatGPT</h3>
+                    <p class="course-desc">Master AI models, prompt engineering, and build AI-powered applications.</p>
+                    
+                    <div class="course-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>35 Hours</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-users"></i>
+                            <span>6-10 Students</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-laptop"></i>
+                            <span>Online/Offline</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-certificate"></i>
+                            <span>Certified</span>
+                        </div>
+                    </div>
+
+                    <div class="course-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="rating-text">4.7 (89 reviews)</span>
+                    </div>
+
+                    <div class="course-price">
+                        <span class="current-price">₹12,000</span>
+                        <span class="original-price">₹16,000</span>
+                        <span class="discount-badge">25% OFF</span>
+                    </div>
+
+                    <div class="course-buttons">
+                        <a href="#" class="btn btn-primary">View Details</a>
+                        <a href="#" class="btn btn-secondary">Book Demo</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 8: Data Science -->
+            <div class="course-card fade-in-up" data-category="ai">
+                <div class="course-image" style="background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);">
+                    <i class="fas fa-chart-line"></i>
+                    <span class="course-badge">Bestseller</span>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">Data Science with Python</h3>
+                    <p class="course-desc">Learn data analysis, visualization, machine learning, and statistical modeling.</p>
+                    
+                    <div class="course-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>70 Hours</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-users"></i>
+                            <span>6-10 Students</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-laptop"></i>
+                            <span>Online/Offline</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-certificate"></i>
+                            <span>Certified</span>
+                        </div>
+                    </div>
+
+                    <div class="course-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="rating-text">5.0 (234 reviews)</span>
+                    </div>
+
+                    <div class="course-price">
+                        <span class="current-price">₹20,000</span>
+                        <span class="original-price">₹28,000</span>
+                        <span class="discount-badge">29% OFF</span>
+                    </div>
+
+                    <div class="course-buttons">
+                        <a href="#" class="btn btn-primary">View Details</a>
+                        <a href="#" class="btn btn-secondary">Book Demo</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 9: Cybersecurity -->
+            <div class="course-card fade-in-up" data-category="cybersecurity">
+                <div class="course-image" style="background: linear-gradient(135deg, #DC2626 0%, #7C3AED 100%);">
+                    <i class="fas fa-shield-alt"></i>
+                    <span class="course-badge">Popular</span>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">Ethical Hacking & Cybersecurity</h3>
+                    <p class="course-desc">Learn penetration testing, network security, and ethical hacking techniques.</p>
+                    
+                    <div class="course-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>50 Hours</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-users"></i>
+                            <span>6-10 Students</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-laptop"></i>
+                            <span>Online/Offline</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-certificate"></i>
+                            <span>Certified</span>
+                        </div>
+                    </div>
+
+                    <div class="course-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="rating-text">4.8 (142 reviews)</span>
+                    </div>
+
+                    <div class="course-price">
+                        <span class="current-price">₹16,000</span>
+                        <span class="original-price">₹22,000</span>
+                        <span class="discount-badge">27% OFF</span>
+                    </div>
+
+                    <div class="course-buttons">
+                        <a href="#" class="btn btn-primary">View Details</a>
+                        <a href="#" class="btn btn-secondary">Book Demo</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 10: Software Testing -->
+            <div class="course-card fade-in-up" data-category="testing">
+                <div class="course-image" style="background: linear-gradient(135deg, #059669 0%, #10B981 100%);">
+                    <i class="fas fa-bug"></i>
+                    <span class="course-badge">Bestseller</span>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">Software Testing (Manual + Automation)</h3>
+                    <p class="course-desc">Master manual testing, Selenium, test automation, and quality assurance.</p>
+                    
+                    <div class="course-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>45 Hours</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-users"></i>
+                            <span>6-10 Students</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-laptop"></i>
+                            <span>Online/Offline</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-certificate"></i>
+                            <span>Certified</span>
+                        </div>
+                    </div>
+
+                    <div class="course-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="rating-text">4.9 (198 reviews)</span>
+                    </div>
+
+                    <div class="course-price">
+                        <span class="current-price">₹13,000</span>
+                        <span class="original-price">₹18,000</span>
+                        <span class="discount-badge">28% OFF</span>
+                    </div>
+
+                    <div class="course-buttons">
+                        <a href="#" class="btn btn-primary">View Details</a>
+                        <a href="#" class="btn btn-secondary">Book Demo</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 11: Digital Marketing -->
+            <div class="course-card fade-in-up" data-category="marketing">
+                <div class="course-image" style="background: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);">
+                    <i class="fas fa-bullhorn"></i>
+                    <span class="course-badge">Popular</span>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">Digital Marketing Master Course</h3>
+                    <p class="course-desc">Learn SEO, social media marketing, Google Ads, and content strategy.</p>
+                    
+                    <div class="course-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>40 Hours</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-users"></i>
+                            <span>6-10 Students</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-laptop"></i>
+                            <span>Online/Offline</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-certificate"></i>
+                            <span>Certified</span>
+                        </div>
+                    </div>
+
+                    <div class="course-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="rating-text">4.7 (176 reviews)</span>
+                    </div>
+
+                    <div class="course-price">
+                        <span class="current-price">₹11,000</span>
+                        <span class="original-price">₹15,000</span>
+                        <span class="discount-badge">27% OFF</span>
+                    </div>
+
+                    <div class="course-buttons">
+                        <a href="#" class="btn btn-primary">View Details</a>
+                        <a href="#" class="btn btn-secondary">Book Demo</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 12: Linux Administration -->
+            <div class="course-card fade-in-up" data-category="cloud">
+                <div class="course-image" style="background: linear-gradient(135deg, #FCC624 0%, #000000 100%);">
+                    <i class="fab fa-linux"></i>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">Linux Administration</h3>
+                    <p class="course-desc">Master Linux command line, system administration, and server management.</p>
+                    
+                    <div class="course-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>30 Hours</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-users"></i>
+                            <span>6-10 Students</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-laptop"></i>
+                            <span>Online/Offline</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-certificate"></i>
+                            <span>Certified</span>
+                        </div>
+                    </div>
+
+                    <div class="course-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="rating-text">4.9 (112 reviews)</span>
+                    </div>
+
+                    <div class="course-price">
+                        <span class="current-price">₹10,000</span>
+                        <span class="original-price">₹14,000</span>
+                        <span class="discount-badge">29% OFF</span>
+                    </div>
+
+                    <div class="course-buttons">
+                        <a href="#" class="btn btn-primary">View Details</a>
+                        <a href="#" class="btn btn-secondary">Book Demo</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Course Highlights -->
+    <section class="section highlights">
+        <div class="section-header fade-in-up">
+            <span class="section-tag">Why Choose Us</span>
+            <h2 class="section-title">What Makes Our Courses Different</h2>
+            <p class="section-subtitle">Premium learning experience designed for your success</p>
+        </div>
+
+        <div class="highlights-grid">
+            <div class="highlight-card fade-in-up">
+                <div class="highlight-icon">
+                    <i class="fas fa-users-class"></i>
+                </div>
+                <h3 class="highlight-title">Small Batch Sizes</h3>
+                <p class="highlight-desc">Only 6-10 students per batch for personalized attention</p>
+            </div>
+
+            <div class="highlight-card fade-in-up" style="animation-delay: 0.1s;">
+                <div class="highlight-icon">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h3 class="highlight-title">1-on-1 Training</h3>
+                <p class="highlight-desc">Individual mentoring sessions available</p>
+            </div>
+
+            <div class="highlight-card fade-in-up" style="animation-delay: 0.2s;">
+                <div class="highlight-icon">
+                    <i class="fas fa-gift"></i>
+                </div>
+                <h3 class="highlight-title">Free Demo Classes</h3>
+                <p class="highlight-desc">Try before you commit with free demo sessions</p>
+            </div>
+
+            <div class="highlight-card fade-in-up" style="animation-delay: 0.3s;">
+                <div class="highlight-icon">
+                    <i class="fas fa-infinity"></i>
+                </div>
+                <h3 class="highlight-title">Lifetime Access</h3>
+                <p class="highlight-desc">Access course materials forever after enrollment</p>
+            </div>
+
+            <div class="highlight-card fade-in-up" style="animation-delay: 0.4s;">
+                <div class="highlight-icon">
+                    <i class="fas fa-project-diagram"></i>
+                </div>
+                <h3 class="highlight-title">Hands-on Projects</h3>
+                <p class="highlight-desc">Build real-world projects for your portfolio</p>
+            </div>
+
+            <div class="highlight-card fade-in-up" style="animation-delay: 0.5s;">
+                <div class="highlight-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3 class="highlight-title">Placement Support</h3>
+                <p class="highlight-desc">Job assistance and interview preparation</p>
+            </div>
+
+            <div class="highlight-card fade-in-up" style="animation-delay: 0.6s;">
+                <div class="highlight-icon">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <h3 class="highlight-title">Expert Trainers</h3>
+                <p class="highlight-desc">Learn from industry professionals with 27+ years experience</p>
+            </div>
+
+            <div class="highlight-card fade-in-up" style="animation-delay: 0.7s;">
+                <div class="highlight-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3 class="highlight-title">Flexible Timings</h3>
+                <p class="highlight-desc">Weekend and weekday batches available</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Path -->
+    <section class="section" style="background: linear-gradient(180deg, #f9fafb 0%, #fff 100%);">
+        <div class="section-header fade-in-up">
+            <span class="section-tag">Your Journey</span>
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">From enrollment to your dream job - we guide you every step</p>
+        </div>
+
+        <div class="learning-path">
+            <div class="path-step fade-in-up">
+                <div class="path-number">1</div>
+                <h3 class="path-title">Choose Course</h3>
+            </div>
+            <div class="path-step fade-in-up" style="animation-delay: 0.1s;">
+                <div class="path-number">2</div>
+                <h3 class="path-title">Attend Demo</h3>
+            </div>
+            <div class="path-step fade-in-up" style="animation-delay: 0.2s;">
+                <div class="path-number">3</div>
+                <h3 class="path-title">Start Learning</h3>
+            </div>
+            <div class="path-step fade-in-up" style="animation-delay: 0.3s;">
+                <div class="path-number">4</div>
+                <h3 class="path-title">Build Projects</h3>
+            </div>
+            <div class="path-step fade-in-up" style="animation-delay: 0.4s;">
+                <div class="path-number">5</div>
+                <h3 class="path-title">Get Certified</h3>
+            </div>
+            <div class="path-step fade-in-up" style="animation-delay: 0.5s;">
+                <div class="path-number">6</div>
+                <h3 class="path-title">Land Job</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section">
+        <div class="cta">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Career?</h2>
+                <p>Join 3,000+ professionals who have successfully transformed their careers with Blujay Technologies</p>
+                <div class="cta-buttons">
+                    <a href="#" class="cta-button">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Book Free Demo Class</span>
+                    </a>
+                    <a href="#" class="cta-button secondary">
+                        <i class="fas fa-phone"></i>
+                        <span>Talk to Counselor</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<script>
+// ===== FILTER FUNCTIONALITY =====
+const filterButtons = document.querySelectorAll('.filter-btn');
+const courseCards = document.querySelectorAll('.course-card');
+
+filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        // Add active class to clicked button
+        button.classList.add('active');
+        
+        const category = button.getAttribute('data-category');
+        
+        courseCards.forEach(card => {
+            if (category === 'all' || card.getAttribute('data-category') === category) {
+                card.style.display = 'block';
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 10);
+            } else {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.display = 'none';
+                }, 300);
+            }
+        });
+    });
+});
+
+// ===== SCROLL REVEAL ANIMATIONS =====
+const fadeInObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { 
+    threshold: 0.1,
+    rootMargin: '0px 0px -80px 0px'
+});
+
+document.querySelectorAll('.fade-in-up').forEach(el => {
+    fadeInObserver.observe(el);
+});
+
+// ===== SMOOTH SCROLL =====
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+</script>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-12 lg:py-16">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-8">
+            <div>
+                <img src="logo.png" alt="Blujay" class="h-10 mb-4" loading="lazy">
+                <p class="text-[13px] text-gray-400 leading-relaxed">
+                    Empowering careers through quality tech education and 100% placement support.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="text-[15px] font-bold mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-[13px]">
+                    <li><a href="aboutus.html" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                    <li><a href="courses.html" class="text-gray-400 hover:text-white transition-colors">Courses</a></li>
+                    <li><a href="placements.html" class="text-gray-400 hover:text-white transition-colors">Placements</a></li>
+                    <li><a href="blog.html" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-[15px] font-bold mb-4">Popular Courses</h4>
+                <ul class="space-y-2 text-[13px]">
+                    <li><a href="#fullstack" class="text-gray-400 hover:text-white transition-colors">Full Stack Development</a></li>
+                    <li><a href="#mern" class="text-gray-400 hover:text-white transition-colors">MERN Stack</a></li>
+                    <li><a href="#java" class="text-gray-400 hover:text-white transition-colors">Java Full Stack</a></li>
+                    <li><a href="#datascience" class="text-gray-400 hover:text-white transition-colors">Data Science</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-[15px] font-bold mb-4">Contact Us</h4>
+                <ul class="space-y-3 text-[13px]">
+                    <li class="flex items-center gap-2 text-gray-400">
+                        <i class="fas fa-phone text-blue-600"></i>
+                        <span>+91 98765 43210</span>
+                    </li>
+                    <li class="flex items-center gap-2 text-gray-400">
+                        <i class="fas fa-envelope text-blue-600"></i>
+                        <span>info@blujay.tech</span>
+                    </li>
+                    <li class="flex items-center gap-2 text-gray-400">
+                        <i class="fas fa-map-marker-alt text-blue-600"></i>
+                        <span>Hyderabad, India</span>
+                    </li>
+                </ul>
+
+                <div class="flex gap-3 mt-4">
+                    <a href="https://linkedin.com/company/blujay-technologies" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all hover:scale-110">
+                        <i class="fab fa-linkedin text-[14px]"></i>
+                    </a>
+                    <a href="https://instagram.com/blujaytech" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all hover:scale-110">
+                        <i class="fab fa-instagram text-[14px]"></i>
+                    </a>
+                    <a href="https://facebook.com/blujaytechnologies" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all hover:scale-110">
+                        <i class="fab fa-facebook text-[14px]"></i>
+                    </a>
+                    <a href="https://youtube.com/@blujaytech" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all hover:scale-110">
+                        <i class="fab fa-youtube text-[14px]"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="border-t border-gray-800 pt-6 text-center">
+            <p class="text-[12px] text-gray-500">
+                © 2025 Blujay Technologies. All rights reserved. | Privacy Policy | Terms & Conditions
+            </p>
+        </div>
+    </div>
+</footer>
+
+<!-- Callback Modal -->
+<div id="callbackModal" class="fixed inset-0 bg-black bg-opacity-60 z-[200] hidden items-center justify-center p-4 backdrop-blur-sm">
+    <div class="bg-white rounded-xl max-w-3xl w-full shadow-2xl transform transition-all scale-95 modal-content overflow-visible">
+        <div class="flex flex-col lg:flex-row max-h-[85vh] overflow-visible">
+            <div class="hidden md:flex md:w-[45%] lg:w-[40%] bg-gradient-to-br from-[#1D5D7F] via-[#1D5D7F] to-[#144A66] text-white p-6 lg:p-8 flex-col justify-between relative overflow-hidden">
+                <div class="absolute inset-0 opacity-10">
+                    <div class="absolute top-0 right-0 w-48 h-48 bg-white rounded-full -mr-24 -mt-24"></div>
+                    <div class="absolute bottom-0 left-0 w-32 h-32 bg-white rounded-full -ml-16 -mb-16"></div>
+                </div>
+                <div class="relative z-10">
+                    <div class="w-14 h-14 lg:w-16 lg:h-16 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mb-4 backdrop-blur-sm">
+                        <i class="fas fa-phone-alt text-[24px] lg:text-[28px]"></i>
+                    </div>
+                    <h2 class="text-[20px] lg:text-[24px] font-bold leading-tight mb-2">We're here to<br>support you</h2>
+                    <h3 class="text-[18px] lg:text-[22px] font-semibold mb-3">every step of<br>the way.</h3>
+                    <p class="text-blue-100 text-[13px] leading-relaxed">Let's talk!</p>
+                </div>
+            </div>
+
+            <div class="w-full md:w-[55%] lg:w-[60%] relative bg-white max-h-[85vh] md:max-h-none overflow-visible">
+                <div class="md:hidden bg-gradient-to-r from-[#1D5D7F] to-[#144A66] text-white p-5 relative">
+                    <button onclick="closeCallbackModal()" class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full hover:bg-white hover:bg-opacity-20 transition-all">
+                        <i class="fas fa-times text-[16px]"></i>
+                    </button>
+                    <div class="text-center pr-8">
+                        <h3 class="text-[19px] font-bold mb-1">Request a Callback</h3>
+                        <p class="text-[12px] text-white text-opacity-80">We'll get back to you within 24 hours</p>
+                    </div>
+                </div>
+
+                <button onclick="closeCallbackModal()" class="hidden md:flex absolute top-3 right-3 w-9 h-9 items-center justify-center rounded-full hover:bg-gray-100 transition-all z-20">
+                    <i class="fas fa-times text-[18px] text-gray-600"></i>
+                </button>
+
+                <form id="callbackForm" class="p-5 lg:p-6 space-y-3.5 lg:space-y-4 overflow-visible">
+                    <div class="hidden md:block mb-4 lg:mb-5">
+                        <h3 class="text-[20px] lg:text-[24px] font-bold text-gray-900 mb-1">Get in Touch</h3>
+                        <p class="text-[13px] lg:text-[14px] text-gray-600">Fill out the form and we'll contact you soon</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Full Name *</label>
+                        <input type="text" name="name" required class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D5D7F] focus:border-[#1D5D7F] outline-none text-[13px] lg:text-[14px] transition-all" placeholder="John Doe">
+                    </div>
+
+                    <div>
+                        <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Email Address *</label>
+                        <input type="email" name="email" required class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D5D7F] focus:border-[#1D5D7F] outline-none text-[13px] lg:text-[14px] transition-all" placeholder="john@example.com">
+                    </div>
+
+                    <div>
+                        <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Phone Number *</label>
+                        <input type="tel" name="phone" required class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D5D7F] focus:border-[#1D5D7F] outline-none text-[13px] lg:text-[14px] transition-all" placeholder="+91 XXXXX XXXXX">
+                    </div>
+
+                    <div>
+                        <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Choose Services *</label>
+                        <div class="service-dropdown-wrapper">
+                            <div class="service-dropdown-trigger" id="serviceDropdownTrigger">
+                                <span class="placeholder" id="serviceSelectedText">Select a service...</span>
+                                <i class="fas fa-chevron-down chevron"></i>
+                            </div>
+                            <div class="service-dropdown-menu" id="serviceDropdownMenu">
+                                <div class="service-dropdown-item" data-value="Web Development">
+                                    <i class="fas fa-code"></i>
+                                    <span>Web Development</span>
+                                </div>
+                                <div class="service-dropdown-item" data-value="Mobile App Development">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <span>Mobile App Development</span>
+                                </div>
+                                <div class="service-dropdown-item" data-value="Digital Marketing">
+                                    <i class="fas fa-chart-line"></i>
+                                    <span>Digital Marketing</span>
+                                </div>
+                                <div class="service-dropdown-item" data-value="Cloud Solutions">
+                                    <i class="fas fa-cloud"></i>
+                                    <span>Cloud Solutions</span>
+                                </div>
+                            </div>
+                            <select name="service" id="serviceHiddenSelect" required style="position: absolute; opacity: 0; pointer-events: none; width: 1px; height: 1px;">
+                                <option value="" selected></option>
+                                <option value="Web Development">Web Development</option>
+                                <option value="Mobile App Development">Mobile App Development</option>
+                                <option value="Digital Marketing">Digital Marketing</option>
+                                <option value="Cloud Solutions">Cloud Solutions</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="submitBtn" class="w-full bg-[#1D5D7F] text-white py-2.5 lg:py-3 rounded-lg font-semibold text-[14px] lg:text-[15px] hover:bg-[#144A66] transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 mt-4 lg:mt-5">
+                        <span>Submit Now</span>
+                        <i class="fas fa-arrow-right text-[12px]"></i>
+                    </button>
+
+                    <div id="successMessage" class="hidden bg-green-50 border border-green-200 text-green-800 px-3 py-2.5 rounded-lg text-[12px] text-center">
+                        <i class="fas fa-check-circle mr-1"></i>
+                        <strong>Success!</strong> We'll contact you soon.
+                    </div>
+
+                    <div id="errorMessage" class="hidden bg-red-50 border border-red-200 text-red-800 px-3 py-2.5 rounded-lg text-[12px] text-center">
+                        <i class="fas fa-exclamation-circle mr-1"></i>
+                        <strong>Error!</strong> Please try again.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Navbar & Modal JavaScript
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 100) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
+const mobileToggle = document.getElementById('mobile-toggle');
+const mobileClose = document.getElementById('mobile-close');
+const mobileMenu = document.getElementById('mobile-menu');
+
+mobileToggle?.addEventListener('click', () => {
+    mobileMenu.classList.remove('translate-x-full');
+    document.body.classList.add('mobile-menu-open');
+});
+
+mobileClose?.addEventListener('click', () => {
+    mobileMenu.classList.add('translate-x-full');
+    document.body.classList.remove('mobile-menu-open');
+});
+
+document.querySelectorAll('.mobile-dropdown-toggle').forEach(toggle => {
+    toggle.addEventListener('click', () => {
+        const content = toggle.nextElementSibling;
+        const isActive = toggle.classList.contains('active');
+        document.querySelectorAll('.mobile-dropdown-toggle').forEach(t => {
+            t.classList.remove('active');
+            t.nextElementSibling.classList.remove('active');
+        });
+        if (!isActive) {
+            toggle.classList.add('active');
+            content.classList.add('active');
+        }
+    });
+});
+
+const SHEETDB_URL = 'https://sheetdb.io/api/v1/7s7xiynldn2sf';
+
+function openCallbackModal() {
+    const modal = document.getElementById('callbackModal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('callbackForm').reset();
+    document.getElementById('successMessage').classList.add('hidden');
+    document.getElementById('errorMessage').classList.add('hidden');
+}
+
+function closeCallbackModal() {
+    const modal = document.getElementById('callbackModal');
+    modal.classList.remove('flex');
+    modal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+}
+
+document.getElementById('callbackModal')?.addEventListener('click', function(e) {
+    if (e.target === this) closeCallbackModal();
+});
+
+const serviceDropdownTrigger = document.getElementById('serviceDropdownTrigger');
+const serviceDropdownMenu = document.getElementById('serviceDropdownMenu');
+const serviceSelectedText = document.getElementById('serviceSelectedText');
+const serviceHiddenSelect = document.getElementById('serviceHiddenSelect');
+
+serviceDropdownTrigger?.addEventListener('click', function(e) {
+    e.stopPropagation();
+    const isActive = serviceDropdownMenu.classList.contains('active');
+    if (isActive) {
+        serviceDropdownMenu.classList.remove('active');
+        serviceDropdownTrigger.classList.remove('active');
+    } else {
+        serviceDropdownMenu.classList.add('active');
+        serviceDropdownTrigger.classList.add('active');
+    }
+});
+
+document.querySelectorAll('.service-dropdown-item').forEach(item => {
+    item.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const value = this.getAttribute('data-value');
+        const text = this.querySelector('span').textContent;
+        serviceSelectedText.textContent = text;
+        serviceSelectedText.classList.remove('placeholder');
+        serviceSelectedText.classList.add('selected-text');
+        serviceHiddenSelect.value = value;
+        document.querySelectorAll('.service-dropdown-item').forEach(i => i.classList.remove('selected'));
+        this.classList.add('selected');
+        serviceDropdownMenu.classList.remove('active');
+        serviceDropdownTrigger.classList.remove('active');
+    });
+});
+
+document.addEventListener('click', function(e) {
+    if (serviceDropdownMenu && serviceDropdownTrigger) {
+        if (!serviceDropdownTrigger.contains(e.target) && !serviceDropdownMenu.contains(e.target)) {
+            serviceDropdownMenu.classList.remove('active');
+            serviceDropdownTrigger.classList.remove('active');
+        }
+    }
+});
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        if (serviceDropdownMenu?.classList.contains('active')) {
+            serviceDropdownMenu.classList.remove('active');
+            serviceDropdownTrigger?.classList.remove('active');
+        }
+        closeCallbackModal();
+    }
+});
+
+document.getElementById('callbackForm')?.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const submitBtn = document.getElementById('submitBtn');
+    const successMsg = document.getElementById('successMessage');
+    const errorMsg = document.getElementById('errorMessage');
+    successMsg.classList.add('hidden');
+    errorMsg.classList.add('hidden');
+    submitBtn.querySelector('span').textContent = 'Submitting...';
+    
+    const formData = new FormData(this);
+    const data = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        phone: formData.get('phone'),
+        service: formData.get('service') || 'Not specified',
+        timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'medium', timeStyle: 'short' }),
+        status: 'New'
+    };
+    
+    try {
+        const response = await fetch(SHEETDB_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ data: [data] })
+        });
+        if (response.ok) {
+            successMsg.classList.remove('hidden');
+            this.reset();
+            setTimeout(() => closeCallbackModal(), 2500);
+        } else {
+            throw new Error('Submission failed');
+        }
+    } catch (error) {
+        errorMsg.classList.remove('hidden');
+    } finally {
+        submitBtn.querySelector('span').textContent = 'Submit Now';
+    }
+});
+</script>
+
+</body>
+</html>
