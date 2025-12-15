@@ -257,49 +257,78 @@
       .hero-stack-stage{
         margin-top: 16px;
         margin-bottom: 4px;
-        width: 390px;
-        max-width: 96%;
-        --hero-stage-h: 370px;
-        --hero-peek: 0.30;
-        --hero-visible-before-blur: 3200ms;
+        width: 280px;
+        max-width: 88%;
+        --hero-stage-h: 240px;
+        --hero-peek: 0.25;
+        --hero-visible-before-blur: 4500ms;
       }
-      .hero-card{ height: 72%; }
+      .hero-card{ 
+        height: 82%;
+      }
       .hero-card-inner{
-        border-radius: 18px;
-        grid-template-columns: 1.35fr 1fr;
+        border-radius: 14px;
+        grid-template-columns: 1.15fr 1fr;
+        gap: 0;
+        padding: 0;
+        overflow: hidden;
       }
       .hero-card-text{
-        padding: 20px 22px;
-        gap: 11px;
+        padding: 10px 12px;
+        gap: 3px;
         display: flex;
         flex-direction: column;
         justify-content: center;
       }
       .hero-card-label{
-        font-size: 11px;
-        letter-spacing: 0.10em;
+        font-size: 9px;
+        letter-spacing: 0.07em;
         font-weight: 700;
         text-transform: uppercase;
         opacity: 0.95;
+        line-height: 1.2;
       }
       .hero-card-title{
-        font-size: 15.5px;
-        line-height: 1.38;
+        font-size: 13px;
+        line-height: 1.3;
         font-weight: 650;
       }
       .hero-card-btn{
-        margin-top: 13px;
-        padding: 9px 17px;
-        font-size: 11.5px;
+        margin-top: 7px;
+        padding: 7px 11px;
+        font-size: 10.5px;
         font-weight: 650;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         border-radius: 999px;
+        white-space: nowrap;
+        background: #fff;
+        color: #0b1727;
+        box-shadow: 0 8px 18px rgba(15, 23, 42, 0.25);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .hero-card-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 24px rgba(15, 23, 42, 0.35);
+      }
+      .hero-card-btn-light{
+        background: rgba(255, 255, 255, 0.16);
+        color: #fff;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+        border: 1.5px solid rgba(255, 255, 255, 0.55);
+        backdrop-filter: blur(8px);
+      }
+      .hero-card-btn-light:hover {
+        background: rgba(255, 255, 255, 0.28);
+        border-color: rgba(255, 255, 255, 0.75);
       }
       .hero-card-image{
         background-size: cover;
         background-position: center;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 100%;
       }
     }
 
@@ -384,48 +413,50 @@
     .hero-card-image-3{ background-image:url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600'); }
     .hero-card-image-4{ background-image:url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600'); }
 
-    .hero-card-label{
-      font-size:13.5px;
-      font-weight:750;
-      letter-spacing:.11em;
-      text-transform:uppercase;
-      opacity:.94;
-    }
-    .hero-card-title{
-      font-size:21px;
-      line-height:1.32;
-      font-weight:750;
-    }
+    @media (min-width:1024px){
+      .hero-card-label{
+        font-size:13.5px;
+        font-weight:750;
+        letter-spacing:.11em;
+        text-transform:uppercase;
+        opacity:.94;
+      }
+      .hero-card-title{
+        font-size:21px;
+        line-height:1.32;
+        font-weight:750;
+      }
 
-    .hero-card-btn{
-      margin-top:22px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:13px 22px;
-      border-radius:999px;
-      background:#fff;
-      color:#0b1727;
-      font-size:14.5px;
-      font-weight:750;
-      text-decoration:none;
-      box-shadow:0 14px 32px rgba(15,23,42,0.28);
-      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .hero-card-btn:hover {
-      transform: translateY(-3px);
-      box-shadow:0 18px 42px rgba(15,23,42,0.38);
-    }
-    .hero-card-btn-light{
-      background:rgba(255,255,255,0.16);
-      color:#fff;
-      box-shadow:0 10px 24px rgba(0,0,0,0.18);
-      border:1.5px solid rgba(255,255,255,0.55);
-      backdrop-filter: blur(12px);
-    }
-    .hero-card-btn-light:hover {
-      background:rgba(255,255,255,0.28);
-      border-color:rgba(255,255,255,0.75);
+      .hero-card-btn{
+        margin-top:22px;
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        padding:13px 22px;
+        border-radius:999px;
+        background:#fff;
+        color:#0b1727;
+        font-size:14.5px;
+        font-weight:750;
+        text-decoration:none;
+        box-shadow:0 14px 32px rgba(15,23,42,0.28);
+        transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .hero-card-btn:hover {
+        transform: translateY(-3px);
+        box-shadow:0 18px 42px rgba(15,23,42,0.38);
+      }
+      .hero-card-btn-light{
+        background:rgba(255,255,255,0.16);
+        color:#fff;
+        box-shadow:0 10px 24px rgba(0,0,0,0.18);
+        border:1.5px solid rgba(255,255,255,0.55);
+        backdrop-filter: blur(12px);
+      }
+      .hero-card-btn-light:hover {
+        background:rgba(255,255,255,0.28);
+        border-color:rgba(255,255,255,0.75);
+      }
     }
 
     .hero-card.active{
@@ -1280,18 +1311,22 @@
                         <a href="jobsupport.html"><i class="fas fa-layer-group"></i>Job support</a>
                         <a href="courses.html"><i class="fab fa-java"></i>Courses-Recorded</a>
                         <a href="courses-online.html"><i class="fab fa-java"></i>Courses-Online</a>
-                        <a href="#datascience"><i class="fas fa-chart-line"></i>Interview Training</a>
                          
                     </div>
                 </div>
 
                 <!-- Centres Dropdown -->
-                <div class="dropdown">
+                
+                   <div class="dropdown">
                     <button class="dropdown-toggle text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
-                        Insights <i class="fas fa-chevron-down chevron"></i>
+                        Job Roadmaps <i class="fas fa-chevron-down chevron"></i>
                     </button>
-                    
+                    <div class="dropdown-menu">
+                        <a href="jobroadmap.html"><i class="fas fa-briefcase"></i>5-Step Roadmap</a>
+                         
+                    </div>
                 </div>
+    
 
                 <!-- Jobs Dropdown -->
                 <div class="dropdown">
@@ -1299,10 +1334,8 @@
                         Jobs <i class="fas fa-chevron-down chevron"></i>
                     </button>
                     <div class="dropdown-menu">
-                        <a href="#browse-jobs"><i class="fas fa-briefcase"></i>Browse Jobs</a>
-                        <a href="#hiring-drives"><i class="fas fa-users"></i>Hiring Drives</a>
-                        <a href="#post-job"><i class="fas fa-plus-circle"></i>Post a Job</a>
-                        <a href="#career-resources"><i class="fas fa-book"></i>Career Resources</a>
+                        <a href="#"><i class="fas fa-briefcase"></i>Coming Soon!</a>
+                         
                     </div>
                 </div>
 
@@ -1352,22 +1385,21 @@
                         <div class="mobile-dropdown-inner">
                         <a href="profilepushing.html"><i class="fas fa-code"></i>Profile Pushing</a>
                         <a href="jobsupport.html"><i class="fas fa-layer-group"></i>Job support</a>
-                        <a href="courses.html"><i class="fab fa-java"></i>Courses</a>
-                        <a href="#datascience"><i class="fas fa-chart-line"></i>Interview Training</a>
+                        <a href="courses.html"><i class="fab fa-java"></i>Courses-Recorded</a>
+                        <a href="courses-online.html"><i class="fab fa-java"></i>Courses-Online</a>
                         </div>
+                        
                     </div>
                 </div>
 
                  <div class="mobile-dropdown-wrapper">
                     <button class="mobile-dropdown-toggle text-[14px] font-semibold text-gray-900" type="button">
-                        Insights <i class="fas fa-chevron-down arrow"></i>
+                        Job Roadmaps <i class="fas fa-chevron-down arrow"></i>
                     </button>
                     <div class="mobile-dropdown-content">
                         <div class="mobile-dropdown-inner">
-                            <a href="#hyderabad"><i class="fas fa-map-marker-alt"></i>Hyderabad Centre</a>
-                            <a href="#bangalore"><i class="fas fa-map-marker-alt"></i>Bangalore Centre</a>
-                            <a href="#mumbai"><i class="fas fa-map-marker-alt"></i>Mumbai Centre</a>
-                            <a href="#online"><i class="fas fa-laptop"></i>Online Learning</a>
+                            <a href="jobroadmap.html"><i class="fas fa-briefcase"></i>5-Step Roadmap</a>
+                             
                         </div>
                     </div>
                 </div>
@@ -1378,17 +1410,15 @@
                     </button>
                     <div class="mobile-dropdown-content">
                         <div class="mobile-dropdown-inner">
-                            <a href="#browse-jobs"><i class="fas fa-briefcase"></i>Browse Jobs</a>
-                            <a href="#hiring-drives"><i class="fas fa-users"></i>Hiring Drives</a>
-                            <a href="#post-job"><i class="fas fa-plus-circle"></i>Post a Job</a>
-                            <a href="#career-resources"><i class="fas fa-book"></i>Career Resources</a>
+                            <a href="#browse-jobs"><i class="fas fa-briefcase"></i>Coming Soon!</a>
+                             
                         </div>
                     </div>
                 </div>
 
                 <div class="mobile-dropdown-wrapper">
                     <button class="mobile-dropdown-toggle text-[14px] font-medium text-gray-800" type="button">
-                        About Us <i class="fas fa-chevron-down arrow"></i>
+                        More <i class="fas fa-chevron-down arrow"></i>
                     </button>
                     <div class="mobile-dropdown-content">
                         <div class="mobile-dropdown-inner">
@@ -1398,17 +1428,7 @@
                     </div>
                 </div>
 
-                <div class="mobile-dropdown-wrapper">
-                    <button class="mobile-dropdown-toggle text-[14px] font-medium text-gray-800" type="button">
-                        Blogs <i class="fas fa-chevron-down arrow"></i>
-                    </button>
-                    <div class="mobile-dropdown-content">
-                        <div class="mobile-dropdown-inner">
-                            <a href="aboutus.html"><i class="fas fa-info-circle"></i>About Us</a>
-                            <a href="blog.html"><i class="fas fa-blog"></i>Blog</a>
-                        </div>
-                    </div>
-                </div>
+                
 
 
                 <button onclick="openCallbackModal()" class="block w-full text-center bg-blue-600 text-white py-2.5 rounded-lg text-[13px] font-semibold mt-6 hover:bg-blue-700 transition-all shadow-md">
@@ -1464,9 +1484,6 @@
                 <div class="flex flex-col sm:flex-row gap-4 mb-6">
                     <a href="courses.html" class="bg-blue-600 text-white px-6 py-3.5 rounded-xl font-semibold text-[14px] hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 hover:scale-105">
                         <i class="fas fa-graduation-cap"></i> Explore Courses
-                    </a>
-                    <a href="#hiring" class="border-2 border-blue-600 text-blue-600 px-6 py-3.5 rounded-xl font-semibold text-[14px] hover:bg-blue-50 transition-all flex items-center justify-center gap-2 hover:scale-105">
-                        <i class="fas fa-briefcase"></i> Join Hiring Drive
                     </a>
                 </div>
 
@@ -1556,7 +1573,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <!-- Image Left -->
             <div class="order-2 lg:order-1 image-zoom-container">
-                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600" 
+                <img src="images/ourstory.png" 
                      alt="Our Journey" 
                      class="w-full h-[280px] lg:h-[400px] object-cover rounded-2xl shadow-2xl image-zoom" 
                      loading="lazy">
@@ -1628,7 +1645,7 @@
     <div class="max-w-7xl mx-auto px-4 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div class="order-2 lg:order-1 image-zoom-container">
-                <img src="images/leadership.png" 
+                <img src="images/leader.png" 
                      alt="Thought Leadership" 
                      class="w-full h-[280px] lg:h-[380px] object-cover rounded-2xl shadow-2xl image-zoom" 
                      loading="lazy">
@@ -1748,7 +1765,7 @@
             </div>
             
             <div class="image-zoom-container">
-                <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600" 
+                <img src="images/mentors.png" 
                      alt="Mentors and Faculty" 
                      class="w-full h-[300px] lg:h-[400px] object-cover rounded-2xl shadow-2xl image-zoom" 
                      loading="lazy">
@@ -1762,7 +1779,7 @@
     <div class="max-w-7xl mx-auto px-4 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div class="order-2 lg:order-1 image-zoom-container">
-                <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600" 
+                <img src="images/strategic.png" 
                      alt="Strategic Leadership" 
                      class="w-full h-[280px] lg:h-[380px] object-cover rounded-2xl shadow-2xl image-zoom" 
                      loading="lazy">
@@ -1857,7 +1874,7 @@
             </div>
             
             <div class="image-zoom-container">
-                <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600" 
+                <img src="images/whyblujay.png" 
                      alt="Blujay Advantage" 
                      class="w-full h-[320px] lg:h-[480px] object-cover rounded-2xl shadow-2xl image-zoom" 
                      loading="lazy">
@@ -1871,7 +1888,7 @@
     <div class="max-w-7xl mx-auto px-4 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div class="order-2 lg:order-1 image-zoom-container">
-                <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600" 
+                <img src="images/partnerships.png" 
                      alt="Community Partnerships" 
                      class="w-full h-[280px] lg:h-[380px] object-cover rounded-2xl shadow-2xl image-zoom" 
                      loading="lazy">
@@ -1921,7 +1938,7 @@
             </div>
             
             <div class="image-zoom-container">
-                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600" 
+                <img src="images/socialimpact.png" 
                      alt="Social Impact" 
                      class="w-full h-[300px] lg:h-[400px] object-cover rounded-2xl shadow-2xl image-zoom" 
                      loading="lazy">
@@ -2012,12 +2029,10 @@
         </p>
 
         <div class="flex flex-col sm:flex-row gap-4 justify-center scale-in">
-            <a href="#enroll" class="bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold text-[15px] hover:bg-blue-700 transition-all shadow-xl hover:shadow-2xl flex items-center justify-center gap-2 hover:scale-105">
+            <a href="javascript:void(0)" onclick="openCallbackModal()" class="bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold text-[15px] hover:bg-blue-700 transition-all shadow-xl hover:shadow-2xl flex items-center justify-center gap-2 hover:scale-105">
                 <i class="fas fa-rocket"></i> Start Your Journey Today
             </a>
-            <a href="#partner" class="border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-xl font-semibold text-[15px] hover:bg-blue-50 transition-all flex items-center justify-center gap-2 hover:scale-105">
-                <i class="fas fa-handshake"></i> Partner With Us
-            </a>
+        
         </div>
     </div>
 </section>
@@ -2503,7 +2518,7 @@
                     <span class="font-medium text-[14px]">LinkedIn - Follow for Job Updates</span>
                 </a>
 
-                <a href="https://instagram.com/blujay_tech" target="_blank" class="social-link">
+                <a href="https://instagram.com/blujaytech" target="_blank" class="social-link">
                     <i class="fab fa-instagram"></i>
                     <span class="font-medium text-[14px]">Instagram - Success Stories</span>
                 </a>
@@ -2513,19 +2528,19 @@
                     <span class="font-medium text-[14px]">Facebook - Community Updates</span>
                 </a>
 
-                <a href="https://youtube.com/@blujaytechnologies" target="_blank" class="social-link">
+                <a href="https://youtube.com/@blujaytech" target="_blank" class="social-link">
                     <i class="fab fa-youtube"></i>
                     <span class="font-medium text-[14px]">YouTube - Free Tech Tutorials</span>
                 </a>
 
-                <a href="tel:+919876543210" class="social-link">
+                <a href="tel:+919618721797" class="social-link">
                     <i class="fas fa-phone"></i>
-                    <span class="font-medium text-[14px]">+91 98765 43210</span>
+                    <span class="font-medium text-[14px]">+91 9618721797</span>
                 </a>
 
-                <a href="mailto:info@blujay.tech" class="social-link">
+                <a href="mailto:blujaytechnlogies@gmail.com" class="social-link">
                     <i class="fas fa-envelope"></i>
-                    <span class="font-medium text-[14px]">info@blujay.tech</span>
+                    <span class="font-medium text-[14px]">blujaytechnlogies@gmail.com</span>
                 </a>
             </div>
 
@@ -2562,27 +2577,28 @@
             <div>
                 <img src="logo.png" alt="Blujay" class="h-10 mb-4" loading="lazy">
                 <p class="text-[13px] text-gray-400 leading-relaxed">
-                    Empowering careers through quality tech education and 100% placement support.
+                    Empowering 1 Million IT Careers!
                 </p>
             </div>
 
             <div>
                 <h4 class="text-[15px] font-bold mb-4">Quick Links</h4>
                 <ul class="space-y-2 text-[13px]">
+                    <li><a href="profilepushing.html" class="text-gray-400 hover:text-white transition-colors">Profile Pushing</a></li>
+                    <li><a href="jobsupport.html" class="text-gray-400 hover:text-white transition-colors">Job Support</a></li>
+                    <li><a href="jobroadmap.html" class="text-gray-400 hover:text-white transition-colors">Job Roadmap</a></li>
                     <li><a href="aboutus.html" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
-                    <li><a href="courses.html" class="text-gray-400 hover:text-white transition-colors">Courses</a></li>
-                    <li><a href="placements.html" class="text-gray-400 hover:text-white transition-colors">Placements</a></li>
                     <li><a href="blog.html" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
                 </ul>
             </div>
 
             <div>
-                <h4 class="text-[15px] font-bold mb-4">Popular Courses</h4>
+                <h4 class="text-[15px] font-bold mb-4">Offerings</h4>
                 <ul class="space-y-2 text-[13px]">
-                    <li><a href="#fullstack" class="text-gray-400 hover:text-white transition-colors">Full Stack Development</a></li>
-                    <li><a href="#mern" class="text-gray-400 hover:text-white transition-colors">MERN Stack</a></li>
-                    <li><a href="#java" class="text-gray-400 hover:text-white transition-colors">Java Full Stack</a></li>
-                    <li><a href="#datascience" class="text-gray-400 hover:text-white transition-colors">Data Science</a></li>
+                    <li><a href="courses.html" class="text-gray-400 hover:text-white transition-colors">Courses-Recorded</a></li>
+                    <li><a href="courses-online.html" class="text-gray-400 hover:text-white transition-colors">Courses-Online</a></li>
+                    <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+                     
                 </ul>
             </div>
 
@@ -2591,15 +2607,15 @@
                 <ul class="space-y-3 text-[13px]">
                     <li class="flex items-center gap-2 text-gray-400">
                         <i class="fas fa-phone text-blue-600"></i>
-                        <span>+91 98765 43210</span>
+                        <span>+91 96187 21797</span>
                     </li>
                     <li class="flex items-center gap-2 text-gray-400">
                         <i class="fas fa-envelope text-blue-600"></i>
-                        <span>info@blujay.tech</span>
+                        <span>blujaytechnlogies@gmail.com</span>
                     </li>
                     <li class="flex items-center gap-2 text-gray-400">
                         <i class="fas fa-map-marker-alt text-blue-600"></i>
-                        <span>Hyderabad, India</span>
+                        <span>HMDA MYTRIVANAM BUILDING, 502, Kumar Basti, Srinivasa Nagar, Ameerpet, Hyderabad, Telangana 500016</span>
                     </li>
                 </ul>
 
@@ -2623,7 +2639,7 @@
 
         <div class="border-t border-gray-800 pt-6 text-center">
             <p class="text-[12px] text-gray-500">
-                © 2025 Blujay Technologies. All rights reserved. | Privacy Policy | Terms & Conditions
+                © 2020 Blujay Technologies. All rights reserved. | Privacy Policy | Terms & Conditions
             </p>
         </div>
     </div>

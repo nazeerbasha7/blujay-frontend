@@ -304,7 +304,9 @@
     
     <!-- Main Script -->
     <script>
-        const API_URL = 'https://blujay-backend.onrender.com';
+        // Toggle between local and production
+        const API_URL = 'http://localhost:5000'; // Local development
+        //const API_URL = 'https://blujay-backend.onrender.com'; // Production
         let quill;
         let tags = [];
         let isEditMode = false;
