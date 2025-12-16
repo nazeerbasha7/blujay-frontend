@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Testing (Manual + Automation) - Blujay Technologies</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * { 
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body { 
+            background: #f9fafb;
+            min-height: 100vh;
+        }
+        
+        /* ===== BLUJAY BRAND COLORS ===== */
+        :root {
+            --blujay-primary: #1D5D7F;
+            --blujay-primary-hover: #236192;
+            --blujay-light: #E8F4F8;
+            --blujay-dark: #164257;
+        }
+        
+        .bg-blue-600 { background-color: var(--blujay-primary) !important; }
+        .hover\:bg-blue-700:hover { background-color: var(--blujay-primary-hover) !important; }
+        .text-blue-600 { color: var(--blujay-primary) !important; }
+        .border-blue-500 { border-color: var(--blujay-primary) !important; }
+        .bg-blue-100 { background-color: var(--blujay-light) !important; }
+        
+        /* ===== HEADER ===== */
+        header {
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            backdrop-filter: blur(10px);
+        }
+        
+        header a {
+            transition: all 0.3s ease;
+        }
+        
+        /* ===== HERO SECTION - BLUJAY GRADIENT ===== */
+        .hero-section {
+            background: linear-gradient(135deg, #1D5D7F 0%, #236192 50%, #2a7bb8 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".1" fill="%23ffffff"></path></svg>') no-repeat bottom;
+            background-size: cover;
+            opacity: 0.1;
+        }
+        
+        /* ===== STICKY BUY BOX ===== */
+        .sticky-buy-box {
+            position: sticky;
+            top: 90px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .sticky-buy-box:hover {
+            box-shadow: 0 8px 30px rgba(29, 93, 127, 0.15);
+            border-color: var(--blujay-primary);
+        }
+        
+        /* ===== CLEAN CARDS ===== */
+        .content-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            border: 1px solid #f3f4f6;
+        }
+        
+        .content-card:hover {
+            box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+            border-color: #e5e7eb;
+        }
+        
+        /* ===== MODULE HEADER ===== */
+        .module-header {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 16px 20px;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .module-header:hover {
+            background: var(--blujay-light);
+            border-color: var(--blujay-primary);
+        }
+        
+        .module-header i.fa-chevron-down {
+            transition: transform 0.3s ease;
+        }
+        
+        .module-header.active i.fa-chevron-down {
+            transform: rotate(180deg);
+        }
+        
+        /* ===== MODULE CONTENT ===== */
+        .module-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        
+        .module-content.active {
+            max-height: 5000px;
+        }
+        
+        /* ===== TOPIC LIST ===== */
+        .topic-list {
+            padding: 20px 24px;
+            background: #fafafa;
+            border-radius: 8px;
+            margin-top: 12px;
+        }
+        
+        .topic-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .topic-list li {
+            padding: 10px 0;
+            padding-left: 28px;
+            position: relative;
+            color: #4b5563;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        
+        .topic-list li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--blujay-primary);
+            font-weight: bold;
+        }
+        
+        /* ===== LECTURE ITEM ===== */
+        .lecture-item {
+            padding: 12px 16px;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            margin: 6px 0;
+            background: white;
+            border: 1px solid #f3f4f6;
+        }
+        
+        .lecture-item:hover {
+            background: #f0f9ff;
+            border-color: var(--blujay-primary);
+            transform: translateX(6px);
+        }
+        
+        /* ===== ENROLL BUTTON ===== */
+        .btn-enroll {
+            background: linear-gradient(135deg, var(--blujay-primary) 0%, var(--blujay-primary-hover) 100%);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(29, 93, 127, 0.3);
+            text-decoration: none;
+            display: flex;
+        }
+        
+        .btn-enroll:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(29, 93, 127, 0.4);
+        }
+        
+        .btn-enroll:active {
+            transform: translateY(-1px);
+        }
+        
+        /* ===== DISCOUNT BADGE ===== */
+        .discount-badge {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+        
+        /* ===== LEARNING BENEFITS ===== */
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px;
+            background: #f9fafb;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-item:hover {
+            background: var(--blujay-light);
+            transform: translateX(5px);
+        }
+        
+        .benefit-icon {
+            width: 24px;
+            height: 24px;
+            background: #10b981;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .sticky-buy-box {
+                position: relative;
+                top: 0;
+                margin-bottom: 24px;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .hero-section {
+                padding: 2rem 0;
+            }
+            
+            .content-card {
+                border-radius: 12px;
+                padding: 1rem !important;
+            }
+            
+            .module-header {
+                padding: 12px 16px;
+            }
+            
+            .lecture-item {
+                padding: 10px 12px;
+            }
+            
+            .topic-list {
+                padding: 16px 18px;
+            }
+            
+            .topic-list li {
+                font-size: 14px;
+            }
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* ===== COURSE THUMBNAIL HOVER - QA Testing Gradient ===== */
+        .course-thumbnail-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #10B981 0%, #059669 40%, #3B82F6 80%, #2563EB 100%);
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .course-thumbnail-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.3));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .course-thumbnail-container:hover::after {
+            opacity: 1;
+        }
+        
+        .course-thumbnail-icon {
+            font-size: 70px;
+            color: rgba(255,255,255,0.95);
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .course-thumbnail-container:hover .course-thumbnail-icon {
+            transform: scale(1.15) rotate(5deg);
+        }
+        
+        /* ===== CALLBACK MODAL STYLES ===== */
+        #callbackModal {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #callbackModal.flex {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal-content {
+            animation: slideUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            max-height: 85vh;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(40px) scale(0.95);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Modal responsive adjustments */
+        @media (max-width: 767px) {
+            .modal-content {
+                max-width: 95%;
+                margin: 0 auto;
+                max-height: 90vh;
+            }
+
+            #callbackModal {
+                padding: 0.75rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .modal-content {
+                max-width: 800px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .modal-content {
+                max-width: 920px;
+            }
+        }
+
+        /* Service Custom Dropdown Styling */
+        .service-dropdown-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .service-dropdown-trigger {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 0.875rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            background: #ffffff;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 13px;
+            font-weight: 500;
+            color: #111827;
+            user-select: none;
+        }
+
+        @media (min-width: 1024px) {
+            .service-dropdown-trigger {
+                padding: 0.625rem 1rem;
+                font-size: 14px;
+            }
+        }
+
+        .service-dropdown-trigger:hover {
+            border-color: #1D5D7F;
+            background-color: #f8fafc;
+        }
+
+        .service-dropdown-trigger.active {
+            border-color: #1D5D7F;
+            box-shadow: 0 0 0 3px rgba(29, 93, 127, 0.1);
+        }
+
+        .service-dropdown-trigger .placeholder {
+            color: #9ca3af;
+            font-style: italic;
+        }
+
+        .service-dropdown-trigger .selected-text {
+            color: #111827;
+            font-weight: 500;
+        }
+
+        .service-dropdown-trigger i.chevron {
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 9px;
+            color: #1D5D7F;
+            margin-left: 8px;
+        }
+
+        .service-dropdown-trigger.active i.chevron {
+            transform: rotate(180deg);
+        }
+
+        .service-dropdown-menu {
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 22px 60px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(15, 23, 42, 0.04);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 10000;
+            padding: 10px;
+            max-height: none;
+            overflow: visible;
+        }
+
+        .service-dropdown-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .service-dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 11px 14px;
+            color: #111827;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 10px;
+            margin-bottom: 4px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .service-dropdown-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .service-dropdown-item i {
+            margin-right: 10px;
+            font-size: 13px;
+            width: 18px;
+            text-align: center;
+            color: #1D5D7F;
+            opacity: 0.9;
+        }
+
+        .service-dropdown-item:hover {
+            background: #1D5D7F;
+            color: #ffffff;
+            padding-left: 18px;
+            transform: translateX(2px);
+        }
+
+        .service-dropdown-item:hover i {
+            color: #ffffff;
+        }
+
+        .service-dropdown-item.selected {
+            background: #E8F4F8;
+            color: #1D5D7F;
+            font-weight: 600;
+        }
+
+        .service-dropdown-item.selected:hover {
+            background: #1D5D7F;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Header -->
+    <header class="sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="courses-online.html" class="flex items-center gap-2 text-gray-600 hover:text-gray-900 font-semibold transition-all hover:gap-3">
+                    <i class="fas fa-arrow-left"></i>
+                    <span class="hidden sm:inline">Back to Courses</span>
+                </a>
+                <a href="index.html">
+                    <img src="logo.png" alt="Blujay" class="h-10">
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <div>
+        <!-- Hero Section -->
+        <div class="hero-section text-white py-12 lg:py-16">
+            <div class="max-w-7xl mx-auto px-4 lg:px-8 relative z-10">
+                <div class="max-w-3xl">
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 leading-tight">Software Testing (Manual + Automation)</h1>
+                    <p class="text-lg sm:text-xl text-blue-100 mb-6 leading-relaxed">Master manual testing, Selenium, test automation, and quality assurance. Become a skilled QA engineer with industry-standard testing tools and methodologies.</p>
+                    
+                    <div class="flex flex-wrap items-center gap-4 sm:gap-6 mb-6">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-star text-yellow-400 text-lg"></i>
+                            <span class="font-bold text-xl">4.8</span>
+                            <span class="text-blue-100">(18,234 students)</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="far fa-clock text-blue-100"></i>
+                            <span>50+ hours</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-signal text-blue-100"></i>
+                            <span>Beginner to Advanced</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-lg px-4 py-3 w-fit">
+                        <i class="fas fa-user-circle text-3xl"></i>
+                        <div>
+                            <p class="text-sm text-blue-100">Created by</p>
+                            <p class="font-semibold text-lg">QA & Automation Testing Experts</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Content Grid -->
+        <div class="max-w-7xl mx-auto px-4 lg:px-8 py-8 lg:py-12">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+                
+                <!-- Left Column -->
+                <div class="lg:col-span-2 space-y-6">
+                    
+                    <!-- What You'll Learn -->
+                    <div class="content-card p-6 lg:p-8">
+                        <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-6">What you'll learn</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <span class="text-gray-700 font-medium">Master SDLC, STLC, and software testing fundamentals</span>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <span class="text-gray-700 font-medium">Create test plans, test cases, and defect reports</span>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <span class="text-gray-700 font-medium">Master Selenium WebDriver with Java and Python</span>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <span class="text-gray-700 font-medium">Build automation frameworks (TestNG, Cucumber, POM)</span>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <span class="text-gray-700 font-medium">Perform API testing with Postman and Rest Assured</span>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <span class="text-gray-700 font-medium">Master Jira, TestRail, and defect tracking tools</span>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <span class="text-gray-700 font-medium">Implement CI/CD with Jenkins and Git integration</span>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <span class="text-gray-700 font-medium">Learn Appium for mobile testing (Android & iOS)</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Course Content -->
+                    <div class="content-card p-6 lg:p-8">
+                        <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">Course Content</h2>
+                        <p class="text-gray-600 mb-6 flex items-center gap-2">
+                            <i class="fas fa-list-ul text-blue-600"></i>
+                            14 sections • 145 lectures • 50h+ total
+                        </p>
+                        
+                        <div class="space-y-3">
+                            
+                            <!-- Module 1: Software Testing Fundamentals -->
+                            <div>
+                                <div class="module-header" onclick="toggleModule(1)">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-chevron-down text-blue-600"></i>
+                                            <div>
+                                                <h3 class="font-bold text-gray-900">Software Testing Fundamentals & SDLC</h3>
+                                                <p class="text-sm text-gray-600 mt-1">12 lectures • 2h 40min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="module-content" id="module-1">
+                                    <div class="topic-list">
+                                        <ul>
+                                            <li>Introduction to Software Testing and QA</li>
+                                            <li>Why Testing is Important (Real-World Examples)</li>
+                                            <li>Software Development Life Cycle (SDLC) Models</li>
+                                            <li>Waterfall, Agile, Scrum, and V-Model</li>
+                                            <li>Software Testing Life Cycle (STLC)</li>
+                                            <li>Test Planning, Test Design, Test Execution, Defect Tracking</li>
+                                            <li>Verification vs Validation</li>
+                                            <li>Quality Assurance vs Quality Control</li>
+                                            <li>Testing Principles and Best Practices</li>
+                                            <li>Roles and Responsibilities of QA Engineers</li>
+                                            <li>Test Environment Setup and Configuration</li>
+                                            <li>Quiz: Software Testing Basics (11 questions)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Module 2: Testing Levels & Types -->
+                            <div>
+                                <div class="module-header" onclick="toggleModule(2)">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-chevron-down text-blue-600"></i>
+                                            <div>
+                                                <h3 class="font-bold text-gray-900">Testing Levels & Testing Types</h3>
+                                                <p class="text-sm text-gray-600 mt-1">14 lectures • 3h 10min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="module-content" id="module-2">
+                                    <div class="topic-list">
+                                        <ul>
+                                            <li>Unit Testing and Component Testing</li>
+                                            <li>Integration Testing (Top-Down, Bottom-Up, Big Bang)</li>
+                                            <li>System Testing and End-to-End Testing</li>
+                                            <li>User Acceptance Testing (UAT)</li>
+                                            <li>Functional Testing Types</li>
+                                            <li>Smoke Testing and Sanity Testing</li>
+                                            <li>Regression Testing Strategies</li>
+                                            <li>Non-Functional Testing (Performance, Security, Usability)</li>
+                                            <li>Load Testing, Stress Testing, Volume Testing</li>
+                                            <li>Compatibility Testing (Cross-Browser, Cross-Platform)</li>
+                                            <li>Exploratory Testing Techniques</li>
+                                            <li>Ad-hoc Testing and Monkey Testing</li>
+                                            <li>White Box, Black Box, and Gray Box Testing</li>
+                                            <li>Quiz: Testing Types and Levels (13 questions)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Module 3: Test Case Design Techniques -->
+                            <div>
+                                <div class="module-header" onclick="toggleModule(3)">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-chevron-down text-blue-600"></i>
+                                            <div>
+                                                <h3 class="font-bold text-gray-900">Test Case Design & Test Scenarios</h3>
+                                                <p class="text-sm text-gray-600 mt-1">13 lectures • 3h 0min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="module-content" id="module-3">
+                                    <div class="topic-list">
+                                        <ul>
+                                            <li>What are Test Scenarios and Test Cases</li>
+                                            <li>Writing Effective Test Cases (Structure and Format)</li>
+                                            <li>Equivalence Partitioning Technique</li>
+                                            <li>Boundary Value Analysis (BVA)</li>
+                                            <li>Decision Table Testing</li>
+                                            <li>State Transition Testing</li>
+                                            <li>Use Case Testing</li>
+                                            <li>Error Guessing and Experience-Based Testing</li>
+                                            <li>Traceability Matrix (RTM)</li>
+                                            <li>Positive and Negative Test Cases</li>
+                                            <li>Test Case Review and Optimization</li>
+                                            <li>Hands-on Lab: Creating Test Cases for Login Page</li>
+                                            <li>Quiz: Test Design Techniques (12 questions)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Module 4: Defect Management -->
+                            <div>
+                                <div class="module-header" onclick="toggleModule(4)">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-chevron-down text-blue-600"></i>
+                                            <div>
+                                                <h3 class="font-bold text-gray-900">Defect Life Cycle & Bug Reporting</h3>
+                                                <p class="text-sm text-gray-600 mt-1">10 lectures • 2h 20min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="module-content" id="module-4">
+                                    <div class="topic-list">
+                                        <ul>
+                                            <li>What is a Defect (Bug, Error, Failure)</li>
+                                            <li>Defect Life Cycle (New, Assigned, Fixed, Retest, Closed)</li>
+                                            <li>Defect Severity and Priority</li>
+                                            <li>How to Write Effective Bug Reports</li>
+                                            <li>Introduction to Jira for Defect Tracking</li>
+                                            <li>Creating and Managing Defects in Jira</li>
+                                            <li>Defect Metrics and Reporting</li>
+                                            <li>Root Cause Analysis</li>
+                                            <li>Defect Prevention Strategies</li>
+                                            <li>Quiz: Defect Management (9 questions)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Module 5: Introduction to Automation -->
+                            <div>
+                                <div class="module-header" onclick="toggleModule(5)">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-chevron-down text-blue-600"></i>
+                                            <div>
+                                                <h3 class="font-bold text-gray-900">Automation Testing Fundamentals</h3>
+                                                <p class="text-sm text-gray-600 mt-1">11 lectures • 2h 30min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="module-content" id="module-5">
+                                    <div class="topic-list">
+                                        <ul>
+                                            <li>Manual Testing vs Automation Testing</li>
+                                            <li>When to Automate and When Not to Automate</li>
+                                            <li>Benefits and Limitations of Automation</li>
+                                            <li>Introduction to Popular Automation Tools</li>
+                                            <li>Selenium, Appium, Cypress, Playwright Overview</li>
+                                            <li>Automation Framework Types</li>
+                                            <li>Data-Driven, Keyword-Driven, Hybrid Frameworks</li>
+                                            <li>Programming Languages for Automation (Java, Python)</li>
+                                            <li>Setting Up Development Environment (IDE, JDK, Python)</li>
+                                            <li>Version Control with Git and GitHub</li>
+                                            <li>Quiz: Automation Fundamentals (10 questions)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Module 6: Java/Python for Automation -->
+                            <div>
+                                <div class="module-header" onclick="toggleModule(6)">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-chevron-down text-blue-600"></i>
+                                            <div>
+                                                <h3 class="font-bold text-gray-900">Java/Python Programming for Testers</h3>
+                                                <p class="text-sm text-gray-600 mt-1">12 lectures • 2h 50min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="module-content" id="module-6">
+                                    <div class="topic-list">
+                                        <ul>
+                                            <li>Java/Python Basics (Variables, Data Types, Operators)</li>
+                                            <li>Control Flow Statements (if-else, switch, loops)</li>
+                                            <li>Arrays and Collections</li>
+                                            <li>Functions/Methods and Parameters</li>
+                                            <li>Object-Oriented Programming (Classes, Objects, Inheritance)</li>
+                                            <li>Exception Handling</li>
+                                            <li>File Handling and I/O Operations</li>
+                                            <li>String Manipulation for Test Data</li>
+                                            <li>Working with Excel Files (Apache POI / openpyxl)</li>
+                                            <li>JSON and XML Parsing</li>
+                                            <li>Hands-on Lab: Building Utility Functions for Testing</li>
+                                            <li>Quiz: Programming for Testers (11 questions)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Module 7: Selenium WebDriver -->
+                            <div>
+                                <div class="module-header" onclick="toggleModule(7)">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-chevron-down text-blue-600"></i>
+                                            <div>
+                                                <h3 class="font-bold text-gray-900">Selenium WebDriver - Core Concepts</h3>
+                                                <p class="text-sm text-gray-600 mt-1">15 lectures • 3h 30min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="module-content" id="module-7">
+                                    <div class="topic-list">
+                                        <ul>
+                                            <li>Introduction to Selenium Suite (IDE, WebDriver, Grid)</li>
+                                            <li>Selenium WebDriver Architecture</li>
+                                            <li>Setting Up Selenium with Java/Python</li>
+                                            <li>WebDriver Managers and Browser Drivers</li>
+                                            <li>Locating Elements (ID, Name, Class, XPath, CSS Selector)</li>
+                                            <li>Advanced XPath and CSS Selector Techniques</li>
+                                            <li>WebDriver Commands (get, navigate, quit, close)</li>
+                                            <li>Handling Web Elements (Click, SendKeys, Clear)</li>
+                                            <li>Handling Dropdowns, Checkboxes, Radio Buttons</li>
+                                            <li>Handling Alerts, Popups, and Frames</li>
+                                            <li>Window Handling and Tab Switching</li>
+                                            <li>Waits in Selenium (Implicit, Explicit, Fluent Wait)</li>
+                                            <li>Taking Screenshots for Reporting</li>
+                                            <li>Hands-on Lab: Automating E-commerce Website</li>
+                                            <li>Quiz: Selenium WebDriver Basics (14 questions)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Module 8: Advanced Selenium -->
+                            <div>
+                                <div class="module-header" onclick="toggleModule(8)">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-chevron-down text-blue-600"></i>
+                                            <div>
+                                                <h3 class="font-bold text-gray-900">Advanced Selenium & Action Class</h3>
+                                                <p class="text-sm text-gray-600 mt-1">12 lectures • 2h 50min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="module-content" id="module-8">
+                                    <div class="topic-list">
+                                        <ul>
+                                            <li>Actions Class for Mouse and Keyboard Events</li>
+                                            <li>Drag and Drop Operations</li>
+                                            <li>Hover Actions and Context Menu</li>
+                                            <li>Handling Dynamic Web Tables</li>
+                                            <li>Handling Auto-Suggest Dropdowns</li>
+                                            <li>Handling Calendar and Date Pickers</li>
+                                            <li>JavaScript Executor in Selenium</li>
+                                            <li>Scrolling and Hidden Element Interaction</li>
+                                            <li>Handling File Upload and Download</li>
+                                            <li>Headless Browser Testing</li>
+                                            <li>Cross-Browser Testing with Selenium</li>
+                                            <li>Quiz: Advanced Selenium Techniques (11 questions)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Module 9: TestNG Framework -->
+                            <div>
+                                <div class="module-header" onclick="toggleModule(9)">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-chevron-down text-blue-600"></i>
+                                            <div>
+                                                <h3 class="font-bold text-gray-900">TestNG Framework for Test Management</h3>
+                                                <p class="text-sm text-gray-600 mt-1">11 lectures • 2h 35min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="module-content" id="module-9">
+                                    <div class="topic-list">
+                                        <ul>
+                                            <li>Introduction to TestNG Framework</li>
+                                            <li>TestNG Annotations (@Test, @BeforeMethod, @AfterMethod)</li>
+                                            <li>Test Execution Order and Priority</li>
+                                            <li>Grouping Tests and Test Suites</li>
+                                            <li>Parameterization with @Parameters and @DataProvider</li>
+                                            <li>Assertions in TestNG (Hard Assert, Soft Assert)</li>
+                                            <li>TestNG XML Configuration Files</li>
+                                            <li>Parallel Execution of Tests</li>
+                                            <li>Dependency Testing with dependsOnMethods</li>
+                                            <li>TestNG Listeners for Custom Reporting</li>
+                                            <li>Quiz: TestNG Framework (10 questions)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Module 10: Automation Frameworks -->
+                            <div>
+                                <div class="module-header" onclick="toggleModule(10)">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-chevron-down text-blue-600"></i>
+                                            <div>
+                                                <h3 class="font-bold text-gray-900">Building Automation Frameworks (POM, Data-Driven, Hybrid)</h3>
+                                                <p class="text-sm text-gray-600 mt-1">13 lectures • 3h 10min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="module-content" id="module-10">
+                                    <div class="topic-list">
+                                        <ul>
+                                            <li>Introduction to Automation Frameworks</li>
+                                            <li>Page Object Model (POM) Design Pattern</li>
+                                            <li>Creating Page Classes and Page Factory</li>
+                                            <li>Data-Driven Framework with Excel/CSV</li>
+                                            <li>Reading Test Data from External Files</li>
+                                            <li>Keyword-Driven Framework Architecture</li>
+                                            <li>Hybrid Framework (Combining POM + Data-Driven)</li>
+                                            <li>Framework Configuration and Properties Files</li>
+                                            <li>Logging with Log4j/Logback</li>
+                                            <li>Extent Reports for Test Reporting</li>
+                                            <li>Allure Reports Integration</li>
+                                            <li>Hands-on Lab: Building Complete Automation Framework</li>
+                                            <li>Quiz: Automation Frameworks (12 questions)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Module 11: API Testing -->
+                            <div>
+                                <div class="module-header" onclick="toggleModule(11)">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-chevron-down text-blue-600"></i>
+                                            <div>
+                                                <h3 class="font-bold text-gray-900">API Testing with Postman & Rest Assured</h3>
+                                                <p class="text-sm text-gray-600 mt-1">12 lectures • 2h 50min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="module-content" id="module-11">
+                                    <div class="topic-list">
+                                        <ul>
+                                            <li>Introduction to API Testing and REST APIs</li>
+                                            <li>HTTP Methods (GET, POST, PUT, DELETE, PATCH)</li>
+                                            <li>Understanding JSON and XML Response</li>
+                                            <li>Postman Tool for API Testing</li>
+                                            <li>Creating and Running API Requests in Postman</li>
+                                            <li>Postman Collections and Environment Variables</li>
+                                            <li>Assertions and Validations in Postman</li>
+                                            <li>Introduction to Rest Assured Library</li>
+                                            <li>Writing API Tests with Rest Assured</li>
+                                            <li>Request and Response Specifications</li>
+                                            <li>API Authentication (Bearer Token, OAuth 2.0)</li>
+                                            <li>Quiz: API Testing (11 questions)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Module 12: BDD with Cucumber -->
+                            <div>
+                                <div class="module-header" onclick="toggleModule(12)">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-chevron-down text-blue-600"></i>
+                                            <div>
+                                                <h3 class="font-bold text-gray-900">BDD Testing with Cucumber Framework</h3>
+                                                <p class="text-sm text-gray-600 mt-1">10 lectures • 2h 20min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="module-content" id="module-12">
+                                    <div class="topic-list">
+                                        <ul>
+                                            <li>Introduction to Behavior-Driven Development (BDD)</li>
+                                            <li>Gherkin Language (Given, When, Then)</li>
+                                            <li>Setting Up Cucumber with Selenium</li>
+                                            <li>Writing Feature Files and Scenarios</li>
+                                            <li>Step Definitions in Cucumber</li>
+                                            <li>Parameterization with Scenario Outline</li>
+                                            <li>Data Tables in Cucumber</li>
+                                            <li>Hooks and Tags in Cucumber</li>
+                                            <li>Cucumber Reporting and HTML Reports</li>
+                                            <li>Quiz: Cucumber BDD Framework (9 questions)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Module 13: CI/CD & Jenkins -->
+                            <div>
+                                <div class="module-header" onclick="toggleModule(13)">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-chevron-down text-blue-600"></i>
+                                            <div>
+                                                <h3 class="font-bold text-gray-900">CI/CD with Jenkins & Git Integration</h3>
+                                                <p class="text-sm text-gray-600 mt-1">9 lectures • 2h 10min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="module-content" id="module-13">
+                                    <div class="topic-list">
+                                        <ul>
+                                            <li>Introduction to Continuous Integration and Continuous Deployment</li>
+                                            <li>Version Control with Git (Clone, Commit, Push, Pull)</li>
+                                            <li>GitHub and Repository Management</li>
+                                            <li>Installing and Configuring Jenkins</li>
+                                            <li>Creating Jenkins Jobs for Test Automation</li>
+                                            <li>Integrating Selenium Tests with Jenkins</li>
+                                            <li>Scheduling Jobs and Build Triggers</li>
+                                            <li>Email Notifications and Build Reports</li>
+                                            <li>Quiz: CI/CD and Jenkins (8 questions)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Module 14: Mobile Testing & Real Projects -->
+                            <div>
+                                <div class="module-header" onclick="toggleModule(14)">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-chevron-down text-blue-600"></i>
+                                            <div>
+                                                <h3 class="font-bold text-gray-900">Appium Mobile Testing & Career Guidance</h3>
+                                                <p class="text-sm text-gray-600 mt-1">11 lectures • 4h 30min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="module-content" id="module-14">
+                                    <div class="topic-list">
+                                        <ul>
+                                            <li>Introduction to Mobile Testing (Android & iOS)</li>
+                                            <li>Appium Architecture and Setup</li>
+                                            <li>Configuring Android Emulator and Real Devices</li>
+                                            <li>Locating Elements in Mobile Apps</li>
+                                            <li>Mobile Gestures (Swipe, Scroll, Tap)</li>
+                                            <li>Real-World Project 1: E-Commerce Website Automation</li>
+                                            <li>Real-World Project 2: Banking Application Testing</li>
+                                            <li>Real-World Project 3: API Testing Framework</li>
+                                            <li>Interview Preparation (100+ QA Interview Questions)</li>
+                                            <li>Resume Building and LinkedIn Optimization</li>
+                                            <li>Career Guidance and Job Search Strategies</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <!-- Requirements -->
+                    <div class="content-card p-6 lg:p-8">
+                        <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-6">Requirements</h2>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check-circle text-blue-600 text-lg mt-1"></i>
+                                <span class="text-gray-700">Basic computer knowledge (no prior testing or programming experience required)</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check-circle text-blue-600 text-lg mt-1"></i>
+                                <span class="text-gray-700">Computer with 4GB RAM minimum (8GB recommended for automation)</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check-circle text-blue-600 text-lg mt-1"></i>
+                                <span class="text-gray-700">Windows, Mac, or Linux operating system</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check-circle text-blue-600 text-lg mt-1"></i>
+                                <span class="text-gray-700">Passion for ensuring software quality and finding bugs</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check-circle text-blue-600 text-lg mt-1"></i>
+                                <span class="text-gray-700">Willingness to learn programming (Java/Python taught from scratch)</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Description -->
+                    <div class="content-card p-6 lg:p-8">
+                        <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-6">Description</h2>
+                        <div class="text-gray-700 leading-relaxed space-y-4">
+                            <p>
+                                Welcome to the most comprehensive Software Testing course for 2025, covering both Manual and Automation Testing from beginner to advanced level. This course is designed to transform you into a skilled QA Engineer ready for industry roles in companies like Amazon, Google, Microsoft, and top IT firms. Master the complete testing lifecycle, from writing test cases to building sophisticated automation frameworks with Selenium, TestNG, and Cucumber.
+                            </p>
+                            <p>
+                                Begin your journey with software testing fundamentals including SDLC, STLC, and various testing methodologies. Learn to create comprehensive test plans, design effective test cases using industry-standard techniques like equivalence partitioning and boundary value analysis, and master defect life cycle management with tools like Jira. Understand different testing levels (unit, integration, system, UAT) and testing types (functional, regression, smoke, sanity, performance, security).
+                            </p>
+                            <p>
+                                The automation section covers Selenium WebDriver extensively with both Java and Python. Learn element locating strategies using XPath and CSS selectors, handle complex web elements including dropdowns, alerts, frames, and windows. Master synchronization techniques with implicit, explicit, and fluent waits. Progress to advanced topics like Actions class for keyboard and mouse events, JavaScript Executor for hidden elements, and cross-browser testing strategies.
+                            </p>
+                            <p>
+                                Build professional automation frameworks using Page Object Model (POM), Data-Driven, and Hybrid framework architectures. Integrate TestNG for test management with annotations, assertions, parameterization, and parallel execution. Learn Cucumber BDD framework with Gherkin language for behavior-driven testing. Master API testing with Postman and Rest Assured, including authentication, request/response validation, and JSON parsing. Explore mobile testing with Appium for Android and iOS applications.
+                            </p>
+                            <p>
+                                Implement CI/CD pipelines with Jenkins, integrating automated tests with version control systems like Git and GitHub. Generate detailed test reports using Extent Reports and Allure. Build three complete real-world projects: e-commerce website automation, banking application testing framework, and comprehensive API testing suite. The course includes 100+ QA interview questions covering manual testing, Selenium, TestNG, frameworks, and scenario-based problems. Learn resume building, LinkedIn optimization, and job search strategies. Join over 18,000 students who have successfully secured QA positions with salaries ranging from ₹3-12 LPA. Master both manual and automation testing to become a versatile QA professional ready for any testing challenge.
+                            </p>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <!-- Right Column - Buy Box -->
+                <div class="lg:col-span-1">
+                    <div class="sticky-buy-box p-6">
+                        <!-- Course Thumbnail with QA Testing Icon -->
+                        <div class="course-thumbnail-container mb-6">
+                            <i class="fas fa-vial course-thumbnail-icon"></i>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <div class="flex items-baseline gap-2 mb-2">
+                                <span class="text-4xl font-bold text-gray-900">₹999</span>
+                                <span class="text-xl text-gray-400 line-through">₹4,999</span>
+                            </div>
+                            <span class="discount-badge inline-block px-3 py-1.5 bg-red-500 text-white text-sm font-bold rounded-lg shadow-md">
+                                80% OFF - Limited Time
+                            </span>
+                        </div>
+                        
+                        <button onclick="openCallbackModal()" class="btn-enroll w-full text-white py-4 rounded-xl font-bold text-lg mb-6 items-center justify-center gap-2">
+                            <i class="fas fa-graduation-cap"></i>
+                            Book Now
+                        </button>
+                        
+                        <div class="border-t border-gray-200 pt-5 space-y-4 text-sm">
+                            <div class="flex items-center gap-3">
+                                <i class="fas fa-infinity text-blue-600 text-lg"></i>
+                                <span class="text-gray-700 font-medium">Lifetime access</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i class="fas fa-mobile-alt text-blue-600 text-lg"></i>
+                                <span class="text-gray-700 font-medium">Mobile and desktop access</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i class="fas fa-certificate text-blue-600 text-lg"></i>
+                                <span class="text-gray-700 font-medium">Certificate of completion</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i class="fas fa-project-diagram text-blue-600 text-lg"></i>
+                                <span class="text-gray-700 font-medium">3 real-world testing projects</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i class="fas fa-video text-blue-600 text-lg"></i>
+                                <span class="text-gray-700 font-medium">50+ hours video content</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i class="fas fa-vial text-blue-600 text-lg"></i>
+                                <span class="text-gray-700 font-medium">Complete test scripts included</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i class="fas fa-undo text-blue-600 text-lg"></i>
+                                <span class="text-gray-700 font-medium">30-day money-back guarantee</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+    <!-- ===== CALLBACK MODAL ===== -->
+    <div id="callbackModal" class="fixed inset-0 bg-black bg-opacity-60 z-[200] hidden items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-xl max-w-3xl w-full shadow-2xl transform transition-all scale-95 modal-content overflow-visible">
+            
+            <div class="flex flex-col lg:flex-row max-h-[85vh] overflow-visible">
+                <!-- Left Side - Branding Section (Desktop/Tablet) -->
+                <div class="hidden md:flex md:w-[45%] lg:w-[40%] bg-gradient-to-br from-[#1D5D7F] via-[#1D5D7F] to-[#236192] text-white p-6 lg:p-8 flex-col justify-between relative overflow-hidden">
+                    <!-- Background Pattern -->
+                    <div class="absolute inset-0 opacity-10">
+                        <div class="absolute top-0 right-0 w-48 h-48 bg-white rounded-full -mr-24 -mt-24"></div>
+                        <div class="absolute bottom-0 left-0 w-32 h-32 bg-white rounded-full -ml-16 -mb-16"></div>
+                    </div>
+                    
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 lg:w-16 lg:h-16 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mb-4 backdrop-blur-sm">
+                            <i class="fas fa-phone-alt text-[24px] lg:text-[28px]"></i>
+                        </div>
+                        <h2 class="text-[20px] lg:text-[24px] font-bold leading-tight mb-2">We're here to<br>support you</h2>
+                        <h3 class="text-[18px] lg:text-[22px] font-semibold mb-3">every step of<br>the way.</h3>
+                        <p class="text-blue-100 text-[13px] leading-relaxed">Let's talk!</p>
+                        
+                        <div class="mt-4">
+                            <p class="text-[12px] text-blue-50 leading-relaxed">
+                                We carefully listen to your course requirements, thoroughly analyze them, and recommend the most effective approach for your learning needs.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="relative z-10 mt-4">
+                        <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-3 border border-white border-opacity-20">
+                            <p class="text-[10px] font-semibold text-white text-opacity-70 mb-2 uppercase tracking-wider">Contact Information</p>
+                            <div class="space-y-1.5">
+                                <div class="flex items-center gap-2 text-[12px]">
+                                    <i class="fas fa-phone text-white text-opacity-80 text-[11px]"></i>
+                                    <span>+91 98765 43210</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-[12px]">
+                                    <i class="fas fa-envelope text-white text-opacity-80 text-[11px]"></i>
+                                    <span>info@blujay.tech</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side - Form Section -->
+                <div class="w-full md:w-[55%] lg:w-[60%] relative bg-white max-h-[85vh] md:max-h-none overflow-visible">
+                    <!-- Mobile Header -->
+                    <div class="md:hidden bg-gradient-to-r from-[#1D5D7F] to-[#236192] text-white p-5 relative">
+                        <button onclick="closeCallbackModal()" class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full hover:bg-white hover:bg-opacity-20 transition-all">
+                            <i class="fas fa-times text-[16px]"></i>
+                        </button>
+                        <div class="text-center pr-8">
+                            <div class="w-14 h-14 bg-white bg-opacity-20 rounded-xl mx-auto mb-2 flex items-center justify-center">
+                                <i class="fas fa-phone-alt text-[20px]"></i>
+                            </div>
+                            <h3 class="text-[19px] font-bold mb-1">Request a Callback</h3>
+                            <p class="text-[12px] text-white text-opacity-80">We'll get back to you within 24 hours</p>
+                        </div>
+                    </div>
+
+                    <!-- Desktop Close Button -->
+                    <button onclick="closeCallbackModal()" class="hidden md:flex absolute top-3 right-3 w-9 h-9 items-center justify-center rounded-full hover:bg-gray-100 transition-all z-20">
+                        <i class="fas fa-times text-[18px] text-gray-600"></i>
+                    </button>
+
+                    <!-- Form -->
+                    <form id="callbackForm" class="p-5 lg:p-6 space-y-3.5 lg:space-y-4 overflow-visible">
+                        <div class="hidden md:block mb-4 lg:mb-5">
+                            <h3 class="text-[20px] lg:text-[24px] font-bold text-gray-900 mb-1">Get in Touch</h3>
+                            <p class="text-[13px] lg:text-[14px] text-gray-600">Fill out the form and we'll contact you soon</p>
+                        </div>
+
+                        <div>
+                            <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Full Name *</label>
+                            <input type="text" name="name" required 
+                                class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D5D7F] focus:border-[#1D5D7F] outline-none text-[13px] lg:text-[14px] transition-all"
+                                placeholder="John Doe">
+                        </div>
+
+                        <div>
+                            <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Email Address *</label>
+                            <input type="email" name="email" required 
+                                class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D5D7F] focus:border-[#1D5D7F] outline-none text-[13px] lg:text-[14px] transition-all"
+                                placeholder="john@example.com">
+                        </div>
+
+                        <div>
+                            <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Phone Number *</label>
+                            <input type="tel" name="phone" required 
+                                class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D5D7F] focus:border-[#1D5D7F] outline-none text-[13px] lg:text-[14px] transition-all"
+                                placeholder="+91 XXXXX XXXXX">
+                        </div>
+
+                        <div>
+                            <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Choose Services *</label>
+                            <div class="service-dropdown-wrapper">
+                                <div class="service-dropdown-trigger" id="serviceDropdownTrigger">
+                                    <span class="placeholder" id="serviceSelectedText">Select a service...</span>
+                                    <i class="fas fa-chevron-down chevron"></i>
+                                </div>
+                                <div class="service-dropdown-menu" id="serviceDropdownMenu">
+                                    <div class="service-dropdown-item" data-value="Software Testing (Manual + Automation)">
+                                        <i class="fas fa-vial"></i>
+                                        <span>Software Testing (Manual + Automation)</span>
+                                    </div>
+                                    <div class="service-dropdown-item" data-value="MERN Stack Development">
+                                        <i class="fab fa-react"></i>
+                                        <span>MERN Stack Development</span>
+                                    </div>
+                                    <div class="service-dropdown-item" data-value="Java Full Stack Development">
+                                        <i class="fab fa-java"></i>
+                                        <span>Java Full Stack Development</span>
+                                    </div>
+                                    <div class="service-dropdown-item" data-value="Other Courses">
+                                        <i class="fas fa-graduation-cap"></i>
+                                        <span>Other Courses</span>
+                                    </div>
+                                </div>
+                                <select name="service" id="serviceHiddenSelect" required style="position: absolute; opacity: 0; pointer-events: none; width: 1px; height: 1px;">
+                                    <option value="" selected></option>
+                                    <option value="Software Testing (Manual + Automation)">Software Testing (Manual + Automation)</option>
+                                    <option value="MERN Stack Development">MERN Stack Development</option>
+                                    <option value="Java Full Stack Development">Java Full Stack Development</option>
+                                    <option value="Other Courses">Other Courses</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" id="submitBtn"
+                            class="w-full bg-[#1D5D7F] text-white py-2.5 lg:py-3 rounded-lg font-semibold text-[14px] lg:text-[15px] hover:bg-[#236192] transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 mt-4 lg:mt-5">
+                            <span>Submit Now</span>
+                            <i class="fas fa-arrow-right text-[12px]"></i>
+                        </button>
+
+                        <!-- Success Message -->
+                        <div id="successMessage" class="hidden bg-green-50 border border-green-200 text-green-800 px-3 py-2.5 rounded-lg text-[12px] text-center">
+                            <i class="fas fa-check-circle mr-1"></i>
+                            <strong>Success!</strong> We'll contact you soon.
+                        </div>
+
+                        <!-- Error Message -->
+                        <div id="errorMessage" class="hidden bg-red-50 border border-red-200 text-red-800 px-3 py-2.5 rounded-lg text-[12px] text-center">
+                            <i class="fas fa-exclamation-circle mr-1"></i>
+                            <strong>Error!</strong> Please try again.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ✅ TOGGLE SCRIPT -->
+    <script>
+        function toggleModule(moduleId) {
+            const moduleContent = document.getElementById(`module-${moduleId}`);
+            const moduleHeader = moduleContent.previousElementSibling;
+            
+            moduleContent.classList.toggle('active');
+            moduleHeader.classList.toggle('active');
+        }
+        
+        // ===== CALLBACK MODAL FUNCTIONS =====
+        const SHEETDB_URL = 'https://sheetdb.io/api/v1/7s7xiynldn2sf';
+        
+        function openCallbackModal() {
+            const modal = document.getElementById('callbackModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+            
+            // Reset form
+            document.getElementById('callbackForm').reset();
+            document.getElementById('successMessage').classList.add('hidden');
+            document.getElementById('errorMessage').classList.add('hidden');
+            
+            // Reset custom service dropdown
+            const serviceText = document.getElementById('serviceSelectedText');
+            const serviceSelect = document.getElementById('serviceHiddenSelect');
+            if (serviceText && serviceSelect) {
+                serviceText.textContent = 'Select a service...';
+                serviceText.classList.add('placeholder');
+                serviceText.classList.remove('selected-text');
+                serviceSelect.value = '';
+                document.querySelectorAll('.service-dropdown-item').forEach(item => {
+                    item.classList.remove('selected');
+                });
+            }
+        }
+
+        function closeCallbackModal() {
+            const modal = document.getElementById('callbackModal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            
+            // Close service dropdown if open
+            const dropdownMenu = document.getElementById('serviceDropdownMenu');
+            const dropdownTrigger = document.getElementById('serviceDropdownTrigger');
+            if (dropdownMenu && dropdownTrigger) {
+                dropdownMenu.classList.remove('active');
+                dropdownTrigger.classList.remove('active');
+            }
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('callbackModal')?.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCallbackModal();
+            }
+        });
+
+        // ===== CUSTOM SERVICE DROPDOWN FUNCTIONALITY =====
+        const serviceDropdownTrigger = document.getElementById('serviceDropdownTrigger');
+        const serviceDropdownMenu = document.getElementById('serviceDropdownMenu');
+        const serviceSelectedText = document.getElementById('serviceSelectedText');
+        const serviceHiddenSelect = document.getElementById('serviceHiddenSelect');
+
+        // Toggle dropdown
+        serviceDropdownTrigger?.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const isActive = serviceDropdownMenu.classList.contains('active');
+            
+            if (isActive) {
+                serviceDropdownMenu.classList.remove('active');
+                serviceDropdownTrigger.classList.remove('active');
+            } else {
+                serviceDropdownMenu.classList.add('active');
+                serviceDropdownTrigger.classList.add('active');
+            }
+        });
+
+        // Handle item selection
+        document.querySelectorAll('.service-dropdown-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                const value = this.getAttribute('data-value');
+                const text = this.querySelector('span').textContent;
+                
+                // Update selected text
+                serviceSelectedText.textContent = text;
+                serviceSelectedText.classList.remove('placeholder');
+                serviceSelectedText.classList.add('selected-text');
+                
+                // Update hidden select
+                serviceHiddenSelect.value = value;
+                
+                // Update selected state
+                document.querySelectorAll('.service-dropdown-item').forEach(i => i.classList.remove('selected'));
+                this.classList.add('selected');
+                
+                // Close dropdown
+                serviceDropdownMenu.classList.remove('active');
+                serviceDropdownTrigger.classList.remove('active');
+            });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (serviceDropdownMenu && serviceDropdownTrigger) {
+                if (!serviceDropdownTrigger.contains(e.target) && !serviceDropdownMenu.contains(e.target)) {
+                    serviceDropdownMenu.classList.remove('active');
+                    serviceDropdownTrigger.classList.remove('active');
+                }
+            }
+        });
+
+        // Close dropdown on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (serviceDropdownMenu?.classList.contains('active')) {
+                    serviceDropdownMenu.classList.remove('active');
+                    serviceDropdownTrigger?.classList.remove('active');
+                }
+                closeCallbackModal();
+            }
+        });
+
+        // Handle Form Submission
+        document.getElementById('callbackForm')?.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const successMsg = document.getElementById('successMessage');
+            const errorMsg = document.getElementById('errorMessage');
+            
+            // Hide previous messages
+            successMsg.classList.add('hidden');
+            errorMsg.classList.add('hidden');
+            
+            // Show loading state
+            submitBtn.querySelector('span').textContent = 'Submitting...';
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                service: formData.get('service') || 'Not specified',
+                timestamp: new Date().toLocaleString('en-IN', { 
+                    timeZone: 'Asia/Kolkata',
+                    dateStyle: 'medium',
+                    timeStyle: 'short'
+                }),
+                status: 'New'
+            };
+            
+            try {
+                // Send to SheetDB
+                const response = await fetch(SHEETDB_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ data: [data] })
+                });
+                
+                if (response.ok) {
+                    // Success
+                    successMsg.classList.remove('hidden');
+                    this.reset();
+                    
+                    // Reset dropdown
+                    serviceSelectedText.textContent = 'Select a service...';
+                    serviceSelectedText.classList.add('placeholder');
+                    serviceSelectedText.classList.remove('selected-text');
+                    serviceHiddenSelect.value = '';
+                    document.querySelectorAll('.service-dropdown-item').forEach(item => {
+                        item.classList.remove('selected');
+                    });
+                    
+                    // Close modal after 2.5 seconds
+                    setTimeout(() => {
+                        closeCallbackModal();
+                    }, 2500);
+                } else {
+                    throw new Error('Submission failed');
+                }
+            } catch (error) {
+                // Error
+                console.error('Error:', error);
+                errorMsg.classList.remove('hidden');
+            } finally {
+                // Reset button state
+                submitBtn.querySelector('span').textContent = 'Submit Now';
+            }
+        });
+    </script>
+</body>
+</html>

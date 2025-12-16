@@ -1,0 +1,1648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Solutions Architect - Blujay Technologies</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * { 
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body { 
+            background: #f9fafb;
+            min-height: 100vh;
+        }
+        
+        /* ===== BLUJAY BRAND COLORS ===== */
+        :root {
+            --blujay-primary: #1D5D7F;
+            --blujay-primary-hover: #236192;
+            --blujay-light: #E8F4F8;
+            --blujay-dark: #164257;
+        }
+        
+        .bg-blue-600 { background-color: var(--blujay-primary) !important; }
+        .hover\:bg-blue-700:hover { background-color: var(--blujay-primary-hover) !important; }
+        .text-blue-600 { color: var(--blujay-primary) !important; }
+        .border-blue-500 { border-color: var(--blujay-primary) !important; }
+        .bg-blue-100 { background-color: var(--blujay-light) !important; }
+        
+        /* ===== HEADER ===== */
+        header {
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            backdrop-filter: blur(10px);
+        }
+        
+        header a {
+            transition: all 0.3s ease;
+        }
+        
+        /* ===== HERO SECTION - BLUJAY GRADIENT ===== */
+        .hero-section {
+            background: linear-gradient(135deg, #1D5D7F 0%, #236192 50%, #2a7bb8 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".1" fill="%23ffffff"></path></svg>') no-repeat bottom;
+            background-size: cover;
+            opacity: 0.1;
+        }
+        
+        /* ===== STICKY BUY BOX ===== */
+        .sticky-buy-box {
+            position: sticky;
+            top: 90px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .sticky-buy-box:hover {
+            box-shadow: 0 8px 30px rgba(29, 93, 127, 0.15);
+            border-color: var(--blujay-primary);
+        }
+        
+        /* ===== CLEAN CARDS ===== */
+        .content-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            border: 1px solid #f3f4f6;
+        }
+        
+        .content-card:hover {
+            box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+            border-color: #e5e7eb;
+        }
+        
+        /* ===== MODULE HEADER ===== */
+        .module-header {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 16px 20px;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .module-header:hover {
+            background: var(--blujay-light);
+            border-color: var(--blujay-primary);
+        }
+        
+        .module-header i.fa-chevron-down {
+            transition: transform 0.3s ease;
+        }
+        
+        .module-header.active i.fa-chevron-down {
+            transform: rotate(180deg);
+        }
+        
+        /* ===== MODULE CONTENT ===== */
+        .module-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        
+        .module-content.active {
+            max-height: 5000px;
+        }
+        
+        /* ===== TOPIC LIST ===== */
+        .topic-list {
+            padding: 20px 24px;
+            background: #fafafa;
+            border-radius: 8px;
+            margin-top: 12px;
+        }
+        
+        .topic-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .topic-list li {
+            padding: 10px 0;
+            padding-left: 28px;
+            position: relative;
+            color: #4b5563;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        
+        .topic-list li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--blujay-primary);
+            font-weight: bold;
+        }
+        
+        /* ===== LECTURE ITEM ===== */
+        .lecture-item {
+            padding: 12px 16px;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            margin: 6px 0;
+            background: white;
+            border: 1px solid #f3f4f6;
+        }
+        
+        .lecture-item:hover {
+            background: #f0f9ff;
+            border-color: var(--blujay-primary);
+            transform: translateX(6px);
+        }
+        
+        /* ===== ENROLL BUTTON ===== */
+        .btn-enroll {
+            background: linear-gradient(135deg, var(--blujay-primary) 0%, var(--blujay-primary-hover) 100%);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(29, 93, 127, 0.3);
+            text-decoration: none;
+            display: flex;
+        }
+        
+        .btn-enroll:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(29, 93, 127, 0.4);
+        }
+        
+        .btn-enroll:active {
+            transform: translateY(-1px);
+        }
+        
+        /* ===== DISCOUNT BADGE ===== */
+        .discount-badge {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+        
+        /* ===== LEARNING BENEFITS ===== */
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px;
+            background: #f9fafb;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-item:hover {
+            background: var(--blujay-light);
+            transform: translateX(5px);
+        }
+        
+        .benefit-icon {
+            width: 24px;
+            height: 24px;
+            background: #10b981;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .sticky-buy-box {
+                position: relative;
+                top: 0;
+                margin-bottom: 24px;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .hero-section {
+                padding: 2rem 0;
+            }
+            
+            .content-card {
+                border-radius: 12px;
+                padding: 1rem !important;
+            }
+            
+            .module-header {
+                padding: 12px 16px;
+            }
+            
+            .lecture-item {
+                padding: 10px 12px;
+            }
+            
+            .topic-list {
+                padding: 16px 18px;
+            }
+            
+            .topic-list li {
+                font-size: 14px;
+            }
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* ===== COURSE THUMBNAIL HOVER - AWS Gradient ===== */
+        .course-thumbnail-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #FF9900 0%, #FF6600 40%, #232F3E 70%, #000000 100%);
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .course-thumbnail-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.3));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .course-thumbnail-container:hover::after {
+            opacity: 1;
+        }
+        
+        .course-thumbnail-icon {
+            font-size: 70px;
+            color: rgba(255,255,255,0.95);
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .course-thumbnail-container:hover .course-thumbnail-icon {
+            transform: scale(1.15) rotate(5deg);
+        }
+        
+        /* ===== CALLBACK MODAL STYLES ===== */
+        #callbackModal {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #callbackModal.flex {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal-content {
+            animation: slideUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            max-height: 85vh;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(40px) scale(0.95);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Modal responsive adjustments */
+        @media (max-width: 767px) {
+            .modal-content {
+                max-width: 95%;
+                margin: 0 auto;
+                max-height: 90vh;
+            }
+
+            #callbackModal {
+                padding: 0.75rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .modal-content {
+                max-width: 800px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .modal-content {
+                max-width: 920px;
+            }
+        }
+
+        /* Service Custom Dropdown Styling */
+        .service-dropdown-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .service-dropdown-trigger {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 0.875rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            background: #ffffff;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 13px;
+            font-weight: 500;
+            color: #111827;
+            user-select: none;
+        }
+
+        @media (min-width: 1024px) {
+            .service-dropdown-trigger {
+                padding: 0.625rem 1rem;
+                font-size: 14px;
+            }
+        }
+
+        .service-dropdown-trigger:hover {
+            border-color: #1D5D7F;
+            background-color: #f8fafc;
+        }
+
+        .service-dropdown-trigger.active {
+            border-color: #1D5D7F;
+            box-shadow: 0 0 0 3px rgba(29, 93, 127, 0.1);
+        }
+
+        .service-dropdown-trigger .placeholder {
+            color: #9ca3af;
+            font-style: italic;
+        }
+
+        .service-dropdown-trigger .selected-text {
+            color: #111827;
+            font-weight: 500;
+        }
+
+        .service-dropdown-trigger i.chevron {
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 9px;
+            color: #1D5D7F;
+            margin-left: 8px;
+        }
+
+        .service-dropdown-trigger.active i.chevron {
+            transform: rotate(180deg);
+        }
+
+        .service-dropdown-menu {
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 22px 60px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(15, 23, 42, 0.04);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 10000;
+            padding: 10px;
+            max-height: none;
+            overflow: visible;
+        }
+
+        .service-dropdown-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .service-dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 11px 14px;
+            color: #111827;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 10px;
+            margin-bottom: 4px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .service-dropdown-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .service-dropdown-item i {
+            margin-right: 10px;
+            font-size: 13px;
+            width: 18px;
+            text-align: center;
+            color: #1D5D7F;
+            opacity: 0.9;
+        }
+
+        .service-dropdown-item:hover {
+            background: #1D5D7F;
+            color: #ffffff;
+            padding-left: 18px;
+            transform: translateX(2px);
+        }
+
+        .service-dropdown-item:hover i {
+            color: #ffffff;
+        }
+
+        .service-dropdown-item.selected {
+            background: #E8F4F8;
+            color: #1D5D7F;
+            font-weight: 600;
+        }
+
+        .service-dropdown-item.selected:hover {
+            background: #1D5D7F;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Header -->
+    <header class="sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="courses-online.html" class="flex items-center gap-2 text-gray-600 hover:text-gray-900 font-semibold transition-all hover:gap-3">
+                    <i class="fas fa-arrow-left"></i>
+                    <span class="hidden sm:inline">Back to Courses</span>
+                </a>
+                <a href="index.html">
+                    <img src="logo.png" alt="Blujay" class="h-10">
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <div>
+        <!-- Hero Section -->
+        <div class="hero-section text-white py-12 lg:py-16">
+            <div class="max-w-7xl mx-auto px-4 lg:px-8 relative z-10">
+                <div class="max-w-3xl">
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 leading-tight">AWS Solutions Architect</h1>
+                    <p class="text-lg sm:text-xl text-blue-100 mb-6 leading-relaxed">Master AWS cloud services, architecture, and deployment strategies for enterprise solutions. Become AWS Certified Solutions Architect (SAA-C03, SAP-C02) ready.</p>
+                    
+                    <div class="flex flex-wrap items-center gap-4 sm:gap-6 mb-6">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-star text-yellow-400 text-lg"></i>
+                            <span class="font-bold text-xl">4.9</span>
+                            <span class="text-blue-100">(28,345 students)</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="far fa-clock text-blue-100"></i>
+                            <span>55+ hours</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-signal text-blue-100"></i>
+                            <span>Beginner to Advanced</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-lg px-4 py-3 w-fit">
+                        <i class="fas fa-user-circle text-3xl"></i>
+                        <div>
+                            <p class="text-sm text-blue-100">Created by</p>
+                            <p class="font-semibold text-lg">AWS Certified Solutions Architects</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Content Grid -->
+        <div class="max-w-7xl mx-auto px-4 lg:px-8 py-8 lg:py-12">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+                
+                <!-- Left Column -->
+                <div class="lg:col-span-2 space-y-6">
+                    
+                    <!-- What You'll Learn -->
+                    <div class="content-card p-6 lg:p-8">
+                        <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-6">What you'll learn</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <span class="text-gray-700 font-medium">Master AWS core services (EC2, S3, RDS, VPC, Lambda)</span>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <span class="text-gray-700 font-medium">Design scalable and highly available architectures</span>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <span class="text-gray-700 font-medium">Implement security best practices with IAM and KMS</span>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <span class="text-gray-700 font-medium">Build serverless applications with Lambda and API Gateway</span>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <span class="text-gray-700 font-medium">Configure VPCs, subnets, and hybrid connectivity</span>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <span class="text-gray-700 font-medium">Deploy containerized apps with ECS and EKS</span>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <span class="text-gray-700 font-medium">Pass AWS SAA-C03 and SAP-C02 certification exams</span>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <span class="text-gray-700 font-medium">Optimize costs with AWS pricing and billing tools</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Course Content -->
+                    <div class="content-card p-6 lg:p-8">
+                        <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">Course Content</h2>
+                        <p class="text-gray-600 mb-6 flex items-center gap-2">
+                            <i class="fas fa-list-ul text-blue-600"></i>
+                            16 sections • 160 lectures • 55h+ total
+                        </p>
+                        
+                        <div class="space-y-3">
+                            
+                            <!-- Module 1: Cloud Computing & AWS Fundamentals -->
+                            <div>
+                                <div class="module-header" onclick="toggleModule(1)">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-chevron-down text-blue-600"></i>
+                                            <div>
+                                                <h3 class="font-bold text-gray-900">Cloud Computing & AWS Fundamentals</h3>
+                                                <p class="text-sm text-gray-600 mt-1">12 lectures • 2h 45min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="module-content" id="module-1">
+                                    <div class="topic-list">
+                                        <ul>
+                                            <li>Introduction to Cloud Computing and Benefits</li>
+                                            <li>Cloud Service Models (IaaS, PaaS, SaaS)</li>
+                                            <li>Cloud Deployment Models (Public, Private, Hybrid)</li>
+                                            <li>Introduction to Amazon Web Services (AWS)</li>
+                                            <li>AWS Global Infrastructure (Regions, AZs, Edge Locations)</li>
+                                            <li>Creating Free Tier AWS Account</li>
+                                            <li>AWS Management Console Navigation</li>
+                                            <li>AWS CLI and SDKs Overview</li>
+                                            <li>AWS Pricing Models and TCO Calculator</li>
+                                            <li>AWS Well-Architected Framework Pillars</li>
+                                            <li>AWS Shared Responsibility Model</li>
+                                            <li>Quiz: AWS Fundamentals (11 questions)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Module 2: IAM - Identity & Access Management -->
+                            <div>
+                                <div class="module-header" onclick="toggleModule(2)">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-chevron-down text-blue-600"></i>
+                                            <div>
+                                                <h3 class="font-bold text-gray-900">IAM - Identity & Access Management</h3>
+                                                <p class="text-sm text-gray-600 mt-1">13 lectures • 3h 0min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="module-content" id="module-2">
+                                    <div class="topic-list">
+                                        <ul>
+                                            <li>Introduction to AWS IAM (Identity and Access Management)</li>
+                                            <li>IAM Users, Groups, and Permissions</li>
+                                            <li>IAM Policies (Inline, Managed, Customer Managed)</li>
+                                            <li>Policy Structure and JSON Syntax</li>
+                                            <li>IAM Roles and Trust Policies</li>
+                                            <li>Cross-Account Access with IAM Roles</li>
+                                            <li>Multi-Factor Authentication (MFA)</li>
+                                            <li>IAM Best Practices and Least Privilege</li>
+                                            <li>IAM Identity Center (AWS SSO)</li>
+                                            <li>Service Control Policies (SCPs)</li>
+                                            <li>IAM Access Analyzer</li>
+                                            <li>Hands-on Lab: Creating Users, Groups, and Policies</li>
+                                            <li>Quiz: IAM Security (12 questions)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Module 3: EC2 - Elastic Compute Cloud -->
+                            <div>
+                                <div class="module-header" onclick="toggleModule(3)">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-chevron-down text-blue-600"></i>
+                                            <div>
+                                                <h3 class="font-bold text-gray-900">EC2 - Elastic Compute Cloud</h3>
+                                                <p class="text-sm text-gray-600 mt-1">15 lectures • 3h 30min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="module-content" id="module-3">
+                                    <div class="topic-list">
+                                        <ul>
+                                            <li>Introduction to EC2 and Instance Types</li>
+                                            <li>EC2 Instance Families (General, Compute, Memory, Storage)</li>
+                                            <li>Launching EC2 Instances (Linux and Windows)</li>
+                                            <li>Security Groups and Network ACLs</li>
+                                            <li>Key Pairs and SSH Access</li>
+                                            <li>EC2 User Data and Metadata</li>
+                                            <li>EC2 Instance Storage (EBS, Instance Store)</li>
+                                            <li>EBS Volume Types (gp3, io2, st1, sc1)</li>
+                                            <li>EBS Snapshots and AMIs</li>
+                                            <li>EC2 Placement Groups</li>
+                                            <li>EC2 Instance Purchasing Options (On-Demand, Reserved, Spot)</li>
+                                            <li>Elastic IP Addresses</li>
+                                            <li>EC2 Auto Scaling Groups</li>
+                                            <li>Hands-on Lab: Launching and Managing EC2 Instances</li>
+                                            <li>Quiz: EC2 Compute (14 questions)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Module 4: S3 - Simple Storage Service -->
+                            <div>
+                                <div class="module-header" onclick="toggleModule(4)">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-chevron-down text-blue-600"></i>
+                                            <div>
+                                                <h3 class="font-bold text-gray-900">S3 - Simple Storage Service</h3>
+                                                <p class="text-sm text-gray-600 mt-1">14 lectures • 3h 15min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="module-content" id="module-4">
+                                    <div class="topic-list">
+                                        <ul>
+                                            <li>Introduction to Amazon S3 and Object Storage</li>
+                                            <li>S3 Buckets and Objects</li>
+                                            <li>S3 Storage Classes (Standard, IA, Glacier, Intelligent-Tiering)</li>
+                                            <li>S3 Versioning and Object Lifecycle Policies</li>
+                                            <li>S3 Replication (CRR and SRR)</li>
+                                            <li>S3 Bucket Policies and ACLs</li>
+                                            <li>S3 Presigned URLs</li>
+                                            <li>S3 Event Notifications</li>
+                                            <li>S3 Transfer Acceleration</li>
+                                            <li>S3 Select and Glacier Select</li>
+                                            <li>S3 Encryption (SSE-S3, SSE-KMS, SSE-C)</li>
+                                            <li>S3 Static Website Hosting</li>
+                                            <li>Hands-on Lab: Creating and Securing S3 Buckets</li>
+                                            <li>Quiz: S3 Storage (13 questions)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Module 5: VPC - Virtual Private Cloud -->
+                            <div>
+                                <div class="module-header" onclick="toggleModule(5)">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-chevron-down text-blue-600"></i>
+                                            <div>
+                                                <h3 class="font-bold text-gray-900">VPC - Virtual Private Cloud & Networking</h3>
+                                                <p class="text-sm text-gray-600 mt-1">15 lectures • 3h 35min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="module-content" id="module-5">
+                                    <div class="topic-list">
+                                        <ul>
+                                            <li>Introduction to Amazon VPC</li>
+                                            <li>CIDR Blocks and IP Addressing</li>
+                                            <li>Creating VPCs and Subnets (Public and Private)</li>
+                                            <li>Internet Gateway and NAT Gateway</li>
+                                            <li>Route Tables and Routing</li>
+                                            <li>VPC Peering and Transit Gateway</li>
+                                            <li>VPN Connections (Site-to-Site, Client VPN)</li>
+                                            <li>AWS Direct Connect</li>
+                                            <li>VPC Endpoints (Gateway and Interface)</li>
+                                            <li>AWS PrivateLink</li>
+                                            <li>Network ACLs vs Security Groups</li>
+                                            <li>VPC Flow Logs</li>
+                                            <li>Route 53 DNS Service</li>
+                                            <li>Hands-on Lab: Building Custom VPC Architecture</li>
+                                            <li>Quiz: VPC Networking (14 questions)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Module 6: Load Balancing & Auto Scaling -->
+                            <div>
+                                <div class="module-header" onclick="toggleModule(6)">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-chevron-down text-blue-600"></i>
+                                            <div>
+                                                <h3 class="font-bold text-gray-900">Elastic Load Balancing & Auto Scaling</h3>
+                                                <p class="text-sm text-gray-600 mt-1">12 lectures • 2h 55min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="module-content" id="module-6">
+                                    <div class="topic-list">
+                                        <ul>
+                                            <li>Introduction to Load Balancing Concepts</li>
+                                            <li>Application Load Balancer (ALB)</li>
+                                            <li>Network Load Balancer (NLB)</li>
+                                            <li>Gateway Load Balancer (GWLB)</li>
+                                            <li>Target Groups and Health Checks</li>
+                                            <li>Sticky Sessions and Connection Draining</li>
+                                            <li>Auto Scaling Concepts</li>
+                                            <li>Launch Templates and Launch Configurations</li>
+                                            <li>Auto Scaling Policies (Target Tracking, Step, Scheduled)</li>
+                                            <li>Auto Scaling Lifecycle Hooks</li>
+                                            <li>Hands-on Lab: Implementing HA Architecture with ALB and ASG</li>
+                                            <li>Quiz: Load Balancing and Auto Scaling (11 questions)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Module 7: RDS & Database Services -->
+                            <div>
+                                <div class="module-header" onclick="toggleModule(7)">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-chevron-down text-blue-600"></i>
+                                            <div>
+                                                <h3 class="font-bold text-gray-900">RDS, Aurora & Database Services</h3>
+                                                <p class="text-sm text-gray-600 mt-1">14 lectures • 3h 10min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="module-content" id="module-7">
+                                    <div class="topic-list">
+                                        <ul>
+                                            <li>Introduction to Amazon RDS</li>
+                                            <li>RDS Database Engines (MySQL, PostgreSQL, MariaDB, Oracle, SQL Server)</li>
+                                            <li>Creating RDS Instances</li>
+                                            <li>RDS Multi-AZ Deployments for HA</li>
+                                            <li>RDS Read Replicas for Performance</li>
+                                            <li>RDS Backups and Snapshots</li>
+                                            <li>Amazon Aurora Architecture</li>
+                                            <li>Aurora Serverless v2</li>
+                                            <li>Amazon DynamoDB (NoSQL)</li>
+                                            <li>DynamoDB Tables, Items, and Attributes</li>
+                                            <li>DynamoDB Streams and Global Tables</li>
+                                            <li>Amazon ElastiCache (Redis and Memcached)</li>
+                                            <li>Hands-on Lab: Deploying RDS with Read Replicas</li>
+                                            <li>Quiz: Database Services (13 questions)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Module 8: Lambda & Serverless -->
+                            <div>
+                                <div class="module-header" onclick="toggleModule(8)">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-chevron-down text-blue-600"></i>
+                                            <div>
+                                                <h3 class="font-bold text-gray-900">AWS Lambda & Serverless Architecture</h3>
+                                                <p class="text-sm text-gray-600 mt-1">13 lectures • 3h 5min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="module-content" id="module-8">
+                                    <div class="topic-list">
+                                        <ul>
+                                            <li>Introduction to Serverless Computing</li>
+                                            <li>AWS Lambda Functions and Execution</li>
+                                            <li>Lambda Function Configuration (Memory, Timeout, Environment)</li>
+                                            <li>Lambda Triggers and Event Sources</li>
+                                            <li>Lambda Layers and Versioning</li>
+                                            <li>Lambda Concurrency and Throttling</li>
+                                            <li>API Gateway for REST and WebSocket APIs</li>
+                                            <li>API Gateway Stages and Deployment</li>
+                                            <li>Step Functions for Workflow Orchestration</li>
+                                            <li>Amazon EventBridge for Event-Driven Architecture</li>
+                                            <li>AWS SAM (Serverless Application Model)</li>
+                                            <li>Hands-on Lab: Building Serverless REST API</li>
+                                            <li>Quiz: Lambda and Serverless (12 questions)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Module 9: CloudFormation & IaC -->
+                            <div>
+                                <div class="module-header" onclick="toggleModule(9)">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-chevron-down text-blue-600"></i>
+                                            <div>
+                                                <h3 class="font-bold text-gray-900">CloudFormation & Infrastructure as Code</h3>
+                                                <p class="text-sm text-gray-600 mt-1">12 lectures • 2h 50min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="module-content" id="module-9">
+                                    <div class="topic-list">
+                                        <ul>
+                                            <li>Introduction to Infrastructure as Code (IaC)</li>
+                                            <li>AWS CloudFormation Overview</li>
+                                            <li>CloudFormation Templates (JSON and YAML)</li>
+                                            <li>CloudFormation Resources, Parameters, and Outputs</li>
+                                            <li>CloudFormation Stacks and StackSets</li>
+                                            <li>CloudFormation Change Sets</li>
+                                            <li>CloudFormation Drift Detection</li>
+                                            <li>Introduction to AWS CDK (Cloud Development Kit)</li>
+                                            <li>Terraform on AWS</li>
+                                            <li>Best Practices for IaC</li>
+                                            <li>Hands-on Lab: Deploying Multi-Tier App with CloudFormation</li>
+                                            <li>Quiz: CloudFormation and IaC (11 questions)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Module 10: Monitoring & Logging -->
+                            <div>
+                                <div class="module-header" onclick="toggleModule(10)">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-chevron-down text-blue-600"></i>
+                                            <div>
+                                                <h3 class="font-bold text-gray-900">CloudWatch, CloudTrail & X-Ray Monitoring</h3>
+                                                <p class="text-sm text-gray-600 mt-1">11 lectures • 2h 40min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="module-content" id="module-10">
+                                    <div class="topic-list">
+                                        <ul>
+                                            <li>Introduction to Amazon CloudWatch</li>
+                                            <li>CloudWatch Metrics and Namespaces</li>
+                                            <li>CloudWatch Alarms and Notifications</li>
+                                            <li>CloudWatch Logs and Log Groups</li>
+                                            <li>CloudWatch Dashboards</li>
+                                            <li>CloudWatch Events vs EventBridge</li>
+                                            <li>AWS CloudTrail for Audit Logging</li>
+                                            <li>AWS Config for Compliance Monitoring</li>
+                                            <li>AWS X-Ray for Application Tracing</li>
+                                            <li>AWS Systems Manager</li>
+                                            <li>Quiz: Monitoring and Logging (10 questions)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Module 11: Containers (ECS, EKS, ECR) -->
+                            <div>
+                                <div class="module-header" onclick="toggleModule(11)">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-chevron-down text-blue-600"></i>
+                                            <div>
+                                                <h3 class="font-bold text-gray-900">Container Services - ECS, EKS & Fargate</h3>
+                                                <p class="text-sm text-gray-600 mt-1">13 lectures • 3h 10min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="module-content" id="module-11">
+                                    <div class="topic-list">
+                                        <ul>
+                                            <li>Introduction to Containers and Docker</li>
+                                            <li>Amazon Elastic Container Registry (ECR)</li>
+                                            <li>Amazon ECS (Elastic Container Service)</li>
+                                            <li>ECS Task Definitions and Services</li>
+                                            <li>ECS Launch Types (EC2 and Fargate)</li>
+                                            <li>AWS Fargate Serverless Containers</li>
+                                            <li>Introduction to Kubernetes</li>
+                                            <li>Amazon EKS (Elastic Kubernetes Service)</li>
+                                            <li>EKS Cluster Creation and Management</li>
+                                            <li>EKS Node Groups and Fargate Profiles</li>
+                                            <li>Container Networking and Service Discovery</li>
+                                            <li>Hands-on Lab: Deploying Containerized App on ECS</li>
+                                            <li>Quiz: Container Services (12 questions)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Module 12: Security & Encryption -->
+                            <div>
+                                <div class="module-header" onclick="toggleModule(12)">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-chevron-down text-blue-600"></i>
+                                            <div>
+                                                <h3 class="font-bold text-gray-900">AWS Security Services & Encryption</h3>
+                                                <p class="text-sm text-gray-600 mt-1">13 lectures • 3h 0min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="module-content" id="module-12">
+                                    <div class="topic-list">
+                                        <ul>
+                                            <li>AWS Security Best Practices</li>
+                                            <li>AWS Key Management Service (KMS)</li>
+                                            <li>KMS Customer Master Keys (CMK)</li>
+                                            <li>AWS Secrets Manager</li>
+                                            <li>AWS Systems Manager Parameter Store</li>
+                                            <li>AWS Certificate Manager (ACM)</li>
+                                            <li>AWS WAF (Web Application Firewall)</li>
+                                            <li>AWS Shield (DDoS Protection)</li>
+                                            <li>Amazon GuardDuty</li>
+                                            <li>Amazon Inspector</li>
+                                            <li>AWS Security Hub</li>
+                                            <li>Amazon Macie for Data Discovery</li>
+                                            <li>Quiz: Security and Encryption (12 questions)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Module 13: Migration & Data Transfer -->
+                            <div>
+                                <div class="module-header" onclick="toggleModule(13)">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-chevron-down text-blue-600"></i>
+                                            <div>
+                                                <h3 class="font-bold text-gray-900">AWS Migration & Data Transfer Services</h3>
+                                                <p class="text-sm text-gray-600 mt-1">10 lectures • 2h 25min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="module-content" id="module-13">
+                                    <div class="topic-list">
+                                        <ul>
+                                            <li>AWS Migration Hub</li>
+                                            <li>AWS Application Discovery Service</li>
+                                            <li>AWS Database Migration Service (DMS)</li>
+                                            <li>AWS Server Migration Service (SMS)</li>
+                                            <li>AWS DataSync for File Transfer</li>
+                                            <li>AWS Transfer Family (SFTP, FTPS)</li>
+                                            <li>AWS Snow Family (Snowcone, Snowball, Snowmobile)</li>
+                                            <li>AWS Storage Gateway (File, Volume, Tape)</li>
+                                            <li>Migration Strategies (6 R's)</li>
+                                            <li>Quiz: Migration Services (9 questions)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Module 14: Cost Optimization -->
+                            <div>
+                                <div class="module-header" onclick="toggleModule(14)">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-chevron-down text-blue-600"></i>
+                                            <div>
+                                                <h3 class="font-bold text-gray-900">AWS Cost Management & Optimization</h3>
+                                                <p class="text-sm text-gray-600 mt-1">10 lectures • 2h 20min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="module-content" id="module-14">
+                                    <div class="topic-list">
+                                        <ul>
+                                            <li>AWS Pricing Models Overview</li>
+                                            <li>AWS Cost Explorer and Reports</li>
+                                            <li>AWS Budgets and Alerts</li>
+                                            <li>AWS Cost and Usage Reports (CUR)</li>
+                                            <li>AWS Trusted Advisor</li>
+                                            <li>AWS Compute Optimizer</li>
+                                            <li>Reserved Instances vs Savings Plans</li>
+                                            <li>Resource Tagging Strategies</li>
+                                            <li>Cost Allocation Tags</li>
+                                            <li>Quiz: Cost Optimization (9 questions)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Module 15: Architecture Best Practices -->
+                            <div>
+                                <div class="module-header" onclick="toggleModule(15)">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-chevron-down text-blue-600"></i>
+                                            <div>
+                                                <h3 class="font-bold text-gray-900">AWS Well-Architected Framework & Design Patterns</h3>
+                                                <p class="text-sm text-gray-600 mt-1">11 lectures • 2h 50min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="module-content" id="module-15">
+                                    <div class="topic-list">
+                                        <ul>
+                                            <li>AWS Well-Architected Framework Deep Dive</li>
+                                            <li>Operational Excellence Pillar</li>
+                                            <li>Security Pillar Best Practices</li>
+                                            <li>Reliability Pillar and Fault Tolerance</li>
+                                            <li>Performance Efficiency Pillar</li>
+                                            <li>Cost Optimization Pillar</li>
+                                            <li>Designing for High Availability</li>
+                                            <li>Disaster Recovery Strategies (Backup, Pilot Light, Warm Standby, Multi-Site)</li>
+                                            <li>Decoupled Architecture Patterns</li>
+                                            <li>Microservices Architecture on AWS</li>
+                                            <li>Quiz: Architecture Best Practices (10 questions)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Module 16: Real Projects & Certification Prep -->
+                            <div>
+                                <div class="module-header" onclick="toggleModule(16)">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-chevron-down text-blue-600"></i>
+                                            <div>
+                                                <h3 class="font-bold text-gray-900">Real-World Projects & AWS Certification Preparation</h3>
+                                                <p class="text-sm text-gray-600 mt-1">15 lectures • 6h 0min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="module-content" id="module-16">
+                                    <div class="topic-list">
+                                        <ul>
+                                            <li>Project 1: Three-Tier Web Application Architecture</li>
+                                            <li>Project 2: Serverless Image Processing Pipeline</li>
+                                            <li>Project 3: High Availability WordPress on AWS</li>
+                                            <li>Project 4: Data Analytics Platform with S3 and Athena</li>
+                                            <li>Project 5: Microservices Deployment with ECS and ALB</li>
+                                            <li>AWS Solutions Architect Associate (SAA-C03) Exam Guide</li>
+                                            <li>SAA-C03 Exam Domains Breakdown</li>
+                                            <li>Practice Questions for SAA-C03 (200+ Questions)</li>
+                                            <li>AWS Solutions Architect Professional (SAP-C02) Overview</li>
+                                            <li>SAP-C02 Advanced Scenarios</li>
+                                            <li>Mock Exams and Test-Taking Strategies</li>
+                                            <li>200+ AWS Interview Questions and Answers</li>
+                                            <li>Resume Building for Cloud Architect Roles</li>
+                                            <li>Career Path: Associate to Professional to Specialty</li>
+                                            <li>Job Search Strategies and Salary Negotiation</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <!-- Requirements -->
+                    <div class="content-card p-6 lg:p-8">
+                        <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-6">Requirements</h2>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check-circle text-blue-600 text-lg mt-1"></i>
+                                <span class="text-gray-700">Basic understanding of networking, operating systems, and databases</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check-circle text-blue-600 text-lg mt-1"></i>
+                                <span class="text-gray-700">Computer with 4GB RAM and stable internet connection</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check-circle text-blue-600 text-lg mt-1"></i>
+                                <span class="text-gray-700">AWS Free Tier account (credit card required for verification)</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check-circle text-blue-600 text-lg mt-1"></i>
+                                <span class="text-gray-700">Eagerness to learn cloud computing and AWS services</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check-circle text-blue-600 text-lg mt-1"></i>
+                                <span class="text-gray-700">No prior AWS experience required (complete beginner-friendly)</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Description -->
+                    <div class="content-card p-6 lg:p-8">
+                        <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-6">Description</h2>
+                        <div class="text-gray-700 leading-relaxed space-y-4">
+                            <p>
+                                Welcome to the most comprehensive AWS Solutions Architect course for 2025, designed to take you from complete beginner to AWS Certified Solutions Architect ready for both Associate (SAA-C03) and Professional (SAP-C02) level certifications. This course covers all AWS core services, architectural best practices, design patterns, security implementation, cost optimization strategies, and hands-on real-world projects. Master the skills required to design, deploy, and manage scalable, highly available, fault-tolerant systems on Amazon Web Services used by companies like Netflix, Airbnb, and NASA.
+                            </p>
+                            <p>
+                                Begin with cloud computing fundamentals covering IaaS, PaaS, and SaaS service models, public, private, and hybrid cloud deployments, AWS global infrastructure with regions, availability zones, and edge locations, and the AWS Well-Architected Framework pillars. Master AWS Identity and Access Management (IAM) with comprehensive training on users, groups, roles, policies, cross-account access, multi-factor authentication, and security best practices following the principle of least privilege. Learn IAM Identity Center for single sign-on, Service Control Policies for organizational governance, and IAM Access Analyzer for security monitoring.
+                            </p>
+                            <p>
+                                EC2 compute mastery includes understanding instance types and families for different workloads, launching and managing Linux and Windows instances, configuring security groups and network ACLs, implementing EBS storage with various volume types, creating AMIs and snapshots, using placement groups for performance, and implementing Auto Scaling Groups for elasticity. S3 storage expertise covers all storage classes including Standard, Intelligent-Tiering, Glacier, and Deep Archive, implementing versioning and lifecycle policies, configuring replication for disaster recovery, securing buckets with policies and ACLs, enabling encryption with SSE-S3, SSE-KMS, and SSE-C, and hosting static websites.
+                            </p>
+                            <p>
+                                VPC networking training provides deep understanding of creating custom VPCs with public and private subnets, configuring Internet Gateway and NAT Gateway for internet access, implementing VPC peering and Transit Gateway for connectivity, setting up VPN connections and Direct Connect for hybrid cloud, configuring VPC endpoints for private AWS service access, implementing security with Security Groups and Network ACLs, and configuring Route 53 DNS service. Load balancing and high availability include Application Load Balancer for HTTP/HTTPS traffic, Network Load Balancer for TCP/UDP traffic, configuring target groups and health checks, implementing Auto Scaling with launch templates, and creating highly available multi-AZ architectures.
+                            </p>
+                            <p>
+                                Database services training covers Amazon RDS with MySQL, PostgreSQL, Oracle, and SQL Server engines, implementing Multi-AZ deployments for high availability, configuring Read Replicas for read scalability, mastering Amazon Aurora with serverless v2, understanding DynamoDB NoSQL database with streams and global tables, and implementing ElastiCache with Redis and Memcached for caching. Serverless architecture mastery includes AWS Lambda function development, configuring Lambda triggers and event sources, API Gateway for REST and WebSocket APIs, Step Functions for workflow orchestration, EventBridge for event-driven architecture, and AWS SAM for infrastructure as code.
+                            </p>
+                            <p>
+                                CloudFormation and Infrastructure as Code training teaches creating templates in JSON and YAML, using parameters, outputs, and conditions, implementing StackSets for multi-account deployments, and working with AWS CDK for infrastructure development. Container services include Amazon ECS with EC2 and Fargate launch types, Amazon EKS for Kubernetes workloads, ECR for container registry, and implementing microservices architectures. Security implementation covers KMS for encryption, Secrets Manager for credentials, WAF for web application security, Shield for DDoS protection, GuardDuty for threat detection, and Security Hub for compliance monitoring. Monitoring solutions include CloudWatch metrics, alarms, logs, and dashboards, CloudTrail for audit logging, Config for compliance tracking, and X-Ray for application tracing.
+                            </p>
+                            <p>
+                                Cost optimization strategies include using Cost Explorer, setting budgets and alerts, implementing Reserved Instances and Savings Plans, resource tagging best practices, and using Trusted Advisor recommendations. Migration services cover Database Migration Service, Server Migration Service, Snow Family for data transfer, and Storage Gateway for hybrid storage. Complete five comprehensive real-world projects including three-tier web application architecture with VPC, ALB, and RDS, serverless image processing pipeline with Lambda and S3, high availability WordPress deployment, data analytics platform with S3 and Athena, and microservices deployment with ECS and ALB. Comprehensive SAA-C03 certification preparation with 200+ practice questions, exam strategies, and domain-specific training. Advanced SAP-C02 professional-level topics for career growth. Access 200+ AWS interview questions covering services, architecture, troubleshooting, cost optimization, and scenario-based problems. Resume building, LinkedIn optimization for cloud roles, and salary negotiation strategies. Join over 28,000 students who have successfully launched AWS careers with salaries ranging from ₹6-25 LPA as AWS Solutions Architects, Cloud Engineers, DevOps Engineers, and Cloud Consultants. Master the world's leading cloud platform powering Amazon, Netflix, Airbnb, and millions of businesses worldwide.
+                            </p>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <!-- Right Column - Buy Box -->
+                <div class="lg:col-span-1">
+                    <div class="sticky-buy-box p-6">
+                        <!-- Course Thumbnail with AWS Icon -->
+                        <div class="course-thumbnail-container mb-6">
+                            <i class="fab fa-aws course-thumbnail-icon"></i>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <div class="flex items-baseline gap-2 mb-2">
+                                <span class="text-4xl font-bold text-gray-900">₹999</span>
+                                <span class="text-xl text-gray-400 line-through">₹4,999</span>
+                            </div>
+                            <span class="discount-badge inline-block px-3 py-1.5 bg-red-500 text-white text-sm font-bold rounded-lg shadow-md">
+                                80% OFF - Limited Time
+                            </span>
+                        </div>
+                        
+                        <button onclick="openCallbackModal()" class="btn-enroll w-full text-white py-4 rounded-xl font-bold text-lg mb-6 items-center justify-center gap-2">
+                            <i class="fas fa-graduation-cap"></i>
+                            Book Now
+                        </button>
+                        
+                        <div class="border-t border-gray-200 pt-5 space-y-4 text-sm">
+                            <div class="flex items-center gap-3">
+                                <i class="fas fa-infinity text-blue-600 text-lg"></i>
+                                <span class="text-gray-700 font-medium">Lifetime access</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i class="fas fa-mobile-alt text-blue-600 text-lg"></i>
+                                <span class="text-gray-700 font-medium">Mobile and desktop access</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i class="fas fa-certificate text-blue-600 text-lg"></i>
+                                <span class="text-gray-700 font-medium">Certificate of completion</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i class="fas fa-project-diagram text-blue-600 text-lg"></i>
+                                <span class="text-gray-700 font-medium">5 real-world AWS projects</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i class="fas fa-video text-blue-600 text-lg"></i>
+                                <span class="text-gray-700 font-medium">55+ hours video content</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i class="fab fa-aws text-blue-600 text-lg"></i>
+                                <span class="text-gray-700 font-medium">SAA-C03 & SAP-C02 exam prep</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i class="fas fa-undo text-blue-600 text-lg"></i>
+                                <span class="text-gray-700 font-medium">30-day money-back guarantee</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+    <!-- ===== CALLBACK MODAL ===== -->
+    <div id="callbackModal" class="fixed inset-0 bg-black bg-opacity-60 z-[200] hidden items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-xl max-w-3xl w-full shadow-2xl transform transition-all scale-95 modal-content overflow-visible">
+            
+            <div class="flex flex-col lg:flex-row max-h-[85vh] overflow-visible">
+                <!-- Left Side - Branding Section (Desktop/Tablet) -->
+                <div class="hidden md:flex md:w-[45%] lg:w-[40%] bg-gradient-to-br from-[#1D5D7F] via-[#1D5D7F] to-[#236192] text-white p-6 lg:p-8 flex-col justify-between relative overflow-hidden">
+                    <!-- Background Pattern -->
+                    <div class="absolute inset-0 opacity-10">
+                        <div class="absolute top-0 right-0 w-48 h-48 bg-white rounded-full -mr-24 -mt-24"></div>
+                        <div class="absolute bottom-0 left-0 w-32 h-32 bg-white rounded-full -ml-16 -mb-16"></div>
+                    </div>
+                    
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 lg:w-16 lg:h-16 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mb-4 backdrop-blur-sm">
+                            <i class="fas fa-phone-alt text-[24px] lg:text-[28px]"></i>
+                        </div>
+                        <h2 class="text-[20px] lg:text-[24px] font-bold leading-tight mb-2">We're here to<br>support you</h2>
+                        <h3 class="text-[18px] lg:text-[22px] font-semibold mb-3">every step of<br>the way.</h3>
+                        <p class="text-blue-100 text-[13px] leading-relaxed">Let's talk!</p>
+                        
+                        <div class="mt-4">
+                            <p class="text-[12px] text-blue-50 leading-relaxed">
+                                We carefully listen to your course requirements, thoroughly analyze them, and recommend the most effective approach for your learning needs.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="relative z-10 mt-4">
+                        <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-3 border border-white border-opacity-20">
+                            <p class="text-[10px] font-semibold text-white text-opacity-70 mb-2 uppercase tracking-wider">Contact Information</p>
+                            <div class="space-y-1.5">
+                                <div class="flex items-center gap-2 text-[12px]">
+                                    <i class="fas fa-phone text-white text-opacity-80 text-[11px]"></i>
+                                    <span>+91 98765 43210</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-[12px]">
+                                    <i class="fas fa-envelope text-white text-opacity-80 text-[11px]"></i>
+                                    <span>info@blujay.tech</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side - Form Section -->
+                <div class="w-full md:w-[55%] lg:w-[60%] relative bg-white max-h-[85vh] md:max-h-none overflow-visible">
+                    <!-- Mobile Header -->
+                    <div class="md:hidden bg-gradient-to-r from-[#1D5D7F] to-[#236192] text-white p-5 relative">
+                        <button onclick="closeCallbackModal()" class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full hover:bg-white hover:bg-opacity-20 transition-all">
+                            <i class="fas fa-times text-[16px]"></i>
+                        </button>
+                        <div class="text-center pr-8">
+                            <div class="w-14 h-14 bg-white bg-opacity-20 rounded-xl mx-auto mb-2 flex items-center justify-center">
+                                <i class="fas fa-phone-alt text-[20px]"></i>
+                            </div>
+                            <h3 class="text-[19px] font-bold mb-1">Request a Callback</h3>
+                            <p class="text-[12px] text-white text-opacity-80">We'll get back to you within 24 hours</p>
+                        </div>
+                    </div>
+
+                    <!-- Desktop Close Button -->
+                    <button onclick="closeCallbackModal()" class="hidden md:flex absolute top-3 right-3 w-9 h-9 items-center justify-center rounded-full hover:bg-gray-100 transition-all z-20">
+                        <i class="fas fa-times text-[18px] text-gray-600"></i>
+                    </button>
+
+                    <!-- Form -->
+                    <form id="callbackForm" class="p-5 lg:p-6 space-y-3.5 lg:space-y-4 overflow-visible">
+                        <div class="hidden md:block mb-4 lg:mb-5">
+                            <h3 class="text-[20px] lg:text-[24px] font-bold text-gray-900 mb-1">Get in Touch</h3>
+                            <p class="text-[13px] lg:text-[14px] text-gray-600">Fill out the form and we'll contact you soon</p>
+                        </div>
+
+                        <div>
+                            <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Full Name *</label>
+                            <input type="text" name="name" required 
+                                class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D5D7F] focus:border-[#1D5D7F] outline-none text-[13px] lg:text-[14px] transition-all"
+                                placeholder="John Doe">
+                        </div>
+
+                        <div>
+                            <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Email Address *</label>
+                            <input type="email" name="email" required 
+                                class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D5D7F] focus:border-[#1D5D7F] outline-none text-[13px] lg:text-[14px] transition-all"
+                                placeholder="john@example.com">
+                        </div>
+
+                        <div>
+                            <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Phone Number *</label>
+                            <input type="tel" name="phone" required 
+                                class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D5D7F] focus:border-[#1D5D7F] outline-none text-[13px] lg:text-[14px] transition-all"
+                                placeholder="+91 XXXXX XXXXX">
+                        </div>
+
+                        <div>
+                            <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Choose Services *</label>
+                            <div class="service-dropdown-wrapper">
+                                <div class="service-dropdown-trigger" id="serviceDropdownTrigger">
+                                    <span class="placeholder" id="serviceSelectedText">Select a service...</span>
+                                    <i class="fas fa-chevron-down chevron"></i>
+                                </div>
+                                <div class="service-dropdown-menu" id="serviceDropdownMenu">
+                                    <div class="service-dropdown-item" data-value="AWS Solutions Architect">
+                                        <i class="fab fa-aws"></i>
+                                        <span>AWS Solutions Architect</span>
+                                    </div>
+                                    <div class="service-dropdown-item" data-value="Azure Cloud Engineer">
+                                        <i class="fab fa-microsoft"></i>
+                                        <span>Azure Cloud Engineer</span>
+                                    </div>
+                                    <div class="service-dropdown-item" data-value="Linux Administration">
+                                        <i class="fab fa-linux"></i>
+                                        <span>Linux Administration</span>
+                                    </div>
+                                    <div class="service-dropdown-item" data-value="Other Courses">
+                                        <i class="fas fa-graduation-cap"></i>
+                                        <span>Other Courses</span>
+                                    </div>
+                                </div>
+                                <select name="service" id="serviceHiddenSelect" required style="position: absolute; opacity: 0; pointer-events: none; width: 1px; height: 1px;">
+                                    <option value="" selected></option>
+                                    <option value="AWS Solutions Architect">AWS Solutions Architect</option>
+                                    <option value="Azure Cloud Engineer">Azure Cloud Engineer</option>
+                                    <option value="Linux Administration">Linux Administration</option>
+                                    <option value="Other Courses">Other Courses</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" id="submitBtn"
+                            class="w-full bg-[#1D5D7F] text-white py-2.5 lg:py-3 rounded-lg font-semibold text-[14px] lg:text-[15px] hover:bg-[#236192] transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 mt-4 lg:mt-5">
+                            <span>Submit Now</span>
+                            <i class="fas fa-arrow-right text-[12px]"></i>
+                        </button>
+
+                        <!-- Success Message -->
+                        <div id="successMessage" class="hidden bg-green-50 border border-green-200 text-green-800 px-3 py-2.5 rounded-lg text-[12px] text-center">
+                            <i class="fas fa-check-circle mr-1"></i>
+                            <strong>Success!</strong> We'll contact you soon.
+                        </div>
+
+                        <!-- Error Message -->
+                        <div id="errorMessage" class="hidden bg-red-50 border border-red-200 text-red-800 px-3 py-2.5 rounded-lg text-[12px] text-center">
+                            <i class="fas fa-exclamation-circle mr-1"></i>
+                            <strong>Error!</strong> Please try again.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ✅ TOGGLE SCRIPT -->
+    <script>
+        function toggleModule(moduleId) {
+            const moduleContent = document.getElementById(`module-${moduleId}`);
+            const moduleHeader = moduleContent.previousElementSibling;
+            
+            moduleContent.classList.toggle('active');
+            moduleHeader.classList.toggle('active');
+        }
+        
+        // ===== CALLBACK MODAL FUNCTIONS =====
+        const SHEETDB_URL = 'https://sheetdb.io/api/v1/7s7xiynldn2sf';
+        
+        function openCallbackModal() {
+            const modal = document.getElementById('callbackModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+            
+            // Reset form
+            document.getElementById('callbackForm').reset();
+            document.getElementById('successMessage').classList.add('hidden');
+            document.getElementById('errorMessage').classList.add('hidden');
+            
+            // Reset custom service dropdown
+            const serviceText = document.getElementById('serviceSelectedText');
+            const serviceSelect = document.getElementById('serviceHiddenSelect');
+            if (serviceText && serviceSelect) {
+                serviceText.textContent = 'Select a service...';
+                serviceText.classList.add('placeholder');
+                serviceText.classList.remove('selected-text');
+                serviceSelect.value = '';
+                document.querySelectorAll('.service-dropdown-item').forEach(item => {
+                    item.classList.remove('selected');
+                });
+            }
+        }
+
+        function closeCallbackModal() {
+            const modal = document.getElementById('callbackModal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            
+            // Close service dropdown if open
+            const dropdownMenu = document.getElementById('serviceDropdownMenu');
+            const dropdownTrigger = document.getElementById('serviceDropdownTrigger');
+            if (dropdownMenu && dropdownTrigger) {
+                dropdownMenu.classList.remove('active');
+                dropdownTrigger.classList.remove('active');
+            }
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('callbackModal')?.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCallbackModal();
+            }
+        });
+
+        // ===== CUSTOM SERVICE DROPDOWN FUNCTIONALITY =====
+        const serviceDropdownTrigger = document.getElementById('serviceDropdownTrigger');
+        const serviceDropdownMenu = document.getElementById('serviceDropdownMenu');
+        const serviceSelectedText = document.getElementById('serviceSelectedText');
+        const serviceHiddenSelect = document.getElementById('serviceHiddenSelect');
+
+        // Toggle dropdown
+        serviceDropdownTrigger?.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const isActive = serviceDropdownMenu.classList.contains('active');
+            
+            if (isActive) {
+                serviceDropdownMenu.classList.remove('active');
+                serviceDropdownTrigger.classList.remove('active');
+            } else {
+                serviceDropdownMenu.classList.add('active');
+                serviceDropdownTrigger.classList.add('active');
+            }
+        });
+
+        // Handle item selection
+        document.querySelectorAll('.service-dropdown-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                const value = this.getAttribute('data-value');
+                const text = this.querySelector('span').textContent;
+                
+                // Update selected text
+                serviceSelectedText.textContent = text;
+                serviceSelectedText.classList.remove('placeholder');
+                serviceSelectedText.classList.add('selected-text');
+                
+                // Update hidden select
+                serviceHiddenSelect.value = value;
+                
+                // Update selected state
+                document.querySelectorAll('.service-dropdown-item').forEach(i => i.classList.remove('selected'));
+                this.classList.add('selected');
+                
+                // Close dropdown
+                serviceDropdownMenu.classList.remove('active');
+                serviceDropdownTrigger.classList.remove('active');
+            });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (serviceDropdownMenu && serviceDropdownTrigger) {
+                if (!serviceDropdownTrigger.contains(e.target) && !serviceDropdownMenu.contains(e.target)) {
+                    serviceDropdownMenu.classList.remove('active');
+                    serviceDropdownTrigger.classList.remove('active');
+                }
+            }
+        });
+
+        // Close dropdown on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (serviceDropdownMenu?.classList.contains('active')) {
+                    serviceDropdownMenu.classList.remove('active');
+                    serviceDropdownTrigger?.classList.remove('active');
+                }
+                closeCallbackModal();
+            }
+        });
+
+        // Handle Form Submission
+        document.getElementById('callbackForm')?.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const successMsg = document.getElementById('successMessage');
+            const errorMsg = document.getElementById('errorMessage');
+            
+            // Hide previous messages
+            successMsg.classList.add('hidden');
+            errorMsg.classList.add('hidden');
+            
+            // Show loading state
+            submitBtn.querySelector('span').textContent = 'Submitting...';
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                service: formData.get('service') || 'Not specified',
+                timestamp: new Date().toLocaleString('en-IN', { 
+                    timeZone: 'Asia/Kolkata',
+                    dateStyle: 'medium',
+                    timeStyle: 'short'
+                }),
+                status: 'New'
+            };
+            
+            try {
+                // Send to SheetDB
+                const response = await fetch(SHEETDB_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ data: [data] })
+                });
+                
+                if (response.ok) {
+                    // Success
+                    successMsg.classList.remove('hidden');
+                    this.reset();
+                    
+                    // Reset dropdown
+                    serviceSelectedText.textContent = 'Select a service...';
+                    serviceSelectedText.classList.add('placeholder');
+                    serviceSelectedText.classList.remove('selected-text');
+                    serviceHiddenSelect.value = '';
+                    document.querySelectorAll('.service-dropdown-item').forEach(item => {
+                        item.classList.remove('selected');
+                    });
+                    
+                    // Close modal after 2.5 seconds
+                    setTimeout(() => {
+                        closeCallbackModal();
+                    }, 2500);
+                } else {
+                    throw new Error('Submission failed');
+                }
+            } catch (error) {
+                // Error
+                console.error('Error:', error);
+                errorMsg.classList.remove('hidden');
+            } finally {
+                // Reset button state
+                submitBtn.querySelector('span').textContent = 'Submit Now';
+            }
+        });
+    </script>
+</body>
+</html>
