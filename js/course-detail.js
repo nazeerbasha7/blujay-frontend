@@ -5,8 +5,9 @@
 console.log('🚀 Starting course-detail.js...');
 
 const auth = firebase.auth();
-//const API_URL = 'https://blujay-backend.onrender.com/api';
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://blujay-backend.onrender.com/api';
+
+//const API_URL = 'http://localhost:5000/api';
 
 let currentCourse = null;
 let currentCurriculum = null;
