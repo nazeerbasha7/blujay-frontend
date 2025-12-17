@@ -5,8 +5,8 @@
 console.log('🚀 Starting course-detail.js...');
 
 const auth = firebase.auth();
-const API_URL = 'https://blujay-backend.onrender.com/api';
-//const API_URL = 'http://localhost:5000/api';
+//const API_URL = 'https://blujay-backend.onrender.com/api';
+const API_URL = 'http://localhost:5000/api';
 
 let currentCourse = null;
 let currentCurriculum = null;
@@ -148,14 +148,52 @@ function displayCourseDetails(course, curriculum, stats) {
     
     const discountPriceEl = document.getElementById('discount-price');
     const originalPriceEl = document.getElementById('original-price');
-    
-    if (discountPriceEl) discountPriceEl.textContent = `₹${course.discountedPrice.toLocaleString()}`;
-    if (originalPriceEl) originalPriceEl.textContent = `₹${course.price.toLocaleString()}`;
-    
-    const discount = Math.round(((course.price - course.discountedPrice) / course.price) * 100);
     const discountBadgeEl = document.getElementById('discount-badge');
-    if (discount > 0 && discountBadgeEl) {
-        discountBadgeEl.textContent = `${discount}% OFF`;
+    const pricingSection = document.getElementById('pricing-section');
+    
+    // Check if course is FREE (from MongoDB isFree field)
+    const isFree = course.isFree === true;
+    
+    if (isFree) {
+        // Show only big strikethrough price
+        if (discountPriceEl) {
+            discountPriceEl.textContent = `₹${course.price.toLocaleString()}`;
+            discountPriceEl.className = 'text-4xl font-bold text-gray-800 line-through';
+        }
+        
+        if (originalPriceEl) {
+            originalPriceEl.style.display = 'none';
+        }
+        
+        // Replace discount badge with RED FREE badge
+        if (discountBadgeEl) {
+            discountBadgeEl.className = 'inline-flex items-center gap-1.5 px-4 py-2 bg-red-500 text-white text-sm font-bold rounded-lg shadow-lg';
+            discountBadgeEl.innerHTML = `
+                <i class="fas fa-gift"></i>
+                100% FREE
+            `;
+        }
+        
+        // Update enroll button
+        const enrollBtn = document.getElementById('enroll-btn');
+        if (enrollBtn) {
+            enrollBtn.textContent = 'Enroll Now';
+        }
+    } else {
+        // Regular paid course display
+        if (discountPriceEl) {
+            discountPriceEl.textContent = `₹${course.discountedPrice.toLocaleString()}`;
+            discountPriceEl.className = 'text-4xl font-bold text-blue-600';
+        }
+        if (originalPriceEl) {
+            originalPriceEl.textContent = `₹${course.price.toLocaleString()}`;
+            originalPriceEl.style.display = '';
+        }
+        
+        const discount = Math.round(((course.price - course.discountedPrice) / course.price) * 100);
+        if (discount > 0 && discountBadgeEl) {
+            discountBadgeEl.textContent = `${discount}% OFF`;
+        }
     }
     
     updateElement('total-modules', stats.totalModules || 0);
@@ -245,8 +283,10 @@ function handleEnrollment() {
         return;
     }
     
-    console.log('💳 Logged in → Start payment');
-    initiatePayment();
+    console.log('� Logged in → Opening callback form (Payment gateway temporarily disabled)');
+    // TEMPORARY: For this version, use callback form instead of payment
+    // initiatePayment(); // ← Payment gateway - will re-enable in future version
+    openEnrollmentCallbackModal();
 }
 
 async function initiatePayment() {
@@ -362,6 +402,216 @@ async function verifyPayment(paymentResponse) {
 }
 
 window.handleEnrollment = handleEnrollment;
+
+// ============================================
+// ENROLLMENT CALLBACK MODAL FUNCTIONS
+// ============================================
+const SHEETDB_URL = 'https://sheetdb.io/api/v1/7s7xiynldn2sf';
+
+function openEnrollmentCallbackModal() {
+    const modal = document.getElementById('enrollmentCallbackModal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+    
+    // Pre-fill course info
+    document.getElementById('enrollmentCourseId').value = currentCourse.courseId;
+    document.getElementById('enrollmentCourseName').value = currentCourse.title;
+    
+    // Pre-fill user info if available
+    const userName = localStorage.getItem('userName');
+    const userEmail = localStorage.getItem('userEmail');
+    
+    if (userName) document.getElementById('enrollmentName').value = userName;
+    if (userEmail) document.getElementById('enrollmentEmail').value = userEmail;
+    
+    // Reset messages
+    document.getElementById('enrollmentSuccessMessage').classList.add('hidden');
+    document.getElementById('enrollmentErrorMessage').classList.add('hidden');
+    
+    console.log('✅ Enrollment callback modal opened');
+}
+
+function closeEnrollmentCallbackModal() {
+    const modal = document.getElementById('enrollmentCallbackModal');
+    modal.classList.remove('flex');
+    modal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+    
+    // Close dropdown if open
+    const dropdownMenu = document.getElementById('enrollmentServiceDropdownMenu');
+    const dropdownTrigger = document.getElementById('enrollmentServiceDropdownTrigger');
+    if (dropdownMenu && dropdownTrigger) {
+        dropdownMenu.classList.remove('active');
+        dropdownTrigger.classList.remove('active');
+    }
+    
+    console.log('✅ Enrollment callback modal closed');
+}
+
+window.openEnrollmentCallbackModal = openEnrollmentCallbackModal;
+window.closeEnrollmentCallbackModal = closeEnrollmentCallbackModal;
+
+// Close modal when clicking outside
+document.getElementById('enrollmentCallbackModal')?.addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeEnrollmentCallbackModal();
+    }
+});
+
+// Custom dropdown functionality
+const enrollmentServiceDropdownTrigger = document.getElementById('enrollmentServiceDropdownTrigger');
+const enrollmentServiceDropdownMenu = document.getElementById('enrollmentServiceDropdownMenu');
+const enrollmentServiceSelectedText = document.getElementById('enrollmentServiceSelectedText');
+const enrollmentServiceHiddenSelect = document.getElementById('enrollmentServiceHiddenSelect');
+
+enrollmentServiceDropdownTrigger?.addEventListener('click', function(e) {
+    e.stopPropagation();
+    const isActive = enrollmentServiceDropdownMenu.classList.contains('active');
+    
+    if (isActive) {
+        enrollmentServiceDropdownMenu.classList.remove('active');
+        enrollmentServiceDropdownTrigger.classList.remove('active');
+    } else {
+        enrollmentServiceDropdownMenu.classList.add('active');
+        enrollmentServiceDropdownTrigger.classList.add('active');
+    }
+});
+
+// Handle dropdown item selection
+document.querySelectorAll('#enrollmentServiceDropdownMenu .service-dropdown-item').forEach(item => {
+    item.addEventListener('click', function(e) {
+        e.stopPropagation();
+        
+        const value = this.getAttribute('data-value');
+        const text = this.querySelector('span').textContent;
+        
+        enrollmentServiceSelectedText.textContent = text;
+        enrollmentServiceSelectedText.classList.remove('placeholder');
+        enrollmentServiceSelectedText.classList.add('selected-text');
+        
+        enrollmentServiceHiddenSelect.value = value;
+        
+        document.querySelectorAll('#enrollmentServiceDropdownMenu .service-dropdown-item').forEach(i => i.classList.remove('selected'));
+        this.classList.add('selected');
+        
+        enrollmentServiceDropdownMenu.classList.remove('active');
+        enrollmentServiceDropdownTrigger.classList.remove('active');
+    });
+});
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(e) {
+    if (enrollmentServiceDropdownMenu && enrollmentServiceDropdownTrigger) {
+        if (!enrollmentServiceDropdownTrigger.contains(e.target) && !enrollmentServiceDropdownMenu.contains(e.target)) {
+            enrollmentServiceDropdownMenu.classList.remove('active');
+            enrollmentServiceDropdownTrigger.classList.remove('active');
+        }
+    }
+});
+
+// Handle Form Submission
+document.getElementById('enrollmentCallbackForm')?.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const submitBtn = document.getElementById('enrollmentSubmitBtn');
+    const successMsg = document.getElementById('enrollmentSuccessMessage');
+    const errorMsg = document.getElementById('enrollmentErrorMessage');
+    
+    successMsg.classList.add('hidden');
+    errorMsg.classList.add('hidden');
+    
+    submitBtn.classList.add('loading');
+    submitBtn.querySelector('span').textContent = 'Processing...';
+    
+    const formData = new FormData(this);
+    const courseId = formData.get('courseId');
+    const courseName = formData.get('courseName');
+    
+    const sheetData = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        phone: formData.get('phone'),
+        courseId: courseId,
+        courseName: courseName,
+        service: formData.get('service') || 'Course Enrollment',
+        timestamp: new Date().toLocaleString('en-IN', { 
+            timeZone: 'Asia/Kolkata',
+            dateStyle: 'medium',
+            timeStyle: 'short'
+        }),
+        type: 'Course Enrollment Request',
+        status: 'Pending'
+    };
+    
+    try {
+        // Step 1: Send to SheetDB
+        console.log('📊 Sending to SheetDB...');
+        const sheetResponse = await fetch(SHEETDB_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ data: [sheetData] })
+        });
+        
+        if (!sheetResponse.ok) {
+            throw new Error('Failed to save request');
+        }
+        
+        console.log('✅ SheetDB: Request saved');
+        
+        // Step 2: Create enrollment in backend
+        console.log('📝 Creating enrollment in backend...');
+        const enrollResponse = await authenticatedFetch('/enrollments/callback-enroll', {
+            method: 'POST',
+            body: JSON.stringify({ courseId: courseId })
+        });
+        
+        if (!enrollResponse.ok) {
+            const errorData = await enrollResponse.json().catch(() => ({}));
+            
+            // If already enrolled, that's okay - just redirect
+            if (errorData.message && errorData.message.includes('already enrolled')) {
+                console.log('⚠️ Already enrolled');
+                successMsg.classList.remove('hidden');
+                successMsg.innerHTML = '<i class="fas fa-info-circle mr-1"></i><strong>Already Enrolled!</strong> Redirecting...';
+                
+                setTimeout(() => {
+                    window.location.href = 'my-learning.html';
+                }, 1500);
+                return;
+            }
+            
+            throw new Error(errorData.message || 'Enrollment failed');
+        }
+        
+        const enrollData = await enrollResponse.json();
+        console.log('✅ Enrollment created:', enrollData);
+        
+        // Success!
+        successMsg.classList.remove('hidden');
+        this.reset();
+        
+        // Redirect to my-learning after 2 seconds
+        setTimeout(() => {
+            window.location.href = 'my-learning.html';
+        }, 2000);
+        
+    } catch (error) {
+        console.error('❌ Error:', error);
+        errorMsg.classList.remove('hidden');
+        errorMsg.innerHTML = `<i class="fas fa-exclamation-circle mr-1"></i><strong>Error!</strong> ${error.message}`;
+    } finally {
+        submitBtn.classList.remove('loading');
+        submitBtn.querySelector('span').textContent = 'Request Access Now';
+    }
+});
+
+// Close modal on Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeEnrollmentCallbackModal();
+    }
+});
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('📄 DOM loaded');

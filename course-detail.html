@@ -87,6 +87,78 @@
             border-color: var(--blujay-primary);
         }
         
+        /* ===== BEAUTIFUL FREE STAMP ===== */
+        .free-stamp {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5), inset 0 -2px 10px rgba(0, 0, 0, 0.2);
+            transform: rotate(-15deg);
+            border: 4px dashed rgba(255, 255, 255, 0.9);
+            z-index: 10;
+            animation: stampPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes stampPulse {
+            0%, 100% { transform: rotate(-15deg) scale(1); }
+            50% { transform: rotate(-15deg) scale(1.05); }
+        }
+        
+        .free-stamp-inner {
+            text-align: center;
+            color: white;
+        }
+        
+        .free-stamp-text {
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            line-height: 1;
+        }
+        
+        .free-stamp-icon {
+            font-size: 14px;
+            margin-top: 2px;
+            opacity: 0.9;
+        }
+        
+        /* Price display for FREE courses */
+        .price-free-container {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border: 2px solid #10b981;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .price-free-text {
+            font-size: 48px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        
+        .price-original-worth {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+        
         /* ===== CLEAN CARDS ===== */
         .content-card {
             background: white;
@@ -391,11 +463,19 @@
                 <!-- Right Column - Buy Box -->
                 <div class="lg:col-span-1">
                     <div class="sticky-buy-box p-6">
-                        <div class="course-thumbnail-container mb-6">
-                            <img id="course-thumbnail" src="https://via.placeholder.com/400x225" alt="Course" class="w-full rounded-lg">
+                        <div class="course-thumbnail-container mb-6 relative rounded-lg overflow-hidden">
+                            <img id="course-thumbnail" src="https://via.placeholder.com/400x225" alt="Course" class="w-full">
+                            <!-- FREE Stamp Badge -->
+                            <div id="free-stamp" class="free-stamp hidden">
+                                <div class="free-stamp-inner">
+                                    <div class="free-stamp-text">FREE</div>
+                                    <div class="free-stamp-icon">★ ★ ★</div>
+                                </div>
+                            </div>
                         </div>
                         
-                        <div class="mb-6">
+                        <!-- Pricing Section -->
+                        <div class="mb-6" id="pricing-section">
                             <div class="flex items-baseline gap-2 mb-2">
                                 <span class="text-4xl font-bold text-gray-900" id="discount-price">₹999</span>
                                 <span class="text-xl text-gray-400 line-through" id="original-price">₹4,999</span>
@@ -420,14 +500,8 @@
                                 <i class="fas fa-mobile-alt text-blue-600 text-lg"></i>
                                 <span class="text-gray-700 font-medium">Access on mobile and desktop</span>
                             </div>
-                            <div class="flex items-center gap-3">
-                                <i class="fas fa-certificate text-blue-600 text-lg"></i>
-                                <span class="text-gray-700 font-medium">Certificate of completion</span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <i class="fas fa-undo text-blue-600 text-lg"></i>
-                                <span class="text-gray-700 font-medium">30-day money-back guarantee</span>
-                            </div>
+                             
+                             
                         </div>
                     </div>
                 </div>
@@ -474,6 +548,404 @@ firebase.auth().onAuthStateChanged((user) => {
     updateBackButton();
 });
 </script>
+
+<!-- ===== ENROLLMENT CALLBACK MODAL ===== -->
+<div id="enrollmentCallbackModal" class="fixed inset-0 bg-black bg-opacity-60 z-[200] hidden items-center justify-center p-4 backdrop-blur-sm">
+    <div class="bg-white rounded-xl max-w-3xl w-full shadow-2xl transform transition-all scale-95 modal-content overflow-visible">
+        
+        <div class="flex flex-col lg:flex-row max-h-[85vh] overflow-visible">
+            <!-- Left Side - Branding Section (Desktop/Tablet) -->
+            <div class="hidden md:flex md:w-[45%] lg:w-[40%] bg-gradient-to-br from-[#0057A0] via-[#0057A0] to-[#00447C] text-white p-6 lg:p-8 flex-col justify-between relative overflow-hidden">
+                <!-- Background Pattern -->
+                <div class="absolute inset-0 opacity-10">
+                    <div class="absolute top-0 right-0 w-48 h-48 bg-white rounded-full -mr-24 -mt-24"></div>
+                    <div class="absolute bottom-0 left-0 w-32 h-32 bg-white rounded-full -ml-16 -mb-16"></div>
+                </div>
+                
+                <div class="relative z-10">
+                    <div class="w-14 h-14 lg:w-16 lg:h-16 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mb-4 backdrop-blur-sm">
+                        <i class="fas fa-graduation-cap text-[24px] lg:text-[28px]"></i>
+                    </div>
+                    <h2 class="text-[20px] lg:text-[24px] font-bold leading-tight mb-2">Enroll in this<br>course today!</h2>
+                    <h3 class="text-[18px] lg:text-[22px] font-semibold mb-3">We'll help you<br>get started.</h3>
+                    <p class="text-blue-100 text-[13px] leading-relaxed">Submit your details and we'll contact you soon!</p>
+                    
+                    <div class="mt-4">
+                        <p class="text-[12px] text-blue-50 leading-relaxed">
+                            Our team will review your enrollment request and grant you immediate access to the course materials.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="relative z-10 mt-4">
+                    <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-3 border border-white border-opacity-20">
+                        <p class="text-[10px] font-semibold text-white text-opacity-70 mb-2 uppercase tracking-wider">Contact Information</p>
+                        <div class="space-y-1.5">
+                            <div class="flex items-center gap-2 text-[12px]">
+                                <i class="fas fa-phone text-white text-opacity-80 text-[11px]"></i>
+                                <span>+91 98765 43210</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-[12px]">
+                                <i class="fas fa-envelope text-white text-opacity-80 text-[11px]"></i>
+                                <span>info@blujay.tech</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side - Form Section -->
+            <div class="w-full md:w-[55%] lg:w-[60%] relative bg-white max-h-[85vh] md:max-h-none overflow-visible">
+                <!-- Mobile Header -->
+                <div class="md:hidden bg-gradient-to-r from-[#0057A0] to-[#00447C] text-white p-5 relative">
+                    <button onclick="closeEnrollmentCallbackModal()" class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full hover:bg-white hover:bg-opacity-20 transition-all">
+                        <i class="fas fa-times text-[16px]"></i>
+                    </button>
+                    <div class="text-center pr-8">
+                        <div class="w-14 h-14 bg-white bg-opacity-20 rounded-xl mx-auto mb-2 flex items-center justify-center">
+                            <i class="fas fa-graduation-cap text-[20px]"></i>
+                        </div>
+                        <h3 class="text-[19px] font-bold mb-1">Enroll in Course</h3>
+                        <p class="text-[12px] text-white text-opacity-80">We'll grant you access within 24 hours</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Close Button -->
+                <button onclick="closeEnrollmentCallbackModal()" class="hidden md:flex absolute top-3 right-3 w-9 h-9 items-center justify-center rounded-full hover:bg-gray-100 transition-all z-20">
+                    <i class="fas fa-times text-[18px] text-gray-600"></i>
+                </button>
+
+                <!-- Form -->
+                <form id="enrollmentCallbackForm" class="p-5 lg:p-6 space-y-3.5 lg:space-y-4 overflow-visible">
+                    <div class="hidden md:block mb-4 lg:mb-5">
+                        <h3 class="text-[20px] lg:text-[24px] font-bold text-gray-900 mb-1">Complete Your Enrollment</h3>
+                        <p class="text-[13px] lg:text-[14px] text-gray-600">Fill out the form to enroll in this course</p>
+                    </div>
+
+                    <!-- Hidden Course Fields -->
+                    <input type="hidden" id="enrollmentCourseId" name="courseId">
+                    <input type="hidden" id="enrollmentCourseName" name="courseName">
+
+                    <div>
+                        <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Full Name *</label>
+                        <input type="text" id="enrollmentName" name="name" required 
+                            class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0057A0] focus:border-[#0057A0] outline-none text-[13px] lg:text-[14px] transition-all"
+                            placeholder="John Doe">
+                    </div>
+
+                    <div>
+                        <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Email Address *</label>
+                        <input type="email" id="enrollmentEmail" name="email" required 
+                            class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0057A0] focus:border-[#0057A0] outline-none text-[13px] lg:text-[14px] transition-all"
+                            placeholder="john@example.com">
+                    </div>
+
+                    <div>
+                        <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Phone Number *</label>
+                        <input type="tel" id="enrollmentPhone" name="phone" required 
+                            class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0057A0] focus:border-[#0057A0] outline-none text-[13px] lg:text-[14px] transition-all"
+                            placeholder="+91 XXXXX XXXXX">
+                    </div>
+
+                    <div>
+                        <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Interested In *</label>
+                        <div class="service-dropdown-wrapper">
+                            <div class="service-dropdown-trigger" id="enrollmentServiceDropdownTrigger">
+                                <span class="placeholder" id="enrollmentServiceSelectedText">Select your interest...</span>
+                                <i class="fas fa-chevron-down chevron"></i>
+                            </div>
+                            <div class="service-dropdown-menu" id="enrollmentServiceDropdownMenu">
+                                <div class="service-dropdown-item" data-value="Profile Pushing">
+                                    <i class="fas fa-user-tie"></i>
+                                    <span>Profile Pushing</span>
+                                </div>
+                                <div class="service-dropdown-item" data-value="Job Support">
+                                    <i class="fas fa-hands-helping"></i>
+                                    <span>Job Support</span>
+                                </div>
+                                <div class="service-dropdown-item" data-value="Web Development Services">
+                                    <i class="fas fa-code"></i>
+                                    <span>Web Development Services</span>
+                                </div>
+                                <div class="service-dropdown-item" data-value="Online Courses">
+                                    <i class="fas fa-laptop"></i>
+                                    <span>Online Courses</span>
+                                </div>
+                                <div class="service-dropdown-item" data-value="Recorded Courses">
+                                    <i class="fas fa-video"></i>
+                                    <span>Recorded Courses</span>
+                                </div>
+                            </div>
+                            <select name="service" id="enrollmentServiceHiddenSelect" required style="position: absolute; opacity: 0; pointer-events: none; width: 1px; height: 1px;">
+                                <option value="" selected></option>
+                                <option value="Profile Pushing">Profile Pushing</option>
+                                <option value="Job Support">Job Support</option>
+                                <option value="Web Development Services">Web Development Services</option>
+                                <option value="Online Courses">Online Courses</option>
+                                <option value="Recorded Courses">Recorded Courses</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" id="enrollmentSubmitBtn"
+                        class="w-full bg-[#0057A0] text-white py-2.5 lg:py-3 rounded-lg font-semibold text-[14px] lg:text-[15px] hover:bg-[#00447C] transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 mt-4 lg:mt-5">
+                        <span>Submit Enrollment Request</span>
+                        <i class="fas fa-arrow-right text-[12px]"></i>
+                    </button>
+
+                    <!-- Success Message -->
+                    <div id="enrollmentSuccessMessage" class="hidden bg-green-50 border border-green-200 text-green-800 px-3 py-2.5 rounded-lg text-[12px] text-center">
+                        <i class="fas fa-check-circle mr-1"></i>
+                        <strong>Success!</strong> You're enrolled! Redirecting to your courses...
+                    </div>
+
+                    <!-- Error Message -->
+                    <div id="enrollmentErrorMessage" class="hidden bg-red-50 border border-red-200 text-red-800 px-3 py-2.5 rounded-lg text-[12px] text-center">
+                        <i class="fas fa-exclamation-circle mr-1"></i>
+                        <strong>Error!</strong> Please try again.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* ===== ENROLLMENT CALLBACK MODAL STYLES ===== */
+    #enrollmentCallbackModal {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    #enrollmentCallbackModal.flex {
+        animation: fadeIn 0.3s ease-out;
+    }
+
+    .modal-content {
+        animation: slideUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        max-height: 85vh;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideUp {
+        from {
+            transform: translateY(40px) scale(0.95);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+    }
+
+    /* Modal responsive adjustments */
+    @media (max-width: 767px) {
+        .modal-content {
+            max-width: 95%;
+            margin: 0 auto;
+            max-height: 90vh;
+        }
+
+        #enrollmentCallbackModal {
+            padding: 0.75rem;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .modal-content {
+            max-width: 800px;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .modal-content {
+            max-width: 920px;
+        }
+    }
+
+    /* Service Custom Dropdown Styling (Matching Offerings Dropdown) */
+    .service-dropdown-wrapper {
+        position: relative;
+        width: 100%;
+    }
+
+    .service-dropdown-trigger {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.5rem 0.875rem;
+        border: 1px solid #d1d5db;
+        border-radius: 0.5rem;
+        background: #ffffff;
+        cursor: pointer;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        font-size: 13px;
+        font-weight: 500;
+        color: #111827;
+        user-select: none;
+    }
+
+    @media (min-width: 1024px) {
+        .service-dropdown-trigger {
+            padding: 0.625rem 1rem;
+            font-size: 14px;
+        }
+    }
+
+    .service-dropdown-trigger:hover {
+        border-color: #0057A0;
+        background-color: #f8fafc;
+    }
+
+    .service-dropdown-trigger.active {
+        border-color: #0057A0;
+        box-shadow: 0 0 0 3px rgba(0, 87, 160, 0.1);
+    }
+
+    .service-dropdown-trigger .placeholder {
+        color: #9ca3af;
+        font-style: italic;
+    }
+
+    .service-dropdown-trigger .selected-text {
+        color: #111827;
+        font-weight: 500;
+    }
+
+    .service-dropdown-trigger i.chevron {
+        transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        font-size: 9px;
+        color: #0057A0;
+        margin-left: 8px;
+    }
+
+    .service-dropdown-trigger.active i.chevron {
+        transform: rotate(180deg);
+    }
+
+    .service-dropdown-menu {
+        position: absolute;
+        bottom: calc(100% + 8px);
+        left: 0;
+        right: 0;
+        background: #ffffff;
+        border-radius: 14px;
+        box-shadow: 0 22px 60px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(15, 23, 42, 0.04);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 10000;
+        padding: 10px;
+        max-height: none;
+        overflow: visible;
+    }
+
+    .service-dropdown-menu.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .service-dropdown-menu::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .service-dropdown-menu::-webkit-scrollbar-track {
+        background: #f1f5f9;
+        border-radius: 8px;
+    }
+
+    .service-dropdown-menu::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 8px;
+    }
+
+    .service-dropdown-menu::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+    }
+
+    .service-dropdown-item {
+        display: flex;
+        align-items: center;
+        padding: 11px 14px;
+        color: #111827;
+        font-size: 13px;
+        font-weight: 500;
+        transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 10px;
+        margin-bottom: 4px;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .service-dropdown-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .service-dropdown-item i {
+        margin-right: 10px;
+        font-size: 13px;
+        width: 18px;
+        text-align: center;
+        color: #0057A0;
+        opacity: 0.9;
+    }
+
+    .service-dropdown-item:hover {
+        background: #0057A0;
+        color: #ffffff;
+        padding-left: 18px;
+        transform: translateX(2px);
+    }
+
+    .service-dropdown-item:hover i {
+        color: #ffffff;
+    }
+
+    .service-dropdown-item.selected {
+        background: #eff6ff;
+        color: #0057A0;
+        font-weight: 600;
+    }
+
+    .service-dropdown-item.selected:hover {
+        background: #0057A0;
+        color: #ffffff;
+    }
+
+    /* Hidden native select for form submission */
+    .service-dropdown-wrapper select {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+        width: 1px;
+        height: 1px;
+    }
+
+    /* Loading state for submit button */
+    #enrollmentSubmitBtn.loading {
+        opacity: 0.7;
+        pointer-events: none;
+    }
+
+    /* Responsive adjustments for dropdown */
+    @media (max-width: 768px) {
+        .service-dropdown-menu {
+            bottom: auto;
+            top: calc(100% + 4px);
+        }
+    }
+</style>
     
     <!-- ✅ Load course-detail.js -->
     <script src="js/course-detail.js"></script>

@@ -148,10 +148,11 @@ async function fetchDashboardStats() {
             const stats = {
                 totalCourses: courses.length,
                 publishedCourses: courses.filter(c => c.status === 'published').length,
-                totalStudents: courses.reduce((sum, c) => sum + (c.students || 0), 0),
-                totalRevenue: courses.reduce((sum, c) => 
-                    sum + ((c.students || 0) * (c.discountedPrice || c.price || 0)), 0
-                )
+                totalStudents: courses.reduce((sum, c) => sum + (c.students || 0), 0)
+                // REVENUE CALCULATION COMMENTED OUT
+                // totalRevenue: courses.reduce((sum, c) => 
+                //     sum + ((c.students || 0) * (c.discountedPrice || c.price || 0)), 0
+                // )
             };
             
             updateDashboardStats(stats);
@@ -164,8 +165,8 @@ async function fetchDashboardStats() {
         updateDashboardStats({
             totalCourses: 0,
             publishedCourses: 0,
-            totalStudents: 0,
-            totalRevenue: 0
+            totalStudents: 0
+            // totalRevenue: 0  // COMMENTED OUT
         });
     }
 }
@@ -176,7 +177,7 @@ async function fetchDashboardStats() {
 function updateDashboardStats(stats) {
     const totalCoursesEl = document.getElementById('total-courses');
     const totalStudentsEl = document.getElementById('total-students');
-    const totalRevenueEl = document.getElementById('total-revenue');
+    // const totalRevenueEl = document.getElementById('total-revenue');  // COMMENTED OUT
     const totalEnrollmentsEl = document.getElementById('total-enrollments');
     
     if (totalCoursesEl) {
@@ -185,16 +186,17 @@ function updateDashboardStats(stats) {
     if (totalStudentsEl) {
         totalStudentsEl.textContent = (stats.totalStudents || 0).toLocaleString();
     }
-    if (totalRevenueEl) {
-        const revenue = stats.totalRevenue || 0;
-        if (revenue >= 100000) {
-            totalRevenueEl.textContent = `₹${(revenue / 100000).toFixed(1)}L`;
-        } else if (revenue >= 1000) {
-            totalRevenueEl.textContent = `₹${(revenue / 1000).toFixed(1)}K`;
-        } else {
-            totalRevenueEl.textContent = `₹${revenue}`;
-        }
-    }
+    // REVENUE FUNCTIONALITY COMMENTED OUT
+    // if (totalRevenueEl) {
+    //     const revenue = stats.totalRevenue || 0;
+    //     if (revenue >= 100000) {
+    //         totalRevenueEl.textContent = `₹${(revenue / 100000).toFixed(1)}L`;
+    //     } else if (revenue >= 1000) {
+    //         totalRevenueEl.textContent = `₹${(revenue / 1000).toFixed(1)}K`;
+    //     } else {
+    //         totalRevenueEl.textContent = `₹${revenue}`;
+    //     }
+    // }
     if (totalEnrollmentsEl) {
         totalEnrollmentsEl.textContent = (stats.totalStudents || 0).toLocaleString();
     }

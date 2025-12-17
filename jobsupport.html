@@ -341,30 +341,77 @@
         .service-dropdown-trigger.active i.chevron { transform: rotate(180deg); }
 
         .service-dropdown-menu {
-            position: absolute; top: calc(100% + 8px); left: 0; right: 0;
-            background: #ffffff; border-radius: 12px; padding: 8px;
-            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(15, 23, 42, 0.04);
-            opacity: 0; visibility: hidden; transform: translateY(-10px);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1000;
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 22px 60px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(15, 23, 42, 0.04);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 10000;
+            padding: 10px;
+            max-height: none;
+            overflow: visible;
         }
 
-        .service-dropdown-menu.active { opacity: 1; visibility: visible; transform: translateY(0); }
+        .service-dropdown-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
 
         .service-dropdown-item {
-            display: flex; align-items: center; padding: 10px 14px; border-radius: 8px;
-            cursor: pointer; transition: all 0.2s ease; margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            padding: 11px 14px;
+            color: #111827;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 10px;
+            margin-bottom: 4px;
+            cursor: pointer;
+            user-select: none;
         }
-        .service-dropdown-item:last-child { margin-bottom: 0; }
+        
+        .service-dropdown-item:last-child {
+            margin-bottom: 0;
+        }
+        
         .service-dropdown-item i {
-            margin-right: 10px; font-size: 14px; color: #1D5D7F;
-            width: 20px; text-align: center;
+            margin-right: 10px;
+            font-size: 13px;
+            width: 18px;
+            text-align: center;
+            color: #1D5D7F;
+            opacity: 0.9;
         }
+        
         .service-dropdown-item:hover {
-            background: #1D5D7F; color: #ffffff;
+            background: #1D5D7F;
+            color: #ffffff;
+            padding-left: 18px;
+            transform: translateX(2px);
         }
-        .service-dropdown-item:hover i { color: #ffffff; }
-        .service-dropdown-item.selected { background: #eff6ff; color: #1D5D7F; font-weight: 600; }
-        .service-dropdown-item.selected:hover { background: #1D5D7F; color: #ffffff; }
+        
+        .service-dropdown-item:hover i {
+            color: #ffffff;
+        }
+        
+        .service-dropdown-item.selected {
+            background: #eff6ff;
+            color: #1D5D7F;
+            font-weight: 600;
+        }
+        
+        .service-dropdown-item.selected:hover {
+            background: #1D5D7F;
+            color: #ffffff;
+        }
 
         /* ===== FOOTER CENTER ALIGNMENT FOR MOBILE ===== */
         @media (max-width: 768px) {
@@ -1379,29 +1426,34 @@
                                 <i class="fas fa-chevron-down chevron"></i>
                             </div>
                             <div class="service-dropdown-menu" id="serviceDropdownMenu">
+                                <div class="service-dropdown-item" data-value="Profile Pushing">
+                                    <i class="fas fa-code"></i>
+                                    <span>Profile Pushing</span>
+                                </div>
                                 <div class="service-dropdown-item" data-value="Job Support">
-                                    <i class="fas fa-headset"></i>
+                                    <i class="fas fa-mobile-alt"></i>
                                     <span>Job Support</span>
                                 </div>
-                                <div class="service-dropdown-item" data-value="Role Promoting">
+                                <div class="service-dropdown-item" data-value="Web Development Services">
                                     <i class="fas fa-chart-line"></i>
-                                    <span>Role Promoting</span>
+                                    <span>Web Development Services</span>
                                 </div>
-                                <div class="service-dropdown-item" data-value="Web Development">
-                                    <i class="fas fa-code"></i>
-                                    <span>Web Development</span>
+                                <div class="service-dropdown-item" data-value="Online Courses">
+                                    <i class="fas fa-cloud"></i>
+                                    <span>Online Courses</span>
                                 </div>
-                                <div class="service-dropdown-item" data-value="Digital Marketing">
-                                    <i class="fas fa-bullhorn"></i>
-                                    <span>Digital Marketing</span>
+                                <div class="service-dropdown-item" data-value="Recorded Courses">
+                                    <i class="fas fa-cloud"></i>
+                                    <span>Recorded Courses</span>
                                 </div>
                             </div>
                             <select name="service" id="serviceHiddenSelect" required style="position: absolute; opacity: 0; pointer-events: none; width: 1px; height: 1px;">
                                 <option value="" selected></option>
+                                <option value="Profile Pushing">Profile Pushing</option>
                                 <option value="Job Support">Job Support</option>
-                                <option value="Role Promoting">Role Promoting</option>
-                                <option value="Web Development">Web Development</option>
-                                <option value="Digital Marketing">Digital Marketing</option>
+                                <option value="Web Development Services">Web Development Services</option>
+                                <option value="Online Courses">Online Courses</option>
+                                <option value="Recorded Courses">Recorded Courses</option>
                             </select>
                         </div>
                     </div>

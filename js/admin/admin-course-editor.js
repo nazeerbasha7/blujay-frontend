@@ -154,7 +154,7 @@ async function loadCourseData(courseId) {
                 'course-level': course.level,
                 'instructor-name': course.instructor,
                 'course-price': course.price,
-                'course-discount-price': course.discountedPrice,
+                'course-discounted-price': course.isFree ? '' : course.discountedPrice,
                 'course-duration': course.duration,
                 'course-language': course.language,
                 'course-thumbnail': course.thumbnail,
@@ -163,8 +163,22 @@ async function loadCourseData(courseId) {
             
             Object.entries(fields).forEach(([id, value]) => {
                 const element = document.getElementById(id);
-                if (element && value !== undefined) element.value = value;
+                if (element) {
+                    if (element.type === 'checkbox') {
+                        element.checked = value;
+                    } else if (value !== undefined) {
+                        element.value = value;
+                    }
+                }
             });
+            
+            // Set FREE toggle
+            const freeToggle = document.getElementById('course-is-free');
+            if (freeToggle) {
+                freeToggle.checked = course.isFree !== false;
+                // Trigger change event to show/hide paid section
+                freeToggle.dispatchEvent(new Event('change'));
+            }
             
             updateCharCount();
             console.log('✅ Course data loaded from backend');
@@ -217,6 +231,13 @@ async function handleFormSubmit(e) {
     if (saveBtn) saveBtn.disabled = true;
     if (saveText) saveText.textContent = isEditMode ? 'Updating...' : 'Saving...';
     
+    // Get isFree checkbox value - defaults to true if not found
+    const isFreeCheckbox = document.getElementById('course-is-free');
+    const isFree = isFreeCheckbox ? isFreeCheckbox.checked : true;
+    
+    console.log('🔍 isFree checkbox element:', isFreeCheckbox);
+    console.log('🔍 isFree value:', isFree);
+    
     const courseData = {
         title: document.getElementById('course-title')?.value.trim(),
         description: document.getElementById('course-description')?.value.trim(),
@@ -224,22 +245,18 @@ async function handleFormSubmit(e) {
         level: document.getElementById('course-level')?.value,
         instructor: document.getElementById('instructor-name')?.value.trim(),
         price: parseInt(document.getElementById('course-price')?.value),
-        discountedPrice: parseInt(document.getElementById('course-discount-price')?.value) || parseInt(document.getElementById('course-price')?.value),
+        discountedPrice: isFree ? 0 : (parseInt(document.getElementById('course-discounted-price')?.value) || parseInt(document.getElementById('course-price')?.value)),
+        isFree: isFree,
         duration: document.getElementById('course-duration')?.value.trim() || 'Self-paced',
         language: document.getElementById('course-language')?.value,
         thumbnail: document.getElementById('course-thumbnail')?.value.trim() || 'https://via.placeholder.com/800x450?text=Course',
         status: document.getElementById('course-status')?.value || 'draft'
     };
     
+    console.log('📦 Course data being sent:', JSON.stringify(courseData, null, 2));
+    
     if (!courseData.title || !courseData.description) {
         alert('Title and description are required');
-        if (saveBtn) saveBtn.disabled = false;
-        if (saveText) saveText.textContent = originalText;
-        return;
-    }
-    
-    if (courseData.discountedPrice > courseData.price) {
-        alert('Discounted price cannot be greater than regular price');
         if (saveBtn) saveBtn.disabled = false;
         if (saveText) saveText.textContent = originalText;
         return;

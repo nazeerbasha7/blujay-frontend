@@ -734,53 +734,60 @@
 
         .service-dropdown-menu {
             position: absolute;
-            top: calc(100% + 8px);
+            bottom: calc(100% + 8px);
             left: 0;
             right: 0;
             background: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            z-index: 50;
-            max-height: 0;
-            overflow: hidden;
+            border-radius: 14px;
+            box-shadow: 0 22px 60px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(15, 23, 42, 0.04);
             opacity: 0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 10000;
+            padding: 10px;
+            max-height: none;
+            overflow: visible;
         }
 
         .service-dropdown-menu.active {
-            max-height: 300px;
             opacity: 1;
-            overflow-y: auto;
+            visibility: visible;
+            transform: translateY(0);
         }
 
         .service-dropdown-item {
             display: flex;
             align-items: center;
-            padding: 12px 16px;
-            cursor: pointer;
-            transition: all 0.2s ease;
+            padding: 11px 14px;
+            color: #111827;
             font-size: 13px;
             font-weight: 500;
-            border-bottom: 1px solid #f3f4f6;
+            transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 10px;
+            margin-bottom: 4px;
+            cursor: pointer;
+            user-select: none;
         }
 
         .service-dropdown-item:last-child {
-            border-bottom: none;
+            margin-bottom: 0;
         }
 
         .service-dropdown-item i {
             margin-right: 10px;
-            font-size: 14px;
+            font-size: 13px;
             width: 18px;
             text-align: center;
             color: #1D5D7F;
-            transition: color 0.2s ease;
+            opacity: 0.9;
         }
 
         .service-dropdown-item:hover {
             background: #1D5D7F;
             color: #ffffff;
+            padding-left: 18px;
+            transform: translateX(2px);
         }
 
         .service-dropdown-item:hover i {
@@ -791,6 +798,11 @@
             background: #eff6ff;
             color: #1D5D7F;
             font-weight: 600;
+        }
+        
+        .service-dropdown-item.selected:hover {
+            background: #1D5D7F;
+            color: #ffffff;
         }
 
         /* ===== FOOTER CENTER ALIGNMENT FOR MOBILE ===== */
@@ -1537,29 +1549,34 @@
                                 <i class="fas fa-chevron-down chevron"></i>
                             </div>
                             <div class="service-dropdown-menu" id="serviceDropdownMenu">
-                                <div class="service-dropdown-item" data-value="Job Roadmap Guidance">
-                                    <i class="fas fa-route"></i>
-                                    <span>Job Roadmap Guidance</span>
-                                </div>
                                 <div class="service-dropdown-item" data-value="Profile Pushing">
                                     <i class="fas fa-code"></i>
                                     <span>Profile Pushing</span>
                                 </div>
                                 <div class="service-dropdown-item" data-value="Job Support">
-                                    <i class="fas fa-headset"></i>
+                                    <i class="fas fa-mobile-alt"></i>
                                     <span>Job Support</span>
                                 </div>
-                                <div class="service-dropdown-item" data-value="Courses">
-                                    <i class="fas fa-graduation-cap"></i>
-                                    <span>Courses</span>
+                                <div class="service-dropdown-item" data-value="Web Development Services">
+                                    <i class="fas fa-chart-line"></i>
+                                    <span>Web Development Services</span>
+                                </div>
+                                <div class="service-dropdown-item" data-value="Online Courses">
+                                    <i class="fas fa-cloud"></i>
+                                    <span>Online Courses</span>
+                                </div>
+                                <div class="service-dropdown-item" data-value="Recorded Courses">
+                                    <i class="fas fa-cloud"></i>
+                                    <span>Recorded Courses</span>
                                 </div>
                             </div>
                             <select name="service" id="serviceHiddenSelect" required style="position: absolute; opacity: 0; pointer-events: none; width: 1px; height: 1px;">
                                 <option value="" selected></option>
-                                <option value="Job Roadmap Guidance">Job Roadmap Guidance</option>
                                 <option value="Profile Pushing">Profile Pushing</option>
                                 <option value="Job Support">Job Support</option>
-                                <option value="Courses">Courses</option>
+                                <option value="Web Development Services">Web Development Services</option>
+                                <option value="Online Courses">Online Courses</option>
+                                <option value="Recorded Courses">Recorded Courses</option>
                             </select>
                         </div>
                     </div>

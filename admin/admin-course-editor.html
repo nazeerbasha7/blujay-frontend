@@ -369,19 +369,57 @@
                 
                 <!-- Pricing -->
                 <div class="bg-white rounded-xl shadow-sm p-6">
-                    <h3 class="text-lg font-bold text-gray-800 mb-4">Pricing</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Regular Price (₹) <span class="text-red-500">*</span></label>
-                            <input type="number" id="course-price" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="e.g., 4999" min="0" required>
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">Pricing & Access</h3>
+                    <div class="space-y-4">
+                        <!-- FREE Course Toggle -->
+                        <div class="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 rounded-xl p-5">
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-gift text-white text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-base font-bold text-gray-800">Make this course FREE</p>
+                                        <p class="text-xs text-gray-600">Students can enroll without payment</p>
+                                    </div>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" id="course-is-free" class="sr-only peer" checked>
+                                    <div class="w-14 h-7 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-green-500"></div>
+                                </label>
+                            </div>
+                            <div id="free-notice" class="bg-white rounded-lg p-3 border border-green-300">
+                                <p class="text-xs text-green-700 font-medium">✅ This course will display with FREE badge on all pages</p>
+                            </div>
                         </div>
                         
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Discounted Price (₹)</label>
-                            <input type="number" id="course-discount-price" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="e.g., 3999" min="0">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Original Price (₹) <span class="text-red-500">*</span></label>
+                            <input type="number" id="course-price" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="e.g., 4999" min="0" required>
+                            <p class="text-xs text-gray-500 mt-1">Display value - shows original worth of the course</p>
+                        </div>
+                        
+                        <div id="paid-price-section" class="hidden">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Selling Price (₹)</label>
+                            <input type="number" id="course-discounted-price" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="e.g., 2999" min="0">
+                            <p class="text-xs text-gray-500 mt-1">Leave empty to use original price</p>
                         </div>
                     </div>
                 </div>
+                
+                <script>
+                document.getElementById('course-is-free')?.addEventListener('change', function(e) {
+                    const paidSection = document.getElementById('paid-price-section');
+                    const freeNotice = document.getElementById('free-notice');
+                    if (e.target.checked) {
+                        paidSection?.classList.add('hidden');
+                        freeNotice?.classList.remove('hidden');
+                    } else {
+                        paidSection?.classList.remove('hidden');
+                        freeNotice?.classList.add('hidden');
+                    }
+                });
+                </script>
                 
                 <!-- Course Details -->
                 <div class="bg-white rounded-xl shadow-sm p-6">

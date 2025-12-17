@@ -298,6 +298,16 @@ async function loadCoursesFromBackend() {
                 return;
             }
             
+            // 🔍 DEBUG: Log first course to check isFree field
+            if (publishedCourses.length > 0) {
+                console.log('🔍 Sample course from API:', {
+                    title: publishedCourses[0].title,
+                    isFree: publishedCourses[0].isFree,
+                    price: publishedCourses[0].price,
+                    fullCourse: publishedCourses[0]
+                });
+            }
+            
             publishedCourses.forEach(course => {
                 const courseCard = createCourseCard(course);
                 coursesContainer.innerHTML += courseCard;
@@ -320,8 +330,9 @@ async function loadCoursesFromBackend() {
 // ============================================
 function createCourseCard(course) {
     const originalPrice = course.price || 4999;
-    const discountPrice = course.discountedPrice || originalPrice;
-    const discount = Math.round(((originalPrice - discountPrice) / originalPrice) * 100);
+    const isFree = course.isFree === true;
+    const discountPrice = isFree ? 0 : (course.discountedPrice || originalPrice);
+    const discount = isFree ? 0 : Math.round(((originalPrice - discountPrice) / originalPrice) * 100);
     
     return `
         <div class="course-card rounded-xl overflow-hidden shadow-sm" 
@@ -331,10 +342,17 @@ function createCourseCard(course) {
             <div class="course-thumbnail">
                 <img src="${course.thumbnail || 'https://via.placeholder.com/400x225'}" 
                      alt="${course.title}">
-                ${discount > 0 ? `<div class="absolute top-3 left-3 bg-red-500 text-white px-2 py-1 rounded text-xs font-bold">${discount}% OFF</div>` : ''}
-                <div class="absolute bottom-3 right-3 bg-blue-600 text-white px-3 py-1.5 rounded-full text-sm font-bold shadow-lg">
-                    ₹${discountPrice.toLocaleString()}
-                </div>
+                ${!isFree && discount > 0 ? `<div class="absolute top-3 left-3 bg-red-500 text-white px-2 py-1 rounded text-xs font-bold">${discount}% OFF</div>` : ''}
+                ${isFree ? `
+                    <div class="absolute bottom-3 right-3 bg-red-500 text-white px-3 py-1.5 rounded-full text-sm font-bold shadow-lg flex items-center gap-1">
+                        <i class="fas fa-gift"></i>
+                        FREE
+                    </div>
+                ` : `
+                    <div class="absolute bottom-3 right-3 bg-blue-600 text-white px-3 py-1.5 rounded-full text-sm font-bold shadow-lg">
+                        ₹${discountPrice.toLocaleString()}
+                    </div>
+                `}
             </div>
             
             <div class="course-content">
