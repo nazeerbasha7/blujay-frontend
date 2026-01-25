@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification Pending - Community Portal | Blujay Tech</title>
+    <script src="../js/api-config.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .bounce-animation {
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center px-4">
+    
+    <div class="glass max-w-2xl w-full rounded-3xl shadow-2xl p-8 lg:p-12 fade-in-up">
+        
+        <!-- Icon -->
+        <div class="text-center mb-8">
+            <div class="inline-block bounce-animation">
+                <div class="w-24 h-24 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-white text-5xl mx-auto shadow-2xl">
+                    <i class="fas fa-clock"></i>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl lg:text-4xl font-extrabold mb-4">
+                <span class="bg-gradient-to-r from-yellow-600 via-orange-500 to-red-500 bg-clip-text text-transparent">
+                    ⏳ Verification in Progress
+                </span>
+            </h1>
+            <p class="text-lg text-gray-600 leading-relaxed">
+                Thank you for creating your community profile! Our admin team is reviewing your information.
+            </p>
+        </div>
+        
+        <!-- Status Message -->
+        <div class="bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-300 rounded-2xl p-6 mb-8">
+            <div class="flex items-start gap-4">
+                <div class="flex-shrink-0">
+                    <div class="w-12 h-12 rounded-full bg-yellow-500 flex items-center justify-center text-white pulse-animation">
+                        <i class="fas fa-hourglass-half text-2xl"></i>
+                    </div>
+                </div>
+                <div class="flex-1">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">📋 Your Profile is Under Review</h3>
+                    <p class="text-gray-700 mb-4">
+                        Our admin will verify your details via an offline phone call and approve your account within <strong class="text-orange-600">24-48 hours</strong>.
+                        Once approved, you'll unlock:
+                    </p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check-circle text-green-500"></i>
+                            <span>Browse and connect with professionals</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check-circle text-green-500"></i>
+                            <span>Send and receive connection requests</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check-circle text-green-500"></i>
+                            <span>Access contact details after mutual approval</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- What Happens Next -->
+        <div class="mb-8">
+            <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">
+                <i class="fas fa-list-check text-[#1D5D7F]"></i> What Happens Next?
+            </h3>
+            
+            <div class="space-y-4">
+                <div class="flex items-start gap-4 p-4 bg-blue-50 rounded-xl border-l-4 border-blue-500">
+                    <div class="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold flex-shrink-0">
+                        1
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-800 mb-1">Admin Reviews Your Profile</h4>
+                        <p class="text-sm text-gray-600">We'll verify your information to ensure authenticity</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start gap-4 p-4 bg-purple-50 rounded-xl border-l-4 border-purple-500">
+                    <div class="w-10 h-10 rounded-full bg-purple-500 text-white flex items-center justify-center font-bold flex-shrink-0">
+                        2
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-800 mb-1">Email Notification</h4>
+                        <p class="text-sm text-gray-600">You'll receive an email once your profile is approved</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start gap-4 p-4 bg-green-50 rounded-xl border-l-4 border-green-500">
+                    <div class="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center font-bold flex-shrink-0">
+                        3
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-800 mb-1">Start Connecting</h4>
+                        <p class="text-sm text-gray-600">Access your dashboard and begin building connections</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contact Support -->
+        <div class="bg-gray-50 rounded-xl p-6 mb-6 text-center">
+            <p class="text-gray-700 mb-3">
+                <i class="fas fa-question-circle text-[#1D5D7F]"></i>
+                <strong>Need help or have questions?</strong>
+            </p>
+            <p class="text-sm text-gray-600 mb-4">Our support team is here to assist you</p>
+            <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                <a href="mailto:info@blujaytech.com" 
+                    class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#1D5D7F] to-[#0057A0] text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition">
+                    <i class="fas fa-envelope"></i> Email Support
+                </a>
+                <a href="tel:+919618721797" 
+                    class="inline-flex items-center justify-center gap-2 border-2 border-[#1D5D7F] text-[#1D5D7F] px-6 py-3 rounded-lg font-semibold hover:bg-[#1D5D7F] hover:text-white transition">
+                    <i class="fas fa-phone"></i> Call Us
+                </a>
+            </div>
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row gap-3">
+            <a href="../index.html" 
+                class="flex-1 text-center border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-xl font-semibold hover:bg-gray-50 transition">
+                <i class="fas fa-home"></i> Back to Home
+            </a>
+            <button onclick="location.reload()" 
+                class="flex-1 text-center bg-gray-100 text-gray-700 px-6 py-3 rounded-xl font-semibold hover:bg-gray-200 transition">
+                <i class="fas fa-sync-alt"></i> Refresh Status
+            </button>
+        </div>
+        
+    </div>
+
+    <!-- Firebase -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
+        import { getAuth, onAuthStateChanged, setPersistence, browserLocalPersistence } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyCiedANEie5u-2XQOjdsUFgdkE7s08gArY",
+            authDomain: "blujay-tech.firebaseapp.com",
+            projectId: "blujay-tech",
+            storageBucket: "blujay-tech.firebasestorage.app",
+            messagingSenderId: "586422050005",
+            appId: "1:586422050005:web:737ba2502d1b283ea6165c",
+            measurementId: "G-1JE665W8D0"
+        };
+        
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        let currentUser = null;
+        
+        // Get role from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const role = urlParams.get('role') || 'receiver';
+        
+        console.log('⏳ Verification Pending Page - Role:', role);
+        
+        // Set persistence and check auth
+        setPersistence(auth, browserLocalPersistence).then(() => {
+            onAuthStateChanged(auth, async (user) => {
+                if (!user) {
+                    console.log('❌ Not authenticated - Redirecting to login');
+                    window.location.href = '../login.html?redirect=community';
+                    return;
+                }
+                
+                currentUser = user;
+                console.log('✅ User authenticated:', user.email);
+                
+                // Check status immediately
+                await checkVerificationStatus();
+            });
+        });
+        
+        // Check verification status
+        async function checkVerificationStatus() {
+            try {
+                const token = await currentUser.getIdToken();
+                const API_URL = window.API_CONFIG?.getApiUrl() || 'http://localhost:5000/api';
+                const response = await fetch(`${API_URL}/community/my-profile`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('📊 Profile status:', data.profile?.verificationStatus);
+                    
+                    if (data.profile && data.profile.verificationStatus === 'VERIFIED') {
+                        console.log('✅ Profile VERIFIED - Redirecting to dashboard');
+                        const dashboardUrl = data.profile.profileType === 'RECEIVER' ? 
+                            'receiver-dashboard.html' : 'giver-dashboard.html';
+                        window.location.href = dashboardUrl;
+                    } else if (data.profile && data.profile.verificationStatus === 'REJECTED') {
+                        console.log('❌ Profile REJECTED');
+                        alert('Your profile has been rejected. Reason: ' + (data.profile.verificationNotes || 'Not specified'));
+                    }
+                } else if (response.status === 404) {
+                    console.log('❌ No profile found - Redirecting to role selection');
+                    window.location.href = 'role-selection.html?role=' + role;
+                }
+            } catch (error) {
+                console.error('❌ Status check error:', error);
+            }
+        }
+        
+        // Auto-check every 30 seconds
+        setInterval(checkVerificationStatus, 30000);
+        
+        // Manual refresh button
+        window.addEventListener('load', () => {
+            const refreshBtn = document.querySelector('button[onclick*="reload"]');
+            if (refreshBtn) {
+                refreshBtn.onclick = () => checkVerificationStatus();
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GA4 Integration Tester - Blujay Technologies</title>
+    
+    <!-- Replace G-XXXXXXXXXX with your actual GA4 Measurement ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1JE665W8D0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1JE665W8D0');
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier New', monospace;
+            background: #1e1e1e;
+            color: #00ff00;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: #ff6b6b;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+        
+        .status {
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            padding: 10px;
+            background: #1a1a1a;
+            border-left: 3px solid #00ff00;
+        }
+        
+        .status-item.error {
+            border-left-color: #ff6b6b;
+            color: #ff6b6b;
+        }
+        
+        .status-item.warning {
+            border-left-color: #ffeb3b;
+            color: #ffeb3b;
+        }
+        
+        .test-section {
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .test-section h2 {
+            color: #4fc3f7;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .test-button {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-family: inherit;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .test-button:hover {
+            background: #0052a3;
+            transform: translateY(-2px);
+        }
+        
+        .test-button:active {
+            transform: translateY(0);
+        }
+        
+        #eventLog {
+            background: #1a1a1a;
+            padding: 15px;
+            border-radius: 5px;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 15px;
+            font-size: 12px;
+        }
+        
+        .event-entry {
+            margin: 8px 0;
+            padding: 8px;
+            background: #2a2a2a;
+            border-left: 3px solid #4fc3f7;
+        }
+        
+        .event-name {
+            color: #ffeb3b;
+            font-weight: bold;
+        }
+        
+        .event-params {
+            color: #81c784;
+            margin-top: 5px;
+            font-size: 11px;
+        }
+        
+        .instructions {
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            color: #fff;
+        }
+        
+        .instructions h3 {
+            color: #ff6b6b;
+            margin-bottom: 10px;
+        }
+        
+        .instructions ol {
+            margin-left: 20px;
+        }
+        
+        .instructions li {
+            margin: 10px 0;
+        }
+        
+        .success {
+            color: #00ff00;
+        }
+        
+        .error {
+            color: #ff6b6b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔬 GA4 Integration Tester</h1>
+        
+        <!-- Status Section -->
+        <div class="status">
+            <h2 style="color: #4fc3f7; margin-bottom: 15px;">📊 System Status</h2>
+            <div class="status-item" id="gtagStatus">
+                <span>gtag() Function:</span>
+                <span id="gtagStatusValue">Checking...</span>
+            </div>
+            <div class="status-item" id="dataLayerStatus">
+                <span>dataLayer:</span>
+                <span id="dataLayerStatusValue">Checking...</span>
+            </div>
+            <div class="status-item" id="analyticsStatus">
+                <span>analytics.js:</span>
+                <span id="analyticsStatusValue">Checking...</span>
+            </div>
+            <div class="status-item" id="measurementIdStatus">
+                <span>Measurement ID:</span>
+                <span id="measurementIdValue">Checking...</span>
+            </div>
+        </div>
+        
+        <!-- Test Buttons -->
+        <div class="test-section">
+            <h2>🧪 Event Tests</h2>
+            <p style="color: #fff; margin-bottom: 15px;">Click buttons below to test event tracking. Check the log and Google Analytics Realtime.</p>
+            
+            <button class="test-button" onclick="testButtonClick()">
+                Test Button Click
+            </button>
+            
+            <button class="test-button" onclick="testFormSubmit()">
+                Test Form Submit
+            </button>
+            
+            <button class="test-button" onclick="testPhoneClick()">
+                Test Phone Click
+            </button>
+            
+            <button class="test-button" onclick="testWhatsAppClick()">
+                Test WhatsApp Click
+            </button>
+            
+            <button class="test-button" onclick="testCourseView()">
+                Test Course View
+            </button>
+            
+            <button class="test-button" onclick="testDownload()">
+                Test Download
+            </button>
+            
+            <button class="test-button" onclick="testVideo()">
+                Test Video Event
+            </button>
+            
+            <button class="test-button" onclick="testExternalLink()">
+                Test External Link
+            </button>
+            
+            <button class="test-button" onclick="testCustomEvent()">
+                Test Custom Event
+            </button>
+            
+            <button class="test-button" style="background: #ff6b6b;" onclick="clearLog()">
+                Clear Log
+            </button>
+        </div>
+        
+        <!-- Event Log -->
+        <div class="test-section">
+            <h2>📋 Event Log</h2>
+            <div id="eventLog">
+                <div style="color: #888;">No events tracked yet. Click test buttons above.</div>
+            </div>
+        </div>
+        
+        <!-- Instructions -->
+        <div class="instructions">
+            <h3>📖 How to Verify GA4 Integration</h3>
+            <ol>
+                <li><strong>Update Measurement ID:</strong> Replace <code>G-XXXXXXXXXX</code> in the HTML head with your actual GA4 Measurement ID</li>
+                <li><strong>Open Google Analytics:</strong> Go to <a href="https://analytics.google.com" target="_blank" style="color: #4fc3f7;">analytics.google.com</a></li>
+                <li><strong>Navigate to Realtime:</strong> Reports → Realtime</li>
+                <li><strong>Click Test Buttons:</strong> Use the buttons above to trigger events</li>
+                <li><strong>Check Realtime View:</strong> Events should appear within 30 seconds</li>
+                <li><strong>Verify Event Parameters:</strong> Click events in GA4 to see parameters</li>
+            </ol>
+            
+            <h3 style="margin-top: 20px;">✅ Success Criteria</h3>
+            <ul style="list-style: none; margin-left: 0;">
+                <li>✓ All status checks show <span class="success">✅ OK</span></li>
+                <li>✓ Events appear in the log below</li>
+                <li>✓ Events show in GA4 Realtime within 30 seconds</li>
+                <li>✓ Event parameters are captured correctly</li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Include analytics.js -->
+    <script src="/js/analytics.js"></script>
+    
+    <!-- Tester Script -->
+    <script>
+        let eventCounter = 0;
+        
+        // Check system status
+        window.addEventListener('load', function() {
+            // Check gtag
+            const gtagStatus = document.getElementById('gtagStatus');
+            const gtagValue = document.getElementById('gtagStatusValue');
+            if (typeof gtag === 'function') {
+                gtagValue.textContent = '✅ OK';
+                gtagValue.style.color = '#00ff00';
+            } else {
+                gtagValue.textContent = '❌ Not Found';
+                gtagStatus.classList.add('error');
+            }
+            
+            // Check dataLayer
+            const dataLayerStatus = document.getElementById('dataLayerStatus');
+            const dataLayerValue = document.getElementById('dataLayerStatusValue');
+            if (window.dataLayer) {
+                dataLayerValue.textContent = '✅ OK';
+                dataLayerValue.style.color = '#00ff00';
+            } else {
+                dataLayerValue.textContent = '❌ Not Found';
+                dataLayerStatus.classList.add('error');
+            }
+            
+            // Check analytics.js
+            const analyticsStatus = document.getElementById('analyticsStatus');
+            const analyticsValue = document.getElementById('analyticsStatusValue');
+            if (typeof trackEvent === 'function') {
+                analyticsValue.textContent = '✅ Loaded';
+                analyticsValue.style.color = '#00ff00';
+            } else {
+                analyticsValue.textContent = '⚠️ Not Loaded';
+                analyticsStatus.classList.add('warning');
+            }
+            
+            // Check measurement ID
+            const measurementStatus = document.getElementById('measurementIdStatus');
+            const measurementValue = document.getElementById('measurementIdValue');
+            const scripts = document.querySelectorAll('script[src*="googletagmanager.com"]');
+            if (scripts.length > 0) {
+                const src = scripts[0].src;
+                const match = src.match(/id=([^&]+)/);
+                if (match && match[1] !== 'G-XXXXXXXXXX') {
+                    measurementValue.textContent = `✅ ${match[1]}`;
+                    measurementValue.style.color = '#00ff00';
+                } else {
+                    measurementValue.textContent = '⚠️ Using placeholder ID';
+                    measurementStatus.classList.add('warning');
+                }
+            } else {
+                measurementValue.textContent = '❌ Not Found';
+                measurementStatus.classList.add('error');
+            }
+        });
+        
+        // Log event to UI
+        function logEvent(eventName, eventParams) {
+            eventCounter++;
+            const log = document.getElementById('eventLog');
+            
+            // Remove "no events" message
+            if (eventCounter === 1) {
+                log.innerHTML = '';
+            }
+            
+            const entry = document.createElement('div');
+            entry.className = 'event-entry';
+            entry.innerHTML = `
+                <div style="color: #888;">[${new Date().toLocaleTimeString()}] Event #${eventCounter}</div>
+                <div class="event-name">📊 ${eventName}</div>
+                <div class="event-params">${JSON.stringify(eventParams, null, 2)}</div>
+            `;
+            
+            log.insertBefore(entry, log.firstChild);
+        }
+        
+        // Test functions
+        function testButtonClick() {
+            if (typeof trackButtonClick === 'function') {
+                trackButtonClick('Test Button', {
+                    test_id: 'btn_test_' + Date.now(),
+                    course_name: 'Test Course'
+                });
+                logEvent('button_click', {button_name: 'Test Button', course_name: 'Test Course'});
+            } else {
+                alert('❌ trackButtonClick not found. Make sure analytics.js is loaded.');
+            }
+        }
+        
+        function testFormSubmit() {
+            if (typeof trackFormSubmit === 'function') {
+                trackFormSubmit('Test Form', {form_type: 'test'});
+                logEvent('form_submit', {form_name: 'Test Form', form_type: 'test'});
+            } else {
+                alert('❌ trackFormSubmit not found.');
+            }
+        }
+        
+        function testPhoneClick() {
+            if (typeof trackPhoneClick === 'function') {
+                trackPhoneClick('+91-9876543210', 'test');
+                logEvent('phone_click', {phone_number: '+91-9876543210', click_location: 'test'});
+            } else {
+                alert('❌ trackPhoneClick not found.');
+            }
+        }
+        
+        function testWhatsAppClick() {
+            if (typeof trackWhatsAppClick === 'function') {
+                trackWhatsAppClick('test', 'Test message');
+                logEvent('whatsapp_click', {click_location: 'test', message_preview: 'Test message'});
+            } else {
+                alert('❌ trackWhatsAppClick not found.');
+            }
+        }
+        
+        function testCourseView() {
+            if (typeof trackCourseView === 'function') {
+                trackCourseView('Test Course', 'Test Category', {price: '10000'});
+                logEvent('course_view', {course_name: 'Test Course', course_category: 'Test Category'});
+            } else {
+                alert('❌ trackCourseView not found.');
+            }
+        }
+        
+        function testDownload() {
+            if (typeof trackDownload === 'function') {
+                trackDownload('test-file.pdf', 'test', 'Test Course');
+                logEvent('download_click', {file_name: 'test-file.pdf', file_type: 'test'});
+            } else {
+                alert('❌ trackDownload not found.');
+            }
+        }
+        
+        function testVideo() {
+            if (typeof trackVideo === 'function') {
+                trackVideo('play', 'Test Video', 0);
+                logEvent('video_play', {video_title: 'Test Video', video_current_time: 0});
+            } else {
+                alert('❌ trackVideo not found.');
+            }
+        }
+        
+        function testExternalLink() {
+            if (typeof trackExternalLink === 'function') {
+                trackExternalLink('https://example.com', 'Test Link');
+                logEvent('external_link_click', {link_url: 'https://example.com', link_text: 'Test Link'});
+            } else {
+                alert('❌ trackExternalLink not found.');
+            }
+        }
+        
+        function testCustomEvent() {
+            if (typeof trackEvent === 'function') {
+                trackEvent('custom_test_event', {
+                    test_param1: 'value1',
+                    test_param2: 'value2',
+                    timestamp: new Date().toISOString()
+                });
+                logEvent('custom_test_event', {test_param1: 'value1', test_param2: 'value2'});
+            } else {
+                alert('❌ trackEvent not found.');
+            }
+        }
+        
+        function clearLog() {
+            const log = document.getElementById('eventLog');
+            log.innerHTML = '<div style="color: #888;">Log cleared. Click test buttons to track events.</div>';
+            eventCounter = 0;
+        }
+        
+        // Initial message
+        console.log('%c🔬 GA4 Integration Tester Loaded', 'color: #00ff00; font-size: 16px; font-weight: bold;');
+        console.log('%cCheck status above and click test buttons.', 'color: #4fc3f7; font-size: 12px;');
+    </script>
+</body>
+</html>

@@ -5,12 +5,16 @@
 console.log('🚀 Starting course-detail.js...');
 
 const auth = firebase.auth();
-const API_URL = 'https://blujay-backend.onrender.com/api';
-
-//const API_URL = 'http://localhost:5000/api';
+// Smart API URL - Auto-detects environment
+const API_URL = window.API_CONFIG?.getApiUrl() || 
+    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+        ? 'http://localhost:5000/api' 
+        : 'https://blujay-backend.onrender.com/api');
 
 let currentCourse = null;
 let currentCurriculum = null;
+let isAlreadyEnrolled = false;
+let currentEnrollment = null;
 
 const urlParams = new URLSearchParams(window.location.search);
 const courseId = urlParams.get('id') || urlParams.get('courseId');
@@ -61,6 +65,7 @@ async function loadCourseDetails() {
     console.log('🔄 Loading course details...');
     
     try {
+        // Load course data
         const response = await authenticatedFetch(`/courses/${courseId}/full`);
         
         if (!response.ok) {
@@ -75,6 +80,9 @@ async function loadCourseDetails() {
         if (data.success) {
             currentCourse = data.course;
             currentCurriculum = data.curriculum;
+            
+            // Check if user is already enrolled
+            await checkEnrollmentStatus();
             
             displayCourseDetails(data.course, data.curriculum, data.stats);
         } else {
@@ -96,7 +104,7 @@ async function loadCourseDetails() {
                     <div class="bg-yellow-50 border border-yellow-300 rounded p-4 mb-4 text-left max-w-2xl mx-auto">
                         <p class="text-yellow-800 font-bold mb-2">🔍 Check:</p>
                         <ol class="text-yellow-700 text-sm space-y-1 list-decimal list-inside">
-                            <li>Backend running on localhost:5000?</li>
+                            <li>Backend server running on Render?</li>
                             <li>Course exists in database?</li>
                             <li>CORS enabled on backend?</li>
                         </ol>
@@ -113,6 +121,45 @@ async function loadCourseDetails() {
                 </div>
             `;
         }
+    }
+}
+
+// ============================================
+// CHECK ENROLLMENT STATUS
+// ============================================
+async function checkEnrollmentStatus() {
+    const token = localStorage.getItem('authToken');
+    
+    if (!token) {
+        console.log('⚠️ User not logged in, skipping enrollment check');
+        isAlreadyEnrolled = false;
+        return;
+    }
+    
+    try {
+        console.log('🔍 Checking enrollment status...');
+        const response = await authenticatedFetch('/enrollments/my-courses');
+        
+        if (response.ok) {
+            const data = await response.json();
+            if (data.success && data.enrollments) {
+                // Check if user is enrolled in this course
+                currentEnrollment = data.enrollments.find(
+                    enroll => enroll.courseId === currentCourse.courseId
+                );
+                
+                isAlreadyEnrolled = !!currentEnrollment;
+                
+                if (isAlreadyEnrolled) {
+                    console.log('✅ User is already enrolled in this course');
+                } else {
+                    console.log('ℹ️ User is not enrolled in this course');
+                }
+            }
+        }
+    } catch (error) {
+        console.error('❌ Error checking enrollment:', error);
+        isAlreadyEnrolled = false;
     }
 }
 
@@ -197,12 +244,71 @@ function displayCourseDetails(course, curriculum, stats) {
         }
     }
     
+    // Update enrollment button based on status
+    updateEnrollmentButton();
+    
     updateElement('total-modules', stats.totalModules || 0);
     updateElement('total-videos', stats.totalVideos || 0);
     
     renderCurriculum(curriculum, stats.freeVideos);
     
     console.log('✅ Course displayed successfully!');
+}
+
+// ============================================
+// UPDATE ENROLLMENT BUTTON
+// ============================================
+function updateEnrollmentButton() {
+    const enrollBtn = document.getElementById('enroll-btn');
+    const enrollBtnContainer = document.getElementById('enroll-btn-container');
+    
+    if (!enrollBtn) return;
+    
+    if (isAlreadyEnrolled) {
+        // User is already enrolled - show "Go to Course" button
+        enrollBtn.innerHTML = `
+            <i class="fas fa-check-circle mr-2"></i>
+            Already Enrolled - Go to Course
+        `;
+        enrollBtn.className = 'w-full bg-green-600 hover:bg-green-700 text-white px-6 py-4 rounded-lg font-bold text-lg transition-all transform hover:scale-105 shadow-lg flex items-center justify-center';
+        enrollBtn.onclick = function() {
+            window.location.href = 'my-learning.html';
+        };
+        
+        // Add enrolled badge above button if container exists
+        if (enrollBtnContainer) {
+            const existingBadge = document.getElementById('enrolled-badge');
+            if (!existingBadge) {
+                const badge = document.createElement('div');
+                badge.id = 'enrolled-badge';
+                badge.className = 'bg-green-50 border-2 border-green-500 rounded-lg p-4 mb-4 text-center';
+                badge.innerHTML = `
+                    <i class="fas fa-check-circle text-green-600 text-2xl mb-2"></i>
+                    <p class="text-green-800 font-bold text-lg">You're Enrolled!</p>
+                    <p class="text-green-600 text-sm">Progress: ${currentEnrollment?.progress || 0}%</p>
+                `;
+                enrollBtnContainer.insertBefore(badge, enrollBtn);
+            }
+        }
+        
+        console.log('✅ Button updated: Already Enrolled');
+    } else {
+        // User not enrolled - show "Enroll Now" button
+        enrollBtn.innerHTML = `
+            <i class="fas fa-graduation-cap mr-2"></i>
+            Enroll Now
+        `;
+        enrollBtn.className = 'w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-4 rounded-lg font-bold text-lg transition-all transform hover:scale-105 shadow-lg flex items-center justify-center';
+        enrollBtn.onclick = handleEnrollment;
+        
+        // Remove enrolled badge if exists
+        const existingBadge = document.getElementById('enrolled-badge');
+        if (existingBadge) {
+            existingBadge.remove();
+        }
+        
+        console.log('✅ Button updated: Enroll Now');
+    }
 }
 
 // ============================================
@@ -270,6 +376,13 @@ window.toggleModule = toggleModule;
 function handleEnrollment() {
     console.log('🔘 Enroll clicked!');
     
+    // Check if already enrolled
+    if (isAlreadyEnrolled) {
+        console.log('✅ Already enrolled, redirecting to My Learning');
+        window.location.href = 'my-learning.html';
+        return;
+    }
+    
     if (!currentCourse) {
         alert('Course not loaded. Please wait.');
         return;
@@ -284,7 +397,7 @@ function handleEnrollment() {
         return;
     }
     
-    console.log('� Logged in → Opening callback form (Payment gateway temporarily disabled)');
+    console.log('✅ Logged in → Opening callback form (Payment gateway temporarily disabled)');
     // TEMPORARY: For this version, use callback form instead of payment
     // initiatePayment(); // ← Payment gateway - will re-enable in future version
     openEnrollmentCallbackModal();

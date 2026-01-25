@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <script src="js/api-config.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #3b82f6;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center">
+    <div class="text-center">
+        <div class="spinner mx-auto mb-4"></div>
+        <p class="text-gray-600 text-lg">Redirecting you...</p>
+        <p class="text-gray-400 text-sm mt-2" id="status">Please wait</p>
+    </div>
+
+    <script>
+        /**
+         * ============================================
+         * POST-LOGIN ROUTER
+         * ============================================
+         * 
+         * ARCHITECTURE PRINCIPLE:
+         * Authentication ≠ Routing ≠ Profile
+         * 
+         * This page is the CENTRAL ROUTING LOGIC.
+         * It runs AFTER authentication (JWT issued).
+         * 
+         * ROUTING PRIORITY:
+         * 1. Admin → Admin Dashboard
+         * 2. Community Context → Community Flow
+         * 3. Default → Student Dashboard
+         * 
+         * WHY THIS APPROACH:
+         * - Login ONLY authenticates
+         * - Router ONLY decides destination
+         * - Profile ONLY stores user data
+         * - Each concerns is separated
+         * 
+         * SECURITY:
+         * - Reads JWT (not role from URL)
+         * - Validates token exists
+         * - Backend validates on every request
+         * - Frontend never trusted for authorization
+         */
+
+        const API_URL = window.API_CONFIG?.getApiUrl() || 
+            (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+                ? 'http://localhost:5000/api' 
+                : 'https://blujay-backend.onrender.com/api');
+
+        // Status message helper
+        function setStatus(message) {
+            document.getElementById('status').textContent = message;
+        }
+
+        /**
+         * MAIN ROUTING LOGIC
+         */
+        async function routeUser() {
+            try {
+                console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+                console.log('🚀 POST-LOGIN ROUTER - Starting...');
+                console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+                
+                setStatus('Checking authentication...');
+                
+                // Step 1: Verify JWT exists (authentication check)
+                const authToken = localStorage.getItem('authToken');
+                const userRole = localStorage.getItem('userRole');
+                const userName = localStorage.getItem('userName');
+                const userEmail = localStorage.getItem('userEmail');
+                
+                console.log('📦 LocalStorage Data:');
+                console.log('   • authToken:', authToken ? '✅ Present' : '❌ Missing');
+                console.log('   • userRole:', userRole);
+                console.log('   • userName:', userName);
+                console.log('   • userEmail:', userEmail);
+                
+                if (!authToken) {
+                    console.error('❌ No JWT found - redirecting to login');
+                    window.location.href = 'login.html';
+                    return;
+                }
+                
+                console.log('✅ JWT found, determining route...');
+                
+                // Step 2: Check login context (where did user come from?)
+                const loginContext = sessionStorage.getItem('loginContext');
+                const requestedProfile = sessionStorage.getItem('requestedProfile');
+                
+                console.log('📦 SessionStorage Data:');
+                console.log('   • loginContext:', loginContext || 'null');
+                console.log('   • requestedProfile:', requestedProfile || 'null');
+                console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+                
+                // ROUTING PRIORITY 1: Admin always goes to Admin Dashboard
+                if (userRole === 'admin') {
+                    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+                    console.log('🔐 ADMIN DETECTED');
+                    console.log('🎯 Routing to: admin/admin-dashboard.html');
+                    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+                    setStatus('Loading admin dashboard...');
+                    // Clear community context
+                    sessionStorage.removeItem('loginContext');
+                    sessionStorage.removeItem('requestedProfile');
+                    window.location.href = 'admin/admin-dashboard.html';
+                    return;
+                }
+                
+                // ROUTING PRIORITY 2: Community Context - Check existing profile first
+                if (loginContext === 'community') {
+                    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+                    console.log('🏘️ COMMUNITY CONTEXT DETECTED');
+                    console.log('📋 Requested Profile:', requestedProfile);
+                    console.log('🔄 Checking for existing community profile...');
+                    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+                    setStatus('Checking community profile...');
+                    
+                    // Check if user already has a community profile
+                    try {
+                        console.log('📡 Fetching profile from:', `${API_URL}/community/my-profile`);
+                        
+                        const response = await fetch(`${API_URL}/community/my-profile`, {
+                            headers: {
+                                'Authorization': `Bearer ${authToken}`
+                            }
+                        });
+                        
+                        console.log('📊 Response Status:', response.status);
+                        
+                        if (response.ok) {
+                            // User HAS an existing community profile - route to their dashboard
+                            const data = await response.json();
+                            const existingProfile = data.profile;
+                            
+                            console.log('✅ EXISTING PROFILE FOUND');
+                            console.log('   • Profile Type:', existingProfile.profileType);
+                            console.log('   • Verification Status:', existingProfile.verificationStatus);
+                            console.log('   • Name:', existingProfile.firstName, existingProfile.lastName);
+                            
+                            // Clear context
+                            sessionStorage.removeItem('loginContext');
+                            sessionStorage.removeItem('requestedProfile');
+                            
+                            // Check verification status
+                            if (existingProfile.verificationStatus === 'PENDING_APPROVAL' || existingProfile.verificationStatus === 'REJECTED') {
+                                console.log('⏳ Profile pending or rejected - showing verification page');
+                                window.location.href = 'community/verification-pending.html';
+                                return;
+                            }
+                            
+                            // Route to correct dashboard based on existing profile
+                            if (existingProfile.profileType === 'GIVER') {
+                                console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+                                console.log('🎯 ROUTING TO: community/giver-dashboard.html');
+                                console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+                                window.location.href = 'community/giver-dashboard.html';
+                            } else {
+                                console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+                                console.log('🎯 ROUTING TO: community/receiver-dashboard.html');
+                                console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+                                window.location.href = 'community/receiver-dashboard.html';
+                            }
+                            return;
+                            
+                        } else if (response.status === 404) {
+                            // No profile exists - check if they pre-selected a role
+                            console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+                            console.log('ℹ️ NO EXISTING PROFILE FOUND (404)');
+                            console.log('📋 Requested Profile:', requestedProfile);
+                            console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+                            
+                            if (requestedProfile) {
+                                // They came from role-selection page
+                                console.log('✅ User selected role:', requestedProfile);
+                                console.log('🔄 Will create profile on dashboard...');
+                                
+                                // Clear context
+                                sessionStorage.removeItem('loginContext');
+                                sessionStorage.removeItem('requestedProfile');
+                                
+                                if (requestedProfile === 'GIVER') {
+                                    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+                                    console.log('🎯 ROUTING TO: community/giver-dashboard.html');
+                                    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+                                    window.location.href = 'community/giver-dashboard.html';
+                                } else {
+                                    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+                                    console.log('🎯 ROUTING TO: community/receiver-dashboard.html');
+                                    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+                                    window.location.href = 'community/receiver-dashboard.html';
+                                }
+                                return;
+                            } else {
+                                // No profile and no pre-selection - show role selection
+                                console.log('🎭 No profile found - showing role selection');
+                                sessionStorage.removeItem('loginContext');
+                                window.location.href = 'community/role-selection.html';
+                                return;
+                            }
+                        }
+                    } catch (error) {
+                        console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+                        console.error('❌ ERROR CHECKING PROFILE:', error);
+                        console.log('📋 Requested Profile was:', requestedProfile);
+                        console.log('🔄 Fallback: Routing to dashboard anyway...');
+                        console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+                        
+                        // On error, but if they selected a role, route them anyway
+                        if (requestedProfile) {
+                            sessionStorage.removeItem('loginContext');
+                            sessionStorage.removeItem('requestedProfile');
+                            
+                            if (requestedProfile === 'GIVER') {
+                                console.log('🎯 ROUTING TO: community/giver-dashboard.html (fallback)');
+                                window.location.href = 'community/giver-dashboard.html';
+                            } else {
+                                console.log('🎯 ROUTING TO: community/receiver-dashboard.html (fallback)');
+                                window.location.href = 'community/receiver-dashboard.html';
+                            }
+                        } else {
+                            console.log('🎯 ROUTING TO: community/role-selection.html (fallback)');
+                            sessionStorage.removeItem('loginContext');
+                            sessionStorage.removeItem('requestedProfile');
+                            window.location.href = 'community/role-selection.html';
+                        }
+                        return;
+                    }
+                }
+                
+                // ROUTING PRIORITY 3: Default Student Dashboard (main site)
+                console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+                console.log('👨‍🎓 DEFAULT ROUTE - Student Dashboard');
+                console.log('🎯 ROUTING TO: dashboard.html');
+                console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+                setStatus('Loading dashboard...');
+                // Clear any community context to prevent future confusion
+                sessionStorage.removeItem('loginContext');
+                sessionStorage.removeItem('requestedProfile');
+                window.location.href = 'dashboard.html';
+                
+            } catch (error) {
+                console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+                console.error('❌ CRITICAL ROUTING ERROR:');
+                console.error('   Error:', error);
+                console.error('   Message:', error.message);
+                console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+                
+                // Check if we have community context to preserve
+                const requestedProfile = sessionStorage.getItem('requestedProfile');
+                const loginContext = sessionStorage.getItem('loginContext');
+                
+                if (loginContext === 'community' && requestedProfile) {
+                    console.log('🔄 Community context detected - routing to dashboard anyway');
+                    sessionStorage.removeItem('loginContext');
+                    sessionStorage.removeItem('requestedProfile');
+                    
+                    if (requestedProfile === 'GIVER') {
+                        window.location.href = 'community/giver-dashboard.html';
+                    } else {
+                        window.location.href = 'community/receiver-dashboard.html';
+                    }
+                } else {
+                    alert('An error occurred during login. Please try again.');
+                    window.location.href = 'login.html';
+                }
+            }
+        }
+
+        /**
+         * COMMUNITY ROUTING LOGIC
+         * 
+         * Checks if user has a community profile.
+         * If not, shows role selection.
+         * If yes, routes to appropriate dashboard.
+         */
+        async function routeToCommunity(requestedProfile) {
+            try {
+                console.log('🏘️ Entering community routing...');
+                
+                const authToken = localStorage.getItem('authToken');
+                
+                // Check if user already has a community profile
+                setStatus('Checking community profile...');
+                
+                const response = await fetch(`${API_URL}/community/my-profile`, {
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+                
+                if (response.ok) {
+                    // User HAS a community profile
+                    const data = await response.json();
+                    const profile = data.profile;
+                    
+                    console.log('✅ Community profile found:', profile.profileType);
+                    console.log('📊 Verification Status:', profile.verificationStatus);
+                    
+                    // Clear context
+                    sessionStorage.removeItem('loginContext');
+                    sessionStorage.removeItem('requestedProfile');
+                    
+                    // Check verification status
+                    if (profile.verificationStatus === 'PENDING_APPROVAL') {
+                        console.log('⏳ Profile pending verification');
+                        setStatus('Profile awaiting verification...');
+                        window.location.href = 'community/verification-pending.html';
+                        return;
+                    }
+                    
+                    if (profile.verificationStatus === 'REJECTED') {
+                        console.log('❌ Profile rejected');
+                        setStatus('Profile verification failed...');
+                        window.location.href = 'community/verification-pending.html';
+                        return;
+                    }
+                    
+                    // Route based on profile type (VERIFIED users only)
+                    if (profile.profileType === 'GIVER') {
+                        console.log('👨‍💼 Routing to Giver Dashboard');
+                        setStatus('Loading giver dashboard...');
+                        window.location.href = 'community/giver-dashboard.html';
+                    } else if (profile.profileType === 'RECEIVER') {
+                        console.log('👨‍🎓 Routing to Receiver Dashboard');
+                        setStatus('Loading receiver dashboard...');
+                        window.location.href = 'community/receiver-dashboard.html';
+                    }
+                    
+                } else if (response.status === 404) {
+                    // User DOES NOT have a community profile
+                    console.log('ℹ️ No community profile found');
+                    
+                    // If they already selected a role, create profile
+                    if (requestedProfile) {
+                        console.log('📝 Redirecting to profile creation:', requestedProfile);
+                        setStatus('Setting up your profile...');
+                        
+                        // Store requested profile for profile creation page
+                        sessionStorage.setItem('creatingProfile', requestedProfile);
+                        
+                        // Route to profile creation based on type
+                        if (requestedProfile === 'GIVER') {
+                            window.location.href = 'community/giver-profile.html?mode=create';
+                        } else {
+                            window.location.href = 'community/receiver-profile.html?mode=create';
+                        }
+                    } else {
+                        // Show role selection
+                        console.log('🎭 Showing role selection');
+                        setStatus('Choose your role...');
+                        window.location.href = 'community/role-selection.html';
+                    }
+                    
+                } else {
+                    throw new Error('Failed to check community profile');
+                }
+                
+            } catch (error) {
+                console.error('❌ Community routing error:', error);
+                
+                // Fallback: show role selection
+                console.log('⚠️ Error occurred, showing role selection');
+                window.location.href = 'community/role-selection.html';
+            }
+        }
+
+        // Start routing immediately
+        console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+        console.log('🚦 POST-LOGIN ROUTER STARTED');
+        console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+        
+        routeUser();
+    </script>
+</body>
+</html>

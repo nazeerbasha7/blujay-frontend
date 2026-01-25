@@ -1,0 +1,115 @@
+# ============================================
+# BLUJAY TECH - URL REWRITING RULES
+# Clean URLs without .html extensions
+# ============================================
+
+RewriteEngine On
+RewriteBase /
+
+# Force HTTPS (if needed)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+# ============================================
+# CUSTOM URL MAPPINGS (Friendly Names)
+# ============================================
+
+# Homepage: blujaytech.com/ or blujaytech.com/Home -> index.html
+RewriteRule ^Home/?$ index.html [NC,L]
+
+# About Us: blujaytech.com/Aboutus -> aboutus.html
+RewriteRule ^Aboutus/?$ aboutus.html [NC,L]
+
+# Contact: blujaytech.com/Contact -> contactus.html
+RewriteRule ^Contact/?$ contactus.html [NC,L]
+
+# Services: blujaytech.com/Services -> services.html
+RewriteRule ^Services/?$ services.html [NC,L]
+
+# All Courses: blujaytech.com/Courses -> all-courses.html
+RewriteRule ^Courses/?$ all-courses.html [NC,L]
+
+# Blog: blujaytech.com/Blog -> blog.html
+RewriteRule ^Blog/?$ blog.html [NC,L]
+
+# Dashboard: blujaytech.com/Dashboard -> dashboard.html
+RewriteRule ^Dashboard/?$ dashboard.html [NC,L]
+
+# Login: blujaytech.com/Login -> login.html
+RewriteRule ^Login/?$ login.html [NC,L]
+
+# My Learning: blujaytech.com/MyLearning -> my-learning.html
+RewriteRule ^MyLearning/?$ my-learning.html [NC,L]
+
+# Job Support: blujaytech.com/JobSupport -> jobsupport.html
+RewriteRule ^JobSupport/?$ jobsupport.html [NC,L]
+
+# Job Roadmap: blujaytech.com/JobRoadmap -> jobroadmap.html
+RewriteRule ^JobRoadmap/?$ jobroadmap.html [NC,L]
+
+# Course Player: blujaytech.com/CoursePlayer -> course-player.html
+RewriteRule ^CoursePlayer/?$ course-player.html [NC,L]
+
+# Course Detail: blujaytech.com/CourseDetail -> course-detail.html
+RewriteRule ^CourseDetail/?$ course-detail.html [NC,L]
+
+# Recorded Courses: blujaytech.com/RecordedCourses -> recorded-courses.html
+RewriteRule ^RecordedCourses/?$ recorded-courses.html [NC,L]
+
+# ============================================
+# COURSE PAGES (SEO Friendly URLs)
+# ============================================
+
+# AWS DevOps: blujaytech.com/AWSDevOps -> aws-devops-course-in-hyderabad.html
+RewriteRule ^AWSDevOps/?$ aws-devops-course-in-hyderabad.html [NC,L]
+
+# Azure DevOps: blujaytech.com/AzureDevOps -> azure-devops-course-in-hyderabad.html
+RewriteRule ^AzureDevOps/?$ azure-devops-course-in-hyderabad.html [NC,L]
+
+# GCP DevOps: blujaytech.com/GCPDevOps -> gcp-devops-course-in-hyderabad.html
+RewriteRule ^GCPDevOps/?$ gcp-devops-course-in-hyderabad.html [NC,L]
+
+# MERN Stack: blujaytech.com/MERNStack -> mern-stack-course-in-hyderabad.html
+RewriteRule ^MERNStack/?$ mern-stack-course-in-hyderabad.html [NC,L]
+
+# Java Full Stack: blujaytech.com/JavaFullStack -> java-full-stack-course-in-hyderabad.html
+RewriteRule ^JavaFullStack/?$ java-full-stack-course-in-hyderabad.html [NC,L]
+
+# Python Full Stack: blujaytech.com/PythonFullStack -> python-full-stack-course-in-hyderabad.html
+RewriteRule ^PythonFullStack/?$ python-full-stack-course-in-hyderabad.html [NC,L]
+
+# Digital Marketing: blujaytech.com/DigitalMarketing -> digital-marketing-course-in-hyderabad.html
+RewriteRule ^DigitalMarketing/?$ digital-marketing-course-in-hyderabad.html [NC,L]
+
+# Software Testing: blujaytech.com/SoftwareTesting -> software-testing-course-in-hyderabad.html
+RewriteRule ^SoftwareTesting/?$ software-testing-course-in-hyderabad.html [NC,L]
+
+# Linux Administration: blujaytech.com/LinuxAdmin -> linux-administration-course-in-hyderabad.html
+RewriteRule ^LinuxAdmin/?$ linux-administration-course-in-hyderabad.html [NC,L]
+
+# ============================================
+# GENERIC .HTML REMOVAL RULES
+# ============================================
+
+# Redirect existing .html URLs to clean URLs (301 permanent redirect)
+# Example: aboutus.html -> Aboutus
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,NE,L]
+
+# Serve .html files when clean URL is requested
+# Example: /aboutus -> serves aboutus.html (if not already mapped above)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]
+
+# ============================================
+# ADDITIONAL SETTINGS
+# ============================================
+
+# Prevent directory listing
+Options -Indexes
+
+# Custom error pages (optional)
+# ErrorDocument 404 /404.html
+# ErrorDocument 500 /500.html

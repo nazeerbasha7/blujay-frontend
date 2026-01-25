@@ -23,8 +23,11 @@ const db = firebase.firestore();
 // ============================================
 // BACKEND API CONFIGURATION
 // ============================================
-const API_URL = 'https://blujay-backend.onrender.com/api';
-//const API_URL = 'http://localhost:5000/api';
+// Smart API URL - Auto-detects environment
+const API_URL = window.API_CONFIG?.getApiUrl() || 
+    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+        ? 'http://localhost:5000/api' 
+        : 'https://blujay-backend.onrender.com/api');
 
 // ============================================
 // HELPER FUNCTION FOR AUTHENTICATED API CALLS
@@ -35,7 +38,7 @@ async function authenticatedFetch(endpoint, options = {}) {
     if (!token) {
         console.error('❌ No auth token found');
         alert('Session expired. Please login again.');
-        window.location.href = 'login.html';
+        window.location.href = 'login';
         return;
     }
     
@@ -55,7 +58,7 @@ async function authenticatedFetch(endpoint, options = {}) {
             console.error('❌ Authentication failed - token invalid');
             localStorage.clear();
             alert('Session expired. Please login again.');
-            window.location.href = 'login.html';
+            window.location.href = 'login';
             return null;
         }
         
@@ -84,7 +87,7 @@ async function checkAuthenticationStatus() {
     
     if (!token) {
         console.log('❌ No authentication token found, redirecting to login...');
-        window.location.href = 'login.html';
+        window.location.href = 'login';
         return false;
     }
     
@@ -101,7 +104,7 @@ async function checkAuthenticationStatus() {
         
     } catch (error) {
         console.error('❌ Auth check error:', error);
-        window.location.href = 'login.html';
+        window.location.href = 'login';
         return false;
     }
 }
@@ -163,7 +166,7 @@ auth.onAuthStateChanged(async (user) => {
     } else {
         console.log('❌ No Firebase user, redirecting to login...');
         setTimeout(() => {
-            window.location.href = 'login.html';
+            window.location.href = 'login';
         }, 500);
     }
 });
@@ -376,11 +379,52 @@ function createCourseCard(course) {
 }
 
 // ============================================
-// REDIRECT TO COURSE DETAIL PAGE
+// REDIRECT TO COURSE DETAIL PAGE (Smart Redirect)
 // ============================================
-window.redirectToCourseDetail = function(courseId) {
-    console.log('🔗 Redirecting to course detail:', courseId);
-    window.location.href = `course-detail.html?id=${courseId}`;
+window.redirectToCourseDetail = async function(courseId) {
+    console.log('🔗 Checking course:', courseId);
+    
+    const token = localStorage.getItem('authToken');
+    
+    // If not logged in, go to course detail
+    if (!token) {
+        console.log('⚠️ Not logged in, showing course detail');
+        window.location.href = `course-detail.html?id=${courseId}`;
+        return;
+    }
+    
+    try {
+        // Check if user is already enrolled
+        console.log('🔍 Checking enrollment status...');
+        const response = await authenticatedFetch('/enrollments/my-courses');
+        
+        if (response && response.ok) {
+            const data = await response.json();
+            
+            if (data.success && data.enrollments) {
+                // Find if enrolled in this course
+                const enrollment = data.enrollments.find(
+                    enroll => enroll.courseId === courseId
+                );
+                
+                if (enrollment) {
+                    console.log('✅ Already enrolled, redirecting to My Learning');
+                    // User is enrolled - redirect to My Learning / Course Player
+                    window.location.href = 'my-learning.html';
+                    return;
+                }
+            }
+        }
+        
+        // Not enrolled or check failed - show course detail
+        console.log('ℹ️ Not enrolled, showing course detail');
+        window.location.href = `course-detail.html?id=${courseId}`;
+        
+    } catch (error) {
+        console.error('❌ Error checking enrollment:', error);
+        // On error, show course detail page
+        window.location.href = `course-detail.html?id=${courseId}`;
+    }
 };
 
 // ============================================
@@ -650,7 +694,9 @@ const sidebarLogoutBtn = document.getElementById('sidebar-logout-btn');
 
 function handleLogout() {
     if (confirm('Are you sure you want to logout?')) {
+        // Clear all storage first
         localStorage.clear();
+        sessionStorage.clear();
         
         auth.signOut()
             .then(() => {

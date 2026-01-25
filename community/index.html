@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Portal | Blujay Technologies</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        
+        :root {
+            --blujay-primary: #0057A0;
+            --blujay-primary-hover: #00447C;
+            --blujay-dark: #00345E;
+            --blujay-light: #E6F1FB;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0057A0 0%, #0084D6 50%, #00A3E0 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #00345E 0%, #0057A0 50%, #0084D6 100%);
+        }
+        
+        .glass-card {
+            backdrop-filter: blur(16px);
+            background: rgba(255, 255, 255, 0.97);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 32px rgba(0, 87, 160, 0.15);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #0057A0 0%, #0084D6 100%);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(0, 87, 160, 0.4);
+            background: linear-gradient(135deg, #00447C 0%, #0057A0 100%);
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .feature-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 87, 160, 0.15);
+            border-color: #0057A0;
+        }
+        
+        @media (max-width: 768px) {
+            .glass-card { padding: 1.5rem !important; }
+            h1 { font-size: 2rem !important; }
+            h2 { font-size: 1.5rem !important; }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Hero Section -->
+    <div class="hero-gradient min-h-screen flex items-center justify-center px-4 py-12 relative overflow-hidden">
+        
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-white opacity-10 rounded-full blur-3xl floating"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-purple-300 opacity-10 rounded-full blur-3xl floating" style="animation-delay: -2s;"></div>
+        </div>
+        
+        <div class="max-w-6xl mx-auto relative z-10">
+            
+            <!-- Logo -->
+            <div class="text-center mb-8 fade-in-up">
+                <img src="../images/logo.webp" alt="Blujay Tech" class="h-16 md:h-20 mx-auto mb-4">
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">
+                    Community Portal
+                </h1>
+                <p class="text-xl md:text-2xl text-white opacity-90 mb-2">
+                    Connecting Job Seekers with Experienced Professionals
+                </p>
+                <p class="text-base md:text-lg text-white opacity-75">
+                    Admin-verified, secure, and professional networking platform
+                </p>
+            </div>
+            
+            <!-- Main Content Card -->
+            <div class="glass-card rounded-3xl shadow-2xl p-8 md:p-12 fade-in-up" style="animation-delay: 0.2s;">
+                
+                <!-- Welcome Message -->
+                <div class="text-center mb-10">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
+                        👋 Welcome to Our Community!
+                    </h2>
+                    <p class="text-gray-600 text-base md:text-lg max-w-2xl mx-auto">
+                        Join our verified community to connect with professionals, receive job support, or help others in their career journey.
+                    </p>
+                </div>
+                
+                <!-- Role Selection Cards -->
+                <div class="grid md:grid-cols-2 gap-6 md:gap-8 mb-8">
+                    
+                    <!-- Receiver Card -->
+                    <div class="feature-card glass-card border-2 border-blue-200 rounded-2xl p-8 text-center cursor-pointer" onclick="selectRole('receiver')">
+                        <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
+                            <i class="fas fa-user-graduate text-3xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">
+                            Job Seeker
+                        </h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Looking for job support, guidance, or connections? Join as a receiver to connect with experienced professionals.
+                        </p>
+                        <button class="btn-primary text-white font-semibold py-3 px-8 rounded-lg shadow-lg w-full">
+                            Join as Job Seeker
+                        </button>
+                    </div>
+                    
+                    <!-- Giver Card -->
+                    <div class="feature-card glass-card border-2 border-purple-200 rounded-2xl p-8 text-center cursor-pointer" onclick="selectRole('giver')">
+                        <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center">
+                            <i class="fas fa-hands-helping text-3xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">
+                            Professional Helper
+                        </h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Have experience and want to help job seekers? Join as a giver to share your knowledge and support others.
+                        </p>
+                        <button class="btn-primary text-white font-semibold py-3 px-8 rounded-lg shadow-lg w-full">
+                            Join as Helper
+                        </button>
+                    </div>
+                    
+                </div>
+                
+                <!-- Features -->
+                <div class="grid md:grid-cols-3 gap-6 pt-8 border-t border-gray-200">
+                    <div class="text-center">
+                        <i class="fas fa-shield-alt text-3xl text-green-500 mb-3"></i>
+                        <h4 class="font-semibold text-gray-800 mb-2">Verified Profiles</h4>
+                        <p class="text-sm text-gray-600">Admin verification for security</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="fas fa-user-check text-3xl text-blue-500 mb-3"></i>
+                        <h4 class="font-semibold text-gray-800 mb-2">Quality Connections</h4>
+                        <p class="text-sm text-gray-600">Connect with genuine professionals</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="fas fa-lock text-3xl text-purple-500 mb-3"></i>
+                        <h4 class="font-semibold text-gray-800 mb-2">Private & Secure</h4>
+                        <p class="text-sm text-gray-600">Your data is safe with us</p>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <!-- Back to Home -->
+            <div class="text-center mt-8">
+                <a href="../index.html" class="text-white hover:text-gray-200 transition inline-flex items-center gap-2">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to BlujayTech Home</span>
+                </a>
+            </div>
+            
+        </div>
+        
+    </div>
+    
+    <!-- Firebase & Scripts -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
+        import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+        
+        // Use the correct Firebase config from auth.js
+        const firebaseConfig = {
+            apiKey: "AIzaSyCiedANEie5u-2XQOjdsUFgdkE7s08gArY",
+            authDomain: "blujay-tech.firebaseapp.com",
+            projectId: "blujay-tech",
+            storageBucket: "blujay-tech.firebasestorage.app",
+            messagingSenderId: "586422050005",
+            appId: "1:586422050005:web:737ba2502d1b283ea6165c",
+            measurementId: "G-1JE665W8D0"
+        };
+        
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        
+        console.log('✅ Community Portal - Firebase initialized');
+        console.log('🏘️ Ready for role selection: Giver or Receiver');
+        
+        window.selectRole = function(role) {
+            // Convert role to uppercase and set proper context
+            const profileRole = role.toUpperCase(); // 'GIVER' or 'RECEIVER'
+            
+            console.log('🎯 User selected role:', profileRole);
+            
+            // Set both contexts for proper routing
+            sessionStorage.setItem('loginContext', 'community');
+            sessionStorage.setItem('requestedProfile', profileRole);
+            
+            console.log('📋 Context set:', {
+                loginContext: 'community',
+                requestedProfile: profileRole
+            });
+            
+            // Redirect to login page
+            window.location.href = '../login.html?redirect=community';
+        };
+    </script>
+    
+</body>
+</html>

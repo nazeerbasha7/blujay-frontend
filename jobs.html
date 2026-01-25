@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ============================================ -->
+    <!-- Basic Meta Tags -->
+    <!-- ============================================ -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- SEO Meta Tags -->
+    <title>Job Portal | Find Latest IT Jobs | Blujay Technologies</title>
+    <meta name="description" content="Browse thousands of latest IT job openings. Find jobs in Software Development, DevOps, Data Science, and more. Apply directly to top companies.">
+    <meta name="keywords" content="IT jobs, software developer jobs, DevOps jobs, job portal, career opportunities, latest jobs">
+    <meta name="author" content="Blujay Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://blujaytech.com/jobs.html">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Job Portal - Latest IT Jobs | Blujay Technologies">
+    <meta property="og:description" content="Browse thousands of latest IT job openings. Apply directly to top companies.">
+    <meta property="og:url" content="https://blujaytech.com/jobs.html">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/logo.webp">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f9fafb;
+            overflow-x: hidden;
+        }
+
+        /* ===== BLUJAY BRAND COLORS ===== */
+        :root {
+            --blujay-primary: #0057A0;
+            --blujay-primary-hover: #00447C;
+            --blujay-light: #E6F1FB;
+            --blujay-dark: #00345E;
+            --blujay-gradient-start: #0057A0;
+            --blujay-gradient-end: #00447C;
+        }
+
+        .bg-blujay { background-color: var(--blujay-primary) !important; }
+        .bg-blujay-hover:hover { background-color: var(--blujay-primary-hover) !important; }
+        .text-blujay { color: var(--blujay-primary) !important; }
+        .border-blujay { border-color: var(--blujay-primary) !important; }
+        .bg-blujay-light { background-color: var(--blujay-light) !important; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--blujay-primary);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--blujay-primary-hover);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Glass Navbar */
+        .nav-glass {
+            backdrop-filter: blur(14px);
+            background: rgba(255, 255, 255, 0.97);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+        }
+
+        /* Gradient Background */
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--blujay-gradient-start) 0%, var(--blujay-gradient-end) 100%);
+        }
+
+        /* Toggle Switch Active State */
+        .toggle-btn.active {
+            background-color: var(--blujay-primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 87, 160, 0.3);
+        }
+
+        /* Job Card Hover Effect */
+        .job-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #e5e7eb;
+        }
+
+        .job-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 87, 160, 0.12);
+            border-color: var(--blujay-light);
+        }
+
+        /* Company Card Hover */
+        .company-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #e5e7eb;
+        }
+
+        .company-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 87, 160, 0.12);
+            border-color: var(--blujay-primary);
+        }
+
+        /* Badge Styles */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .badge-primary {
+            background-color: var(--blujay-light);
+            color: var(--blujay-primary);
+        }
+
+        .badge-success {
+            background-color: #dcfce7;
+            color: #16a34a;
+        }
+
+        .badge-warning {
+            background-color: #fef3c7;
+            color: #d97706;
+        }
+
+        /* Loading Skeleton */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: 8px;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Pagination Active */
+        .pagination-btn.active {
+            background-color: var(--blujay-primary);
+            color: white;
+        }
+
+        /* Search Icon Animation */
+        .search-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .search-input:focus ~ .search-icon {
+            transform: scale(1.1);
+        }
+
+        /* Empty State */
+        .empty-state-icon {
+            color: var(--blujay-primary);
+            opacity: 0.3;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .job-card, .company-card {
+                margin-bottom: 16px;
+            }
+        }
+
+        /* Smooth fade-in */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Filter sidebar on mobile */
+        .filter-sidebar {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .filter-sidebar.active {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Navigation Bar -->
+    <nav class="nav-glass fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center space-x-3">
+                        <img src="images/logo.webp" alt="Blujay Technologies" class="h-10 w-10">
+                        <span class="text-xl font-bold text-blujay hidden sm:block">Blujay Tech</span>
+                    </a>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blujay transition">Home</a>
+                    <a href="all-courses.html" class="text-gray-700 hover:text-blujay transition">Courses</a>
+                    <a href="jobs.html" class="text-blujay font-semibold">Jobs</a>
+                    <a href="aboutus.html" class="text-gray-700 hover:text-blujay transition">About</a>
+                    <a href="contactus.html" class="text-gray-700 hover:text-blujay transition">Contact</a>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="login.html" class="text-gray-700 hover:text-blujay transition font-medium">Login</a>
+                    <a href="all-courses.html" class="bg-blujay text-white px-6 py-2 rounded-lg hover:bg-blujay-hover transition shadow-lg">
+                        Enroll Now
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-gray-700 hover:text-blujay">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-4 pt-2 pb-4 space-y-2">
+                <a href="index.html" class="block py-2 text-gray-700 hover:text-blujay">Home</a>
+                <a href="all-courses.html" class="block py-2 text-gray-700 hover:text-blujay">Courses</a>
+                <a href="jobs.html" class="block py-2 text-blujay font-semibold">Jobs</a>
+                <a href="aboutus.html" class="block py-2 text-gray-700 hover:text-blujay">About</a>
+                <a href="contactus.html" class="block py-2 text-gray-700 hover:text-blujay">Contact</a>
+                <div class="pt-4 space-y-2">
+                    <a href="login.html" class="block py-2 text-center border border-blujay text-blujay rounded-lg hover:bg-blujay-light">Login</a>
+                    <a href="all-courses.html" class="block py-2 text-center bg-blujay text-white rounded-lg hover:bg-blujay-hover">Enroll Now</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white pt-24 pb-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 fade-in">Find Your Dream IT Job</h1>
+                <p class="text-lg md:text-xl text-blue-100 mb-8 max-w-3xl mx-auto fade-in">
+                    Explore thousands of job opportunities from top companies. Your next career move starts here.
+                </p>
+                
+                <!-- Search Bar -->
+                <div class="max-w-3xl mx-auto fade-in">
+                    <div class="relative">
+                        <input 
+                            type="text" 
+                            id="search-input" 
+                            placeholder="Search jobs by title, company, or location..." 
+                            class="search-input w-full px-6 py-4 pr-14 rounded-xl text-gray-800 shadow-2xl focus:outline-none focus:ring-4 focus:ring-white/30"
+                        >
+                        <button id="search-btn" class="search-icon absolute right-4 top-1/2 transform -translate-y-1/2 bg-blujay text-white px-4 py-2 rounded-lg hover:bg-blujay-hover transition">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 max-w-4xl mx-auto">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                        <div class="text-3xl font-bold" id="stats-jobs">-</div>
+                        <div class="text-sm text-blue-100">Active Jobs</div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                        <div class="text-3xl font-bold" id="stats-companies">-</div>
+                        <div class="text-sm text-blue-100">Companies</div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                        <div class="text-3xl font-bold" id="stats-locations">-</div>
+                        <div class="text-sm text-blue-100">Locations</div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                        <div class="text-3xl font-bold" id="stats-recent">-</div>
+                        <div class="text-sm text-blue-100">New Today</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Toggle Buttons -->
+            <div class="flex justify-center mb-8">
+                <div class="bg-white rounded-xl shadow-lg p-2 inline-flex">
+                    <button id="toggle-all-jobs" class="toggle-btn active px-8 py-3 rounded-lg font-semibold transition-all">
+                        <i class="fas fa-briefcase mr-2"></i>
+                        All Jobs
+                    </button>
+                    <button id="toggle-companies" class="toggle-btn px-8 py-3 rounded-lg font-semibold text-gray-600 hover:text-gray-900 transition-all">
+                        <i class="fas fa-building mr-2"></i>
+                        Companies
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filters (Desktop) -->
+            <div class="hidden lg:flex justify-between items-center mb-6">
+                <div class="flex items-center space-x-4">
+                    <select id="filter-type" class="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blujay text-sm">
+                        <option value="">All Types</option>
+                        <option value="Full-time">Full-time</option>
+                        <option value="Part-time">Part-time</option>
+                        <option value="Contract">Contract</option>
+                        <option value="Internship">Internship</option>
+                    </select>
+                    <select id="filter-remote" class="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blujay text-sm">
+                        <option value="">All Locations</option>
+                        <option value="true">Remote Only</option>
+                        <option value="false">On-site</option>
+                    </select>
+                </div>
+                <div class="flex items-center space-x-2 text-sm text-gray-600">
+                    <span id="results-count">Loading...</span>
+                </div>
+            </div>
+
+            <!-- Mobile Filter Button -->
+            <div class="lg:hidden mb-6 flex justify-between items-center">
+                <button id="mobile-filter-btn" class="flex items-center space-x-2 px-4 py-2 bg-white border rounded-lg shadow-sm hover:shadow-md transition">
+                    <i class="fas fa-filter text-blujay"></i>
+                    <span>Filters</span>
+                </button>
+                <span id="results-count-mobile" class="text-sm text-gray-600">Loading...</span>
+            </div>
+
+            <!-- All Jobs View -->
+            <div id="all-jobs-view">
+                <!-- Loading Skeleton -->
+                <div id="jobs-loading" class="grid grid-cols-1 gap-6">
+                    <!-- Skeleton cards will be inserted here -->
+                </div>
+
+                <!-- Jobs Grid -->
+                <div id="jobs-grid" class="grid grid-cols-1 gap-6 hidden">
+                    <!-- Job cards will be dynamically inserted here -->
+                </div>
+
+                <!-- Empty State -->
+                <div id="jobs-empty" class="hidden text-center py-16">
+                    <i class="fas fa-briefcase empty-state-icon text-8xl mb-6"></i>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">No Jobs Found</h3>
+                    <p class="text-gray-600 mb-6">Try adjusting your search or filters</p>
+                    <button id="clear-filters-btn" class="bg-blujay text-white px-6 py-3 rounded-lg hover:bg-blujay-hover transition">
+                        Clear All Filters
+                    </button>
+                </div>
+
+                <!-- Pagination -->
+                <div id="jobs-pagination" class="hidden flex justify-center items-center space-x-2 mt-8">
+                    <!-- Pagination will be inserted here -->
+                </div>
+            </div>
+
+            <!-- Companies View -->
+            <div id="companies-view" class="hidden">
+                <!-- Loading Skeleton -->
+                <div id="companies-loading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Skeleton cards will be inserted here -->
+                </div>
+
+                <!-- Companies Grid -->
+                <div id="companies-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 hidden">
+                    <!-- Company cards will be dynamically inserted here -->
+                </div>
+
+                <!-- Empty State -->
+                <div id="companies-empty" class="hidden text-center py-16">
+                    <i class="fas fa-building empty-state-icon text-8xl mb-6"></i>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">No Companies Found</h3>
+                    <p class="text-gray-600">Companies will appear here soon</p>
+                </div>
+
+                <!-- Pagination -->
+                <div id="companies-pagination" class="hidden flex justify-center items-center space-x-2 mt-8">
+                    <!-- Pagination will be inserted here -->
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- About -->
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="images/logo.webp" alt="Blujay Technologies" class="h-10 w-10">
+                        <span class="text-xl font-bold">Blujay Tech</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        Empowering careers through quality IT training and job placement support.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="all-courses.html" class="text-gray-400 hover:text-white transition">Courses</a></li>
+                        <li><a href="jobs.html" class="text-gray-400 hover:text-white transition">Jobs</a></li>
+                        <li><a href="aboutus.html" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div>
+                    <h3 class="font-semibold mb-4">Resources</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="blog.html" class="text-gray-400 hover:text-white transition">Blog</a></li>
+                        <li><a href="jobsupport.html" class="text-gray-400 hover:text-white transition">Job Support</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white transition">Services</a></li>
+                        <li><a href="contactus.html" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h3 class="font-semibold mb-4">Contact Us</h3>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><i class="fas fa-map-marker-alt mr-2"></i>Ameerpet, Hyderabad</li>
+                        <li><i class="fas fa-phone mr-2"></i>+91 9876543210</li>
+                        <li><i class="fas fa-envelope mr-2"></i>info@blujaytech.com</li>
+                    </ul>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-youtube text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram text-xl"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-400">
+                <p>&copy; 2026 Blujay Technologies. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Filter Modal -->
+    <div id="mobile-filter-modal" class="hidden fixed inset-0 bg-black/50 z-50" style="display: none;">
+        <div class="filter-sidebar fixed top-0 left-0 h-full w-80 bg-white shadow-2xl p-6 overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold text-gray-800">Filters</h3>
+                <button id="close-filter-modal" class="text-gray-500 hover:text-gray-800">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Employment Type</label>
+                    <select id="filter-type-mobile" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blujay">
+                        <option value="">All Types</option>
+                        <option value="Full-time">Full-time</option>
+                        <option value="Part-time">Part-time</option>
+                        <option value="Contract">Contract</option>
+                        <option value="Internship">Internship</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Work Location</label>
+                    <select id="filter-remote-mobile" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blujay">
+                        <option value="">All Locations</option>
+                        <option value="true">Remote Only</option>
+                        <option value="false">On-site</option>
+                    </select>
+                </div>
+                <button id="apply-filters-mobile" class="w-full bg-blujay text-white py-3 rounded-lg hover:bg-blujay-hover transition font-semibold mt-6">
+                    Apply Filters
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/api-config.js"></script>
+    <script src="js/jobs.js"></script>
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Mobile filter modal
+        document.getElementById('mobile-filter-btn').addEventListener('click', function() {
+            const modal = document.getElementById('mobile-filter-modal');
+            const sidebar = modal.querySelector('.filter-sidebar');
+            modal.style.display = 'block';
+            setTimeout(() => {
+                sidebar.classList.add('active');
+            }, 10);
+        });
+
+        document.getElementById('close-filter-modal').addEventListener('click', function() {
+            const modal = document.getElementById('mobile-filter-modal');
+            const sidebar = modal.querySelector('.filter-sidebar');
+            sidebar.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        });
+
+        // Close modal on backdrop click
+        document.getElementById('mobile-filter-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                const sidebar = this.querySelector('.filter-sidebar');
+                sidebar.classList.remove('active');
+                setTimeout(() => {
+                    this.style.display = 'none';
+                }, 300);
+            }
+        });
+    </script>
+</body>
+</html>

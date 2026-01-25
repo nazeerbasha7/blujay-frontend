@@ -22,9 +22,24 @@ const db = firebase.firestore();
 // ============================================
 // BACKEND API CONFIGURATION
 // ============================================
-const API_URL = 'https://blujay-backend.onrender.com/api';
-//const API_URL = 'http://localhost:5000/api';
+// Smart API URL - Auto-detects environment
+const API_URL = window.API_CONFIG?.getApiUrl() || 
+    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+        ? 'http://localhost:5000/api' 
+        : 'https://blujay-backend.onrender.com/api');
 console.log('🔗 Backend API URL:', API_URL);
+
+/**
+ * ARCHITECTURE NOTE:
+ * This auth.js ONLY handles authentication (JWT creation).
+ * It does NOT decide where users go after login.
+ * That responsibility belongs to post-login-router.html
+ * 
+ * Separation of Concerns:
+ * - auth.js = Authentication
+ * - post-login-router.html = Routing
+ * - CommunityProfile = Profile data
+ */
 
 // ============================================
 // SET PERMANENT LOGIN PERSISTENCE
@@ -40,6 +55,7 @@ auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
 // Global variables
 let recaptchaVerifier;
 let confirmationResult;
+let isLoggingIn = false; // Track if user is actively logging in
 
 // ============================================
 // VERIFY USER WITH BACKEND
@@ -56,6 +72,13 @@ async function verifyUserWithBackend(firebaseUser) {
         const idToken = await firebaseUser.getIdToken();
         console.log('✅ Firebase ID token obtained');
         
+        // Prepare request body - NO ROLE PARAMETER
+        // Authentication only, no routing decisions
+        const requestBody = {
+            name: firebaseUser.displayName || firebaseUser.phoneNumber || 'User',
+            profilePhoto: firebaseUser.photoURL || ''
+        };
+        
         // Send to backend
         console.log('🔄 STEP 3: Sending verification request to backend...');
         console.log('📡 API Endpoint:', `${API_URL}/auth/verify`);
@@ -66,10 +89,7 @@ async function verifyUserWithBackend(firebaseUser) {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${idToken}`
             },
-            body: JSON.stringify({
-                name: firebaseUser.displayName || firebaseUser.phoneNumber || 'User',
-                profilePhoto: firebaseUser.photoURL || ''
-            })
+            body: JSON.stringify(requestBody)
         });
         
         console.log('✅ Backend response received');
@@ -88,7 +108,7 @@ async function verifyUserWithBackend(firebaseUser) {
             // Store JWT token and user info in localStorage
             console.log('🔄 STEP 5: Storing user data in localStorage...');
             localStorage.setItem('authToken', data.jwtToken);
-            localStorage.setItem('userRole', data.user.role);
+            localStorage.setItem('userRole', data.user.role);  // admin or student ONLY
             localStorage.setItem('userName', data.user.name);
             localStorage.setItem('userEmail', data.user.email);
             localStorage.setItem('userId', data.user.uid);
@@ -103,9 +123,34 @@ async function verifyUserWithBackend(firebaseUser) {
             console.log('   • UID:', data.user.uid);
             console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
             
-            // Redirect based on role from backend
-            console.log('🔄 STEP 6: Redirecting user based on role...');
-            redirectUserByRole(data.user.role);
+            // CRITICAL: Redirect to post-login router (NOT direct dashboard)
+            // Router will decide destination based on context
+            console.log('🔄 STEP 6: Redirecting to post-login router...');
+            console.log('⚠️ NOTE: Login ONLY authenticates, router decides destination');
+            
+            // Determine correct path based on current location
+            const currentPath = window.location.pathname;
+            const currentDir = window.location.href;
+            let routerPath = 'post-login-router.html';
+            
+            console.log('📍 Current full URL:', currentDir);
+            console.log('📍 Current path:', currentPath);
+            
+            // If we're in a subdirectory (like community/), go up one level
+            if (currentPath.includes('/community/') || currentPath.includes('/admin/')) {
+                routerPath = '../post-login-router.html';
+                console.log('🔼 In subdirectory, using relative path: ../ ');
+            } else {
+                console.log('📁 In root frontend directory');
+            }
+            
+            console.log('🎯 Router path:', routerPath);
+            console.log('🚀 Redirecting now...');
+            
+            // Reset the login flag before redirect
+            isLoggingIn = false;
+            
+            window.location.href = routerPath;
         } else {
             throw new Error(data.message || 'Verification failed');
         }
@@ -132,34 +177,6 @@ async function verifyUserWithBackend(firebaseUser) {
 }
 
 // ============================================
-// REDIRECT USER BY ROLE (FROM BACKEND)
-// ============================================
-function redirectUserByRole(role) {
-    const currentPath = window.location.pathname;
-    
-    console.log('🎯 REDIRECT LOGIC:');
-    console.log('   • Current Path:', currentPath);
-    console.log('   • User Role:', role);
-    
-    // If on login/signup/index page, redirect to dashboard
-    if (currentPath.includes('login.html') || 
-        currentPath.includes('signup.html') || 
-        currentPath === '/' || 
-        currentPath.includes('index.html')) {
-        
-        if (role === 'admin') {
-            console.log('✅ Redirecting to: admin/admin-dashboard.html');
-            window.location.href = 'admin/admin-dashboard.html';
-        } else {
-            console.log('✅ Redirecting to: dashboard.html');
-            window.location.href = 'dashboard.html';
-        }
-    } else {
-        console.log('ℹ️ Already on dashboard, staying on current page');
-    }
-}
-
-// ============================================
 // CHECK AUTH STATE (IMPROVED WITH BACKEND)
 // ============================================
 function checkAuthState() {
@@ -168,6 +185,32 @@ function checkAuthState() {
             console.log('✅ Firebase user authenticated');
             console.log('📧 Email:', user.email || 'N/A');
             console.log('📱 Phone:', user.phoneNumber || 'N/A');
+            
+            const currentPath = window.location.pathname;
+            
+            // CRITICAL FIX: Skip auto-redirect on login page UNLESS user is actively logging in
+            if (currentPath.includes('login.html') && !isLoggingIn) {
+                console.log('⏸️ On login page - skipping auto-redirect');
+                console.log('ℹ️ User can click login button to choose account');
+                return;
+            }
+            
+            // CRITICAL FIX: Skip auth check on dashboard pages
+            // These pages have their own auth verification
+            if (currentPath.includes('dashboard.html') ||
+                currentPath.includes('my-learning.html') ||
+                currentPath.includes('admin/admin-dashboard.html') ||
+                currentPath.includes('community/giver-dashboard.html') || 
+                currentPath.includes('community/receiver-dashboard.html') ||
+                currentPath.includes('community/giver-profile.html') ||
+                currentPath.includes('community/receiver-profile.html') ||
+                currentPath.includes('community/verification-pending.html') ||
+                currentPath.includes('post-login-router.html')) {
+                console.log('🏠 On dashboard page - skipping auth redirect');
+                console.log('ℹ️ Dashboard has its own verification');
+                return;
+            }
+            
             console.log('🔄 Initiating backend verification...');
             
             // Verify with backend
@@ -187,13 +230,13 @@ function checkAuthState() {
             const currentPath = window.location.pathname;
             
             // Redirect to login if on protected pages
-            if (currentPath.includes('dashboard.html') || 
-                currentPath.includes('my-learning.html') || 
-                currentPath.includes('course-player.html') ||
+            if (currentPath.includes('dashboard') || 
+                currentPath.includes('my-learning') || 
+                currentPath.includes('course-player') ||
                 currentPath.includes('admin/')) {
                 
                 console.log('🔄 Protected page detected - redirecting to login...');
-                const redirectTo = currentPath.includes('admin/') ? '../login.html' : 'login.html';
+                const redirectTo = currentPath.includes('admin/') ? '../login' : 'login';
                 window.location.href = redirectTo;
             }
         }
@@ -209,6 +252,23 @@ window.onload = function() {
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
     console.log('✅ Auth.js loaded successfully');
     console.log('🔗 Backend API:', API_URL);
+    
+    // Check if user is coming from community role selection
+    const requestedProfile = sessionStorage.getItem('requestedProfile');
+    const currentPath = window.location.pathname;
+    
+    if (requestedProfile && currentPath.includes('login.html')) {
+        console.log('🏘️ Community role selected:', requestedProfile);
+        console.log('🔄 Signing out existing session to allow account selection...');
+        
+        // Sign out any existing Firebase session
+        firebase.auth().signOut().then(() => {
+            console.log('✅ Previous session cleared');
+            console.log('ℹ️ User can now select their Google account');
+        }).catch((error) => {
+            console.error('⚠️ Error signing out:', error);
+        });
+    }
     
     // Check if backend is reachable
     console.log('🔄 Testing backend connection...');
@@ -271,6 +331,9 @@ if (document.getElementById('phone-login-form')) {
             return;
         }
         
+        // Set flag to indicate user is actively logging in
+        isLoggingIn = true;
+        
         // Show loading state
         submitBtn.textContent = 'Sending OTP...';
         submitBtn.disabled = true;
@@ -302,6 +365,9 @@ if (document.getElementById('phone-login-form')) {
                 console.error('❌ Phone login error:', error);
                 alert('Error: ' + error.message);
                 
+                // Reset flag on error
+                isLoggingIn = false;
+                
                 // Reset button
                 submitBtn.textContent = 'Login';
                 submitBtn.disabled = false;
@@ -323,16 +389,29 @@ if (document.getElementById('phone-login-form')) {
 if (document.getElementById('google-login-btn')) {
     document.getElementById('google-login-btn').addEventListener('click', function() {
         console.log('🔄 Initiating Google login...');
+        
+        // Set flag to indicate user is actively logging in
+        isLoggingIn = true;
+        
         const provider = new firebase.auth.GoogleAuthProvider();
+        
+        // Force account selection popup every time
+        provider.setCustomParameters({
+            prompt: 'select_account'
+        });
         
         firebase.auth().signInWithPopup(provider)
             .then((result) => {
                 console.log('✅ Google authentication successful');
+                console.log('🔄 Backend verification will proceed...');
                 // Backend verification happens in onAuthStateChanged
+                // isLoggingIn flag allows it to proceed
             })
             .catch((error) => {
                 console.error('❌ Google login error:', error);
                 alert('Login Error: ' + error.message);
+                // Reset flag on error
+                isLoggingIn = false;
             });
     });
 }

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Your Role - Community Portal | Blujay Tech</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        body { background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); }
+        .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .fade-in-scale { animation: fadeInScale 0.5s ease-out; }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center px-4 py-8">
+    
+    <div class="glass max-w-2xl w-full rounded-3xl shadow-2xl p-8 lg:p-12 fade-in-scale">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <a href="../index.html" class="inline-block mb-6">
+                <img src="../logo.png" alt="Blujay Tech" class="h-12 mx-auto">
+            </a>
+            <h1 class="text-3xl lg:text-4xl font-bold mb-3">
+                <span class="bg-gradient-to-r from-[#1D5D7F] to-[#0057A0] bg-clip-text text-transparent">
+                    Complete Your Profile
+                </span>
+            </h1>
+            <p class="text-gray-600 text-lg">You've selected: <strong id="roleDisplay"></strong></p>
+        </div>
+
+        <!-- Role Confirmation -->
+        <div id="roleCard" class="bg-gradient-to-br from-[#1D5D7F] to-[#0057A0] rounded-2xl p-6 mb-8 text-white text-center">
+            <div class="w-20 h-20 bg-white bg-opacity-20 rounded-full mx-auto mb-4 flex items-center justify-center text-5xl">
+                <i id="roleIcon" class="fas"></i>
+            </div>
+            <h2 class="text-2xl font-bold mb-2" id="roleTitle"></h2>
+            <p id="roleDescription" class="opacity-90"></p>
+        </div>
+
+        <!-- Message -->
+        <div class="bg-blue-50 border-l-4 border-[#1D5D7F] p-4 mb-8 rounded-lg">
+            <div class="flex items-start gap-3">
+                <i class="fas fa-info-circle text-[#1D5D7F] text-xl mt-1"></i>
+                <div class="text-sm text-gray-700">
+                    <p class="font-semibold mb-1">Next Step: Create Your Profile</p>
+                    <p>Click continue to fill out your detailed profile. Once submitted, our admin will review and verify your information.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="space-y-3">
+            <button id="continueBtn" 
+                class="w-full bg-gradient-to-r from-[#1D5D7F] to-[#0057A0] text-white py-4 rounded-xl font-bold text-lg hover:shadow-2xl transition transform hover:scale-105 flex items-center justify-center gap-2">
+                <i class="fas fa-arrow-right"></i>
+                Continue to Profile Form
+            </button>
+            
+            <a href="index.html" 
+                class="block w-full text-center border-2 border-gray-300 text-gray-700 py-3 rounded-xl font-semibold hover:bg-gray-50 transition">
+                <i class="fas fa-arrow-left"></i> Go Back
+            </a>
+        </div>
+
+        <!-- User Info -->
+        <div id="userInfo" class="mt-6 p-4 bg-gray-50 rounded-lg">
+            <p class="text-sm text-gray-600">Logged in as: <strong id="userEmail"></strong></p>
+        </div>
+    </div>
+
+    <script>
+        // Get role from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const role = urlParams.get('role') || 'receiver';
+        
+        // Role configurations
+        const roleConfig = {
+            receiver: {
+                display: 'Job Seeker',
+                icon: 'fa-user-graduate',
+                title: 'Welcome, Job Seeker!',
+                description: 'You\'ll be able to connect with recruiters and hiring managers to accelerate your career.',
+                nextPage: 'receiver-profile.html'
+            },
+            giver: {
+                display: 'Recruiter/Helper',
+                icon: 'fa-hands-helping',
+                title: 'Welcome, Helper!',
+                description: 'You\'ll help job seekers by providing opportunities, guidance, and professional connections.',
+                nextPage: 'giver-profile.html'
+            }
+        };
+        
+        const config = roleConfig[role];
+        
+        // Update UI
+        document.getElementById('roleDisplay').textContent = config.display;
+        document.getElementById('roleIcon').className = 'fas ' + config.icon;
+        document.getElementById('roleTitle').textContent = config.title;
+        document.getElementById('roleDescription').textContent = config.description;
+        
+        // Firebase Config - Use correct Blujay Tech config
+        const firebaseConfig = {
+            apiKey: "AIzaSyCiedANEie5u-2XQOjdsUFgdkE7s08gArY",
+            authDomain: "blujay-tech.firebaseapp.com",
+            projectId: "blujay-tech",
+            storageBucket: "blujay-tech.firebasestorage.app",
+            messagingSenderId: "586422050005",
+            appId: "1:586422050005:web:737ba2502d1b283ea6165c",
+            measurementId: "G-1JE665W8D0"
+        };
+        
+        // Initialize Firebase
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        
+        // Check authentication
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                document.getElementById('userEmail').textContent = user.email;
+            } else {
+                // Redirect to login if not authenticated
+                alert('Please login first to access the community portal.');
+                window.location.href = '../login.html';
+            }
+        });
+        
+        // Continue button
+        document.getElementById('continueBtn').addEventListener('click', () => {
+            window.location.href = config.nextPage;
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Test - Giver Dashboard</title>
+    <script src="../js/api-config.js"></script>
+</head>
+<body>
+    <h1>Testing Giver Dashboard API</h1>
+    <div id="output"></div>
+    
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
+        import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyCiedANEie5u-2XQOjdsUFgdkE7s08gArY",
+            authDomain: "blujay-tech.firebaseapp.com",
+            projectId: "blujay-tech",
+            storageBucket: "blujay-tech.firebasestorage.app",
+            messagingSenderId: "586422050005",
+            appId: "1:586422050005:web:737ba2502d1b283ea6165c",
+            measurementId: "G-1JE665W8D0"
+        };
+        
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const output = document.getElementById('output');
+        
+        function log(msg) {
+            console.log(msg);
+            output.innerHTML += `<p>${msg}</p>`;
+        }
+        
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                log(`✅ Logged in as: ${user.email}`);
+                
+                try {
+                    const token = await user.getIdToken();
+                    const API_URL = window.API_CONFIG?.getApiUrl() || 'http://localhost:5000/api';
+                    
+                    log(`📡 Fetching from: ${API_URL}/community/connections`);
+                    
+                    const response = await fetch(`${API_URL}/community/connections`, {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    
+                    log(`📊 Response status: ${response.status}`);
+                    
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        log(`❌ Error: ${errorText}`);
+                        return;
+                    }
+                    
+                    const data = await response.json();
+                    log(`✅ Got ${data.connections?.length || 0} connections`);
+                    log(`<pre>${JSON.stringify(data, null, 2)}</pre>`);
+                    
+                } catch (error) {
+                    log(`❌ Error: ${error.message}`);
+                    log(`Stack: ${error.stack}`);
+                }
+            } else {
+                log('❌ Not logged in');
+            }
+        });
+    </script>
+</body>
+</html>

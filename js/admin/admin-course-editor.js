@@ -10,11 +10,10 @@
 // HELPER FUNCTION FOR AUTHENTICATED API CALLS
 // ============================================
 async function authenticatedFetch(endpoint, options = {}) {
-   const API_URL = 'https://blujay-backend.onrender.com/api'; // ✅ MOVED INSIDE FUNCTION
-   //const API_URL = 'http://localhost:5000/api';
-
-    const token = localStorage.getItem('authToken');
-    
+   // PRODUCTION MODE - Always use production URL
+   const API_URL = 'http://localhost:5000/api';
+   // LOCAL TESTING MODE - Uncomment for localhost
+   // const API_URL = 'http://127.0.0.1:5000/api';
     if (!token) {
         console.error('❌ No auth token found');
         alert('Session expired. Please login again.');

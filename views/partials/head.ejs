@@ -1,0 +1,51 @@
+<!-- ============================================ -->
+<!-- EJS Partial: Head Section with SEO -->
+<!-- Path: frontend/views/partials/head.ejs -->
+<!-- ============================================ -->
+
+<!-- Basic Meta Tags -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- SEO Meta Tags -->
+<title><%= seo.title %></title>
+<meta name="description" content="<%= seo.metaDescription %>">
+<meta name="keywords" content="<%= seo.keywords.join(', ') %>">
+<meta name="author" content="Blujay Technologies">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="<%= seo.canonical %>">
+
+<!-- Open Graph Tags -->
+<meta property="og:title" content="<%= seo.ogTitle %>">
+<meta property="og:description" content="<%= seo.ogDescription %>">
+<meta property="og:image" content="<%= seo.ogImage %>">
+<meta property="og:url" content="<%= seo.ogUrl %>">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Blujay Technologies">
+
+<!-- Twitter Card Tags -->
+<meta name="twitter:card" content="<%= seo.twitterCard %>">
+<meta name="twitter:title" content="<%= seo.twitterTitle %>">
+<meta name="twitter:description" content="<%= seo.twitterDescription %>">
+<meta name="twitter:image" content="<%= seo.ogImage %>">
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+
+<!-- Preconnect -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Stylesheets -->
+<link rel="stylesheet" href="/css/style.css">
+
+<!-- Google Analytics 4 -->
+<%- ga4Script %>
+
+<!-- Schema.org Structured Data -->
+<% if (typeof schema !== 'undefined' && schema) { %>
+<script type="application/ld+json">
+<%- JSON.stringify(schema, null, 2) %>
+</script>
+<% } %>

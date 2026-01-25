@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Path Checker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow">
+        <h1 class="text-3xl font-bold mb-6">🔍 Path Checker</h1>
+        
+        <div class="space-y-4">
+            <div class="bg-blue-50 p-4 rounded">
+                <h2 class="font-bold">Current Location:</h2>
+                <p id="current-location" class="font-mono text-sm"></p>
+            </div>
+            
+            <div class="bg-green-50 p-4 rounded">
+                <h2 class="font-bold">Base URL:</h2>
+                <p id="base-url" class="font-mono text-sm"></p>
+            </div>
+            
+            <div class="bg-purple-50 p-4 rounded">
+                <h2 class="font-bold">Test Paths:</h2>
+                <div id="test-results" class="space-y-2 mt-2"></div>
+            </div>
+            
+            <button onclick="testAllPaths()" class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600">
+                Test All Paths
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Display current location
+        document.getElementById('current-location').textContent = window.location.href;
+        document.getElementById('base-url').textContent = window.location.origin + '/' + window.location.pathname.split('/')[1] + '/';
+
+        const paths = [
+            'community/receiver-profile.html',
+            'community/giver-profile.html',
+            'community/receiver-dashboard.html',
+            'community/giver-dashboard.html',
+            'community/role-selection.html',
+            'community/index.html',
+            'post-login-router.html',
+            'login.html',
+            'dashboard.html'
+        ];
+
+        async function testPath(path) {
+            try {
+                const response = await fetch(path, { method: 'HEAD' });
+                return { path, exists: response.ok, status: response.status };
+            } catch (error) {
+                return { path, exists: false, status: 'Error', error: error.message };
+            }
+        }
+
+        async function testAllPaths() {
+            const resultsDiv = document.getElementById('test-results');
+            resultsDiv.innerHTML = '<p class="text-gray-600">Testing paths...</p>';
+            
+            const results = await Promise.all(paths.map(testPath));
+            
+            resultsDiv.innerHTML = results.map(result => {
+                const color = result.exists ? 'text-green-600' : 'text-red-600';
+                const icon = result.exists ? '✅' : '❌';
+                return `
+                    <div class="flex items-center justify-between p-2 border-b">
+                        <span class="font-mono text-sm">${result.path}</span>
+                        <span class="${color}">${icon} ${result.status}</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Auto-run on load
+        testAllPaths();
+    </script>
+</body>
+</html>

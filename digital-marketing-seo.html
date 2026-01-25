@@ -1,0 +1,1723 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Marketing & SEO Growth Partner � Blujay Technologies</title>
+  <meta name="description" content="Blujay Technologies is your digital marketing & SEO growth partner for institutes, startups and local businesses. We help you get more leads, calls and enrollments." />
+  <link rel="icon" href="images/logo.webp" type="image/x-icon">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    *{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
+    :root{
+      --blujay-primary:#0057A0;
+      --blujay-primary-hover:#00447C;
+      --blujay-light:#E6F1FB;
+      --blujay-dark:#00345E;
+    }
+    .bg-blue-600{background-color:var(--blujay-primary)!important;}
+    .hover\:bg-blue-700:hover{background-color:var(--blujay-primary-hover)!important;}
+    .text-blue-600{color:var(--blujay-primary)!important;}
+    .bg-blue-50{background-color:var(--blujay-light)!important;}
+
+    html{scroll-behavior:smooth;}
+    body{margin:0;padding:0;overflow-x:hidden;background:#ffffff;}
+
+    /* Base fade-in for sections */
+    .fade-in-section{
+      opacity:1;
+      transform:translateY(0);
+      transition:opacity .8s cubic-bezier(.4,0,.2,1),
+                 transform .8s cubic-bezier(.4,0,.2,1);
+    }
+    .fade-in-section.is-visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    /* Staggered children */
+    .stagger-children>*{
+      opacity:1;
+      transform:translateY(0);
+      transition:opacity .6s cubic-bezier(.4,0,.2,1),
+                 transform .6s cubic-bezier(.4,0,.2,1);
+    }
+    .stagger-children.is-visible>*:nth-child(1){transition-delay:.1s;}
+    .stagger-children.is-visible>*:nth-child(2){transition-delay:.2s;}
+    .stagger-children.is-visible>*:nth-child(3){transition-delay:.3s;}
+    .stagger-children.is-visible>*:nth-child(4){transition-delay:.4s;}
+    .stagger-children.is-visible>*{opacity:1;transform:translateY(0);}
+
+    .glass-card{
+      background:rgba(255,255,255,0.9);
+      backdrop-filter:blur(16px);
+      border-radius:22px;
+      border:1px solid rgba(148,163,184,0.2);
+      box-shadow:0 18px 45px rgba(15,23,42,0.13);
+      transition:transform .6s cubic-bezier(.22,.61,.36,1),
+                 box-shadow .6s cubic-bezier(.22,.61,.36,1);
+    }
+    .glass-card:hover{
+      transform:translateY(-6px) scale(1.01);
+      box-shadow:0 22px 60px rgba(15,23,42,0.18);
+    }
+
+    .soft-card{
+      background:#ffffff;
+      border-radius:18px;
+      border:1px solid #e5e7eb;
+      box-shadow:0 10px 30px rgba(15,23,42,0.06);
+      transition:all .35s cubic-bezier(.4,0,.2,1);
+    }
+    .soft-card:hover{
+      transform:translateY(-4px) translateZ(0);
+      box-shadow:0 18px 45px rgba(15,23,42,0.14);
+      border-color:#d1d5db;
+    }
+
+    @keyframes shimmer{100%{transform:translateX(100%);}}
+
+    .nav-glass{
+      backdrop-filter:blur(14px);
+      background:rgba(255,255,255,0.96);
+      border-bottom:1px solid rgba(0,0,0,0.04);
+      box-shadow:0 4px 16px rgba(0,0,0,0.03);
+      transition:all .3s ease;
+    }
+    .nav-glass.scrolled{box-shadow:0 8px 24px rgba(0,0,0,0.08);}
+
+    #callbackModal{transition:all .3s cubic-bezier(.4,0,.2,1);}
+    #callbackModal.flex{animation:fadeIn .25s ease-out;}
+    .modal-content{
+      animation:slideUp .28s cubic-bezier(.34,1.56,.64,1);
+      max-height:85vh;
+    }
+    @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+    @keyframes slideUp{
+      from{transform:translateY(40px) scale(.95);opacity:0;}
+      to{transform:translateY(0) scale(1);opacity:1;}
+    }
+
+    /* subtle floating animation for hero card */
+    @keyframes floatCard {
+      0% { transform:translateY(0px); }
+      50% { transform:translateY(-8px); }
+      100% { transform:translateY(0px); }
+    }
+    .float-card{
+      animation:floatCard 7s ease-in-out infinite;
+    }
+
+    /* CTA hover micro interaction */
+    .cta-main{
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+    .cta-main:hover{
+      transform:translateY(-1px) scale(1.02);
+      box-shadow:0 18px 40px rgba(37,99,235,0.32);
+    }
+
+    /* underline reveal for small links */
+    .link-underline{
+      position:relative;
+    }
+    .link-underline::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-2px;
+      width:0;
+      height:1px;
+      background:linear-gradient(to right,#0057A0,#06b6d4);
+      transition:width .25s ease;
+    }
+    .link-underline:hover::after{
+      width:100%;
+    }
+
+    /* ===== NAVBAR STYLES ===== */
+    .nav-glass {
+        backdrop-filter: blur(14px);
+        background: rgba(255, 255, 255, 0.96);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+        transition: all 0.3s ease;
+    }
+
+    .nav-glass.scrolled {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Desktop Dropdown */
+    .dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        display: flex; align-items: center; gap: 6px; cursor: pointer;
+        transition: all 0.25s ease; background: none; border: none; padding: 0;
+    }
+    .dropdown-toggle i.chevron {
+        transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        font-size: 9px;
+    }
+    .dropdown:hover .dropdown-toggle,
+    .dropdown.active .dropdown-toggle { color: #1D5D7F !important; }
+    .dropdown:hover .dropdown-toggle i.chevron,
+    .dropdown.active .dropdown-toggle i.chevron { transform: rotate(180deg); }
+
+    .dropdown-menu {
+        position: absolute; top: calc(100% + 14px); left: 50%;
+        transform: translateX(-50%) translateY(-10px); min-width: 240px;
+        background: #ffffff; border-radius: 14px;
+        box-shadow: 0 22px 60px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(15, 23, 42, 0.04);
+        opacity: 0; visibility: hidden;
+        transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1000; padding: 10px;
+    }
+    .dropdown:hover .dropdown-menu,
+    .dropdown.active .dropdown-menu {
+        opacity: 1; visibility: visible;
+        transform: translateX(-50%) translateY(0);
+    }
+
+    .dropdown-menu a {
+        display: flex; align-items: center; padding: 11px 14px;
+        color: #111827; text-decoration: none; font-size: 13px;
+        font-weight: 500; transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 10px; margin-bottom: 4px; position: relative;
+    }
+    .dropdown-menu a:last-child { margin-bottom: 0; }
+    .dropdown-menu a i {
+        margin-right: 10px; font-size: 13px; width: 18px;
+        text-align: center; color: #1D5D7F; opacity: 0.9;
+    }
+    .dropdown-menu a:hover {
+        background: #1D5D7F; color: #ffffff;
+        padding-left: 18px; transform: translateX(2px);
+    }
+    .dropdown-menu a:hover i { color: #ffffff; }
+
+    /* Mobile Dropdowns */
+    .mobile-dropdown-wrapper { border-bottom: 1px solid #e5e7eb; padding: 0; }
+    .mobile-dropdown-toggle {
+        width: 100%; display: flex; justify-content: space-between;
+        align-items: center; cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        background: none; border: none; text-align: left;
+        padding: 10px 0; user-select: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+    .mobile-dropdown-toggle i.arrow {
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        font-size: 9px; color: #9ca3af;
+    }
+    .mobile-dropdown-toggle.active i.arrow {
+        transform: rotate(180deg); color: #1D5D7F;
+    }
+    .mobile-dropdown-toggle.active {
+        color: #1D5D7F; font-weight: 600;
+    }
+
+    .mobile-dropdown-content {
+        display: grid; grid-template-rows: 0fr;
+        transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .mobile-dropdown-content.active { grid-template-rows: 1fr; }
+    .mobile-dropdown-inner { overflow: hidden; min-height: 0; }
+    .mobile-dropdown-content.active .mobile-dropdown-inner {
+        padding: 8px 3px 10px 3px;
+    }
+
+    .mobile-dropdown-content a {
+        display: flex; align-items: center; padding: 8px 12px;
+        color: #374151; background: #ffffff; margin-bottom: 5px;
+        border-radius: 8px; font-size: 12.5px; font-weight: 500;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        text-decoration: none; border: 1px solid #e5e7eb;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+        user-select: none; -webkit-tap-highlight-color: transparent;
+    }
+    .mobile-dropdown-content a:last-child { margin-bottom: 0; }
+    .mobile-dropdown-content a i {
+        margin-right: 9px; font-size: 11px; width: 14px;
+        text-align: center; opacity: 0.8; color: #1D5D7F;
+    }
+    .mobile-dropdown-content a:active {
+        background: #1D5D7F !important;
+        color: #ffffff !important;
+        border-color: #1D5D7F !important;
+        transform: scale(0.97);
+    }
+    .mobile-dropdown-content a:active i { opacity: 1; color: #ffffff; }
+
+    #mobile-menu { backdrop-filter: blur(10px); }
+    body.mobile-menu-open { overflow: hidden; position: fixed; width: 100%; }
+
+    /* Navbar Button Colors */
+    nav .bg-blue-600 { background-color: #1D5D7F !important; }
+    nav .hover\:bg-blue-700:hover { background-color: #144A66 !important; }
+    nav .border-blue-600 { border-color: #1D5D7F !important; }
+    nav .text-blue-600 { color: #1D5D7F !important; }
+    nav .hover\:bg-blue-50:hover { background-color: rgba(29, 93, 127, 0.05) !important; }
+
+    /* PULSE ANIMATION */
+    .pulse-animation {
+        animation: pulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+    }
+
+    /* ===== CALLBACK MODAL STYLES ===== */
+    #callbackModal {
+        animation: fadeInModal 0.3s ease-out;
+    }
+
+    #callbackModal.flex {
+        display: flex !important;
+    }
+
+    .modal-content {
+        animation: slideUpModal 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes fadeInModal {
+        from {
+            opacity: 0;
+            backdrop-filter: blur(0px);
+        }
+        to {
+            opacity: 1;
+            backdrop-filter: blur(4px);
+        }
+    }
+
+    @keyframes slideUpModal {
+        from {
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    @media (max-width: 767px) {
+        .modal-content {
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .modal-content {
+            max-width: 800px;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .modal-content {
+            max-width: 920px;
+        }
+    }
+
+    /* Service Custom Dropdown Styling (Matching Offerings Dropdown) */
+    .service-dropdown-wrapper {
+        position: relative;
+        width: 100%;
+    }
+
+    .service-dropdown-trigger {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 16px;
+        border: 2px solid #d1d5db;
+        border-radius: 10px;
+        background: #ffffff;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 13px;
+    }
+
+    @media (min-width: 1024px) {
+        .service-dropdown-trigger {
+            padding: 11px 18px;
+            font-size: 14px;
+        }
+    }
+
+    .service-dropdown-trigger:hover {
+        border-color: #1D5D7F;
+        background-color: #f8fafc;
+    }
+
+    .service-dropdown-trigger.active {
+        border-color: #1D5D7F;
+        box-shadow: 0 0 0 3px rgba(29, 93, 127, 0.1);
+    }
+
+    .service-dropdown-trigger .placeholder {
+        color: #9ca3af;
+        font-style: italic;
+    }
+
+    .service-dropdown-trigger .selected-text {
+        color: #111827;
+        font-weight: 500;
+    }
+
+    .service-dropdown-trigger i.chevron {
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        font-size: 10px;
+        color: #6b7280;
+    }
+
+    .service-dropdown-trigger.active i.chevron {
+        transform: rotate(180deg);          
+    }
+
+    .service-dropdown-menu {
+        position: absolute;
+        bottom: calc(100% + 8px);
+        left: 0;
+        right: 0;
+        background: #ffffff;
+        border-radius: 14px;
+        box-shadow: 0 22px 60px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(15, 23, 42, 0.04);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 10000;
+        padding: 10px;
+        max-height: none;
+        overflow: visible;
+    }
+
+    .service-dropdown-menu.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .service-dropdown-menu::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .service-dropdown-menu::-webkit-scrollbar-track {
+        background: #f1f5f9;
+        border-radius: 8px;
+    }
+
+    .service-dropdown-menu::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 8px;
+    }
+
+    .service-dropdown-menu::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+    }
+
+    .service-dropdown-item {
+        display: flex;
+        align-items: center;
+        padding: 11px 14px;
+        color: #111827;
+        font-size: 13px;
+        font-weight: 500;
+        transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 10px;
+        margin-bottom: 4px;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .service-dropdown-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .service-dropdown-item i {
+        margin-right: 10px;
+        font-size: 13px;
+        width: 18px;
+        text-align: center;
+        color: #1D5D7F;
+        opacity: 0.9;
+    }
+
+    .service-dropdown-item:hover {
+        background: #1D5D7F;
+        color: #ffffff;
+        padding-left: 18px;
+        transform: translateX(2px);
+    }
+
+    .service-dropdown-item:hover i {
+        color: #ffffff;
+    }
+
+    .service-dropdown-item.selected {
+        background: #eff6ff;
+        color: #1D5D7F;
+        font-weight: 600;
+    }
+
+    .service-dropdown-item.selected:hover {
+        background: #1D5D7F;
+        color: #ffffff;
+    }
+
+    /* Hidden native select for form submission */
+    .service-dropdown-wrapper select {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+        width: 1px;
+        height: 1px;
+    }
+
+    /* Service Select Dropdown Styling */
+    #callbackForm select[name="service"] {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230057A0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        background-size: 16px;
+        padding-right: 40px;
+        cursor: pointer;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        font-weight: 500;
+        color: #111827;
+    }
+
+    #callbackForm select[name="service"]:hover {
+        border-color: #0057A0;
+        background-color: #f8fafc;
+    }
+
+    #callbackForm select[name="service"]:focus {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 87, 160, 0.15);
+        background-color: #ffffff;
+    }
+
+    #callbackForm select[name="service"] option {
+        padding: 12px 16px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #111827;
+        background: #ffffff;
+        transition: all 0.2s ease;
+    }
+
+    #callbackForm select[name="service"] option:hover {
+        background: #1D5D7F;
+        color: #ffffff;
+    }
+
+    #callbackForm select[name="service"] option:checked {
+        background: #1D5D7F;
+        color: #ffffff;
+        font-weight: 600;
+    }
+
+    #callbackForm select[name="service"] option[disabled] {
+        color: #9ca3af;
+        font-style: italic;
+    }
+
+    /* Responsive select sizing */
+    @media (max-width: 767px) {
+        #callbackForm select[name="service"] {
+            background-size: 14px;
+            background-position: right 10px center;
+        }
+    }
+
+    /* Form input focus effects */
+    #callbackForm input:focus,
+    #callbackForm textarea:focus {
+        transform: translateY(-1px);
+        box-shadow: 0 3px 10px rgba(0, 87, 160, 0.12);
+    }
+
+    /* Button loading state */
+    #submitBtn.loading {
+        pointer-events: none;
+        opacity: 0.75;
+    }
+
+    #submitBtn.loading span::after {
+        content: '';
+        width: 12px;
+        height: 12px;
+        border: 2px solid #ffffff;
+        border-top-color: transparent;
+        border-radius: 50%;
+        display: inline-block;
+        animation: spin 0.7s linear infinite;
+        margin-left: 6px;
+    }
+
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    /* Smooth scrollbar for modal */
+    .modal-content::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .modal-content::-webkit-scrollbar-track {
+        background: #f1f5f9;
+        border-radius: 8px;
+    }
+
+    .modal-content::-webkit-scrollbar-thumb {
+        background: #0057A0;
+        border-radius: 8px;
+    }
+
+    .modal-content::-webkit-scrollbar-thumb:hover {
+        background: #00447C;
+    }
+
+    /* ===== WHATSAPP FLOATING BUTTON ===== */
+    .whatsapp-float {
+        position: fixed;
+        bottom: 20px;
+        right: 10px;
+        background: #25D366;
+        color: white;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        box-shadow: 0 3px 15px rgba(37, 211, 102, 0.4);
+        cursor: pointer;
+        z-index: 9999;
+        transition: all 0.3s ease;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .whatsapp-float.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .whatsapp-float:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+    }
+
+    .whatsapp-float:active {
+        transform: scale(0.95);
+    }
+
+    @media (min-width: 768px) {
+        .whatsapp-float {
+            width: 50px;
+            height: 50px;
+            font-size: 26px;
+            bottom: 25px;
+            right: 15px;
+        }
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 overflow-x-hidden">
+
+  <!-- Navbar - Improved Design with Scroll Effect -->
+  <nav class="fixed w-full top-0 z-50 nav-glass" id="navbar">
+    <div class="px-4 lg:px-8">
+        <div class="flex justify-between items-center h-[60px] lg:h-[72px]">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center">
+                <img src="logo.png" alt="Blujay Technologies" class="h-9 lg:h-12 w-auto" loading="lazy">
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden lg:flex items-center gap-8 ml-auto">
+                <!-- Home Link -->
+                <a href="index.html" class="text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
+                    Home
+                </a>
+
+                <!-- Courses Dropdown -->
+                <div class="dropdown">
+                    <button class="dropdown-toggle text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
+                        Courses <i class="fas fa-chevron-down chevron"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="recorded-courses.html"><i class="fas fa-video"></i>Self-Paced / Recorded Courses</a>
+                        <a href="all-courses.html"><i class="fas fa-graduation-cap"></i>All Courses</a>
+                    </div>
+                </div>
+
+                <!-- Career Support Dropdown -->
+                <div class="dropdown">
+                    <button class="dropdown-toggle text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
+                        Career Support <i class="fas fa-chevron-down chevron"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="profilepushing.html"><i class="fas fa-user-tie"></i>Profile Pushing</a>
+                        <a href="jobsupport.html"><i class="fas fa-headset"></i>Job Support</a>
+                    </div>
+                </div>
+
+                <!-- Service Dropdown -->
+                <div class="dropdown">
+                    <button class="dropdown-toggle text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
+                        Service <i class="fas fa-chevron-down chevron"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="digital-marketing-seo.html"><i class="fas fa-bullhorn"></i>Digital Marketing Services</a>
+                        <a href="services.html"><i class="fas fa-code"></i>Web Development Services</a>
+                    </div>
+                </div>
+
+                <!-- About Dropdown -->
+                <div class="dropdown">
+                    <button class="dropdown-toggle text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
+                        About <i class="fas fa-chevron-down chevron"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="aboutus.html"><i class="fas fa-info-circle"></i>About Blujay</a>
+                        <a href="#"><i class="fas fa-handshake"></i>Community & Partnerships</a>
+                        <a href="#"><i class="fas fa-heart"></i>Social Impact</a>
+                        <a href="#"><i class="fas fa-trophy"></i>Success Stories</a>
+                    </div>
+                </div>
+
+                <!-- Resource Dropdown -->
+                <div class="dropdown">
+                    <button class="dropdown-toggle text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
+                        Resource <i class="fas fa-chevron-down chevron"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="jobroadmap.html"><i class="fas fa-map-marked-alt"></i>Roadmap</a>
+                        <a href="blog.html"><i class="fas fa-blog"></i>Blog</a>
+                    </div>
+                </div>
+
+                <a href="login.html" class="border-2 border-blue-600 text-blue-600 px-4 py-1.5 rounded-lg text-[12px] lg:text-[13px] font-semibold hover:bg-blue-50 transition-all">Login</a>
+                <a href="contactus.html" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-[12px] lg:text-[13px] font-semibold hover:bg-blue-700 transition-all flex items-center gap-2">
+                    <i class="fas fa-phone-alt text-[10px]"></i> Contact Us
+                </a>
+            </div>
+
+            <!-- Mobile: Hamburger -->
+            <div class="flex lg:hidden items-center">
+                <button id="mobile-toggle" class="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-all">
+                    <i class="fas fa-bars text-[20px] text-gray-900"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 z-[100] transform translate-x-full transition-transform duration-300 lg:hidden" style="background-color: #ffffff !important;">
+        <div class="flex justify-between items-center h-[60px] px-4 border-b" style="background-color: #ffffff !important;">
+            <img src="logo.png" alt="Blujay Technologies" class="h-9" loading="lazy">
+            <button id="mobile-close" class="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-all">
+                <i class="fas fa-times text-[22px] text-gray-800"></i>
+            </button>
+        </div>
+
+        <div class="overflow-y-auto h-[calc(100vh-60px)]" style="background-color: #ffffff !important;">
+            <div class="px-4 py-4">
+                <!-- Home Link -->
+                <a href="index.html" class="block text-[14px] font-semibold text-gray-900 py-2.5 px-0 border-b border-gray-200 hover:text-blue-600 transition-colors">
+                    Home
+                </a>
+
+                <div class="mobile-dropdown-wrapper">
+                    <button class="mobile-dropdown-toggle text-[14px] font-semibold text-gray-900" type="button">
+                        Courses <i class="fas fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="mobile-dropdown-content">
+                        <div class="mobile-dropdown-inner">
+                            <a href="recorded-courses.html"><i class="fas fa-video"></i>Self-Paced / Recorded Courses</a>
+                            <a href="all-courses.html"><i class="fas fa-graduation-cap"></i>All Courses</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mobile-dropdown-wrapper">
+                    <button class="mobile-dropdown-toggle text-[14px] font-semibold text-gray-900" type="button">
+                        Career Support <i class="fas fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="mobile-dropdown-content">
+                        <div class="mobile-dropdown-inner">
+                            <a href="profilepushing.html"><i class="fas fa-user-tie"></i>Profile Pushing</a>
+                            <a href="jobsupport.html"><i class="fas fa-headset"></i>Job Support</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mobile-dropdown-wrapper">
+                    <button class="mobile-dropdown-toggle text-[14px] font-semibold text-gray-900" type="button">
+                        Services <i class="fas fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="mobile-dropdown-content">
+                        <div class="mobile-dropdown-inner">
+                            <a href="digital-marketing-seo.html"><i class="fas fa-bullhorn"></i>Digital Marketing Services</a>
+                            <a href="services.html"><i class="fas fa-code"></i>Web Development Services</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mobile-dropdown-wrapper">
+                    <button class="mobile-dropdown-toggle text-[14px] font-semibold text-gray-900" type="button">
+                        About <i class="fas fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="mobile-dropdown-content">
+                        <div class="mobile-dropdown-inner">
+                            <a href="aboutus.html"><i class="fas fa-info-circle"></i>About Blujay</a>
+                            <a href="#"><i class="fas fa-handshake"></i>Community & Partnerships</a>
+                            <a href="#"><i class="fas fa-heart"></i>Social Impact</a>
+                            <a href="#"><i class="fas fa-trophy"></i>Success Stories</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mobile-dropdown-wrapper">
+                    <button class="mobile-dropdown-toggle text-[14px] font-semibold text-gray-900" type="button">
+                        Resources <i class="fas fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="mobile-dropdown-content">
+                        <div class="mobile-dropdown-inner">
+                            <a href="jobroadmap.html"><i class="fas fa-map-marked-alt"></i>Roadmap</a>
+                            <a href="blog.html"><i class="fas fa-blog"></i>Blog</a>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="contactus.html" class="block w-full text-center bg-blue-600 text-white py-2.5 rounded-lg text-[13px] font-semibold mt-6 hover:bg-blue-700 transition-all shadow-md">
+                    Contact Us
+                </a>
+
+                <a href="login.html" class="block w-full text-center border-2 border-blue-600 text-blue-600 py-2.5 rounded-lg text-[13px] font-semibold mt-3 hover:bg-blue-50 transition-all">Login</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="pt-20 lg:pt-24 pb-12 lg:pb-20 bg-gradient-to-br from-blue-50 via-white to-blue-50 fade-in-section">
+      <div class="max-w-7xl mx-auto px-4 lg:px-8 grid lg:grid-cols-2 gap-10 items-center">
+        
+        <div class="stagger-children">
+          <p class="text-[11px] font-semibold tracking-[0.28em] uppercase text-blue-600 mb-3">
+            Digital Marketing � For Institutes � Startups � Local Businesses
+          </p>
+          <h1 class="text-3xl lg:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
+            Promote your <span class="text-blue-600">brand</span> and
+            <span class="block mt-1">
+              build trust with a
+              <span class="bg-gradient-to-r from-blue-600 to-cyan-500 text-transparent bg-clip-text">
+                simple click.
+              </span>
+            </span>
+          </h1>
+          <p class="text-sm lg:text-base text-gray-600 max-w-xl mb-5">
+            Most business owners know they need digital marketing � but don't know where to start or whom to trust. 
+            Our team designs, runs and monitors campaigns for you, with clear numbers and simple reports.
+          </p>
+
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-start gap-3">
+              <span class="mt-1 w-7 h-7 rounded-full bg-blue-100 flex items-center justify-center text-xs text-blue-700">
+                <i class="fas fa-bullhorn"></i>
+              </span>
+              <p class="text-sm text-gray-700">
+                Promote your brand across <span class="font-semibold">Instagram, Facebook, Google & LinkedIn</span> with consistent, professional creatives.
+              </p>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-1 w-7 h-7 rounded-full bg-green-100 flex items-center justify-center text-xs text-green-700">
+                <i class="fas fa-user-check"></i>
+              </span>
+              <p class="text-sm text-gray-700">
+                We already work with <span class="font-semibold">training institutes, career coaches and service-based businesses</span> � we understand your audience.
+              </p>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-1 w-7 h-7 rounded-full bg-purple-100 flex items-center justify-center text-xs text-purple-700">
+                <i class="fas fa-clipboard-check"></i>
+              </span>
+              <p class="text-sm text-gray-700">
+                Transparent, no-confusion approach: you will always know what is running, where, and why.
+              </p>
+            </li>
+          </ul>
+
+          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+            <button onclick="openCallbackModal()" class="group relative inline-flex items-center justify-center px-5 py-3 rounded-xl bg-blue-600 text-white text-sm font-semibold shadow-lg hover:bg-blue-700 transition-all overflow-hidden cta-main">
+              <span class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:animate-[shimmer_1.4s_infinite]"></span>
+              <span class="relative flex items-center gap-2">
+                Request a Call Back
+                <i class="fas fa-phone-alt text-xs"></i>
+              </span>
+            </button>
+            <p class="text-[11px] text-gray-500">
+              No pressure, no hard selling. Just a clear explanation of what actually works for your business.
+            </p>
+          </div>
+        </div>
+
+        <!-- RIGHT HERO CARD WITH FLOATING EFFECT -->
+        <div class="relative fade-in-section">
+          <div class="absolute -top-10 -right-8 w-32 h-32 bg-blue-300/25 rounded-full blur-3xl"></div>
+          <div class="absolute -bottom-12 -left-4 w-40 h-40 bg-cyan-300/25 rounded-full blur-3xl"></div>
+
+          <div class="glass-card relative p-6 lg:p-8 float-card">
+            <div class="flex items-center justify-between mb-4">
+              <p class="text-xs font-semibold text-gray-500 uppercase">Sample client view</p>
+              <span class="px-3 py-1 rounded-full text-[10px] font-bold bg-green-100 text-green-700 flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                Real enquiries
+              </span>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">
+              "Every month we clearly see how many enquiries came from digital marketing."
+            </h3>
+            <p class="text-sm text-gray-600 mb-6">
+              We don't hide behind big words. We show simple numbers: how much you spent, how many people reached, and how many leads or calls came from campaigns.
+            </p>
+
+            <div class="grid grid-cols-3 gap-4 text-center mb-6">
+              <div class="soft-card p-3 border-0 shadow-none bg-blue-50/60">
+                <p class="text-[11px] text-gray-500 mb-1">Monthly Leads</p>
+                <p class="text-xl font-extrabold text-gray-900">+180</p>
+                <p class="text-[11px] text-green-600">training institute</p>
+              </div>
+              <div class="soft-card p-3 border-0 shadow-none bg-blue-50/60">
+                <p class="text-[11px] text-gray-500 mb-1">Ad Spend</p>
+                <p class="text-xl font-extrabold text-gray-900">?15K</p>
+                <p class="text-[11px] text-blue-600">controlled & optimized</p>
+              </div>
+              <div class="soft-card p-3 border-0 shadow-none bg-blue-50/60">
+                <p class="text-[11px] text-gray-500 mb-1">Calls & Walk-ins</p>
+                <p class="text-xl font-extrabold text-gray-900">4.0x</p>
+                <p class="text-[11px] text-purple-600">improvement</p>
+              </div>
+            </div>
+
+            <ul class="space-y-2 mb-4 text-[12px] text-gray-600">
+              <li class="flex items-center gap-2">
+                <i class="fas fa-check text-green-600 text-[10px]"></i>
+                No long-term contract required to start.
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fas fa-check text-green-600 text-[10px]"></i>
+                You can start with a small monthly budget and scale slowly.
+              </li>
+            </ul>
+
+            <button onclick="openCallbackModal()" class="w-full inline-flex items-center justify-center px-4 py-3 rounded-xl border border-blue-200 text-xs font-semibold text-blue-700 hover:bg-blue-50 transition-all">
+              Talk to our marketing team
+              <i class="fas fa-arrow-right text-[10px] ml-2"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SIMPLE CLICK SECTION -->
+    <section class="py-12 lg:py-16 bg-white fade-in-section">
+      <div class="max-w-7xl mx-auto px-4 lg:px-8">
+        <div class="text-center mb-10 stagger-children">
+          <p class="text-[11px] font-semibold tracking-[0.25em] uppercase text-blue-600 mb-2">
+            Promote your brand � With a simple click
+          </p>
+          <h2 class="text-2xl lg:text-3xl font-extrabold text-gray-900 mb-3">
+            You click once. We manage the full digital marketing system for you.
+          </h2>
+          <p class="text-sm text-gray-600 max-w-2xl mx-auto">
+            No need to learn tools, ad platforms or algorithms. Our team takes care of planning, designing, running and tracking everything � and you see the results clearly.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="soft-card p-6 fade-in-section">
+            <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center mb-4 text-blue-600">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <h3 class="text-sm font-bold text-gray-900 mb-2">1. Understand your brand</h3>
+            <p class="text-sm text-gray-600">
+              Short call to understand: Who are you targeting? Students, parents, working professionals or local customers?
+            </p>
+          </div>
+          <div class="soft-card p-6 fade-in-section">
+            <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center mb-4 text-blue-600">
+              <i class="fas fa-pen-nib"></i>
+            </div>
+            <h3 class="text-sm font-bold text-gray-900 mb-2">2. Plan and creatives</h3>
+            <p class="text-sm text-gray-600">
+              We prepare content ideas, ad copies, creatives and platform-wise plan (Instagram, Facebook, Google etc.).
+            </p>
+          </div>
+          <div class="soft-card p-6 fade-in-section">
+            <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center mb-4 text-blue-600">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <h3 class="text-sm font-bold text-gray-900 mb-2">3. Launch & optimize</h3>
+            <p class="text-sm text-gray-600">
+              Campaigns go live, we monitor daily and keep improving for better quality leads and lower cost.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-8 text-center">
+          <button onclick="openCallbackModal()" class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-gray-900 text-white text-sm font-semibold shadow-md hover:bg-blue-700 transition-all cta-main">
+            Book a free 20-minute strategy call
+            <i class="fas fa-phone-volume text-xs ml-2"></i>
+          </button>
+          <p class="text-[11px] text-gray-500 mt-2">
+            In this call, we only guide you. You can even implement the ideas with your own team if you want.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GOOD RESULTS & GROWTH -->
+    <section class="py-12 lg:py-18 bg-blue-50 fade-in-section">
+      <div class="max-w-7xl mx-auto px-4 lg:px-8 grid lg:grid-cols-2 gap-10 items-center">
+        
+        <div class="stagger-children">
+          <p class="text-[11px] font-semibold tracking-[0.25em] uppercase text-blue-700 mb-2">
+            Good Results � Increase Your Business Growth
+          </p>
+          <h2 class="text-2xl lg:text-3xl font-extrabold text-[#00345E] mb-3">
+            Get good results and increase your business growth with consistent marketing.
+          </h2>
+          <p class="text-sm text-gray-700 mb-5 max-w-lg">
+            Our focus is not "likes" and "views" only. We want to see real change in your numbers: 
+            calls, form fills, store visits, demo bookings, and paid enrollments.
+          </p>
+
+          <div class="grid grid-cols-2 gap-4 mb-6">
+            <div class="bg-white rounded-2xl p-4 shadow-sm fade-in-section">
+              <p class="text-[11px] text-gray-500 mb-1">Lead growth</p>
+              <p class="text-2xl font-extrabold text-[#0057A0] mb-1">3x</p>
+              <p class="text-[11px] text-gray-500">for institutes & courses</p>
+            </div>
+            <div class="bg-white rounded-2xl p-4 shadow-sm fade-in-section">
+              <p class="text-[11px] text-gray-500 mb-1">Ad spend efficiency</p>
+              <p class="text-2xl font-extrabold text-[#0057A0] mb-1">40%</p>
+              <p class="text-[11px] text-gray-500">better cost per lead on avg</p>
+            </div>
+          </div>
+
+          <ul class="space-y-2 mb-5 text-sm text-gray-700">
+            <li class="flex items-start gap-2">
+              <i class="fas fa-check text-green-600 mt-0.5 text-[11px]"></i>
+              <span>Perfect for coaching centres, software training institutes, colleges, clinics and service-based businesses.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fas fa-check text-green-600 mt-0.5 text-[11px]"></i>
+              <span>We keep you updated with simple WhatsApp/Email reports � no complicated dashboards required.</span>
+            </li>
+          </ul>
+
+          <button onclick="openCallbackModal()" class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-blue-600 text-white text-sm font-semibold shadow-md hover:bg-blue-700 transition-all cta-main">
+            Contact us to increase your business growth
+            <i class="fas fa-arrow-right text-xs ml-2"></i>
+          </button>
+        </div>
+
+        <div class="fade-in-section">
+          <div class="glass-card p-6 lg:p-7">
+            <p class="text-[11px] font-semibold text-gray-500 uppercase mb-3">Want someone you can trust?</p>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">
+              Talk directly with our digital marketing mentor.
+            </h3>
+            <p class="text-sm text-gray-600 mb-6">
+              In one call, you will clearly understand whether digital marketing is right for you now, what budget to start with, 
+              and which platforms actually matter for your business.
+            </p>
+
+            <ul class="space-y-3 mb-6">
+              <li class="flex items-start gap-3 text-sm text-gray-700">
+                <i class="fas fa-check text-green-600 mt-0.5"></i>
+                <span>Honest feedback � if something won't work for your niche, we will tell you upfront.</span>
+              </li>
+              <li class="flex items-start gap-3 text-sm text-gray-700">
+                <i class="fas fa-check text-green-600 mt-0.5"></i>
+                <span>No long contracts. You can stop or pause whenever you want.</span>
+              </li>
+              <li class="flex items-start gap-3 text-sm text-gray-700">
+                <i class="fas fa-check text-green-600 mt-0.5"></i>
+                <span>We're also an education company, so we understand student and parent psychology very well.</span>
+              </li>
+            </ul>
+
+            <button onclick="openCallbackModal()" class="w-full inline-flex items-center justify-center px-4 py-3 rounded-xl border border-blue-200 text-xs font-semibold text-blue-700 hover:bg-white transition-all bg-blue-50">
+              Request a call back now
+              <i class="fas fa-phone-alt text-[10px] ml-2"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEO & LOCAL VISIBILITY -->
+    <section class="py-12 lg:py-16 bg-white fade-in-section">
+      <div class="max-w-7xl mx-auto px-4 lg:px-8 grid lg:grid-cols-2 gap-10 items-center">
+        
+        <div class="stagger-children">
+          <p class="text-[11px] font-semibold tracking-[0.25em] uppercase text-blue-600 mb-2">
+            SEO � Local Visibility � Long-Term Growth
+          </p>
+          <h2 class="text-2xl lg:text-3xl font-extrabold text-gray-900 mb-3">
+            Be found on Google when your ideal customers are searching.
+          </h2>
+          <p class="text-sm text-gray-600 mb-4 max-w-lg">
+            Along with ads and social media, we set up a clear SEO foundation: optimized pages, local listings and tracking, so your brand keeps getting leads even when ads are paused.
+          </p>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li class="flex items-start gap-2">
+              <i class="fas fa-check text-green-600 mt-0.5 text-[11px]"></i>
+              <span>On-page SEO: proper headings, page titles and descriptions that match what people actually search for.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fas fa-check text-green-600 mt-0.5 text-[11px]"></i>
+              <span>Local SEO: Google Business Profile setup/optimization so nearby students, parents and customers can find you easily.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fas fa-check text-green-600 mt-0.5 text-[11px]"></i>
+              <span>Tracking: basic analytics and call/lead tracking, so we know which keywords and campaigns are bringing results.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="fade-in-section">
+          <div class="glass-card p-6 lg:p-7">
+            <p class="text-[11px] font-semibold text-gray-500 uppercase mb-2">We will be your growth partner</p>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">
+              Not just "running ads" � we grow with your numbers.
+            </h3>
+            <p class="text-sm text-gray-600 mb-4">
+              We work like an extended marketing team for your institute or business. As your enquiries and revenue grow, we refine campaigns, SEO and content to support the next stage of your growth.
+            </p>
+            <ul class="space-y-2 text-sm text-gray-700 mb-5">
+              <li class="flex items-start gap-2">
+                <i class="fas fa-arrows-rotate text-blue-600 mt-0.5 text-[11px]"></i>
+                <span>Quarterly strategy check-ins to review what is working and what to upgrade.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fas fa-chart-line text-blue-600 mt-0.5 text-[11px]"></i>
+                <span>Plan to slowly shift from only paid ads to a healthy mix of SEO, content and brand building.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fas fa-handshake text-blue-600 mt-0.5 text-[11px]"></i>
+                <span>Transparent, long-term partnership mindset � you see how your marketing budget is actually growing the business.</span>
+              </li>
+            </ul>
+            <button onclick="openCallbackModal()" class="w-full inline-flex items-center justify-center px-4 py-3 rounded-xl bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700 transition-all cta-main">
+              Make Blujay your growth partner
+              <i class="fas fa-handshake-angle text-[10px] ml-2"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW WE DO DIGITAL MARKETING (FINAL STEP SECTION) -->
+    <section class="py-12 lg:py-16 bg-gray-50 fade-in-section">
+      <div class="max-w-7xl mx-auto px-4 lg:px-8">
+        <div class="text-center mb-8 stagger-children">
+          <p class="text-[11px] font-semibold tracking-[0.25em] uppercase text-blue-700 mb-2">
+            Our Process � Step by Step
+          </p>
+          <h2 class="text-2xl lg:text-3xl font-extrabold text-gray-900 mb-3">
+            How we run your digital marketing as your growth partner.
+          </h2>
+          <p class="text-sm text-gray-600 max-w-2xl mx-auto">
+            A simple, clear workflow � from understanding your business to continuous optimisation � so you always know what is happening and what to expect next.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-sm text-gray-700">
+          <div class="soft-card p-5 fade-in-section">
+            <p class="text-[11px] font-semibold text-blue-600 mb-1">Step 1</p>
+            <h3 class="font-bold mb-1">Discovery & goals</h3>
+            <p>We understand your courses/services, ticket size, current leads and growth targets for the next 3�6 months.</p>
+          </div>
+          <div class="soft-card p-5 fade-in-section">
+            <p class="text-[11px] font-semibold text-blue-600 mb-1">Step 2</p>
+            <h3 class="font-bold mb-1">Audience & offer clarity</h3>
+            <p>We identify your ideal audience (students, parents, working professionals, local customers) and frame clear offers that they will respond to.</p>
+          </div>
+          <div class="soft-card p-5 fade-in-section">
+            <p class="text-[11px] font-semibold text-blue-600 mb-1">Step 3</p>
+            <h3 class="font-bold mb-1">Channel & SEO plan</h3>
+            <p>We decide which platforms to use (Meta, Google, LinkedIn, YouTube) and what SEO basics are required on your site and local listings.</p>
+          </div>
+
+          <div class="soft-card p-5 fade-in-section">
+            <p class="text-[11px] font-semibold text-blue-600 mb-1">Step 4</p>
+            <h3 class="font-bold mb-1">Creatives & copy</h3>
+            <p>Our team creates ad copies, creatives, landing pages and SEO content that match your brand voice and attract the right leads.</p>
+          </div>
+          <div class="soft-card p-5 fade-in-section">
+            <p class="text-[11px] font-semibold text-blue-600 mb-1">Step 5</p>
+            <h3 class="font-bold mb-1">Launch & tracking</h3>
+            <p>Campaigns go live with proper tracking � so every click, call, form fill and walk-in can be traced back to marketing activity.</p>
+          </div>
+          <div class="soft-card p-5 fade-in-section">
+            <p class="text-[11px] font-semibold text-blue-600 mb-1">Step 6</p>
+            <h3 class="font-bold mb-1">Optimise & scale</h3>
+            <p>We pause what is not working, double down on the best campaigns, and gradually scale budgets while protecting ROI.</p>
+          </div>
+
+          <div class="soft-card p-5 md:col-span-3 fade-in-section">
+            <p class="text-[11px] font-semibold text-blue-600 mb-1">Step 7</p>
+            <h3 class="font-bold mb-1">Partner for long-term growth</h3>
+            <p>
+              Month by month, we refine SEO, content, ads and offers with you. Our goal is to be your trusted growth partner � not just an external agency doing "some marketing".
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-8 text-center">
+          <button onclick="openCallbackModal()" class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-blue-600 text-white text-sm font-semibold shadow-md hover:bg-blue-700 transition-all cta-main">
+            Start your growth journey with Blujay
+            <i class="fas fa-rocket text-xs ml-2"></i>
+          </button>
+          <p class="text-[11px] text-gray-500 mt-2">
+            One simple call is enough to see if we are the right growth partner for your business.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+<footer class="bg-[#0d1b2a] text-white py-12 lg:py-16">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8 mb-8">
+            
+            <!-- Company Info -->
+            <div class="lg:col-span-1 text-center lg:text-left">
+                <div class="flex items-center justify-center lg:justify-start gap-3 mb-4">
+                    <img src="logo.png" alt="Blujay Technologies" class="h-10 w-auto">
+                </div>
+                <p class="text-sm text-gray-400 leading-relaxed mb-4">
+                    Empowering careers and businesses through quality IT education and professional digital services.
+                </p>
+                <div class="space-y-2 text-sm text-gray-400">
+                    <div class="flex items-start gap-2 justify-center lg:justify-start">
+                        <i class="fas fa-map-marker-alt mt-1 flex-shrink-0"></i>
+                        <span>Ameerpet, Hyderabad, India</span>
+                    </div>
+                    <div class="flex items-center gap-2 justify-center lg:justify-start">
+                        <i class="fas fa-phone"></i>
+                        <span>+91 96187 21797</span>
+                    </div>
+                    <div class="flex items-center gap-2 justify-center lg:justify-start">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@blujaytech.com</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Courses -->
+            <div class="text-center lg:text-left">
+                <h4 class="text-base font-semibold mb-4">Courses</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="all-courses.html" class="hover:text-white transition-colors">Full Stack Development</a></li>
+                    <li><a href="all-courses.html" class="hover:text-white transition-colors">Data Science</a></li>
+                    <li><a href="all-courses.html" class="hover:text-white transition-colors">Cloud Computing</a></li>
+                    <li><a href="all-courses.html" class="hover:text-white transition-colors">Digital Marketing</a></li>
+                    <li><a href="all-courses.html" class="hover:text-white transition-colors">All Courses</a></li>
+                </ul>
+            </div>
+
+            <!-- Career Support -->
+            <div class="text-center lg:text-left">
+                <h4 class="text-base font-semibold mb-4">Career Support</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="profilepushing.html" class="hover:text-white transition-colors">Profile Pushing</a></li>
+                    <li><a href="jobsupport.html" class="hover:text-white transition-colors">Job Support</a></li>
+                    <li><a href="jobroadmap.html" class="hover:text-white transition-colors">Interview Preparation</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Placement Assistance</a></li>
+                </ul>
+            </div>
+
+            <!-- Services -->
+            <div class="text-center lg:text-left">
+                <h4 class="text-base font-semibold mb-4">Services</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="services.html" class="hover:text-white transition-colors">Digital Marketing</a></li>
+                    <li><a href="services.html" class="hover:text-white transition-colors">Web Development</a></li>
+                    <li><a href="services.html" class="hover:text-white transition-colors">SEO Services</a></li>
+                    <li><a href="services.html" class="hover:text-white transition-colors">Custom Solutions</a></li>
+                </ul>
+            </div>
+
+            <!-- Company -->
+            <div class="text-center lg:text-left">
+                <h4 class="text-base font-semibold mb-4">Company</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="aboutus.html" class="hover:text-white transition-colors">About Us</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+                    <li><a href="blog.html" class="hover:text-white transition-colors">Blog</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Resources -->
+            <div class="text-center lg:text-left">
+                <h4 class="text-base font-semibold mb-4">Resources</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="#" class="hover:text-white transition-colors">Success Stories</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Community</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">FAQs</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Terms & Privacy</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Bottom Section -->
+        <div class="border-t border-gray-800 pt-6">
+            <div class="flex flex-col lg:flex-row justify-between items-center gap-4">
+                <p class="text-xs text-gray-500 text-center lg:text-left">
+                     2026 Blujay Technologies. All rights reserved.
+                </p>
+                
+                <!-- Social Media Links -->
+                <div class="flex gap-3">
+                    <a href="https://facebook.com/blujaytechnologies" target="_blank" rel="noopener noreferrer" class="w-8 h-8 flex items-center justify-center hover:text-blue-500 transition-colors">
+                        <i class="fab fa-facebook text-base"></i>
+                    </a>
+                    <a href="https://twitter.com/blujaytech" target="_blank" rel="noopener noreferrer" class="w-8 h-8 flex items-center justify-center hover:text-blue-400 transition-colors">
+                        <i class="fab fa-twitter text-base"></i>
+                    </a>
+                    <a href="https://linkedin.com/company/blujay-technologies" target="_blank" rel="noopener noreferrer" class="w-8 h-8 flex items-center justify-center hover:text-blue-600 transition-colors">
+                        <i class="fab fa-linkedin text-base"></i>
+                    </a>
+                    <a href="https://instagram.com/blujaytech" target="_blank" rel="noopener noreferrer" class="w-8 h-8 flex items-center justify-center hover:text-pink-500 transition-colors">
+                        <i class="fab fa-instagram text-base"></i>
+                    </a>
+                    <a href="https://youtube.com/@blujaytech" target="_blank" rel="noopener noreferrer" class="w-8 h-8 flex items-center justify-center hover:text-red-500 transition-colors">
+                        <i class="fab fa-youtube text-base"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+  <!-- ===== CALLBACK MODAL - PROFESSIONAL COMPACT DESIGN ===== -->
+  <div id="callbackModal" class="fixed inset-0 bg-black bg-opacity-60 z-[200] hidden items-center justify-center p-4 backdrop-blur-sm">
+    <div class="bg-white rounded-xl max-w-3xl w-full shadow-2xl transform transition-all scale-95 modal-content overflow-visible">
+        
+        <div class="flex flex-col lg:flex-row max-h-[85vh] overflow-visible">
+            <!-- Left Side - Branding Section (Desktop/Tablet) -->
+            <div class="hidden md:flex md:w-[45%] lg:w-[40%] bg-gradient-to-br from-[#1D5D7F] via-[#1D5D7F] to-[#144A66] text-white p-6 lg:p-8 flex-col justify-between relative overflow-hidden">
+              <!-- Background Pattern -->
+              <div class="absolute inset-0 opacity-10">
+                <div class="absolute top-0 right-0 w-48 h-48 bg-white rounded-full -mr-24 -mt-24"></div>
+                <div class="absolute bottom-0 left-0 w-32 h-32 bg-white rounded-full -ml-16 -mb-16"></div>
+              </div>
+                
+              <div class="relative z-10">
+                <div class="w-14 h-14 lg:w-16 lg:h-16 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mb-4 backdrop-blur-sm">
+                  <i class="fas fa-phone-alt text-[24px] lg:text-[28px]"></i>
+                </div>
+                <h2 class="text-[20px] lg:text-[24px] font-bold leading-tight mb-2">We're here to<br>support you</h2>
+                <h3 class="text-[18px] lg:text-[22px] font-semibold mb-3">every step of<br>the way.</h3>
+                <p class="text-blue-100 text-[13px] leading-relaxed">Let's talk!</p>
+                    
+                <div class="mt-4">
+                  <p class="text-[12px] text-blue-50 leading-relaxed">
+                    Helping 1 Million People To Build Their Future in IT
+                  </p>
+                </div>
+              </div>
+
+              <div class="relative z-10 mt-4">
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-3 border border-white border-opacity-20">
+                  <p class="text-[10px] font-semibold text-white text-opacity-70 mb-2 uppercase tracking-wider">Contact Information</p>
+                  <div class="space-y-1.5">
+                    <div class="flex items-center gap-2 text-[12px]">
+                      <i class="fas fa-phone text-white text-opacity-80 text-[11px]"></i>
+                      <span>+91 9618 721 797</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-[12px]">
+                      <i class="fas fa-envelope text-white text-opacity-80 text-[11px]"></i>
+                      <span>info@blujaytech.com</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Side - Form Section -->
+            <div class="w-full md:w-[55%] lg:w-[60%] relative bg-white max-h-[85vh] md:max-h-none overflow-visible">
+              <!-- Mobile Header -->
+              <div class="md:hidden bg-gradient-to-r from-[#1D5D7F] to-[#144A66] text-white p-5 relative">
+                <button onclick="closeCallbackModal()" class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full hover:bg-white hover:bg-opacity-20 transition-all">
+                  <i class="fas fa-times text-[16px]"></i>
+                </button>
+                <div class="text-center pr-8">
+                  <div class="w-14 h-14 bg-white bg-opacity-20 rounded-xl mx-auto mb-2 flex items-center justify-center">
+                    <i class="fas fa-phone-alt text-[20px]"></i>
+                  </div>
+                  <h3 class="text-[19px] font-bold mb-1">Request a Callback</h3>
+                  <p class="text-[12px] text-white text-opacity-80">We'll get back to you within 24 hours</p>
+                </div>
+              </div>
+
+              <!-- Desktop Close Button -->
+              <button onclick="closeCallbackModal()" class="hidden md:flex absolute top-3 right-3 w-9 h-9 items-center justify-center rounded-full hover:bg-gray-100 transition-all z-20">
+                <i class="fas fa-times text-[18px] text-gray-600"></i>
+              </button>
+
+              <!-- Form -->
+              <form id="callbackForm" class="p-5 lg:p-6 space-y-3.5 lg:space-y-4 overflow-visible">
+                <div class="hidden md:block mb-4 lg:mb-5">
+                  <h3 class="text-[20px] lg:text-[24px] font-bold text-gray-900 mb-1">Get in Touch</h3>
+                  <p class="text-[13px] lg:text-[14px] text-gray-600">Fill out the form and we'll contact you soon</p>
+                </div>
+
+                <div>
+                  <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Full Name *</label>
+                  <input type="text" name="name" required 
+                    class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D5D7F] focus:border-[#1D5D7F] outline-none text-[13px] lg:text-[14px] transition-all"
+                    placeholder="John Doe">
+                </div>
+
+                <div>
+                  <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Email Address *</label>
+                  <input type="email" name="email" required 
+                    class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D5D7F] focus:border-[#1D5D7F] outline-none text-[13px] lg:text-[14px] transition-all"
+                    placeholder="john@example.com">
+                </div>
+
+                <div>
+                  <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Phone Number *</label>
+                  <input type="tel" name="phone" required 
+                    class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D5D7F] focus:border-[#1D5D7F] outline-none text-[13px] lg:text-[14px] transition-all"
+                    placeholder="+91 XXXXX XXXXX">
+                </div>
+
+                <div>
+                  <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Choose Services *</label>
+                  <div class="service-dropdown-wrapper">
+                    <div class="service-dropdown-trigger" id="serviceDropdownTrigger">
+                      <span class="placeholder" id="serviceSelectedText">Select a service...</span>
+                      <i class="fas fa-chevron-down chevron"></i>
+                    </div>
+                    <div class="service-dropdown-menu" id="serviceDropdownMenu">
+                      <div class="service-dropdown-item" data-value="Profile Pushing">
+                        <i class="fas fa-code"></i>
+                        <span>Profile Pushing</span>
+                      </div>
+                      <div class="service-dropdown-item" data-value="Job Support">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>Job Support</span>
+                      </div>
+                      <div class="service-dropdown-item" data-value="Web Development Services">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Web Development Services</span>
+                      </div>
+                      <div class="service-dropdown-item" data-value="Online Courses">
+                        <i class="fas fa-cloud"></i>
+                        <span>Online Courses</span>
+                      </div>
+                      <div class="service-dropdown-item" data-value="Recorded Courses">
+                        <i class="fas fa-cloud"></i>
+                        <span>Recorded Courses</span>
+                      </div>
+                    </div>
+                    <select name="service" id="serviceHiddenSelect" required style="position: absolute; opacity: 0; pointer-events: none; width: 1px; height: 1px;">
+                      <option value="" selected></option>
+                      <option value="Profile Pushing">Profile Pushing</option>
+                      <option value="Job Support">Job Support</option>
+                      <option value="Web Development Services">Web Development Services</option>
+                      <option value="Online Courses">Online Courses</option>
+                      <option value="Recorded Courses">Recorded Courses</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" id="submitBtn"
+                  class="w-full bg-[#1D5D7F] text-white py-2.5 lg:py-3 rounded-lg font-semibold text-[14px] lg:text-[15px] hover:bg-[#144A66] transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 mt-4 lg:mt-5">
+                  <span>Submit Now</span>
+                  <i class="fas fa-arrow-right text-[12px]"></i>
+                </button>
+
+                <!-- Success Message -->
+                <div id="successMessage" class="hidden bg-green-50 border border-green-200 text-green-800 px-3 py-2.5 rounded-lg text-[12px] text-center">
+                  <i class="fas fa-check-circle mr-1"></i>
+                  <strong>Success!</strong> We'll contact you soon.
+                </div>
+
+                <!-- Error Message -->
+                <div id="errorMessage" class="hidden bg-red-50 border border-red-200 text-red-800 px-3 py-2.5 rounded-lg text-[12px] text-center">
+                  <i class="fas fa-exclamation-circle mr-1"></i>
+                  <strong>Error!</strong> Please try again.
+                </div>
+              </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  <script>
+    const navbar=document.getElementById('navbar');
+    window.addEventListener('scroll',()=>{
+      if(window.scrollY>10){navbar.classList.add('scrolled');}
+      else{navbar.classList.remove('scrolled');}
+    });
+
+    // IntersectionObserver for fade-in + stagger
+    const fadeInObserver=new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('is-visible');
+          fadeInObserver.unobserve(e.target);
+        }
+      });
+    },{threshold:0.15});
+    document.querySelectorAll('.fade-in-section,.stagger-children').forEach(el=>fadeInObserver.observe(el));
+
+    // Mobile Menu Toggle
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const mobileClose = document.getElementById('mobile-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    function openMobileMenu() {
+        mobileMenu.classList.remove('translate-x-full');
+        mobileMenu.classList.add('translate-x-0');
+        document.body.classList.add('mobile-menu-open');
+    }
+
+    function closeMobileMenu() {
+        mobileMenu.classList.remove('translate-x-0');
+        mobileMenu.classList.add('translate-x-full');
+        document.body.classList.remove('mobile-menu-open');
+    }
+
+    mobileToggle?.addEventListener('click', openMobileMenu);
+    mobileClose?.addEventListener('click', closeMobileMenu);
+
+    // Mobile Dropdown Toggles
+    document.querySelectorAll('.mobile-dropdown-toggle').forEach(toggle => {
+        toggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const content = this.nextElementSibling;
+            const isActive = this.classList.contains('active');
+
+            // Close all other dropdowns
+            document.querySelectorAll('.mobile-dropdown-toggle').forEach(t => {
+                if (t !== this) {
+                    t.classList.remove('active');
+                    t.nextElementSibling.classList.remove('active');
+                }
+            });
+
+            // Toggle current dropdown
+            if (isActive) {
+                this.classList.remove('active');
+                content.classList.remove('active');
+            } else {
+                this.classList.add('active');
+                content.classList.add('active');
+            }
+        });
+    });
+
+    function openCallbackModal() {
+        const modal = document.getElementById('callbackModal');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+        
+        document.getElementById('callbackForm').reset();
+        document.getElementById('successMessage').classList.add('hidden');
+        document.getElementById('errorMessage').classList.add('hidden');
+        
+        const serviceText = document.getElementById('serviceSelectedText');
+        const serviceSelect = document.getElementById('serviceHiddenSelect');
+        if (serviceText && serviceSelect) {
+            serviceText.textContent = 'Select a service...';
+            serviceText.classList.add('placeholder');
+            serviceText.classList.remove('selected-text');
+            serviceSelect.value = '';
+        }
+    }
+
+    function closeCallbackModal() {
+        const modal = document.getElementById('callbackModal');
+        modal.classList.remove('flex');
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+        
+        const dropdownMenu = document.getElementById('serviceDropdownMenu');
+        const dropdownTrigger = document.getElementById('serviceDropdownTrigger');
+        if (dropdownMenu && dropdownTrigger) {
+            dropdownMenu.classList.remove('active');
+            dropdownTrigger.classList.remove('active');
+        }
+    }
+
+    document.getElementById('callbackModal')?.addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeCallbackModal();
+        }
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeCallbackModal();
+        }
+    });
+
+    // ===== SERVICE DROPDOWN =====
+    const serviceDropdownTrigger = document.getElementById('serviceDropdownTrigger');
+    const serviceDropdownMenu = document.getElementById('serviceDropdownMenu');
+    const serviceSelectedText = document.getElementById('serviceSelectedText');
+    const serviceHiddenSelect = document.getElementById('serviceHiddenSelect');
+    const serviceDropdownItems = document.querySelectorAll('.service-dropdown-item');
+
+    serviceDropdownTrigger?.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const isActive = serviceDropdownMenu.classList.contains('active');
+        
+        if (isActive) {
+            serviceDropdownMenu.classList.remove('active');
+            serviceDropdownTrigger.classList.remove('active');
+        } else {
+            serviceDropdownMenu.classList.add('active');
+            serviceDropdownTrigger.classList.add('active');
+        }
+    });
+
+    serviceDropdownItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.stopPropagation();
+            
+            const value = this.getAttribute('data-value');
+            const icon = this.querySelector('i').className;
+            
+            serviceSelectedText.innerHTML = `<i class="${icon}"></i> ${value}`;
+            serviceSelectedText.classList.remove('placeholder');
+            serviceSelectedText.classList.add('selected-text');
+            
+            serviceHiddenSelect.value = value;
+            
+            serviceDropdownItems.forEach(i => i.classList.remove('selected'));
+            this.classList.add('selected');
+            
+            serviceDropdownMenu.classList.remove('active');
+            serviceDropdownTrigger.classList.remove('active');
+        });
+    });
+
+    document.addEventListener('click', function(e) {
+        if (serviceDropdownMenu && serviceDropdownTrigger) {
+            if (!serviceDropdownTrigger.contains(e.target) && !serviceDropdownMenu.contains(e.target)) {
+                serviceDropdownMenu.classList.remove('active');
+                serviceDropdownTrigger.classList.remove('active');
+            }
+        }
+    });
+
+    // Google SheetDB integration
+    const SHEETDB_URL='https://sheetdb.io/api/v1/7s7xiynldn2sf';
+    document.getElementById('callbackForm')?.addEventListener('submit',async function(e){
+      e.preventDefault();
+      const submitBtn=document.getElementById('submitBtn');
+      const successMsg=document.getElementById('successMessage');
+      const errorMsg=document.getElementById('errorMessage');
+      successMsg.classList.add('hidden');
+      errorMsg.classList.add('hidden');
+      submitBtn.classList.add('opacity-60','pointer-events-none');
+      submitBtn.querySelector('span').textContent='Submitting...';
+
+      const fd=new FormData(this);
+      const data={
+        name:fd.get('name'),
+        email:fd.get('email'),
+        phone:fd.get('phone'),
+        service:fd.get('service')||'Digital Marketing',
+        company:fd.get('course')||'Not specified',
+        newsletter:fd.get('newsletter')?'Yes':'No',
+        timestamp:new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata',dateStyle:'medium',timeStyle:'short'}),
+        status:'New'
+      };
+
+      try{
+        const res=await fetch(SHEETDB_URL,{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({data:[data]})
+        });
+        if(res.ok){
+          successMsg.classList.remove('hidden');
+          this.reset();
+          setTimeout(()=>closeCallbackModal(),2200);
+        }else{throw new Error('failed');}
+      }catch(err){
+        errorMsg.classList.remove('hidden');
+      }finally{
+        submitBtn.classList.remove('opacity-60','pointer-events-none');
+        submitBtn.querySelector('span').textContent='Submit Request';
+      }
+    });
+
+// ===== WHATSAPP FLOATING BUTTON =====
+const whatsappBtn = document.querySelector('.whatsapp-float');
+
+// Show WhatsApp button immediately after page loads
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        whatsappBtn.classList.add('show');
+    }, 500);
+});
+
+// Keep it visible while scrolling
+window.addEventListener('scroll', () => {
+    const scrollPosition = window.pageYOffset;
+    
+    if (scrollPosition > 100) {
+        whatsappBtn.classList.add('show');
+    } else {
+        whatsappBtn.classList.add('show'); // Always show after initial load
+    }
+});
+  </script>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/919618721797" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+</body>
+</html>

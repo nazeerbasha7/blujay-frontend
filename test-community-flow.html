@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Community Flow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-6">
+        <h1 class="text-2xl font-bold mb-4">Community Flow Test</h1>
+        
+        <div class="space-y-4">
+            <div class="border p-4 rounded">
+                <h2 class="font-bold mb-2">1. Check Authentication</h2>
+                <button onclick="checkAuth()" class="bg-blue-600 text-white px-4 py-2 rounded">Check Auth</button>
+                <pre id="authResult" class="mt-2 text-xs bg-gray-100 p-2 rounded overflow-auto"></pre>
+            </div>
+            
+            <div class="border p-4 rounded">
+                <h2 class="font-bold mb-2">2. Check Community Profile</h2>
+                <button onclick="checkProfile()" class="bg-green-600 text-white px-4 py-2 rounded">Check Profile</button>
+                <pre id="profileResult" class="mt-2 text-xs bg-gray-100 p-2 rounded overflow-auto"></pre>
+            </div>
+            
+            <div class="border p-4 rounded">
+                <h2 class="font-bold mb-2">3. Session Storage</h2>
+                <button onclick="checkSession()" class="bg-purple-600 text-white px-4 py-2 rounded">Check Session</button>
+                <pre id="sessionResult" class="mt-2 text-xs bg-gray-100 p-2 rounded overflow-auto"></pre>
+            </div>
+            
+            <div class="border p-4 rounded">
+                <h2 class="font-bold mb-2">4. Local Storage</h2>
+                <button onclick="checkLocal()" class="bg-orange-600 text-white px-4 py-2 rounded">Check Local</button>
+                <pre id="localResult" class="mt-2 text-xs bg-gray-100 p-2 rounded overflow-auto"></pre>
+            </div>
+            
+            <div class="border p-4 rounded">
+                <h2 class="font-bold mb-2">Quick Actions</h2>
+                <div class="flex gap-2 flex-wrap">
+                    <button onclick="clearAll()" class="bg-red-600 text-white px-4 py-2 rounded">Clear All</button>
+                    <button onclick="setContext('community', 'RECEIVER')" class="bg-blue-500 text-white px-4 py-2 rounded">Set RECEIVER Context</button>
+                    <button onclick="setContext('community', 'GIVER')" class="bg-green-500 text-white px-4 py-2 rounded">Set GIVER Context</button>
+                    <button onclick="window.location.href='post-login-router.html'" class="bg-purple-500 text-white px-4 py-2 rounded">Test Router</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const API_URL = 'http://localhost:5000/api';
+        
+        function checkAuth() {
+            const token = localStorage.getItem('authToken');
+            const role = localStorage.getItem('userRole');
+            const result = {
+                hasToken: !!token,
+                tokenLength: token ? token.length : 0,
+                role: role,
+                email: localStorage.getItem('userEmail'),
+                name: localStorage.getItem('userName')
+            };
+            document.getElementById('authResult').textContent = JSON.stringify(result, null, 2);
+        }
+        
+        async function checkProfile() {
+            const token = localStorage.getItem('authToken');
+            if (!token) {
+                document.getElementById('profileResult').textContent = 'No auth token found. Please login first.';
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_URL}/community/my-profile`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                const data = await response.json();
+                document.getElementById('profileResult').textContent = JSON.stringify({
+                    status: response.status,
+                    data: data
+                }, null, 2);
+            } catch (error) {
+                document.getElementById('profileResult').textContent = 'Error: ' + error.message;
+            }
+        }
+        
+        function checkSession() {
+            const result = {
+                loginContext: sessionStorage.getItem('loginContext'),
+                requestedProfile: sessionStorage.getItem('requestedProfile'),
+                creatingProfile: sessionStorage.getItem('creatingProfile')
+            };
+            document.getElementById('sessionResult').textContent = JSON.stringify(result, null, 2);
+        }
+        
+        function checkLocal() {
+            const result = {
+                authToken: localStorage.getItem('authToken') ? '***exists***' : null,
+                userRole: localStorage.getItem('userRole'),
+                userName: localStorage.getItem('userName'),
+                userEmail: localStorage.getItem('userEmail'),
+                userId: localStorage.getItem('userId')
+            };
+            document.getElementById('localResult').textContent = JSON.stringify(result, null, 2);
+        }
+        
+        function clearAll() {
+            localStorage.clear();
+            sessionStorage.clear();
+            alert('All storage cleared!');
+            checkAuth();
+            checkSession();
+            checkLocal();
+        }
+        
+        function setContext(context, profile) {
+            sessionStorage.setItem('loginContext', context);
+            sessionStorage.setItem('requestedProfile', profile);
+            alert(`Context set: ${context} / ${profile}`);
+            checkSession();
+        }
+        
+        // Auto-run checks on load
+        window.onload = () => {
+            checkAuth();
+            checkSession();
+            checkLocal();
+        };
+    </script>
+</body>
+</html>

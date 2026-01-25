@@ -1,0 +1,51 @@
+<!-- ============================================ -->
+<!-- EJS Page: Homepage -->
+<!-- Path: frontend/views/pages/home.ejs -->
+<!-- ============================================ -->
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <h1>Welcome to Blujay Technologies</h1>
+        <p>Helping 1 Million People Build Their Future in IT</p>
+        <div class="cta-buttons">
+            <button onclick="trackButtonClick('Explore Courses', {location: 'hero'})">
+                Explore Courses
+            </button>
+            <a href="/contact" onclick="trackButtonClick('Contact Us', {location: 'hero'})">
+                Contact Us
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features">
+    <div class="container">
+        <h2>Why Choose Blujay?</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <h3>Expert Trainers</h3>
+                <p>Learn from industry professionals with 10+ years experience</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-briefcase"></i>
+                <h3>100% Placement Support</h3>
+                <p>Dedicated placement assistance until you get your dream job</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-project-diagram"></i>
+                <h3>Real-time Projects</h3>
+                <p>Work on live projects used by top companies</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Track page view -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('📊 Homepage loaded - GA4 tracking active');
+});
+</script>

@@ -469,7 +469,7 @@ document.querySelectorAll('[id^="view-all-courses"]').forEach(button => {
         
         // Redirect to login after 300ms
         setTimeout(() => {
-            window.location.href = 'login.html?redirect=courses';
+            window.location.href = 'login?redirect=courses';
         }, 300);
     });
 });

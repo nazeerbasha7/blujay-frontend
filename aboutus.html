@@ -1,9 +1,36 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Basic Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - Blujay Technologies</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- SEO Meta Tags -->
+    <title>About Us - Leading IT Training Institute | Blujay Technologies</title>
+    <meta name="description" content="Blujay Technologies is Hyderabad's premier IT training institute with expert instructors, hands-on projects, and 100% placement support. Learn about our mission and values.">
+    <meta name="keywords" content="about Blujay Technologies, IT training institute Hyderabad, best software training, placement support, expert instructors, tech education">
+    <meta name="author" content="Blujay Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://blujaytech.com/aboutus">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="About Us - Leading IT Training Institute | Blujay Technologies">
+    <meta property="og:description" content="Expert-led IT training with 100% placement support. Learn from industry professionals with hands-on projects and real-world experience.">
+    <meta property="og:image" content="https://blujaytech.com/images/og-about.jpg">
+    <meta property="og:url" content="https://blujaytech.com/aboutus">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Blujay Technologies">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="About Us - Leading IT Training Institute | Blujay Technologies">
+    <meta name="twitter:description" content="Expert-led IT training with 100% placement support. Learn from industry professionals with hands-on projects.">
+    <meta name="twitter:image" content="https://blujaytech.com/images/og-about.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="icon" href="images/logo.webp" type="image/x-icon">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -340,8 +367,8 @@
 
         /* Founder Image */
         .founder-image {
-            width: 110px;
-            height: 110px;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
             margin: 0 auto 20px;
             overflow: hidden;
@@ -812,7 +839,7 @@
             font-size: 9px;
         }
         .dropdown:hover .dropdown-toggle,
-        .dropdown.active .dropdown-toggle { color: var(--blujay-primary) !important; }
+        .dropdown.active .dropdown-toggle { color: #1D5D7F !important; }
         .dropdown:hover .dropdown-toggle i.chevron,
         .dropdown.active .dropdown-toggle i.chevron { transform: rotate(180deg); }
 
@@ -840,10 +867,10 @@
         .dropdown-menu a:last-child { margin-bottom: 0; }
         .dropdown-menu a i {
             margin-right: 10px; font-size: 13px; width: 18px;
-            text-align: center; color: var(--blujay-primary); opacity: 0.9;
+            text-align: center; color: #1D5D7F; opacity: 0.9;
         }
         .dropdown-menu a:hover {
-            background: var(--blujay-primary); color: #ffffff;
+            background: #1D5D7F; color: #ffffff;
             padding-left: 18px; transform: translateX(2px);
         }
         .dropdown-menu a:hover i { color: #ffffff; }
@@ -862,10 +889,10 @@
             font-size: 9px; color: #9ca3af;
         }
         .mobile-dropdown-toggle.active i.arrow {
-            transform: rotate(180deg); color: var(--blujay-primary);
+            transform: rotate(180deg); color: #1D5D7F;
         }
         .mobile-dropdown-toggle.active {
-            color: var(--blujay-primary); font-weight: 600;
+            color: #1D5D7F; font-weight: 600;
         }
 
         .mobile-dropdown-content {
@@ -889,12 +916,12 @@
         .mobile-dropdown-content a:last-child { margin-bottom: 0; }
         .mobile-dropdown-content a i {
             margin-right: 9px; font-size: 11px; width: 14px;
-            text-align: center; opacity: 0.8; color: var(--blujay-primary);
+            text-align: center; opacity: 0.8; color: #1D5D7F;
         }
         .mobile-dropdown-content a:active {
-            background: var(--blujay-primary) !important;
+            background: #1D5D7F !important;
             color: #ffffff !important;
-            border-color: var(--blujay-primary) !important;
+            border-color: #1D5D7F !important;
             transform: scale(0.97);
         }
         .mobile-dropdown-content a:active i { opacity: 1; color: #ffffff; }
@@ -1073,11 +1100,56 @@
                 text-align: center;
             }
         }
+
+    /* ===== WHATSAPP FLOATING BUTTON ===== */
+    .whatsapp-float {
+        position: fixed;
+        bottom: 20px;
+        right: 10px;
+        background: #25D366;
+        color: white;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        box-shadow: 0 3px 15px rgba(37, 211, 102, 0.4);
+        cursor: pointer;
+        z-index: 9999;
+        transition: all 0.3s ease;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .whatsapp-float.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .whatsapp-float:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+    }
+
+    .whatsapp-float:active {
+        transform: scale(0.95);
+    }
+
+    @media (min-width: 768px) {
+        .whatsapp-float {
+            width: 50px;
+            height: 50px;
+            font-size: 26px;
+            bottom: 25px;
+            right: 15px;
+        }
+    }
     </style>
 </head>
 <body>
 
-<!-- Navbar - Improved Design with Scroll Effect -->
 <nav class="fixed w-full top-0 z-50 nav-glass" id="navbar">
     <div class="px-4 lg:px-8">
         <div class="flex justify-between items-center h-[60px] lg:h-[72px]">
@@ -1088,60 +1160,72 @@
 
             <!-- Desktop Menu -->
             <div class="hidden lg:flex items-center gap-8 ml-auto">
+                <!-- Home Link -->
+                <a href="index.html" class="text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
+                    Home
+                </a>
+
                 <!-- Courses Dropdown -->
                 <div class="dropdown">
                     <button class="dropdown-toggle text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
-                        Offerings <i class="fas fa-chevron-down chevron"></i>
+                        Courses <i class="fas fa-chevron-down chevron"></i>
                     </button>
                     <div class="dropdown-menu">
-                        <a href="profilepushing.html"><i class="fas fa-code"></i>Profile Pushing</a>
-                        <a href="jobsupport.html"><i class="fas fa-layer-group"></i>Job support</a>
-                        <a href="courses.html"><i class="fab fa-java"></i>Courses-Recorded</a>
-                        <a href="courses-online.html"><i class="fab fa-java"></i>Courses-Online</a>
-                         
+                        <a href="recorded-courses.html"><i class="fas fa-video"></i>Self-Paced / Recorded Courses</a>
+                        <a href="all-courses.html"><i class="fas fa-graduation-cap"></i>All Courses</a>
                     </div>
                 </div>
 
-                <!-- Centres Dropdown -->
-                
-                   <div class="dropdown">
-                    <button class="dropdown-toggle text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
-                        Job Roadmaps <i class="fas fa-chevron-down chevron"></i>
-                    </button>
-                    <div class="dropdown-menu">
-                        <a href="jobroadmap.html"><i class="fas fa-briefcase"></i>5-Step Roadmap</a>
-                         
-                    </div>
-                </div>
-    
-
-                <!-- Jobs Dropdown -->
+                <!-- Career Support Dropdown -->
                 <div class="dropdown">
                     <button class="dropdown-toggle text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
-                        Jobs <i class="fas fa-chevron-down chevron"></i>
+                        Career Support <i class="fas fa-chevron-down chevron"></i>
                     </button>
                     <div class="dropdown-menu">
-                        <a href="#"><i class="fas fa-briefcase"></i>Coming Soon!</a>
-                         
+                        <a href="profilepushing.html"><i class="fas fa-user-tie"></i>Profile Pushing</a>
+                        <a href="jobsupport.html"><i class="fas fa-headset"></i>Job Support</a>
                     </div>
                 </div>
 
-                <!-- More Dropdown -->
+                <!-- Service Dropdown -->
                 <div class="dropdown">
                     <button class="dropdown-toggle text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
-                        More  <i class="fas fa-chevron-down chevron"></i>
+                        Service <i class="fas fa-chevron-down chevron"></i>
                     </button>
                     <div class="dropdown-menu">
-                        <a href="aboutus.html"><i class="fas fa-info-circle"></i>About Us</a>
+                        <a href="digital-marketing-seo.html"><i class="fas fa-bullhorn"></i>Digital Marketing Services</a>
+                        <a href="services.html"><i class="fas fa-code"></i>Web Development Services</a>
+                    </div>
+                </div>
+
+                <!-- About Dropdown -->
+                <div class="dropdown">
+                    <button class="dropdown-toggle text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
+                        About <i class="fas fa-chevron-down chevron"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="aboutus.html"><i class="fas fa-info-circle"></i>About Blujay</a>
+                        <a href="#"><i class="fas fa-handshake"></i>Community & Partnerships</a>
+                        <a href="#"><i class="fas fa-heart"></i>Social Impact</a>
+                        <a href="#"><i class="fas fa-trophy"></i>Success Stories</a>
+                    </div>
+                </div>
+
+                <!-- Resource Dropdown -->
+                <div class="dropdown">
+                    <button class="dropdown-toggle text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
+                        Resource <i class="fas fa-chevron-down chevron"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="jobroadmap.html"><i class="fas fa-map-marked-alt"></i>Roadmap</a>
                         <a href="blog.html"><i class="fas fa-blog"></i>Blog</a>
                     </div>
                 </div>
-                
 
                 <a href="login.html" class="border-2 border-blue-600 text-blue-600 px-4 py-1.5 rounded-lg text-[12px] lg:text-[13px] font-semibold hover:bg-blue-50 transition-all">Login</a>
-                <button onclick="openCallbackModal()" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-[12px] lg:text-[13px] font-semibold hover:bg-blue-700 transition-all flex items-center gap-2 pulse-animation">
-                    <i class="fas fa-phone-alt text-[10px]"></i> Request Callback
-                </button>
+                <a href="contactus.html" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-[12px] lg:text-[13px] font-semibold hover:bg-blue-700 transition-all flex items-center gap-2">
+                    <i class="fas fa-phone-alt text-[10px]"></i> Contact Us
+                </a>
             </div>
 
             <!-- Mobile: Hamburger -->
@@ -1164,63 +1248,76 @@
 
         <div class="overflow-y-auto h-[calc(100vh-60px)]" style="background-color: #ffffff !important;">
             <div class="px-4 py-4">
+                <!-- Home Link -->
+                <a href="index.html" class="block text-[14px] font-semibold text-gray-900 py-2.5 px-0 border-b border-gray-200 hover:text-blue-600 transition-colors">
+                    Home
+                </a>
+
                 <div class="mobile-dropdown-wrapper">
                     <button class="mobile-dropdown-toggle text-[14px] font-semibold text-gray-900" type="button">
-                        Offerings <i class="fas fa-chevron-down arrow"></i>
+                        Courses <i class="fas fa-chevron-down arrow"></i>
                     </button>
                     <div class="mobile-dropdown-content">
                         <div class="mobile-dropdown-inner">
-                        <a href="profilepushing.html"><i class="fas fa-code"></i>Profile Pushing</a>
-                        <a href="jobsupport.html"><i class="fas fa-layer-group"></i>Job support</a>
-                        <a href="courses.html"><i class="fab fa-java"></i>Courses-Recorded</a>
-                        <a href="courses-online.html"><i class="fab fa-java"></i>Courses-Online</a>
-                        </div>
-                        
-                    </div>
-                </div>
-
-                 <div class="mobile-dropdown-wrapper">
-                    <button class="mobile-dropdown-toggle text-[14px] font-semibold text-gray-900" type="button">
-                        Job Roadmaps <i class="fas fa-chevron-down arrow"></i>
-                    </button>
-                    <div class="mobile-dropdown-content">
-                        <div class="mobile-dropdown-inner">
-                            <a href="jobroadmap.html"><i class="fas fa-briefcase"></i>5-Step Roadmap</a>
-                             
+                            <a href="recorded-courses.html"><i class="fas fa-video"></i>Self-Paced / Recorded Courses</a>
+                            <a href="all-courses.html"><i class="fas fa-graduation-cap"></i>All Courses</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="mobile-dropdown-wrapper">
                     <button class="mobile-dropdown-toggle text-[14px] font-semibold text-gray-900" type="button">
-                        Jobs <i class="fas fa-chevron-down arrow"></i>
+                        Career Support <i class="fas fa-chevron-down arrow"></i>
                     </button>
                     <div class="mobile-dropdown-content">
                         <div class="mobile-dropdown-inner">
-                            <a href="#browse-jobs"><i class="fas fa-briefcase"></i>Coming Soon!</a>
-                             
+                            <a href="profilepushing.html"><i class="fas fa-user-tie"></i>Profile Pushing</a>
+                            <a href="jobsupport.html"><i class="fas fa-headset"></i>Job Support</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="mobile-dropdown-wrapper">
-                    <button class="mobile-dropdown-toggle text-[14px] font-medium text-gray-800" type="button">
-                        More <i class="fas fa-chevron-down arrow"></i>
+                    <button class="mobile-dropdown-toggle text-[14px] font-semibold text-gray-900" type="button">
+                        Services <i class="fas fa-chevron-down arrow"></i>
                     </button>
                     <div class="mobile-dropdown-content">
                         <div class="mobile-dropdown-inner">
-                            <a href="aboutus.html"><i class="fas fa-info-circle"></i>About Us</a>
+                            <a href="digital-marketing-seo.html"><i class="fas fa-bullhorn"></i>Digital Marketing Services</a>
+                            <a href="services.html"><i class="fas fa-code"></i>Web Development Services</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mobile-dropdown-wrapper">
+                    <button class="mobile-dropdown-toggle text-[14px] font-semibold text-gray-900" type="button">
+                        About <i class="fas fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="mobile-dropdown-content">
+                        <div class="mobile-dropdown-inner">
+                            <a href="aboutus.html"><i class="fas fa-info-circle"></i>About Blujay</a>
+                            <a href="#"><i class="fas fa-handshake"></i>Community & Partnerships</a>
+                            <a href="#"><i class="fas fa-heart"></i>Social Impact</a>
+                            <a href="#"><i class="fas fa-trophy"></i>Success Stories</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mobile-dropdown-wrapper">
+                    <button class="mobile-dropdown-toggle text-[14px] font-semibold text-gray-900" type="button">
+                        Resources <i class="fas fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="mobile-dropdown-content">
+                        <div class="mobile-dropdown-inner">
+                            <a href="jobroadmap.html"><i class="fas fa-map-marked-alt"></i>Roadmap</a>
                             <a href="blog.html"><i class="fas fa-blog"></i>Blog</a>
                         </div>
                     </div>
                 </div>
 
-                
-
-
-                <button onclick="openCallbackModal()" class="block w-full text-center bg-blue-600 text-white py-2.5 rounded-lg text-[13px] font-semibold mt-6 hover:bg-blue-700 transition-all shadow-md">
-                    Request Callback
-                </button>
+                <a href="contactus.html" class="block w-full text-center bg-blue-600 text-white py-2.5 rounded-lg text-[13px] font-semibold mt-6 hover:bg-blue-700 transition-all shadow-md">
+                    Contact Us
+                </a>
 
                 <a href="login.html" class="block w-full text-center border-2 border-blue-600 text-blue-600 py-2.5 rounded-lg text-[13px] font-semibold mt-3 hover:bg-blue-50 transition-all">Login</a>
             </div>
@@ -1292,8 +1389,7 @@
             <div class="founders-grid">
                 <div class="founder-card">
                     <div class="founder-image">
-                        <!-- <img src="path/to/hari-krishna.jpg" alt="Cheruku Hari Krishna"> -->
-                        <div class="founder-image-placeholder">HK</div>
+                        <img src="images/hari-devops.webp" alt="Cheruku Hari Krishna">
                     </div>
                     
                     <h3 class="founder-name">Cheruku Hari Krishna</h3>
@@ -1312,8 +1408,7 @@
 
                 <div class="founder-card">
                     <div class="founder-image">
-                        <!-- <img src="path/to/arjun-thumati.jpg" alt="Arjun Thumati"> -->
-                        <div class="founder-image-placeholder">AT</div>
+                        <img src="images/arjun-java.webp" alt="Arjun Thumati">
                     </div>
                     
                     <h3 class="founder-name">Arjun Thumati</h3>
@@ -1583,78 +1678,118 @@
     </section>
 
 <!-- Footer -->
-<!-- Footer -->
-<footer class="bg-gray-900 text-white py-12 lg:py-16">
+<footer class="bg-[#0d1b2a] text-white py-12 lg:py-16">
     <div class="max-w-7xl mx-auto px-4 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8 mb-8">
             
-            <div>
-                <img src="logo.png" alt="Blujay" class="h-10 mb-4" loading="lazy">
-                <p class="text-[13px] text-gray-400 leading-relaxed">
-                    Empowering 1 Million IT Careers!
-                </p>
-            </div>
-
-            <div>
-                <h4 class="text-[15px] font-bold mb-4">Quick Links</h4>
-                <ul class="space-y-2 text-[13px]">
-                    <li><a href="profilepushing.html" class="text-gray-400 hover:text-white transition-colors">Profile Pushing</a></li>
-                    <li><a href="jobsupport.html" class="text-gray-400 hover:text-white transition-colors">Job Support</a></li>
-                    <li><a href="jobroadmap.html" class="text-gray-400 hover:text-white transition-colors">Job Roadmap</a></li>
-                    <li><a href="aboutus.html" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
-                    <li><a href="blog.html" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="text-[15px] font-bold mb-4">Offerings</h4>
-                <ul class="space-y-2 text-[13px]">
-                    <li><a href="courses.html" class="text-gray-400 hover:text-white transition-colors">Courses-Recorded</a></li>
-                    <li><a href="courses-online.html" class="text-gray-400 hover:text-white transition-colors">Courses-Online</a></li>
-                    <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
-                     
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="text-[15px] font-bold mb-4">Contact Us</h4>
-                <ul class="space-y-3 text-[13px]">
-                    <li class="flex items-center gap-2 text-gray-400">
-                        <i class="fas fa-phone text-blue-600"></i>
-                        <span>+91 96187 21797</span>
-                    </li>
-                    <li class="flex items-center gap-2 text-gray-400">
-                        <i class="fas fa-envelope text-blue-600"></i>
-                        <span>blujaytechnlogies@gmail.com</span>
-                    </li>
-                    <li class="flex items-center gap-2 text-gray-400">
-                        <i class="fas fa-map-marker-alt text-blue-600"></i>
-                        <span>HMDA MYTRIVANAM BUILDING, 502, Kumar Basti, Srinivasa Nagar, Ameerpet, Hyderabad, Telangana 500016</span>
-                    </li>
-                </ul>
-
-                <div class="flex gap-3 mt-4">
-                    <a href="https://linkedin.com/company/blujay-technologies" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all hover:scale-110">
-                        <i class="fab fa-linkedin text-[14px]"></i>
-                    </a>
-                    <a href="https://instagram.com/blujaytech" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all hover:scale-110">
-                        <i class="fab fa-instagram text-[14px]"></i>
-                    </a>
-                    <a href="https://facebook.com/blujaytechnologies" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all hover:scale-110">
-                        <i class="fab fa-facebook text-[14px]"></i>
-                    </a>
-                    <a href="https://youtube.com/@blujaytech" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all hover:scale-110">
-                        <i class="fab fa-youtube text-[14px]"></i>
-                    </a>
+            <!-- Company Info -->
+            <div class="lg:col-span-1 text-center lg:text-left">
+                <div class="flex items-center justify-center lg:justify-start gap-3 mb-4">
+                    <img src="logo.png" alt="Blujay Technologies" class="h-10 w-auto">
                 </div>
+                <p class="text-sm text-gray-400 leading-relaxed mb-4">
+                    Empowering careers and businesses through quality IT education and professional digital services.
+                </p>
+                <div class="space-y-2 text-sm text-gray-400">
+                    <div class="flex items-start gap-2 justify-center lg:justify-start">
+                        <i class="fas fa-map-marker-alt mt-1 flex-shrink-0"></i>
+                        <span>Ameerpet, Hyderabad, India</span>
+                    </div>
+                    <div class="flex items-center gap-2 justify-center lg:justify-start">
+                        <i class="fas fa-phone"></i>
+                        <span>+91 96187 21797</span>
+                    </div>
+                    <div class="flex items-center gap-2 justify-center lg:justify-start">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@blujaytech.com</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Courses -->
+            <div class="text-center lg:text-left">
+                <h4 class="text-base font-semibold mb-4">Courses</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="all-courses.html" class="hover:text-white transition-colors">Full Stack Development</a></li>
+                    <li><a href="all-courses.html" class="hover:text-white transition-colors">Data Science</a></li>
+                    <li><a href="all-courses.html" class="hover:text-white transition-colors">Cloud Computing</a></li>
+                    <li><a href="all-courses.html" class="hover:text-white transition-colors">Digital Marketing</a></li>
+                    <li><a href="all-courses.html" class="hover:text-white transition-colors">All Courses</a></li>
+                </ul>
+            </div>
+
+            <!-- Career Support -->
+            <div class="text-center lg:text-left">
+                <h4 class="text-base font-semibold mb-4">Career Support</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="profilepushing.html" class="hover:text-white transition-colors">Profile Pushing</a></li>
+                    <li><a href="jobsupport.html" class="hover:text-white transition-colors">Job Support</a></li>
+                    <li><a href="jobroadmap.html" class="hover:text-white transition-colors">Interview Preparation</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Placement Assistance</a></li>
+                </ul>
+            </div>
+
+            <!-- Services -->
+            <div class="text-center lg:text-left">
+                <h4 class="text-base font-semibold mb-4">Services</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="services.html" class="hover:text-white transition-colors">Digital Marketing</a></li>
+                    <li><a href="services.html" class="hover:text-white transition-colors">Web Development</a></li>
+                    <li><a href="services.html" class="hover:text-white transition-colors">SEO Services</a></li>
+                    <li><a href="services.html" class="hover:text-white transition-colors">Custom Solutions</a></li>
+                </ul>
+            </div>
+
+            <!-- Company -->
+            <div class="text-center lg:text-left">
+                <h4 class="text-base font-semibold mb-4">Company</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="aboutus.html" class="hover:text-white transition-colors">About Us</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+                    <li><a href="blog.html" class="hover:text-white transition-colors">Blog</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Resources -->
+            <div class="text-center lg:text-left">
+                <h4 class="text-base font-semibold mb-4">Resources</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="#" class="hover:text-white transition-colors">Success Stories</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Community</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">FAQs</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Terms & Privacy</a></li>
+                </ul>
             </div>
 
         </div>
 
-        <div class="border-t border-gray-800 pt-6 text-center">
-            <p class="text-[12px] text-gray-500">
-                © 2020 Blujay Technologies. All rights reserved. | Privacy Policy | Terms & Conditions
-            </p>
+        <!-- Bottom Section -->
+        <div class="border-t border-gray-800 pt-6">
+            <div class="flex flex-col lg:flex-row justify-between items-center gap-4">
+                <p class="text-xs text-gray-500 text-center lg:text-left">
+                    © 2026 Blujay Technologies. All rights reserved.
+                </p>
+                
+                <!-- Social Media Links -->
+                <div class="flex gap-3">
+                    <a href="https://facebook.com/blujaytechnologies" target="_blank" rel="noopener noreferrer" class="w-8 h-8 flex items-center justify-center hover:text-blue-500 transition-colors">
+                        <i class="fab fa-facebook text-base"></i>
+                    </a>
+                    <a href="https://twitter.com/blujaytech" target="_blank" rel="noopener noreferrer" class="w-8 h-8 flex items-center justify-center hover:text-blue-400 transition-colors">
+                        <i class="fab fa-twitter text-base"></i>
+                    </a>
+                    <a href="https://linkedin.com/company/blujay-technologies" target="_blank" rel="noopener noreferrer" class="w-8 h-8 flex items-center justify-center hover:text-blue-600 transition-colors">
+                        <i class="fab fa-linkedin text-base"></i>
+                    </a>
+                    <a href="https://instagram.com/blujaytech" target="_blank" rel="noopener noreferrer" class="w-8 h-8 flex items-center justify-center hover:text-pink-500 transition-colors">
+                        <i class="fab fa-instagram text-base"></i>
+                    </a>
+                    <a href="https://youtube.com/@blujaytech" target="_blank" rel="noopener noreferrer" class="w-8 h-8 flex items-center justify-center hover:text-red-500 transition-colors">
+                        <i class="fab fa-youtube text-base"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </footer>
@@ -1665,7 +1800,7 @@
         
         <div class="flex flex-col lg:flex-row max-h-[85vh] overflow-visible">
             <!-- Left Side - Branding Section (Desktop/Tablet) -->
-            <div class="hidden md:flex md:w-[45%] lg:w-[40%] bg-gradient-to-br from-[#0057A0] via-[#0057A0] to-[#00447C] text-white p-6 lg:p-8 flex-col justify-between relative overflow-hidden">
+            <div class="hidden md:flex md:w-[45%] lg:w-[40%] bg-gradient-to-br from-[#1D5D7F] via-[#1D5D7F] to-[#144A66] text-white p-6 lg:p-8 flex-col justify-between relative overflow-hidden">
                 <!-- Background Pattern -->
                 <div class="absolute inset-0 opacity-10">
                     <div class="absolute top-0 right-0 w-48 h-48 bg-white rounded-full -mr-24 -mt-24"></div>
@@ -1682,7 +1817,7 @@
                     
                     <div class="mt-4">
                         <p class="text-[12px] text-blue-50 leading-relaxed">
-                            We carefully listen to your app requirements, thoroughly analyze them, and recommend the most effective approach for your development needs.
+                            Helping 1 Million People To Build Their Future in IT
                         </p>
                     </div>
                 </div>
@@ -1693,11 +1828,11 @@
                         <div class="space-y-1.5">
                             <div class="flex items-center gap-2 text-[12px]">
                                 <i class="fas fa-phone text-white text-opacity-80 text-[11px]"></i>
-                                <span>+91 98765 43210</span>
+                                <span>+91 9618 721 797</span>
                             </div>
                             <div class="flex items-center gap-2 text-[12px]">
                                 <i class="fas fa-envelope text-white text-opacity-80 text-[11px]"></i>
-                                <span>info@blujay.tech</span>
+                                <span>info@blujaytech.com</span>
                             </div>
                         </div>
                     </div>
@@ -1707,7 +1842,7 @@
             <!-- Right Side - Form Section -->
             <div class="w-full md:w-[55%] lg:w-[60%] relative bg-white max-h-[85vh] md:max-h-none overflow-visible">
                 <!-- Mobile Header -->
-                <div class="md:hidden bg-gradient-to-r from-[#0057A0] to-[#00447C] text-white p-5 relative">
+                <div class="md:hidden bg-gradient-to-r from-[#1D5D7F] to-[#144A66] text-white p-5 relative">
                     <button onclick="closeCallbackModal()" class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full hover:bg-white hover:bg-opacity-20 transition-all">
                         <i class="fas fa-times text-[16px]"></i>
                     </button>
@@ -1735,21 +1870,21 @@
                     <div>
                         <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Full Name *</label>
                         <input type="text" name="name" required 
-                            class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0057A0] focus:border-[#0057A0] outline-none text-[13px] lg:text-[14px] transition-all"
+                            class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D5D7F] focus:border-[#1D5D7F] outline-none text-[13px] lg:text-[14px] transition-all"
                             placeholder="John Doe">
                     </div>
 
                     <div>
                         <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Email Address *</label>
                         <input type="email" name="email" required 
-                            class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0057A0] focus:border-[#0057A0] outline-none text-[13px] lg:text-[14px] transition-all"
+                            class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D5D7F] focus:border-[#1D5D7F] outline-none text-[13px] lg:text-[14px] transition-all"
                             placeholder="john@example.com">
                     </div>
 
                     <div>
                         <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Phone Number *</label>
                         <input type="tel" name="phone" required 
-                            class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0057A0] focus:border-[#0057A0] outline-none text-[13px] lg:text-[14px] transition-all"
+                            class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D5D7F] focus:border-[#1D5D7F] outline-none text-[13px] lg:text-[14px] transition-all"
                             placeholder="+91 XXXXX XXXXX">
                     </div>
 
@@ -1795,7 +1930,7 @@
 
                     <!-- Submit Button -->
                     <button type="submit" id="submitBtn"
-                        class="w-full bg-[#0057A0] text-white py-2.5 lg:py-3 rounded-lg font-semibold text-[14px] lg:text-[15px] hover:bg-[#00447C] transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 mt-4 lg:mt-5">
+                        class="w-full bg-[#1D5D7F] text-white py-2.5 lg:py-3 rounded-lg font-semibold text-[14px] lg:text-[15px] hover:bg-[#144A66] transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 mt-4 lg:mt-5">
                         <span>Submit Now</span>
                         <i class="fas fa-arrow-right text-[12px]"></i>
                     </button>
@@ -2025,7 +2160,33 @@ document.getElementById('callbackForm')?.addEventListener('submit', async functi
         submitBtn.querySelector('span').textContent = 'Submit Now';
     }
 });
+
+// ===== WHATSAPP FLOATING BUTTON =====
+const whatsappBtn = document.querySelector('.whatsapp-float');
+
+// Show WhatsApp button immediately after page loads
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        whatsappBtn.classList.add('show');
+    }, 500);
+});
+
+// Keep it visible while scrolling
+window.addEventListener('scroll', () => {
+    const scrollPosition = window.pageYOffset;
+    
+    if (scrollPosition > 100) {
+        whatsappBtn.classList.add('show');
+    } else {
+        whatsappBtn.classList.add('show'); // Always show after initial load
+    }
+});
 </script>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/919618721797" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
 
 </body>
 </html>

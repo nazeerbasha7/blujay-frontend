@@ -1,0 +1,30 @@
+<!-- ============================================ -->
+<!-- EJS Layout: Main Layout Template -->
+<!-- Path: frontend/views/layouts/main.ejs -->
+<!-- ============================================ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <!-- Header/Navbar -->
+    <%- include('../partials/header') %>
+    
+    <!-- Main Content -->
+    <main>
+        <%- body %>
+    </main>
+    
+    <!-- Footer -->
+    <%- include('../partials/footer') %>
+    
+    <!-- GA4 Analytics -->
+    <script src="/js/analytics.js"></script>
+    
+    <!-- Page-specific scripts -->
+    <% if (typeof pageScript !== 'undefined') { %>
+        <%- pageScript %>
+    <% } %>
+</body>
+</html>

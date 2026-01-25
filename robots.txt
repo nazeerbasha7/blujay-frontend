@@ -1,0 +1,30 @@
+# robots.txt for Blujay Technologies
+# This file tells search engines which pages to crawl and which to avoid
+
+# Allow all search engines to crawl the entire site
+User-agent: *
+Allow: /
+
+# Disallow admin, API, and dashboard routes (private areas)
+Disallow: /admin/
+Disallow: /api/
+Disallow: /dashboard/
+Disallow: /my-learning/
+Disallow: /course-player/
+
+# Allow specific exceptions
+Allow: /api/courses
+Allow: /api/blogs
+
+# Sitemap location - helps search engines discover all pages
+Sitemap: https://blujaytech.com/sitemap.xml
+
+# Crawl-delay (optional - prevents server overload)
+# Crawl-delay: 1
+
+# Additional rules for specific bots (optional)
+# User-agent: Googlebot
+# Allow: /
+
+# User-agent: Bingbot
+# Allow: /

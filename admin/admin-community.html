@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Portal Admin - Blujay Tech</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        
+        :root {
+            --blujay-primary: #0057A0;
+            --blujay-hover: #00447C;
+            --blujay-light: #E6F1FB;
+            --blujay-dark: #00345E;
+            --blujay-gradient: linear-gradient(135deg, #0057A0 0%, #0084D6 100%);
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, var(--blujay-light) 100%);
+            min-height: 100vh;
+        }
+        
+        .admin-header {
+            background: var(--blujay-gradient);
+            box-shadow: 0 4px 20px rgba(0, 87, 160, 0.2);
+        }
+        
+        .stat-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+            border-radius: 16px;
+            border-left: 4px solid var(--blujay-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 32px rgba(0, 87, 160, 0.15);
+        }
+        
+        .profile-card {
+            transition: all 0.3s ease;
+            background: white;
+            border-radius: 16px;
+            border: 2px solid transparent;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        }
+        
+        .profile-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 87, 160, 0.12);
+            border-color: var(--blujay-primary);
+        }
+        
+        .tab-button {
+            transition: all 0.3s ease;
+            border-radius: 12px 12px 0 0;
+            padding: 14px 28px;
+            font-weight: 600;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab-button.active {
+            background: white;
+            color: var(--blujay-primary);
+            border-bottom-color: var(--blujay-primary);
+        }
+        
+        .tab-button:not(.active) {
+            background: rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .tab-button:not(.active):hover {
+            background: rgba(255, 255, 255, 0.5);
+            color: white;
+        }
+        
+        .btn-blujay {
+            background: var(--blujay-gradient);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            box-shadow: 0 4px 16px rgba(0, 87, 160, 0.25);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-blujay:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 87, 160, 0.35);
+        }
+        
+        .badge-giver {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            color: white;
+        }
+        
+        .badge-receiver {
+            background: linear-gradient(135deg, #0057A0 0%, #0084D6 100%);
+            color: white;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in { animation: fadeIn 0.5s ease-out; }
+        
+        @media (max-width: 768px) {
+            .stat-card { margin-bottom: 1rem; }
+            .profile-card { padding: 1rem !important; }
+            .tab-button { padding: 10px 16px; font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Navigation Header -->
+    <nav class="admin-header text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <div class="flex items-center gap-3">
+                    <img src="../images/logo.webp" alt="Blujay Tech" class="h-12">
+                    <div>
+                        <h1 class="text-xl sm:text-2xl font-bold">Community Portal - Admin</h1>
+                        <p class="text-xs sm:text-sm opacity-90">Verification & Management Dashboard</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3 sm:gap-4">
+                    <a href="../admin/admin-dashboard.html" class="text-white hover:text-blue-100 transition flex items-center gap-2 text-sm sm:text-base">
+                        <i class="fas fa-home"></i> <span class="hidden sm:inline">Main Dashboard</span>
+                    </a>
+                    <button id="logoutBtn" class="bg-red-500 hover:bg-red-600 px-3 sm:px-4 py-2 rounded-lg transition flex items-center gap-2 text-sm sm:text-base font-semibold">
+                        <i class="fas fa-sign-out-alt"></i> <span class="hidden sm:inline">Logout</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tabs Navigation -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex gap-2 overflow-x-auto pb-0">
+                <button id="tabProfiles" class="tab-button active">
+                    <i class="fas fa-user-check mr-2"></i>Pending Verifications
+                </button>
+                <button id="tabAvailable" class="tab-button">
+                    <i class="fas fa-users mr-2"></i>Verified Profiles
+                </button>
+                <button id="tabConnections" class="tab-button">
+                    <i class="fas fa-handshake mr-2"></i>Pending Approvals
+                </button>
+                <button id="tabLogs" class="tab-button">
+                    <i class="fas fa-history mr-2"></i>Audit Logs
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Pending Profiles Tab -->
+        <div id="contentProfiles">
+            <!-- Stats Overview -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 fade-in">
+                <div class="stat-card p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-sm font-medium mb-1">Pending Receivers</p>
+                            <p id="receiversCount" class="text-3xl font-bold text-blue-600">0</p>
+                        </div>
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-user-graduate text-2xl text-blue-600"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stat-card p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-sm font-medium mb-1">Pending Givers</p>
+                            <p id="giversCount" class="text-3xl font-bold text-green-600">0</p>
+                        </div>
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-hands-helping text-2xl text-green-600"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stat-card p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-sm font-medium mb-1">Total Pending</p>
+                            <p id="totalPendingCount" class="text-3xl font-bold text-orange-600">0</p>
+                        </div>
+                        <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-clock text-2xl text-orange-600"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 fade-in">
+                <div class="flex items-center justify-between flex-wrap gap-4 mb-6">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800">
+                        <i class="fas fa-clipboard-check text-blue-600 mr-2"></i>Pending Profile Verifications
+                    </h2>
+                    <div class="flex gap-3">
+                        <button id="filterAll" class="px-4 py-2 btn-blujay text-sm">All</button>
+                        <button id="filterReceiver" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition text-sm font-semibold">Receivers</button>
+                        <button id="filterGiver" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition text-sm font-semibold">Givers</button>
+                    </div>
+                </div>
+                
+                <!-- Receivers Section -->
+                <div id="receiversSection" class="mb-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                        <i class="fas fa-user-graduate text-blue-600"></i>
+                        <span>Job Seekers (Receivers)</span>
+                    </h3>
+                    <div id="receiversList" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- Receiver profiles will be loaded here -->
+                    </div>
+                    <div id="noReceivers" class="text-center py-12 text-gray-400 hidden">
+                        <i class="fas fa-inbox text-5xl mb-3"></i>
+                        <p class="text-lg">No pending receiver profiles</p>
+                    </div>
+                </div>
+
+                <!-- Givers Section -->
+                <div id="giversSection">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                        <i class="fas fa-hands-helping text-green-600"></i>
+                        <span>Professional Helpers (Givers)</span>
+                    </h3>
+                    <div id="giversList" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- Giver profiles will be loaded here -->
+                    </div>
+                    <div id="noGivers" class="text-center py-12 text-gray-400 hidden">
+                        <i class="fas fa-inbox text-5xl mb-3"></i>
+                        <p class="text-lg">No pending giver profiles</p>
+                    </div>
+                </div>
+
+                <div id="noProfiles" class="text-center py-16 text-gray-500 hidden">
+                    <i class="fas fa-check-double text-7xl text-green-300 mb-4"></i>
+                    <p class="text-2xl font-bold mb-2">All Caught Up!</p>
+                    <p class="text-gray-400">No pending profile verifications at the moment.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Available Profiles Tab (Verified) -->
+        <div id="contentAvailable" class="hidden">
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 fade-in">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
+                    <i class="fas fa-check-circle text-green-600 mr-2"></i>Verified Profiles
+                </h2>
+                <p class="text-gray-600 mb-6">All active and verified community members</p>
+                
+                <!-- Available Receivers Section -->
+                <div class="mb-10">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-bold text-gray-800 flex items-center gap-2">
+                            <i class="fas fa-user-graduate text-blue-600"></i>
+                            <span>Verified Job Seekers</span>
+                        </h3>
+                        <span id="availableReceiversCount" class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full font-bold">0</span>
+                    </div>
+                    <div id="availableReceiversList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Receiver profiles will be loaded here -->
+                    </div>
+                    <div id="noAvailableReceivers" class="text-center py-12 text-gray-400 hidden">
+                        <i class="fas fa-user-slash text-5xl mb-3"></i>
+                        <p>No verified receivers yet</p>
+                    </div>
+                </div>
+
+                <!-- Available Givers Section -->
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-bold text-gray-800 flex items-center gap-2">
+                            <i class="fas fa-hands-helping text-green-600"></i>
+                            <span>Verified Professional Helpers</span>
+                        </h3>
+                        <span id="availableGiversCount" class="px-4 py-2 bg-green-100 text-green-700 rounded-full font-bold">0</span>
+                    </div>
+                    <div id="availableGiversList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Giver profiles will be loaded here -->
+                    </div>
+                    <div id="noAvailableGivers" class="text-center py-12 text-gray-400 hidden">
+                        <i class="fas fa-user-slash text-5xl mb-3"></i>
+                        <p>No verified givers yet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pending Connections Tab -->
+        <div id="contentConnections" class="hidden">
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 fade-in">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
+                    <i class="fas fa-handshake text-blue-600 mr-2"></i>Connection Approvals
+                </h2>
+                <p class="text-gray-600 mb-6">User-accepted connections awaiting admin approval to reveal contact details</p>
+                <div id="connectionsList" class="space-y-6">
+                    <!-- Connections will be loaded here -->
+                </div>
+                <div id="noConnections" class="text-center py-16 text-gray-500 hidden">
+                    <i class="fas fa-check-double text-7xl text-green-300 mb-4"></i>
+                    <p class="text-2xl font-bold mb-2">All Clear!</p>
+                    <p class="text-gray-400">No pending connection approvals at the moment.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logs Tab -->
+        <div id="contentLogs" class="hidden">
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 fade-in">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
+                    <i class="fas fa-history text-purple-600 mr-2"></i>Contact Reveal Audit Logs
+                </h2>
+                <p class="text-gray-600 mb-6">Complete history of mobile number revelations (last 100 entries)</p>
+                <div id="logsList" class="overflow-x-auto">
+                    <!-- Logs will be loaded here -->
+                </div>
+                <div id="noLogs" class="text-center py-16 text-gray-500 hidden">
+                    <i class="fas fa-file-alt text-7xl text-gray-300 mb-4"></i>
+                    <p class="text-2xl font-bold mb-2">No Logs Yet</p>
+                    <p class="text-gray-400">Contact revelation logs will appear here.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Check admin authentication
+        document.addEventListener('DOMContentLoaded', () => {
+            const authToken = localStorage.getItem('authToken');
+            const userRole = localStorage.getItem('userRole');
+            
+            if (!authToken || !userRole || userRole !== 'admin') {
+                alert('Access denied. Admin only.');
+                window.location.href = '../login.html';
+                return;
+            }
+
+            loadPendingProfiles();
+
+            // Tab switching
+            document.getElementById('tabProfiles').addEventListener('click', () => switchTab('Profiles'));
+            document.getElementById('tabAvailable').addEventListener('click', () => switchTab('Available'));
+            document.getElementById('tabConnections').addEventListener('click', () => switchTab('Connections'));
+            document.getElementById('tabLogs').addEventListener('click', () => switchTab('Logs'));
+
+            // Filter buttons
+            document.getElementById('filterAll').addEventListener('click', () => loadPendingProfiles());
+            document.getElementById('filterReceiver').addEventListener('click', () => loadPendingProfiles('RECEIVER'));
+            document.getElementById('filterGiver').addEventListener('click', () => loadPendingProfiles('GIVER'));
+
+            // Logout
+            document.getElementById('logoutBtn').addEventListener('click', () => {
+                localStorage.clear();
+                window.location.href = '../login.html';
+            });
+        });
+
+        function switchTab(tab) {
+            // Hide all tabs
+            ['Profiles', 'Available', 'Connections', 'Logs'].forEach(t => {
+                document.getElementById(`content${t}`).classList.add('hidden');
+                document.getElementById(`tab${t}`).classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(`content${tab}`).classList.remove('hidden');
+            document.getElementById(`tab${tab}`).classList.add('active');
+
+            // Load data
+            if (tab === 'Available') {
+                loadAvailableProfiles();
+            } else if (tab === 'Connections') {
+                loadPendingConnections();
+            } else if (tab === 'Logs') {
+                loadContactLogs();
+            }
+        }
+
+        async function loadPendingProfiles(role = null) {
+            const url = 'http://localhost:5000/api/admin/community/profiles/pending';
+            
+            try {
+                const response = await fetch(url, {
+                    headers: { 'Authorization': `Bearer ${localStorage.getItem('authToken')}` }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    const receivers = data.pendingProfiles.receivers || [];
+                    const givers = data.pendingProfiles.givers || [];
+
+                    // Update counts
+                    document.getElementById('receiversCount').textContent = receivers.length;
+                    document.getElementById('giversCount').textContent = givers.length;
+                    document.getElementById('totalPendingCount').textContent = receivers.length + givers.length;
+
+                    const showReceivers = !role || role === 'RECEIVER';
+                    const showGivers = !role || role === 'GIVER';
+
+                    // Render Receivers
+                    const receiversList = document.getElementById('receiversList');
+                    const noReceivers = document.getElementById('noReceivers');
+                    const receiversSection = document.getElementById('receiversSection');
+                    
+                    receiversSection.style.display = showReceivers ? 'block' : 'none';
+                    
+                    if (showReceivers && receivers.length > 0) {
+                        receiversList.innerHTML = receivers.map(profile => renderProfileCard(profile)).join('');
+                        noReceivers.classList.add('hidden');
+                    } else if (showReceivers) {
+                        receiversList.innerHTML = '';
+                        noReceivers.classList.remove('hidden');
+                    }
+
+                    // Render Givers
+                    const giversList = document.getElementById('giversList');
+                    const noGivers = document.getElementById('noGivers');
+                    const giversSection = document.getElementById('giversSection');
+                    
+                    giversSection.style.display = showGivers ? 'block' : 'none';
+                    
+                    if (showGivers && givers.length > 0) {
+                        giversList.innerHTML = givers.map(profile => renderProfileCard(profile)).join('');
+                        noGivers.classList.add('hidden');
+                    } else if (showGivers) {
+                        giversList.innerHTML = '';
+                        noGivers.classList.remove('hidden');
+                    }
+
+                    const noProfiles = document.getElementById('noProfiles');
+                    if (receivers.length === 0 && givers.length === 0) {
+                        noProfiles.classList.remove('hidden');
+                        receiversSection.style.display = 'none';
+                        giversSection.style.display = 'none';
+                    } else {
+                        noProfiles.classList.add('hidden');
+                    }
+
+                    updateFilterButtons(role);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error loading profiles: ' + error.message);
+            }
+        }
+
+        function updateFilterButtons(activeFilter) {
+            const buttons = {
+                'filterAll': null,
+                'filterReceiver': 'RECEIVER',
+                'filterGiver': 'GIVER'
+            };
+
+            Object.keys(buttons).forEach(btnId => {
+                const btn = document.getElementById(btnId);
+                if (buttons[btnId] === activeFilter || (activeFilter === null && btnId === 'filterAll')) {
+                    btn.className = 'px-4 py-2 btn-blujay text-sm';
+                } else {
+                    btn.className = 'px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition text-sm font-semibold';
+                }
+            });
+        }
+
+        function renderProfileCard(profile) {
+            const isReceiver = profile.role === 'RECEIVER';
+            
+            return `
+                <div class="profile-card p-6">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="w-16 h-16 rounded-full ${isReceiver ? 'bg-blue-100' : 'bg-green-100'} flex items-center justify-center flex-shrink-0">
+                            <i class="fas ${isReceiver ? 'fa-user-graduate' : 'fa-hands-helping'} text-2xl ${isReceiver ? 'text-blue-600' : 'text-green-600'}"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">${profile.fullName}</h3>
+                            <p class="text-sm text-gray-600">${profile.email}</p>
+                            <p class="text-sm text-gray-500 font-mono">📱 ${profile.mobileNumber}</p>
+                            <span class="inline-block mt-2 px-3 py-1 rounded-full text-xs font-bold ${isReceiver ? 'badge-receiver' : 'badge-giver'}">
+                                ${profile.role}
+                            </span>
+                        </div>
+                    </div>
+
+                    ${isReceiver ? `
+                        <div class="grid grid-cols-2 gap-3 mb-4 text-sm">
+                            <div><strong>Current Role:</strong> ${profile.currentRole || 'N/A'}</div>
+                            <div><strong>Experience:</strong> ${profile.experienceYears || 0} yrs</div>
+                            <div><strong>Primary Skill:</strong> ${profile.primarySkill || 'N/A'}</div>
+                            <div><strong>Location:</strong> ${profile.currentLocation || 'N/A'}</div>
+                        </div>
+                    ` : `
+                        <div class="grid grid-cols-2 gap-3 mb-4 text-sm">
+                            <div><strong>Company:</strong> ${profile.companyName || 'N/A'}</div>
+                            <div><strong>Designation:</strong> ${profile.currentRole || 'N/A'}</div>
+                            <div><strong>Industry:</strong> ${profile.industry || 'N/A'}</div>
+                            <div><strong>Location:</strong> ${profile.location || 'N/A'}</div>
+                        </div>
+                    `}
+
+                    ${profile.skills && profile.skills.length > 0 ? `
+                        <div class="mb-4">
+                            <div class="flex flex-wrap gap-2">
+                                ${profile.skills.slice(0, 5).map(skill => 
+                                    `<span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-semibold">${skill}</span>`
+                                ).join('')}
+                                ${profile.skills.length > 5 ? `<span class="text-xs text-gray-400">+${profile.skills.length - 5} more</span>` : ''}
+                            </div>
+                        </div>
+                    ` : ''}
+
+                    ${profile.bio ? `<p class="text-sm text-gray-600 italic mb-4 p-3 bg-gray-50 rounded-lg">"${profile.bio}"</p>` : ''}
+
+                    <div class="flex gap-3 mt-4">
+                        <button onclick="verifyProfile('${profile._id}', '${profile.role}')" 
+                            class="flex-1 bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-lg hover:shadow-lg font-semibold transition">
+                            <i class="fas fa-check mr-2"></i>Verify Profile
+                        </button>
+                        <button onclick="rejectProfile('${profile._id}', '${profile.role}')" 
+                            class="flex-1 bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-3 rounded-lg hover:shadow-lg font-semibold transition">
+                            <i class="fas fa-times mr-2"></i>Reject Profile
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        async function verifyProfile(profileId, role) {
+            const notes = prompt('Add verification notes (optional):');
+            
+            try {
+                const response = await fetch(`http://localhost:5000/api/admin/community/profiles/${profileId}/verify`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ notes })
+                });
+
+                if (response.ok) {
+                    alert('✅ Profile verified successfully!');
+                    loadPendingProfiles();
+                } else {
+                    const data = await response.json();
+                    alert(data.error || 'Failed to verify profile');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to verify profile');
+            }
+        }
+
+        async function rejectProfile(profileId, role) {
+            const reason = prompt('Rejection reason (required):');
+            if (!reason) return;
+            
+            try {
+                const response = await fetch(`http://localhost:5000/api/admin/community/profiles/${profileId}/reject`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ reason })
+                });
+
+                if (response.ok) {
+                    alert('Profile rejected.');
+                    loadPendingProfiles();
+                } else {
+                    const data = await response.json();
+                    alert(data.error || 'Failed to reject profile');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to reject profile');
+            }
+        }
+
+        async function loadAvailableProfiles() {
+            try {
+                const receiversRes = await fetch('http://localhost:5000/api/community/profiles?type=RECEIVER&status=VERIFIED', {
+                    headers: { 'Authorization': `Bearer ${localStorage.getItem('authToken')}` }
+                });
+
+                const giversRes = await fetch('http://localhost:5000/api/community/profiles?type=GIVER&status=VERIFIED', {
+                    headers: { 'Authorization': `Bearer ${localStorage.getItem('authToken')}` }
+                });
+
+                if (receiversRes.ok && giversRes.ok) {
+                    const receiversData = await receiversRes.json();
+                    const giversData = await giversRes.json();
+                    
+                    const receivers = receiversData.profiles || [];
+                    const givers = giversData.profiles || [];
+
+                    document.getElementById('availableReceiversCount').textContent = receivers.length;
+                    document.getElementById('availableGiversCount').textContent = givers.length;
+
+                    const receiversList = document.getElementById('availableReceiversList');
+                    const noReceivers = document.getElementById('noAvailableReceivers');
+                    
+                    if (receivers.length > 0) {
+                        receiversList.innerHTML = receivers.map(profile => renderAvailableCard(profile, 'RECEIVER')).join('');
+                        noReceivers.classList.add('hidden');
+                    } else {
+                        receiversList.innerHTML = '';
+                        noReceivers.classList.remove('hidden');
+                    }
+
+                    const giversList = document.getElementById('availableGiversList');
+                    const noGivers = document.getElementById('noAvailableGivers');
+                    
+                    if (givers.length > 0) {
+                        giversList.innerHTML = givers.map(profile => renderAvailableCard(profile, 'GIVER')).join('');
+                        noGivers.classList.add('hidden');
+                    } else {
+                        giversList.innerHTML = '';
+                        noGivers.classList.remove('hidden');
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading available profiles:', error);
+            }
+        }
+
+        function renderAvailableCard(profile, type) {
+            const isReceiver = type === 'RECEIVER';
+            
+            return `
+                <div class="profile-card p-4">
+                    <div class="flex items-start gap-3 mb-3">
+                        <div class="w-12 h-12 rounded-full ${isReceiver ? 'bg-blue-100' : 'bg-green-100'} flex items-center justify-center">
+                            <i class="fas ${isReceiver ? 'fa-user-graduate' : 'fa-hands-helping'} text-xl ${isReceiver ? 'text-blue-600' : 'text-green-600'}"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-gray-800">${profile.userId?.name || profile.fullName || 'Unknown'}</h4>
+                            <p class="text-xs text-gray-500">${profile.userId?.email || profile.email || 'N/A'}</p>
+                            <span class="inline-block mt-1 px-2 py-0.5 rounded-full text-xs font-bold ${isReceiver ? 'badge-receiver' : 'badge-giver'}">
+                                ${type}
+                            </span>
+                        </div>
+                    </div>
+
+                    ${isReceiver ? `
+                        <div class="text-sm space-y-1 text-gray-700">
+                            <p><strong>Role:</strong> ${profile.currentRole || 'N/A'}</p>
+                            <p><strong>Experience:</strong> ${profile.experienceYears || 0} yrs</p>
+                            <p><strong>Location:</strong> ${profile.location || 'N/A'}</p>
+                        </div>
+                    ` : `
+                        <div class="text-sm space-y-1 text-gray-700">
+                            <p><strong>Company:</strong> ${profile.companyName || 'N/A'}</p>
+                            <p><strong>Industry:</strong> ${profile.industry || 'N/A'}</p>
+                            <p><strong>Location:</strong> ${profile.location || 'N/A'}</p>
+                        </div>
+                    `}
+
+                    ${profile.skills && profile.skills.length > 0 ? `
+                        <div class="mt-2 flex flex-wrap gap-1">
+                            ${profile.skills.slice(0, 3).map(skill => 
+                                `<span class="px-2 py-0.5 bg-gray-100 text-gray-600 rounded text-xs">${skill}</span>`
+                            ).join('')}
+                            ${profile.skills.length > 3 ? `<span class="text-xs text-gray-400">+${profile.skills.length - 3}</span>` : ''}
+                        </div>
+                    ` : ''}
+
+                    <div class="mt-3 pt-3 border-t border-gray-200 text-xs text-green-600 flex items-center gap-2">
+                        <i class="fas fa-check-circle"></i> Verified
+                    </div>
+                </div>
+            `;
+        }
+
+        async function loadPendingConnections() {
+            try {
+                const response = await fetch('http://localhost:5000/api/admin/community/connections/pending', {
+                    headers: { 'Authorization': `Bearer ${localStorage.getItem('authToken')}` }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    const listDiv = document.getElementById('connectionsList');
+                    const noMsg = document.getElementById('noConnections');
+
+                    if (!data.connections || data.connections.length === 0) {
+                        listDiv.innerHTML = '';
+                        noMsg.classList.remove('hidden');
+                        return;
+                    }
+
+                    noMsg.classList.add('hidden');
+                    listDiv.innerHTML = data.connections.map(conn => `
+                        <div class="profile-card p-6">
+                            <div class="grid md:grid-cols-2 gap-6 mb-4">
+                                <div class="border-r border-gray-200 pr-6">
+                                    <h4 class="font-bold text-lg mb-2 flex items-center gap-2">
+                                        <i class="fas fa-user text-blue-600"></i>
+                                        ${conn.sender.profile?.fullName || 'Unknown'}
+                                    </h4>
+                                    <p class="text-sm text-gray-700 mb-1">📧 ${conn.sender.profile?.email || 'N/A'}</p>
+                                    <p class="text-sm text-gray-700 mb-2">📱 ${conn.sender.profile?.mobileNumber || 'N/A'}</p>
+                                    <p class="text-sm text-gray-600">${conn.sender.profile?.currentRole || conn.sender.profile?.companyName || ''}</p>
+                                    <span class="inline-block mt-2 px-2 py-1 rounded-full text-xs font-bold ${conn.sender.role === 'RECEIVER' ? 'badge-receiver' : 'badge-giver'}">
+                                        ${conn.sender.role}
+                                    </span>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-2 flex items-center gap-2">
+                                        <i class="fas fa-user text-green-600"></i>
+                                        ${conn.receiver.profile?.fullName || 'Unknown'}
+                                    </h4>
+                                    <p class="text-sm text-gray-700 mb-1">📧 ${conn.receiver.profile?.email || 'N/A'}</p>
+                                    <p class="text-sm text-gray-700 mb-2">📱 ${conn.receiver.profile?.mobileNumber || 'N/A'}</p>
+                                    <p class="text-sm text-gray-600">${conn.receiver.profile?.currentRole || conn.receiver.profile?.companyName || ''}</p>
+                                    <span class="inline-block mt-2 px-2 py-1 rounded-full text-xs font-bold ${conn.receiver.role === 'RECEIVER' ? 'badge-receiver' : 'badge-giver'}">
+                                        ${conn.receiver.role}
+                                    </span>
+                                </div>
+                            </div>
+
+                            ${conn.message ? `<p class="text-sm text-gray-600 italic mb-4 p-3 bg-gray-50 rounded-lg">"${conn.message}"</p>` : ''}
+
+                            <p class="text-xs text-gray-500 mb-4">
+                                <i class="fas fa-clock mr-1"></i>
+                                Requested: ${new Date(conn.createdAt).toLocaleString()} | 
+                                Accepted: ${new Date(conn.userResponseAt).toLocaleString()}
+                            </p>
+
+                            <div class="flex gap-3">
+                                <button onclick="approveConnection('${conn._id}')" 
+                                    class="flex-1 bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-lg hover:shadow-lg font-semibold transition">
+                                    <i class="fas fa-check mr-2"></i>Approve & Reveal Contacts
+                                </button>
+                                <button onclick="rejectConnection('${conn._id}')" 
+                                    class="flex-1 bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-3 rounded-lg hover:shadow-lg font-semibold transition">
+                                    <i class="fas fa-times mr-2"></i>Reject Connection
+                                </button>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        async function approveConnection(requestId) {
+            if (!confirm('Approve this connection? Mobile numbers will be revealed to both users.')) return;
+
+            const adminNote = prompt('Add approval note (optional):');
+            
+            try {
+                const response = await fetch(`http://localhost:5000/api/admin/community/connections/${requestId}/approve`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ notes: adminNote })
+                });
+
+                if (response.ok) {
+                    alert('✅ Connection approved! Mobile numbers revealed to both users.');
+                    loadPendingConnections();
+                } else {
+                    const data = await response.json();
+                    alert(data.error || 'Failed to approve connection');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to approve connection');
+            }
+        }
+
+        async function rejectConnection(requestId) {
+            const adminNote = prompt('Rejection reason (required):');
+            if (!adminNote) return;
+            
+            try {
+                const response = await fetch(`http://localhost:5000/api/admin/community/connections/${requestId}/reject`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ reason: adminNote })
+                });
+
+                if (response.ok) {
+                    alert('Connection rejected.');
+                    loadPendingConnections();
+                } else {
+                    const data = await response.json();
+                    alert(data.error || 'Failed to reject connection');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to reject connection');
+            }
+        }
+
+        async function loadContactLogs() {
+            try {
+                const response = await fetch('http://localhost:5000/api/admin/community/logs/contact-reveals', {
+                    headers: { 'Authorization': `Bearer ${localStorage.getItem('authToken')}` }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    const listDiv = document.getElementById('logsList');
+                    const noMsg = document.getElementById('noLogs');
+
+                    if (data.logs.length === 0) {
+                        listDiv.innerHTML = '';
+                        noMsg.classList.remove('hidden');
+                        return;
+                    }
+
+                    noMsg.classList.add('hidden');
+                    listDiv.innerHTML = `
+                        <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                            <thead class="bg-gradient-to-r from-blue-600 to-blue-500 text-white">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-sm font-semibold">Date & Time</th>
+                                    <th class="px-4 py-3 text-left text-sm font-semibold">User 1</th>
+                                    <th class="px-4 py-3 text-left text-sm font-semibold">User 2</th>
+                                    <th class="px-4 py-3 text-left text-sm font-semibold">Approved By</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${data.logs.map((log, index) => `
+                                    <tr class="border-t ${index % 2 === 0 ? 'bg-gray-50' : ''}">
+                                        <td class="px-4 py-3 text-sm">${new Date(log.revealedAt).toLocaleString()}</td>
+                                        <td class="px-4 py-3 text-sm">
+                                            <div class="font-semibold">${log.user1Email}</div>
+                                            <div class="text-gray-500">${log.user1MobileNumber}</div>
+                                        </td>
+                                        <td class="px-4 py-3 text-sm">
+                                            <div class="font-semibold">${log.user2Email}</div>
+                                            <div class="text-gray-500">${log.user2MobileNumber}</div>
+                                        </td>
+                                        <td class="px-4 py-3 text-sm font-semibold text-blue-600">${log.approvedByAdminName}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+    </script>
+</body>
+</html>

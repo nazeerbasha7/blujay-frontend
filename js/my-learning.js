@@ -24,8 +24,11 @@ const db = firebase.firestore();
 // ============================================
 // BACKEND API CONFIGURATION
 // ============================================
-const API_URL = 'https://blujay-backend.onrender.com/api';
-//const API_URL = 'http://localhost:5000/api';
+// Smart API URL - Auto-detects environment
+const API_URL = window.API_CONFIG?.getApiUrl() || 
+    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+        ? 'http://localhost:5000/api' 
+        : 'https://blujay-backend.onrender.com/api');
 
 // ============================================
 // HELPER FUNCTION FOR AUTHENTICATED API CALLS
@@ -36,7 +39,7 @@ async function authenticatedFetch(endpoint, options = {}) {
     if (!token) {
         console.error('❌ No auth token found');
         alert('Session expired. Please login again.');
-        window.location.href = 'login.html';
+        window.location.href = 'login';
         return;
     }
     
@@ -56,7 +59,7 @@ async function authenticatedFetch(endpoint, options = {}) {
             console.error('❌ Authentication failed - token invalid');
             localStorage.clear();
             alert('Session expired. Please login again.');
-            window.location.href = 'login.html';
+            window.location.href = 'login';
             return null;
         }
         
@@ -85,7 +88,7 @@ async function checkAuthenticationStatus() {
     
     if (!token) {
         console.log('❌ No authentication token found, redirecting to login...');
-        window.location.href = 'login.html';
+        window.location.href = 'login';
         return false;
     }
     
@@ -103,7 +106,7 @@ async function checkAuthenticationStatus() {
         
     } catch (error) {
         console.error('❌ Auth check error:', error);
-        window.location.href = 'login.html';
+        window.location.href = 'login';
         return false;
     }
 }
@@ -160,7 +163,7 @@ auth.onAuthStateChanged(async (user) => {
     } else {
         console.log('❌ No Firebase user, redirecting to login...');
         setTimeout(() => {
-            window.location.href = 'login.html';
+            window.location.href = 'login';
         }, 500);
     }
 });
@@ -418,6 +421,7 @@ if (logoutBtn) {
     logoutBtn.addEventListener('click', () => {
         if (confirm('Are you sure you want to logout?')) {
             localStorage.clear();
+            sessionStorage.clear();
             
             auth.signOut()
                 .then(() => {

@@ -1,10 +1,109 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- ============================================ -->
+    <!-- Basic Meta Tags -->
+    <!-- ============================================ -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Blujay Technologies - Best Tech Courses with 100% Placement Support">
-    <title>Blujay - Best Tech Courses with Placement Support</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- SEO Meta Tags -->
+    <title>Helping 1 Million People To Build Their Future in IT | Blujay Technologies</title>
+    <meta name="description" content="Blujay Technologies offers top IT training courses in Hyderabad with 100% placement support. Learn Python, Java, DevOps, MERN Stack, AI/ML, and more from industry experts.">
+    <meta name="keywords" content="IT training Hyderabad, software courses Hyderabad, Python training, Java course, DevOps training, placement support, Blujay Technologies, best IT institute">
+    <meta name="author" content="Blujay Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://blujaytech.com/">
+
+    <!-- ============================================ -->
+    <!-- Open Graph Tags (Facebook, LinkedIn) -->
+    <!-- ============================================ -->
+    <meta property="og:title" content="Best IT Training Institute in Hyderabad | Blujay Technologies">
+    <meta property="og:description" content="Transform your career with expert-led IT training. Python, Java, DevOps, MERN Stack, AI/ML courses with 100% placement support.">
+    <meta property="og:image" content="https://blujaytech.com/images/og-home.jpg">
+    <meta property="og:url" content="https://blujaytech.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Blujay Technologies">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ============================================ -->
+    <!-- Twitter Card Tags -->
+    <!-- ============================================ -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Best IT Training Institute in Hyderabad | Blujay Technologies">
+    <meta name="twitter:description" content="Transform your career with expert-led IT training. Python, Java, DevOps, MERN Stack, AI/ML courses with 100% placement support.">
+    <meta name="twitter:image" content="https://blujaytech.com/images/og-home.jpg">
+
+    <!-- ============================================ -->
+    <!-- Favicon Links -->
+    <!-- ============================================ -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/logo.webp">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/logo.webp">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/logo.webp">
+
+    <!-- JSON-LD Structured Data (Schema.org) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "Blujay Technologies",
+      "alternateName": "Blujay Tech",
+      "description": "IT Training and Job Placement - Helping 1 Million People Build Their Future in IT. Premier institute in Hyderabad offering expert-led courses in Python, Java, DevOps, AI/ML, and more.",
+      "url": "https://blujaytech.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://blujaytech.com/images/logo.webp",
+        "width": "400",
+        "height": "400"
+      },
+      "image": "https://blujaytech.com/images/logo.webp",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "5th Floor, Mythrivanam Building, Ameerpet",
+        "addressLocality": "Hyderabad",
+        "addressRegion": "Telangana",
+        "postalCode": "500016",
+        "addressCountry": "IN"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91-9876543210",
+        "contactType": "Customer Service",
+        "areaServed": "IN",
+        "availableLanguage": ["English", "Hindi", "Telugu"]
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/blujay-technologies",
+        "https://www.youtube.com/@blujaytechnologies",
+        "https://www.instagram.com/blujaytechnologies",
+        "https://www.facebook.com/blujaytechnologies"
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "500",
+        "bestRating": "5"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Blujay Technologies",
+      "url": "https://blujaytech.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://blujaytech.com/search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -28,6 +127,39 @@
         box-sizing: border-box;
         background-color: #ffffff;
         overflow-x: hidden;
+    }
+
+    /* ===== CUSTOM SCROLLBAR STYLING ===== */
+    /* For Webkit browsers (Chrome, Safari, Edge) */
+    ::-webkit-scrollbar {
+        width: 12px;
+        height: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #c0c0c0;
+        border-radius: 10px;
+        border: 2px solid #f1f1f1;
+        transition: background 0.3s ease;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #6b7280;
+    }
+
+    ::-webkit-scrollbar-thumb:active {
+        background: #4b5563;
+    }
+
+    /* For Firefox */
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: #c0c0c0 #f1f1f1;
     }
 
     html {
@@ -236,6 +368,20 @@
 
     #mobile-menu { backdrop-filter: blur(10px); }
     body.mobile-menu-open { overflow: hidden; position: fixed; width: 100%; }
+
+    /* Navbar specific color overrides - Request Callback & Dropdown Hovers use #1D5D7F */
+    nav .bg-blue-600 { background-color: #1D5D7F !important; }
+    nav .hover\:bg-blue-700:hover { background-color: #144A66 !important; }
+    nav .border-blue-600 { border-color: #1D5D7F !important; }
+    nav .text-blue-600 { color: #1D5D7F !important; }
+    nav .hover\:bg-blue-50:hover { background-color: rgba(29, 93, 127, 0.05) !important; }
+    nav .dropdown-toggle:hover { color: #1D5D7F !important; }
+    nav .dropdown.active .dropdown-toggle { color: #1D5D7F !important; }
+    nav .dropdown-menu a:hover { background: #1D5D7F !important; }
+    nav .dropdown-menu a i { color: #1D5D7F !important; }
+    nav .mobile-dropdown-toggle.active { color: #1D5D7F !important; }
+    nav .mobile-dropdown-toggle.active i.arrow { color: #1D5D7F !important; }
+    nav .mobile-dropdown-content a:active { background: #1D5D7F !important; border-color: #1D5D7F !important; }
 
     /* ===== IMPROVED HERO CARDS WITH ANIMATIONS ===== */
     .hero-stack-stage {
@@ -684,8 +830,9 @@
     }
     .company-scroll-track {
         display: flex;
+        width: max-content;
         gap: 45px;
-        animation: scroll-left 32s linear infinite;
+        animation: scroll-left 30s linear infinite;
     }
     .company-scroll-track:hover {
         animation-play-state: paused;
@@ -720,8 +867,8 @@
         max-width: 100%;
         max-height: 65px;
         object-fit: contain;
-        filter: grayscale(100%);
-        opacity: 0.62;
+        filter: grayscale(0%);
+        opacity: 0.85;
         transition: all 0.4s ease;
     }
     .company-logo-item:hover img {
@@ -984,33 +1131,30 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0.5rem 0.875rem;
-        border: 1px solid #d1d5db;
-        border-radius: 0.5rem;
+        padding: 10px 16px;
+        border: 2px solid #d1d5db;
+        border-radius: 10px;
         background: #ffffff;
         cursor: pointer;
-        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: all 0.3s ease;
         font-size: 13px;
-        font-weight: 500;
-        color: #111827;
-        user-select: none;
     }
 
     @media (min-width: 1024px) {
         .service-dropdown-trigger {
-            padding: 0.625rem 1rem;
+            padding: 11px 18px;
             font-size: 14px;
         }
     }
 
     .service-dropdown-trigger:hover {
-        border-color: #0057A0;
+        border-color: #1D5D7F;
         background-color: #f8fafc;
     }
 
     .service-dropdown-trigger.active {
-        border-color: #0057A0;
-        box-shadow: 0 0 0 3px rgba(0, 87, 160, 0.1);
+        border-color: #1D5D7F;
+        box-shadow: 0 0 0 3px rgba(29, 93, 127, 0.1);
     }
 
     .service-dropdown-trigger .placeholder {
@@ -1024,14 +1168,13 @@
     }
 
     .service-dropdown-trigger i.chevron {
-        transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        font-size: 9px;
-        color: #0057A0;
-        margin-left: 8px;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        font-size: 10px;
+        color: #6b7280;
     }
 
     .service-dropdown-trigger.active i.chevron {
-        transform: rotate(180deg);
+        transform: rotate(180deg);          
     }
 
     .service-dropdown-menu {
@@ -1099,12 +1242,12 @@
         font-size: 13px;
         width: 18px;
         text-align: center;
-        color: #0057A0;
+        color: #1D5D7F;
         opacity: 0.9;
     }
 
     .service-dropdown-item:hover {
-        background: #0057A0;
+        background: #1D5D7F;
         color: #ffffff;
         padding-left: 18px;
         transform: translateX(2px);
@@ -1116,12 +1259,12 @@
 
     .service-dropdown-item.selected {
         background: #eff6ff;
-        color: #0057A0;
+        color: #1D5D7F;
         font-weight: 600;
     }
 
     .service-dropdown-item.selected:hover {
-        background: #0057A0;
+        background: #1D5D7F;
         color: #ffffff;
     }
 
@@ -1171,12 +1314,12 @@
     }
 
     #callbackForm select[name="service"] option:hover {
-        background: #0057A0;
+        background: #1D5D7F;
         color: #ffffff;
     }
 
     #callbackForm select[name="service"] option:checked {
-        background: #0057A0;
+        background: #1D5D7F;
         color: #ffffff;
         font-weight: 600;
     }
@@ -1331,7 +1474,43 @@
         transform: scale(1.12);
     }
 
+
+    
+        .btn-hero-outline {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.75rem;
+            border-radius: 0.875rem;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            background: transparent;
+            color: hsl(211, 90%, 39%);
+            border: 2px solid hsl(211, 90%, 39%);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-hero-outline:hover {
+            background: hsl(211, 90%, 39% / 0.05);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 20px -2px hsl(211 90% 39% / 0.35);
+        }
+
     </style>
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1JE665W8D0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1JE665W8D0', {
+        'send_page_view': true,
+        'cookie_flags': 'SameSite=None;Secure'
+      });
+    </script>
 
 </head>
 <body class="bg-white">
@@ -1347,60 +1526,69 @@
 
             <!-- Desktop Menu -->
             <div class="hidden lg:flex items-center gap-8 ml-auto">
+                
+
                 <!-- Courses Dropdown -->
                 <div class="dropdown">
                     <button class="dropdown-toggle text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
-                        Offerings <i class="fas fa-chevron-down chevron"></i>
+                        Courses <i class="fas fa-chevron-down chevron"></i>
                     </button>
                     <div class="dropdown-menu">
-                        <a href="profilepushing.html"><i class="fas fa-code"></i>Profile Pushing</a>
-                        <a href="jobsupport.html"><i class="fas fa-layer-group"></i>Job support</a>
-                        <a href="courses.html"><i class="fab fa-java"></i>Courses-Recorded</a>
-                        <a href="courses-online.html"><i class="fab fa-java"></i>Courses-Online</a>
-                         
+                        <a href="recorded-courses.html"><i class="fas fa-video"></i>Self-Paced / Recorded Courses</a>
+                        <a href="all-courses.html"><i class="fas fa-graduation-cap"></i>All Courses</a>
                     </div>
                 </div>
 
-                <!-- Centres Dropdown -->
-                
-                   <div class="dropdown">
-                    <button class="dropdown-toggle text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
-                        Job Roadmaps <i class="fas fa-chevron-down chevron"></i>
-                    </button>
-                    <div class="dropdown-menu">
-                        <a href="jobroadmap.html"><i class="fas fa-briefcase"></i>5-Step Roadmap</a>
-                         
-                    </div>
-                </div>
-    
-
-                <!-- Jobs Dropdown -->
+                <!-- Career Support Dropdown -->
                 <div class="dropdown">
                     <button class="dropdown-toggle text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
-                        Jobs <i class="fas fa-chevron-down chevron"></i>
+                        Career Support <i class="fas fa-chevron-down chevron"></i>
                     </button>
                     <div class="dropdown-menu">
-                        <a href="#"><i class="fas fa-briefcase"></i>Coming Soon!</a>
-                         
+                        <a href="profilepushing.html"><i class="fas fa-user-tie"></i>Profile Pushing</a>
+                        <a href="jobsupport.html"><i class="fas fa-headset"></i>Job Support</a>
                     </div>
                 </div>
 
-                <!-- More Dropdown -->
+                <!-- Service Dropdown -->
                 <div class="dropdown">
                     <button class="dropdown-toggle text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
-                        More  <i class="fas fa-chevron-down chevron"></i>
+                        Service <i class="fas fa-chevron-down chevron"></i>
                     </button>
                     <div class="dropdown-menu">
-                        <a href="aboutus.html"><i class="fas fa-info-circle"></i>About Us</a>
+                        <a href="digital-marketing-seo.html"><i class="fas fa-bullhorn"></i>Digital Marketing Services</a>
+                        <a href="services.html"><i class="fas fa-code"></i>Web Development Services</a>
+                    </div>
+                </div>
+
+                <!-- About Dropdown -->
+                <div class="dropdown">
+                    <button class="dropdown-toggle text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
+                        About <i class="fas fa-chevron-down chevron"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="aboutus.html"><i class="fas fa-info-circle"></i>About Blujay</a>
+                        <a href="aboutus.html#community"><i class="fas fa-handshake"></i>Community & Partnerships</a>
+                        <a href="aboutus.html#impact"><i class="fas fa-heart"></i>Social Impact</a>
+                        <a href="aboutus.html#success"><i class="fas fa-trophy"></i>Success Stories</a>
+                    </div>
+                </div>
+
+                <!-- Resource Dropdown -->
+                <div class="dropdown">
+                    <button class="dropdown-toggle text-[13px] lg:text-[14px] font-medium text-gray-700 hover:text-blue-600 transition-colors">
+                        Resource <i class="fas fa-chevron-down chevron"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="jobroadmap.html"><i class="fas fa-map-marked-alt"></i>Roadmap</a>
                         <a href="blog.html"><i class="fas fa-blog"></i>Blog</a>
                     </div>
                 </div>
-                
 
                 <a href="login.html" class="border-2 border-blue-600 text-blue-600 px-4 py-1.5 rounded-lg text-[12px] lg:text-[13px] font-semibold hover:bg-blue-50 transition-all">Login</a>
-                <button onclick="openCallbackModal()" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-[12px] lg:text-[13px] font-semibold hover:bg-blue-700 transition-all flex items-center gap-2 pulse-animation">
-                    <i class="fas fa-phone-alt text-[10px]"></i> Request Callback
-                </button>
+                <a href="contactus.html" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-[12px] lg:text-[13px] font-semibold hover:bg-blue-700 transition-all flex items-center gap-2">
+                    <i class="fas fa-phone-alt text-[10px]"></i> Contact Us
+                </a>
             </div>
 
             <!-- Mobile: Hamburger -->
@@ -1423,63 +1611,73 @@
 
         <div class="overflow-y-auto h-[calc(100vh-60px)]" style="background-color: #ffffff !important;">
             <div class="px-4 py-4">
+                 
+
                 <div class="mobile-dropdown-wrapper">
                     <button class="mobile-dropdown-toggle text-[14px] font-semibold text-gray-900" type="button">
-                        Offerings <i class="fas fa-chevron-down arrow"></i>
+                        Courses <i class="fas fa-chevron-down arrow"></i>
                     </button>
                     <div class="mobile-dropdown-content">
                         <div class="mobile-dropdown-inner">
-                        <a href="profilepushing.html"><i class="fas fa-code"></i>Profile Pushing</a>
-                        <a href="jobsupport.html"><i class="fas fa-layer-group"></i>Job support</a>
-                        <a href="courses.html"><i class="fab fa-java"></i>Courses-Recorded</a>
-                        <a href="courses-online.html"><i class="fab fa-java"></i>Courses-Online</a>
-                        </div>
-                        
-                    </div>
-                </div>
-
-                 <div class="mobile-dropdown-wrapper">
-                    <button class="mobile-dropdown-toggle text-[14px] font-semibold text-gray-900" type="button">
-                        Job Roadmaps <i class="fas fa-chevron-down arrow"></i>
-                    </button>
-                    <div class="mobile-dropdown-content">
-                        <div class="mobile-dropdown-inner">
-                            <a href="jobroadmap.html"><i class="fas fa-briefcase"></i>5-Step Roadmap</a>
-                             
+                            <a href="recorded-courses.html"><i class="fas fa-video"></i>Self-Paced / Recorded Courses</a>
+                            <a href="all-courses.html"><i class="fas fa-graduation-cap"></i>All Courses</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="mobile-dropdown-wrapper">
                     <button class="mobile-dropdown-toggle text-[14px] font-semibold text-gray-900" type="button">
-                        Jobs <i class="fas fa-chevron-down arrow"></i>
+                        Career Support <i class="fas fa-chevron-down arrow"></i>
                     </button>
                     <div class="mobile-dropdown-content">
                         <div class="mobile-dropdown-inner">
-                            <a href="#browse-jobs"><i class="fas fa-briefcase"></i>Coming Soon!</a>
-                             
+                            <a href="profilepushing.html"><i class="fas fa-user-tie"></i>Profile Pushing</a>
+                            <a href="jobsupport.html"><i class="fas fa-headset"></i>Job Support</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="mobile-dropdown-wrapper">
-                    <button class="mobile-dropdown-toggle text-[14px] font-medium text-gray-800" type="button">
-                        More <i class="fas fa-chevron-down arrow"></i>
+                    <button class="mobile-dropdown-toggle text-[14px] font-semibold text-gray-900" type="button">
+                        Services <i class="fas fa-chevron-down arrow"></i>
                     </button>
                     <div class="mobile-dropdown-content">
                         <div class="mobile-dropdown-inner">
-                            <a href="aboutus.html"><i class="fas fa-info-circle"></i>About Us</a>
-                            <a href="blog.html"><i class="fas fa-blog"></i>Blog</a>
+                            <a href="digital-marketing-seo.html"><i class="fas fa-bullhorn"></i>Digital Marketing Services</a>
+                            <a href="services.html"><i class="fas fa-code"></i>Web Development Services</a>
                         </div>
                     </div>
                 </div>
 
-                
+                <div class="mobile-dropdown-wrapper">
+                    <button class="mobile-dropdown-toggle text-[14px] font-semibold text-gray-900" type="button">
+                        About <i class="fas fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="mobile-dropdown-content">
+                        <div class="mobile-dropdown-inner">
+                            <a href="aboutus.html"><i class="fas fa-info-circle"></i>About Blujay</a>
+                            <a href="aboutus.html#community"><i class="fas fa-handshake"></i>Community & Partnerships</a>
+                            <a href="aboutus.html#impact"><i class="fas fa-heart"></i>Social Impact</a>
+                            <a href="aboutus.html#success"><i class="fas fa-trophy"></i>Success Stories</a>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="mobile-dropdown-wrapper">
+                    <button class="mobile-dropdown-toggle text-[14px] font-semibold text-gray-900" type="button">
+                        Resources <i class="fas fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="mobile-dropdown-content">
+                        <div class="mobile-dropdown-inner">
+                            <a href="jobroadmap.html"><i class="fas fa-map-marked-alt"></i>Roadmap</a>
+                            <a href="aboutus.html"><i class="fas fa-blog"></i>About Us</a>
+                        </div>
+                    </div>
+                </div>
 
-                <button onclick="openCallbackModal()" class="block w-full text-center bg-blue-600 text-white py-2.5 rounded-lg text-[13px] font-semibold mt-6 hover:bg-blue-700 transition-all shadow-md">
-                    Request Callback
-                </button>
+                <a href="contactus.html" class="block w-full text-center bg-blue-600 text-white py-2.5 rounded-lg text-[13px] font-semibold mt-6 hover:bg-blue-700 transition-all">
+                    Contact Us
+                </a>
 
                 <a href="login.html" class="block w-full text-center border-2 border-blue-600 text-blue-600 py-2.5 rounded-lg text-[13px] font-semibold mt-3 hover:bg-blue-50 transition-all">Login</a>
             </div>
@@ -1496,10 +1694,10 @@
                 <!-- Student Avatars with Animation -->
                 <div class="student-avatars flex items-center gap-2 mb-4 lg:mb-5">
                     <div class="flex -space-x-2">
-                        <img src="https://randomuser.me/api/portraits/women/32.jpg" class="w-7 h-7 lg:w-9 lg:h-9 rounded-full border-2 border-white shadow-md hover:scale-110 transition-transform" alt="Student" loading="lazy">
-                        <img src="https://randomuser.me/api/portraits/men/45.jpg" class="w-7 h-7 lg:w-9 lg:h-9 rounded-full border-2 border-white shadow-md hover:scale-110 transition-transform" alt="Student" loading="lazy">
-                        <img src="https://randomuser.me/api/portraits/women/68.jpg" class="w-7 h-7 lg:w-9 lg:h-9 rounded-full border-2 border-white shadow-md hover:scale-110 transition-transform" alt="Student" loading="lazy">
-                        <img src="https://randomuser.me/api/portraits/men/22.jpg" class="w-7 h-7 lg:w-9 lg:h-9 rounded-full border-2 border-white shadow-md hover:scale-110 transition-transform" alt="Student" loading="lazy">
+                        <img src="images/student1.webp" class="w-7 h-7 lg:w-9 lg:h-9 rounded-full border-2 border-white shadow-md hover:scale-110 transition-transform" alt="Student" loading="lazy">
+                        <img src="images/student2.webp" class="w-7 h-7 lg:w-9 lg:h-9 rounded-full border-2 border-white shadow-md hover:scale-110 transition-transform" alt="Student" loading="lazy">
+                        <img src="images/student3.webp" class="w-7 h-7 lg:w-9 lg:h-9 rounded-full border-2 border-white shadow-md hover:scale-110 transition-transform" alt="Student" loading="lazy">
+                        <img src="images/student4.webp" class="w-7 h-7 lg:w-9 lg:h-9 rounded-full border-2 border-white shadow-md hover:scale-110 transition-transform" alt="Student" loading="lazy">
                     </div>
                     <span class="text-[12px] lg:text-[14px] font-semibold text-gray-700 flex items-center gap-1">
                         <span class="text-blue-600">1,000+</span> Happy Students
@@ -1528,10 +1726,16 @@
 
                 <!-- CTA Buttons -->
                 <div class="flex flex-col sm:flex-row gap-4 mb-6">
-                    <a href="courses.html" class="bg-blue-600 text-white px-6 py-3.5 rounded-xl font-semibold text-[14px] hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 hover:scale-105">
+                    <a href="all-courses.html" class="bg-blue-600 text-white px-6 py-3.5 rounded-xl font-semibold text-[14px] hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 hover:scale-105">
                         <i class="fas fa-graduation-cap"></i> Explore Courses
                     </a>
+                     
+                    <a href="community/index.html" class="btn-hero-outline">
+                            
+                            Community!
+                        </a>
                 </div>
+                 
 
                 <!-- Trust Badges -->
                 <div class="flex flex-wrap items-center gap-4 text-[12px] lg:text-[13px] text-gray-600">
@@ -1559,7 +1763,7 @@
                                 <div class="hero-card-text">
                                     <p class="hero-card-label">COURSES</p>
                                     <p class="hero-card-title">Industry Ready Training </p>
-                                    <a href="courses.html" class="hero-card-btn">
+                                    <a href="all-courses.html" class="hero-card-btn">
                                         View Courses <span class="ml-2">→</span>
                                     </a>
                                 </div>
@@ -1613,382 +1817,966 @@
     </div>
 </section>
 
-<!-- SECTION 1: Our Journey - Content Right, Image Left -->
-<section class="py-12 lg:py-20 bg-white fade-in-section">
-    <div class="max-w-7xl mx-auto px-4 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <!-- Image Left -->
-            <div class="order-2 lg:order-1 image-zoom-container">
-                <img src="images/ourstory.png" 
-                     alt="Our Journey" 
-                     class="w-full h-[280px] lg:h-[400px] object-cover rounded-2xl shadow-2xl image-zoom" 
-                     loading="lazy">
-            </div>
-            <!-- Content Right -->
-            <div class="order-1 lg:order-2">
-                <p class="journey-section-tag mb-3">OUR STORY</p>
-                <h2 class="text-[24px] sm:text-[32px] lg:text-[42px] font-bold text-gray-900 mb-4">
-                    Our Journey at <span class="text-blue-600">Blujay</span>
-                </h2>
-                <p class="text-[14px] sm:text-[16px] lg:text-[17px] text-gray-700 leading-relaxed mb-4">
-                    Blujay started with a simple belief: <strong>talent is everywhere, but opportunities are not.</strong> We began as a small training initiative helping students understand real industry skills.
-                </p>
-                <p class="text-[14px] sm:text-[16px] lg:text-[17px] text-gray-700 leading-relaxed">
-                    Over time, Blujay grew into a structured IT training and placement platform focused on practical learning, hands-on projects, and career support. Our journey continues as we work to transform more lives through skill-based education.
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
+<!-- Add this CSS for Shimmer Animation -->
+<style>
+@keyframes shimmer {
+    100% { transform: translateX(100%); }
+}
 
-<!-- SECTION 2: Founder's Vision - Content Left, Image Right -->
-<section class="py-12 lg:py-20 bg-gradient-to-br from-blue-50 to-white fade-in-section">
-    <div class="max-w-7xl mx-auto px-4 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <!-- Content Left -->
-            <div>
-                <p class="journey-section-tag mb-3">FOUNDER'S VISION</p>
-                <h2 class="text-[24px] sm:text-[32px] lg:text-[42px] font-bold text-gray-900 mb-4">
-                    Empowering <span class="text-blue-600">1 Million</span> IT Careers
-                </h2>
-                <p class="text-[14px] sm:text-[16px] lg:text-[17px] text-gray-700 leading-relaxed mb-4">
-                    We built Blujay with a mission to <strong>empower 1,000,000 people with IT jobs.</strong> Our vision is to create opportunities for students from every background by giving them the right training, discipline, and confidence.
-                </p>
-                <p class="text-[14px] sm:text-[16px] lg:text-[17px] text-gray-700 leading-relaxed mb-5">
-                    We believe in learning that is practical, honest, and focused on real outcomes. Our goal is to guide students from zero knowledge to a successful IT career.
-                </p>
-                <div class="flex items-center gap-4">
-                    <div class="text-center hover:scale-110 transition-transform">
-                        <div class="w-16 h-16 lg:w-20 lg:h-20 bg-blue-600 rounded-full mx-auto mb-2 flex items-center justify-center shadow-lg">
-                            <span class="text-white font-bold text-[14px] lg:text-[16px]">AT</span>
+/* ===== FEATURED COURSES SECTION STYLES ===== */
+.featured-courses-section {
+    padding: 60px 0;
+    background: #ffffff;
+}
+
+.featured-course-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 2px solid #e5e7eb;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    max-width: 260px;
+    margin: 0 auto;
+}
+
+.featured-course-card:hover {
+    transform: translateY(-8px);
+    border-color: #1D5D7F;
+    box-shadow: 0 20px 50px rgba(29,93,127,0.15);
+}
+
+.featured-course-image {
+    position: relative;
+    height: 120px;
+    background: linear-gradient(135deg, #1D5D7F 0%, #236192 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.featured-course-image i {
+    font-size: 40px;
+    color: rgba(255,255,255,0.9);
+    transition: all 0.4s ease;
+}
+
+.featured-course-card:hover .featured-course-image i {
+    transform: scale(1.2) rotate(10deg);
+}
+
+.featured-course-content {
+    padding: 14px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.featured-course-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.featured-course-desc {
+    font-size: 12px;
+    color: #6b7280;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    flex: 1;
+}
+
+.featured-course-meta {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.featured-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: #6b7280;
+}
+
+.featured-meta-item i {
+    color: #1D5D7F;
+    font-size: 12px;
+}
+
+.featured-course-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: auto;
+}
+
+.featured-btn {
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.featured-btn-primary {
+    background: linear-gradient(135deg, #1D5D7F 0%, #236192 100%);
+    color: #fff;
+    border: none;
+}
+
+.featured-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(29,93,127,0.3);
+}
+
+.featured-btn-secondary {
+    background: #fff;
+    color: #1D5D7F;
+    border: 2px solid #1D5D7F;
+}
+
+.featured-btn-secondary:hover {
+    background: #E8F4F8;
+}
+
+.view-all-courses-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    background: linear-gradient(135deg, #1D5D7F 0%, #236192 100%);
+    color: #fff;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(29,93,127,0.2);
+}
+
+.view-all-courses-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(29,93,127,0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .featured-courses-section {
+        padding: 40px 0;
+    }
+    
+    .featured-course-card {
+        max-width: 230px;
+    }
+    
+    .featured-course-image {
+        height: 120px;
+    }
+    
+    .featured-course-image i {
+        font-size: 38px;
+    }
+    
+    .featured-course-title {
+        font-size: 15px;
+    }
+    
+    .featured-course-desc {
+        font-size: 11px;
+    }
+    
+    .featured-course-content {
+        padding: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .featured-course-card {
+        max-width: 300px;
+        width: 100%;
+    }
+    
+    .featured-course-image {
+        height: 140px;
+    }
+    
+    .featured-course-image i {
+        font-size: 44px;
+    }
+    
+    .featured-course-title {
+        font-size: 16px;
+    }
+    
+    .featured-course-desc {
+        font-size: 13px;
+    }
+    
+    .featured-course-content {
+        padding: 16px;
+    }
+    
+    .featured-meta-item {
+        font-size: 12px;
+    }
+    
+    .featured-btn {
+        padding: 9px 14px;
+        font-size: 13px;
+    }
+}
+</style>
+
+<!-- DIGITAL SERVICES SECTION -->
+<section class="py-10 lg:py-16 bg-gradient-to-br from-blue-50 via-white to-blue-50">
+    <div class="max-w-6xl mx-auto px-4 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center mb-8 lg:mb-10">
+            <h2 class="text-[28px] sm:text-[36px] lg:text-[42px] font-bold text-gray-900 mb-3">
+                Professional Digital Services That <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">Drive Growth</span>
+            </h2>
+            <p class="text-[13px] sm:text-[15px] lg:text-[16px] text-gray-600 max-w-2xl mx-auto">
+                Industry-ready solutions delivered by experienced professionals and trained talent.
+            </p>
+        </div>
+
+        <!-- Services Cards Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            
+            <!-- Digital Marketing Card -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all max-w-md mx-auto w-full">
+                <!-- Image with Overlay -->
+                <div class="relative h-40 sm:h-48 bg-gradient-to-br from-blue-600 to-blue-400 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" 
+                         alt="Digital Marketing" 
+                         class="w-full h-full object-cover opacity-30">
+                    <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
+                        <div class="w-12 h-12 mb-2 flex items-center justify-center">
+                            <i class="fas fa-chart-line text-[36px]"></i>
                         </div>
-                        <p class="text-[12px] lg:text-[13px] font-semibold text-gray-900">Arjun Thumati</p>
-                        <p class="text-[10px] lg:text-[11px] text-gray-600">Co-Founder</p>
-                    </div>
-                    <div class="text-center hover:scale-110 transition-transform">
-                        <div class="w-16 h-16 lg:w-20 lg:h-20 bg-blue-600 rounded-full mx-auto mb-2 flex items-center justify-center shadow-lg">
-                            <span class="text-white font-bold text-[14px] lg:text-[16px]">HS</span>
-                        </div>
-                        <p class="text-[12px] lg:text-[13px] font-semibold text-gray-900">Hari Sir</p>
-                        <p class="text-[10px] lg:text-[11px] text-gray-600">Co-Founder</p>
+                        <h3 class="text-[18px] sm:text-[20px] font-bold">Digital Marketing</h3>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Image Right -->
-            <div class="image-zoom-container">
-                <img src="images/1m.png" 
-                     alt="Founders Vision" 
-                     class="w-full h-[300px] lg:h-[420px] object-cover rounded-2xl shadow-2xl image-zoom" 
-                     loading="lazy">
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- SECTION 3: Thought Leadership -->
-<section class="py-12 lg:py-20 bg-white fade-in-section">
-    <div class="max-w-7xl mx-auto px-4 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div class="order-2 lg:order-1 image-zoom-container">
-                <img src="images/leader.png" 
-                     alt="Thought Leadership" 
-                     class="w-full h-[280px] lg:h-[380px] object-cover rounded-2xl shadow-2xl image-zoom" 
-                     loading="lazy">
-            </div>
-            <div class="order-1 lg:order-2">
-                <p class="journey-section-tag mb-3">THOUGHT LEADERSHIP</p>
-                <h2 class="text-[24px] sm:text-[32px] lg:text-[42px] font-bold text-gray-900 mb-4">
-                    A <span class="text-blue-600">Trusted Name</span> in IT Training
-                </h2>
-                <p class="text-[14px] sm:text-[16px] lg:text-[17px] text-gray-700 leading-relaxed mb-4">
-                    Blujay stands as a trusted name in IT training and placement. We blend industry requirements, practical curriculum, and employer feedback to create training that actually works.
-                </p>
-                <p class="text-[14px] sm:text-[16px] lg:text-[17px] text-gray-700 leading-relaxed">
-                    We aim to lead conversations on hiring trends, job readiness, and the future of tech careers.
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- SECTION 4: Impact Metrics -->
-<section class="py-12 lg:py-20 bg-gradient-to-br from-blue-50 to-white fade-in-section">
-    <div class="max-w-7xl mx-auto px-4 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div class="stagger-children">
-                <p class="journey-section-tag mb-3">IMPACT METRICS</p>
-                <h2 class="text-[24px] sm:text-[32px] lg:text-[42px] font-bold text-gray-900 mb-6">
-                    Real Numbers, <span class="text-blue-600">Real Impact</span>
-                </h2>
                 
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="journey-container text-center">
-                        <div class="w-12 h-12 bg-blue-600 rounded-full mx-auto mb-3 flex items-center justify-center">
-                            <i class="fas fa-users text-white text-[18px]"></i>
-                        </div>
-                        <p class="text-[28px] lg:text-[36px] font-bold text-blue-600">11,000+</p>
-                        <p class="text-[13px] lg:text-[14px] text-gray-600 font-medium">Students Trained</p>
-                    </div>
-                    
-                    <div class="journey-container text-center">
-                        <div class="w-12 h-12 bg-blue-600 rounded-full mx-auto mb-3 flex items-center justify-center">
-                            <i class="fas fa-rupee-sign text-white text-[18px]"></i>
-                        </div>
-                        <p class="text-[28px] lg:text-[36px] font-bold text-blue-600">₹4.5L</p>
-                        <p class="text-[13px] lg:text-[14px] text-gray-600 font-medium">Avg. Package</p>
-                    </div>
-                    
-                    <div class="journey-container text-center">
-                        <div class="w-12 h-12 bg-blue-600 rounded-full mx-auto mb-3 flex items-center justify-center">
-                            <i class="fas fa-building text-white text-[18px]"></i>
-                        </div>
-                        <p class="text-[28px] lg:text-[36px] font-bold text-blue-600">250+</p>
-                        <p class="text-[13px] lg:text-[14px] text-gray-600 font-medium">Partner Companies</p>
-                    </div>
-                    
-                    <div class="journey-container text-center">
-                        <div class="w-12 h-12 bg-blue-600 rounded-full mx-auto mb-3 flex items-center justify-center">
-                            <i class="fas fa-calendar-check text-white text-[18px]"></i>
-                        </div>
-                        <p class="text-[28px] lg:text-[36px] font-bold text-blue-600">150+</p>
-                        <p class="text-[13px] lg:text-[14px] text-gray-600 font-medium">Hiring Drives</p>
+                <!-- Content -->
+                <div class="p-5 lg:p-6">
+                    <h4 class="text-[16px] sm:text-[18px] font-bold text-gray-900 mb-3">Digital Marketing Services</h4>
+                    <ul class="space-y-2 mb-5">
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-check-circle text-green-500 text-[14px] mt-0.5"></i>
+                            <span class="text-[12px] sm:text-[13px] text-gray-700">SEO & Performance Marketing</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-check-circle text-green-500 text-[14px] mt-0.5"></i>
+                            <span class="text-[12px] sm:text-[13px] text-gray-700">Social Media & Content Marketing</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-check-circle text-green-500 text-[14px] mt-0.5"></i>
+                            <span class="text-[12px] sm:text-[13px] text-gray-700">Paid Ads (Google & Meta)</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-check-circle text-green-500 text-[14px] mt-0.5"></i>
+                            <span class="text-[12px] sm:text-[13px] text-gray-700">Lead Generation Campaigns</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-check-circle text-green-500 text-[14px] mt-0.5"></i>
+                            <span class="text-[12px] sm:text-[13px] text-gray-700">Analytics & Conversion Optimization</span>
+                        </li>
+                    </ul>
+                    <div class="flex justify-center">
+                        <a href="digital-marketing-seo.html" 
+                           class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2.5 rounded-lg transition-all hover:scale-105 shadow-md text-[13px]">
+                            Get Consultation <i class="fas fa-arrow-right text-[11px]"></i>
+                        </a>
                     </div>
                 </div>
             </div>
+
+            <!-- Web Development Card -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all max-w-md mx-auto w-full">
+                <!-- Image with Overlay -->
+                <div class="relative h-40 sm:h-48 bg-gradient-to-br from-teal-600 to-teal-400 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80" 
+                         alt="Web Development" 
+                         class="w-full h-full object-cover opacity-30">
+                    <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
+                        <div class="w-12 h-12 mb-2 flex items-center justify-center">
+                            <i class="fas fa-globe text-[36px]"></i>
+                        </div>
+                        <h3 class="text-[18px] sm:text-[20px] font-bold">Web Development</h3>
+                    </div>
+                </div>
+                
+                <!-- Content -->
+                <div class="p-5 lg:p-6">
+                    <h4 class="text-[16px] sm:text-[18px] font-bold text-gray-900 mb-3">Web Development Services</h4>
+                    <ul class="space-y-2 mb-5">
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-check-circle text-green-500 text-[14px] mt-0.5"></i>
+                            <span class="text-[12px] sm:text-[13px] text-gray-700">Business Websites</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-check-circle text-green-500 text-[14px] mt-0.5"></i>
+                            <span class="text-[12px] sm:text-[13px] text-gray-700">Corporate & Startup Websites</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-check-circle text-green-500 text-[14px] mt-0.5"></i>
+                            <span class="text-[12px] sm:text-[13px] text-gray-700">Landing Pages</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-check-circle text-green-500 text-[14px] mt-0.5"></i>
+                            <span class="text-[12px] sm:text-[13px] text-gray-700">CMS & Custom Web Solutions</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-check-circle text-green-500 text-[14px] mt-0.5"></i>
+                            <span class="text-[12px] sm:text-[13px] text-gray-700">Performance & Security Optimized</span>
+                        </li>
+                    </ul>
+                    <div class="flex justify-center">
+                        <a href="services.html" 
+                           class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2.5 rounded-lg transition-all hover:scale-105 shadow-md text-[13px]">
+                            Get Website Quote <i class="fas fa-arrow-right text-[11px]"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DevOps Consulting Card (NEW) -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all max-w-md mx-auto w-full">
+                <div class="relative h-40 sm:h-48 bg-gradient-to-br from-gray-800 to-gray-600 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&q=60" 
+                         alt="DevOps Consulting" 
+                         class="w-full h-full object-cover opacity-25" loading="lazy">
+                    <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
+                        <div class="w-12 h-12 mb-2 flex items-center justify-center">
+                            <i class="fas fa-tools text-[36px]"></i>
+                        </div>
+                        <h3 class="text-[18px] sm:text-[20px] font-bold">DevOps Consulting</h3>
+                    </div>
+                </div>
+
+                <div class="p-5 lg:p-6">
+                    <h4 class="text-[16px] sm:text-[18px] font-bold text-gray-900 mb-3">DevOps Consulting</h4>
+                    <ul class="space-y-2 mb-5 text-gray-700">
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-check-circle text-green-500 text-[14px] mt-0.5"></i>
+                            <span class="text-[12px] sm:text-[13px]">Analyze current infrastructure & development workflows to identify optimization opportunities</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-check-circle text-green-500 text-[14px] mt-0.5"></i>
+                            <span class="text-[12px] sm:text-[13px]">Design customized DevOps roadmaps aligned with your business objectives</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-check-circle text-green-500 text-[14px] mt-0.5"></i>
+                            <span class="text-[12px] sm:text-[13px]">Implement best practices for continuous integration and deployment (CI/CD)</span>
+                        </li>
+                    </ul>
+                    <div class="flex justify-center">
+                        <a href="devops-consulting.html" 
+                           class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2.5 rounded-lg transition-all hover:scale-105 shadow-md text-[13px]">
+                            Get Consultation <i class="fas fa-arrow-right text-[11px]"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURED COURSES SECTION -->
+<section class="featured-courses-section">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center mb-10 lg:mb-14">
+            <span class="inline-block px-4 py-2 bg-blue-100 text-blue-600 text-[11px] lg:text-[12px] font-bold uppercase tracking-wider rounded-full mb-4">
+                Our Courses
+            </span>
+            <h2 class="text-[28px] sm:text-[36px] lg:text-[48px] font-bold text-gray-900 mb-4">
+                Master Your Future with <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">Job-Oriented IT Courses</span>
+            </h2>
+            <p class="text-[14px] sm:text-[16px] lg:text-[18px] text-gray-600 max-w-3xl mx-auto">
+                Industry-aligned curriculum designed by experts to make you job-ready from day one.
+            </p>
+        </div>
+
+        <!-- Course Cards Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-1 lg:gap-1 mb-10">
             
-            <div class="image-zoom-container">
+            <!-- Course 1: Digital Marketing -->
+            <div class="featured-course-card">
+                <div class="featured-course-image" style="background: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+                <div class="featured-course-content">
+                    <h3 class="featured-course-title">Digital Marketing Mastery</h3>
+                    <p class="featured-course-desc">SEO, PPC, Social Media Marketing & Analytics</p>
+                    
+                    <div class="featured-course-meta">
+                        <div class="featured-meta-item">
+                            <i class="fas fa-users"></i>
+                            <span>6-10 Students</span>
+                        </div>
+                        <div class="featured-meta-item">
+                            <i class="fas fa-laptop"></i>
+                            <span>Online/Offline</span>
+                        </div>
+                        <div class="featured-meta-item">
+                            <i class="fas fa-certificate"></i>
+                            <span>Certified</span>
+                        </div>
+                        <div class="featured-meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>10 Weeks</span>
+                        </div>
+                    </div>
+
+                    <div class="featured-course-buttons">
+                        <a href="digital-marketing-course-in-hyderabad.html" class="featured-btn featured-btn-primary">View Course</a>
+                        <a href="#" class="featured-btn featured-btn-secondary" onclick="event.preventDefault(); document.getElementById('callback-form')?.scrollIntoView({behavior: 'smooth'});">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 2: AWS DevOps -->
+            <div class="featured-course-card">
+                <div class="featured-course-image" style="background: linear-gradient(135deg, #FF9900 0%, #FF6B35 100%);">
+                    <i class="fab fa-aws"></i>
+                </div>
+                <div class="featured-course-content">
+                    <h3 class="featured-course-title">Cloud Computing & DevOps</h3>
+                    <p class="featured-course-desc">AWS, Azure, CI/CD pipelines and infrastructure automation</p>
+                    
+                    <div class="featured-course-meta">
+                        <div class="featured-meta-item">
+                            <i class="fas fa-users"></i>
+                            <span>6-10 Students</span>
+                        </div>
+                        <div class="featured-meta-item">
+                            <i class="fas fa-laptop"></i>
+                            <span>Online/Offline</span>
+                        </div>
+                        <div class="featured-meta-item">
+                            <i class="fas fa-certificate"></i>
+                            <span>Certified</span>
+                        </div>
+                        <div class="featured-meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>14 Weeks</span>
+                        </div>
+                    </div>
+
+                    <div class="featured-course-buttons">
+                        <a href="aws-devops-course-in-hyderabad.html" class="featured-btn featured-btn-primary">View Course</a>
+                        <a href="#" class="featured-btn featured-btn-secondary" onclick="event.preventDefault(); document.getElementById('callback-form')?.scrollIntoView({behavior: 'smooth'});">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 3: Python Full Stack -->
+            <div class="featured-course-card">
+                <div class="featured-course-image" style="background: linear-gradient(135deg, #3776AB 0%, #FFD43B 100%);">
+                    <i class="fab fa-python"></i>
+                </div>
+                <div class="featured-course-content">
+                    <h3 class="featured-course-title">Python Full Stack</h3>
+                    <p class="featured-course-desc">Learn Python, Django, React & database design</p>
+                    
+                    <div class="featured-course-meta">
+                        <div class="featured-meta-item">
+                            <i class="fas fa-users"></i>
+                            <span>6-10 Students</span>
+                        </div>
+                        <div class="featured-meta-item">
+                            <i class="fas fa-laptop"></i>
+                            <span>Online/Offline</span>
+                        </div>
+                        <div class="featured-meta-item">
+                            <i class="fas fa-certificate"></i>
+                            <span>Certified</span>
+                        </div>
+                        <div class="featured-meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>16 Weeks</span>
+                        </div>
+                    </div>
+
+                    <div class="featured-course-buttons">
+                        <a href="python-full-stack-course-in-hyderabad.html" class="featured-btn featured-btn-primary">View Course</a>
+                        <a href="#" class="featured-btn featured-btn-secondary" onclick="event.preventDefault(); document.getElementById('callback-form')?.scrollIntoView({behavior: 'smooth'});">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 4: Java Full Stack -->
+            <div class="featured-course-card">
+                <div class="featured-course-image" style="background: linear-gradient(135deg, #E76F00 0%, #5382A1 100%);">
+                    <i class="fab fa-java"></i>
+                </div>
+                <div class="featured-course-content">
+                    <h3 class="featured-course-title">Java Full Stack</h3>
+                    <p class="featured-course-desc">Master Java, Spring Boot, Angular & enterprise apps</p>
+                    
+                    <div class="featured-course-meta">
+                        <div class="featured-meta-item">
+                            <i class="fas fa-users"></i>
+                            <span>6-10 Students</span>
+                        </div>
+                        <div class="featured-meta-item">
+                            <i class="fas fa-laptop"></i>
+                            <span>Online/Offline</span>
+                        </div>
+                        <div class="featured-meta-item">
+                            <i class="fas fa-certificate"></i>
+                            <span>Certified</span>
+                        </div>
+                        <div class="featured-meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>16 Weeks</span>
+                        </div>
+                    </div>
+
+                    <div class="featured-course-buttons">
+                        <a href="java-full-stack-course-in-hyderabad.html" class="featured-btn featured-btn-primary">View Course</a>
+                        <a href="#" class="featured-btn featured-btn-secondary" onclick="event.preventDefault(); document.getElementById('callback-form')?.scrollIntoView({behavior: 'smooth'});">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- View All Courses Button -->
+        <div class="text-center">
+            <a href="all-courses.html" class="view-all-courses-btn">
+                <span>View All Courses</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+<!-- SECTION 1: Our Journey - Redesigned Layout -->
+<section class="py-8 lg:py-14 bg-gradient-to-br from-blue-50 via-white to-blue-50 fade-in-section">
+    <div class="max-w-6xl mx-auto px-4 lg:px-6">
+        
+        <!-- Top Heading - Centered -->
+        <div class="text-center mb-8 lg:mb-10">
+            <span class="inline-block px-3 py-1.5 bg-blue-100 text-blue-600 text-[10px] lg:text-[11px] font-bold uppercase tracking-wider rounded-full mb-3">
+                Founder's Vision
+            </span>
+            <h2 class="text-[26px] sm:text-[34px] lg:text-[44px] font-extrabold text-gray-900 leading-tight">
+                Empowering <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">1 Million</span> IT Careers
+            </h2>
+        </div>
+
+        <!-- Image Left, Content Right -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-center">
+            
+            <!-- Image Left -->
+            <div class="relative overflow-hidden rounded-xl shadow-xl">
+                <img src="images/1m.webp" 
+                     alt="Founders Vision" 
+                     class="w-full h-[280px] sm:h-[320px] lg:h-[380px] object-cover" 
+                     loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+            </div>
+            
+            <!-- Content Right -->
+            <div class="space-y-5">
+                <!-- Mission Text -->
+                <div class="space-y-3">
+                    <p class="text-[14px] sm:text-[15px] lg:text-[16px] text-gray-700 leading-relaxed">
+                        We built Blujay with a mission to <span class="text-blue-600 font-bold">empower 1,000,000 people with IT jobs.</span> Our vision is to create opportunities for students from every background by giving them the right training, discipline, and confidence.
+                    </p>
+                    <p class="text-[14px] sm:text-[15px] lg:text-[16px] text-gray-600 leading-relaxed">
+                        We believe in learning that is practical, honest, and focused on real outcomes. Our goal is to guide students from zero knowledge to a successful IT career.
+                    </p>
+                </div>
+
+                <!-- Founders Card -->
+                <div class="bg-white rounded-xl shadow-md border border-gray-100 p-5 lg:p-6">
+                    <h3 class="text-[14px] lg:text-[16px] font-bold text-gray-900 mb-5 text-center">
+                        Meet Our Founders
+                    </h3>
+                    
+                    <div class="flex flex-row items-center justify-center gap-4 sm:gap-8">
+                        <!-- Founder 1 -->
+                        <div class="text-center">
+                            <div class="relative inline-block mb-2">
+                                <img src="images/hari-devops.webp" 
+                                     alt="HariKrishna Cheruku" 
+                                     class="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-full object-cover border-3 border-blue-600 shadow-lg"
+                                     onerror="this.src='https://ui-avatars.com/api/?name=HariKrishna+Cheruku&background=0D8ABC&color=fff&size=80&bold=true'">
+                            </div>
+                            <p class="text-[11px] sm:text-[13px] lg:text-[15px] font-bold text-gray-900 mb-1">HariKrishna Cheruku</p>
+                            <p class="text-[9px] sm:text-[11px] lg:text-[13px] text-blue-600 font-semibold">Founder</p>
+                        </div>
+
+                        <!-- Divider -->
+                        <div class="w-px h-16 sm:h-20 lg:h-24 bg-gray-200"></div>
+
+                        <!-- Founder 2 -->
+                        <div class="text-center">
+                            <div class="relative inline-block mb-2">
+                                <img src="images/arjun-java.webp" 
+                                     alt="Arjun Thumati" 
+                                     class="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-full object-cover border-3 border-blue-600 shadow-lg"
+                                     onerror="this.src='https://ui-avatars.com/api/?name=Arjun+Thumati&background=0D8ABC&color=fff&size=80&bold=true'">
+                            </div>
+                            <p class="text-[11px] sm:text-[13px] lg:text-[15px] font-bold text-gray-900 mb-1">Arjun Thumati</p>
+                            <p class="text-[9px] sm:text-[11px] lg:text-[13px] text-blue-600 font-semibold">Co-Founder</p>
+                        </div>
+                    </div>
+                </div>
+
+               
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+
+
+<!-- SECTION 4: Impact Metrics - Redesigned Layout -->
+<section class="py-8 lg:py-14 bg-gradient-to-br from-blue-50 via-white to-blue-50 fade-in-section">
+    <div class="max-w-6xl mx-auto px-4 lg:px-6">
+        
+        <!-- Top Heading - Centered -->
+        <div class="text-center mb-8 lg:mb-10">
+            <span class="inline-block px-3 py-1.5 bg-blue-100 text-blue-600 text-[10px] lg:text-[11px] font-bold uppercase tracking-wider rounded-full mb-3">
+                Impact Metrics
+            </span>
+            <h2 class="text-[26px] sm:text-[34px] lg:text-[44px] font-extrabold text-gray-900 leading-tight">
+                Real Numbers, <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">Real Impact</span>
+            </h2>
+        </div>
+
+        <!-- Image Left, Metrics Right -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-center">
+            
+            <!-- Image Left -->
+            <div class="relative overflow-hidden rounded-xl shadow-xl">
                 <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600" 
                      alt="Impact Metrics" 
-                     class="w-full h-[320px] lg:h-[440px] object-cover rounded-2xl shadow-2xl image-zoom" 
+                     class="w-full h-[280px] sm:h-[320px] lg:h-[380px] object-cover" 
                      loading="lazy">
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- SECTION 5: Student Transformations -->
-<section class="py-12 lg:py-20 bg-white fade-in-section">
-    <div class="max-w-7xl mx-auto px-4 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div class="order-2 lg:order-1 image-zoom-container">
-                <img src="images/zerotohero.png" 
-                     alt="Student Transformations" 
-                     class="w-full h-[280px] lg:h-[380px] object-cover rounded-2xl shadow-2xl image-zoom" 
-                     loading="lazy">
-            </div>
-            <div class="order-1 lg:order-2">
-                <p class="journey-section-tag mb-3">STUDENT TRANSFORMATIONS</p>
-                <h2 class="text-[24px] sm:text-[32px] lg:text-[42px] font-bold text-gray-900 mb-4">
-                    From <span class="text-blue-600">Zero to Hero</span>
-                </h2>
-                <p class="text-[14px] sm:text-[16px] lg:text-[17px] text-gray-700 leading-relaxed mb-4">
-                    Blujay students come with different struggles — no confidence, no projects, no interviews. After training, they transform into skilled professionals ready for industry work.
-                </p>
-                <p class="text-[14px] sm:text-[16px] lg:text-[17px] text-gray-700 leading-relaxed">
-                    Many secured internships, full-time jobs, and strong career growth through our programs.
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- SECTION 6: Mentor & Faculty -->
-<section class="py-12 lg:py-20 bg-gradient-to-br from-blue-50 to-white fade-in-section">
-    <div class="max-w-7xl mx-auto px-4 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div>
-                <p class="journey-section-tag mb-3">OUR MENTORS</p>
-                <h2 class="text-[24px] sm:text-[32px] lg:text-[42px] font-bold text-gray-900 mb-4">
-                    Learn from <span class="text-blue-600">Industry Experts</span>
-                </h2>
-                <p class="text-[14px] sm:text-[16px] lg:text-[17px] text-gray-700 leading-relaxed mb-4">
-                    Our mentors come with years of industry experience and strong technical backgrounds. They guide students with practical lessons, real-world examples, and career advice.
-                </p>
-                <p class="text-[14px] sm:text-[16px] lg:text-[17px] text-gray-700 leading-relaxed">
-                    Their knowledge and dedication help shape each student's professional journey.
-                </p>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
             </div>
             
-            <div class="image-zoom-container">
-                <img src="images/mentors.png" 
-                     alt="Mentors and Faculty" 
-                     class="w-full h-[300px] lg:h-[400px] object-cover rounded-2xl shadow-2xl image-zoom" 
-                     loading="lazy">
+            <!-- Metrics Grid Right -->
+            <div class="grid grid-cols-2 gap-3 sm:gap-4">
+                <div class="bg-white rounded-lg shadow-md p-4 text-center hover:shadow-lg transition-shadow">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 rounded-full mx-auto mb-2 flex items-center justify-center">
+                        <i class="fas fa-users text-white text-[16px] sm:text-[18px]"></i>
+                    </div>
+                    <p class="text-[24px] sm:text-[28px] lg:text-[32px] font-bold text-blue-600">
+                        <span class="counter" data-target="1000">0</span>+
+                    </p>
+                    <p class="text-[12px] sm:text-[13px] text-gray-600 font-medium">Students Trained</p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md p-4 text-center hover:shadow-lg transition-shadow">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 rounded-full mx-auto mb-2 flex items-center justify-center">
+                        <i class="fas fa-rupee-sign text-white text-[16px] sm:text-[18px]"></i>
+                    </div>
+                    <p class="text-[24px] sm:text-[28px] lg:text-[32px] font-bold text-blue-600">
+                        <span class="counter" data-target="4.5" data-decimal="true">0</span>L
+                    </p>
+                    <p class="text-[12px] sm:text-[13px] text-gray-600 font-medium">Avg. Package</p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md p-4 text-center hover:shadow-lg transition-shadow">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 rounded-full mx-auto mb-2 flex items-center justify-center">
+                        <i class="fas fa-building text-white text-[16px] sm:text-[18px]"></i>
+                    </div>
+                    <p class="text-[24px] sm:text-[28px] lg:text-[32px] font-bold text-blue-600">
+                        <span class="counter" data-target="20">0</span>+
+                    </p>
+                    <p class="text-[12px] sm:text-[13px] text-gray-600 font-medium">Partner Companies</p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md p-4 text-center hover:shadow-lg transition-shadow">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 rounded-full mx-auto mb-2 flex items-center justify-center">
+                        <i class="fas fa-calendar-check text-white text-[16px] sm:text-[18px]"></i>
+                    </div>
+                    <p class="text-[24px] sm:text-[28px] lg:text-[32px] font-bold text-blue-600">
+                        <span class="counter" data-target="25">0</span>+
+                    </p>
+                    <p class="text-[12px] sm:text-[13px] text-gray-600 font-medium">Hiring Drives</p>
+                </div>
             </div>
+            
         </div>
     </div>
 </section>
 
-<!-- SECTION 7: Strategic Leadership -->
-<section class="py-12 lg:py-20 bg-white fade-in-section">
-    <div class="max-w-7xl mx-auto px-4 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div class="order-2 lg:order-1 image-zoom-container">
-                <img src="images/strategic.png" 
-                     alt="Strategic Leadership" 
-                     class="w-full h-[280px] lg:h-[380px] object-cover rounded-2xl shadow-2xl image-zoom" 
-                     loading="lazy">
-            </div>
-            <div class="order-1 lg:order-2">
-                <p class="journey-section-tag mb-3">LEADERSHIP</p>
-                <h2 class="text-[24px] sm:text-[32px] lg:text-[42px] font-bold text-gray-900 mb-4">
-                    <span class="text-blue-600">Strategic Leadership</span> at Blujay
-                </h2>
-                <p class="text-[14px] sm:text-[16px] lg:text-[17px] text-gray-700 leading-relaxed mb-4">
-                    <strong>Arjun Thumati</strong> leads Blujay's vision, partnerships, and program strategy. Along with <strong>Hari Sir</strong>, he works closely with students, mentors, and companies to build a strong skill-to-job pipeline.
-                </p>
-                <p class="text-[14px] sm:text-[16px] lg:text-[17px] text-gray-700 leading-relaxed">
-                    Their leadership focuses on quality training, honest outcomes, and long-term growth for learners.
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
+ 
+
+ 
+
+ 
 
 <!-- SECTION 8: Blujay Advantage -->
-<section class="py-12 lg:py-20 bg-gradient-to-br from-blue-50 to-white fade-in-section">
-    <div class="max-w-7xl mx-auto px-4 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div class="stagger-children">
-                <p class="journey-section-tag mb-3">WHY BLUJAY</p>
-                <h2 class="text-[24px] sm:text-[32px] lg:text-[42px] font-bold text-gray-900 mb-6">
-                    The <span class="text-blue-600">Blujay Advantage</span>
-                </h2>
-                
-                <div class="space-y-4">
-                    <div class="flex items-start gap-3 hover:translate-x-2 transition-transform">
-                        <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0 mt-1">
-                            <i class="fas fa-check text-white text-[12px]"></i>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-[15px] lg:text-[17px] text-gray-900">Practical Training Aligned with Industry</p>
-                            <p class="text-[13px] lg:text-[15px] text-gray-600">Courses designed based on real employer requirements</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start gap-3 hover:translate-x-2 transition-transform">
-                        <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0 mt-1">
-                            <i class="fas fa-check text-white text-[12px]"></i>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-[15px] lg:text-[17px] text-gray-900">Dedicated Code2Cloud Bootcamp</p>
-                            <p class="text-[13px] lg:text-[15px] text-gray-600">Intensive hands-on training from basics to deployment</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start gap-3 hover:translate-x-2 transition-transform">
-                        <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0 mt-1">
-                            <i class="fas fa-check text-white text-[12px]"></i>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-[15px] lg:text-[17px] text-gray-900">Consistent Hiring Drives</p>
-                            <p class="text-[13px] lg:text-[15px] text-gray-600">Unlimited placement opportunities with partner companies</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start gap-3 hover:translate-x-2 transition-transform">
-                        <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0 mt-1">
-                            <i class="fas fa-check text-white text-[12px]"></i>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-[15px] lg:text-[17px] text-gray-900">Real Projects & Mock Interviews</p>
-                            <p class="text-[13px] lg:text-[15px] text-gray-600">Build portfolio and gain interview confidence</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start gap-3 hover:translate-x-2 transition-transform">
-                        <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0 mt-1">
-                            <i class="fas fa-check text-white text-[12px]"></i>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-[15px] lg:text-[17px] text-gray-900">Strong Placement Support</p>
-                            <p class="text-[13px] lg:text-[15px] text-gray-600">Dedicated team to guide you until you land your job</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start gap-3 hover:translate-x-2 transition-transform">
-                        <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0 mt-1">
-                            <i class="fas fa-check text-white text-[12px]"></i>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-[15px] lg:text-[17px] text-gray-900">Focus on Discipline & Growth</p>
-                            <p class="text-[13px] lg:text-[15px] text-gray-600">Building professionals with real results</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- SECTION 8: Blujay Advantage - Redesigned Layout -->
+<section class="py-8 lg:py-14 bg-gradient-to-br from-blue-50 via-white to-blue-50 fade-in-section">
+    <div class="max-w-6xl mx-auto px-4 lg:px-6">
+        
+        <!-- Top Heading - Centered -->
+        <div class="text-center mb-8 lg:mb-10">
+            <span class="inline-block px-3 py-1.5 bg-blue-100 text-blue-600 text-[10px] lg:text-[11px] font-bold uppercase tracking-wider rounded-full mb-3">
+                Why Blujay
+            </span>
+            <h2 class="text-[26px] sm:text-[34px] lg:text-[44px] font-extrabold text-gray-900 leading-tight">
+                The <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">Blujay Advantage</span>
+            </h2>
+        </div>
+
+        <!-- Image Left, Content Right -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-center">
             
-            <div class="image-zoom-container">
-                <img src="images/whyblujay.png" 
+            <!-- Image Left -->
+            <div class="relative overflow-hidden rounded-xl shadow-xl">
+                <img src="images/whyblujay.webp" 
                      alt="Blujay Advantage" 
-                     class="w-full h-[320px] lg:h-[480px] object-cover rounded-2xl shadow-2xl image-zoom" 
+                     class="w-full h-[280px] sm:h-[320px] lg:h-[380px] object-cover" 
                      loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- SECTION 9: Community & Partnerships -->
-<section class="py-12 lg:py-20 bg-white fade-in-section">
-    <div class="max-w-7xl mx-auto px-4 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div class="order-2 lg:order-1 image-zoom-container">
-                <img src="images/partnerships.png" 
-                     alt="Community Partnerships" 
-                     class="w-full h-[280px] lg:h-[380px] object-cover rounded-2xl shadow-2xl image-zoom" 
-                     loading="lazy">
-            </div>
-            <div class="order-1 lg:order-2">
-                <p class="journey-section-tag mb-3">PARTNERSHIPS</p>
-                <h2 class="text-[24px] sm:text-[32px] lg:text-[42px] font-bold text-gray-900 mb-4">
-                    Community & <span class="text-blue-600">Partnerships</span>
-                </h2>
-                <p class="text-[14px] sm:text-[16px] lg:text-[17px] text-gray-700 leading-relaxed mb-4">
-                    Blujay collaborates with colleges, NGOs, job portals, and industry partners to expand opportunities for students.
-                </p>
-                <p class="text-[14px] sm:text-[16px] lg:text-[17px] text-gray-700 leading-relaxed">
-                    These collaborations strengthen our mission to bring IT careers to every region.
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- SECTION 10: Social Impact -->
-<section class="py-12 lg:py-20 bg-gradient-to-br from-blue-50 to-white fade-in-section">
-    <div class="max-w-7xl mx-auto px-4 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div>
-                <p class="journey-section-tag mb-3">SOCIAL IMPACT</p>
-                <h2 class="text-[24px] sm:text-[32px] lg:text-[42px] font-bold text-gray-900 mb-4">
-                    Creating <span class="text-blue-600">Equal Opportunities</span>
-                </h2>
-                <p class="text-[14px] sm:text-[16px] lg:text-[17px] text-gray-700 leading-relaxed mb-4">
-                    We support scholarships, women-in-tech programs, and rural outreach. Our goal is to ensure that students from all backgrounds get a fair chance to build stable careers.
-                </p>
-                <div class="grid grid-cols-3 gap-4 mt-6 stagger-children">
-                    <div class="text-center p-4 bg-white rounded-xl shadow-md hover:shadow-xl hover:scale-105 transition-all">
-                        <i class="fas fa-graduation-cap text-blue-600 text-[24px] mb-2"></i>
-                        <p class="text-[12px] font-semibold text-gray-900">Scholarships</p>
+            
+            <!-- Content Right -->
+            <div class="space-y-3">
+                <div class="flex items-start gap-2.5 hover:translate-x-1 transition-transform">
+                    <div class="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <i class="fas fa-check text-white text-[11px]"></i>
                     </div>
-                    <div class="text-center p-4 bg-white rounded-xl shadow-md hover:shadow-xl hover:scale-105 transition-all">
-                        <i class="fas fa-female text-blue-600 text-[24px] mb-2"></i>
-                        <p class="text-[12px] font-semibold text-gray-900">Women in Tech</p>
+                    <div>
+                        <p class="font-semibold text-[14px] lg:text-[15px] text-gray-900">Practical Training Aligned with Industry</p>
+                        <p class="text-[12px] lg:text-[13px] text-gray-600">Courses designed based on real employer requirements</p>
                     </div>
-                    <div class="text-center p-4 bg-white rounded-xl shadow-md hover:shadow-xl hover:scale-105 transition-all">
-                        <i class="fas fa-map-marked-alt text-blue-600 text-[24px] mb-2"></i>
-                        <p class="text-[12px] font-semibold text-gray-900">Rural Outreach</p>
+                </div>
+                
+                <div class="flex items-start gap-2.5 hover:translate-x-1 transition-transform">
+                    <div class="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <i class="fas fa-check text-white text-[11px]"></i>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-[14px] lg:text-[15px] text-gray-900">Dedicated Code2Cloud Bootcamp</p>
+                        <p class="text-[12px] lg:text-[13px] text-gray-600">Intensive hands-on training from basics to deployment</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start gap-2.5 hover:translate-x-1 transition-transform">
+                    <div class="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <i class="fas fa-check text-white text-[11px]"></i>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-[14px] lg:text-[15px] text-gray-900">Consistent Hiring Drives</p>
+                        <p class="text-[12px] lg:text-[13px] text-gray-600">Unlimited placement opportunities with partner companies</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start gap-2.5 hover:translate-x-1 transition-transform">
+                    <div class="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <i class="fas fa-check text-white text-[11px]"></i>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-[14px] lg:text-[15px] text-gray-900">Real Projects & Mock Interviews</p>
+                        <p class="text-[12px] lg:text-[13px] text-gray-600">Build portfolio and gain interview confidence</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start gap-2.5 hover:translate-x-1 transition-transform">
+                    <div class="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <i class="fas fa-check text-white text-[11px]"></i>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-[14px] lg:text-[15px] text-gray-900">Strong Placement Support</p>
+                        <p class="text-[12px] lg:text-[13px] text-gray-600">Dedicated team to guide you until you land your job</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start gap-2.5 hover:translate-x-1 transition-transform">
+                    <div class="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <i class="fas fa-check text-white text-[11px]"></i>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-[14px] lg:text-[15px] text-gray-900">Focus on Discipline & Growth</p>
+                        <p class="text-[12px] lg:text-[13px] text-gray-600">Building professionals with real results</p>
                     </div>
                 </div>
             </div>
             
-            <div class="image-zoom-container">
-                <img src="images/socialimpact.png" 
-                     alt="Social Impact" 
-                     class="w-full h-[300px] lg:h-[400px] object-cover rounded-2xl shadow-2xl image-zoom" 
+        </div>
+    </div>
+</section>
+           
+
+
+
+<!-- SECTION 1: Our Journey - Redesigned Layout -->
+<section class="py-8 lg:py-14 bg-white fade-in-section">
+    <div class="max-w-6xl mx-auto px-4 lg:px-6">
+        
+        <!-- Top Heading - Centered -->
+        <div class="text-center mb-8 lg:mb-10">
+            <span class="inline-block px-3 py-1.5 bg-blue-100 text-blue-600 text-[10px] lg:text-[11px] font-bold uppercase tracking-wider rounded-full mb-3">
+                Our Story
+            </span>
+            <h2 class="text-[26px] sm:text-[34px] lg:text-[44px] font-extrabold text-gray-900 leading-tight">
+                Our Journey at <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">Blujay</span>
+            </h2>
+        </div>
+
+        <!-- Image Left, Content Right -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-center">
+            
+            <!-- Image Left -->
+            <div class="relative overflow-hidden rounded-xl shadow-xl">
+                <img src="images/ourstory.webp" 
+                     alt="Our Journey" 
+                     class="w-full h-[280px] sm:h-[320px] lg:h-[380px] object-cover" 
                      loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
             </div>
+            
+            <!-- Content Right -->
+            <div class="space-y-4">
+                <div class="space-y-3">
+                    <p class="text-[14px] sm:text-[15px] lg:text-[16px] text-gray-700 leading-relaxed">
+                        Blujay started with a simple belief: <span class="text-blue-600 font-bold">talent is everywhere, but opportunities are not.</span> We began as a small training initiative helping students understand real industry skills.
+                    </p>
+                    <p class="text-[14px] sm:text-[15px] lg:text-[16px] text-gray-600 leading-relaxed">
+                        Over time, Blujay grew into a structured IT training and placement platform focused on practical learning, hands-on projects, and career support. Our journey continues as we work to transform more lives through skill-based education.
+                    </p>
+                </div>
+
+                <!-- About Us CTA -->
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 sm:p-5 border border-blue-200 hover:shadow-lg transition-shadow">
+                    <h3 class="text-[16px] sm:text-[18px] font-bold text-gray-900 mb-2">
+                        Want to Know More About Us?
+                    </h3>
+                    <p class="text-[13px] sm:text-[14px] text-gray-600 mb-3">
+                        Discover our mission, vision, and the passionate team behind Blujay Technologies.
+                    </p>
+                    <a href="aboutus.html" 
+                       class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 sm:px-5 py-2.5 rounded-lg transition-all hover:scale-105 text-[13px] sm:text-[14px]">
+                        <span>Learn More About Us</span>
+                        <i class="fas fa-arrow-right text-[11px]"></i>
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 9 & 10: Community & Social Impact - Compact Card Layout -->
+<section class="py-8 lg:py-16 bg-gradient-to-br from-blue-50 via-white to-blue-50 fade-in-section">
+    <div class="max-w-6xl mx-auto px-4 lg:px-6">
+        
+        <!-- One Row with Two Columns -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            
+            <!-- LEFT COLUMN: Community & Partnerships -->
+            <div class="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 overflow-hidden">
+                <!-- Image Top -->
+                <div class="relative overflow-hidden">
+                    <img src="images/partnerships.webp" 
+                         alt="Community Partnerships" 
+                         class="w-full h-[200px] sm:h-[220px] lg:h-[240px] object-cover transform group-hover:scale-110 transition-transform duration-700" 
+                         loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
+                    <div class="absolute top-3 left-3">
+                        <span class="px-3 py-1 bg-white/95 backdrop-blur-sm text-blue-600 text-[10px] lg:text-[11px] font-bold uppercase tracking-wider rounded-full shadow-lg">
+                            Partnerships
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Content Below -->
+                <div class="p-5 lg:p-6 space-y-3">
+                    <h2 class="text-[20px] sm:text-[24px] lg:text-[28px] font-extrabold text-gray-900 leading-tight">
+                        Community & <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">Partnerships</span>
+                    </h2>
+                    
+                    <p class="text-[13px] sm:text-[14px] lg:text-[15px] text-gray-700 leading-relaxed">
+                        Blujay collaborates with colleges, NGOs, job portals, and industry partners to expand opportunities for students.
+                    </p>
+                    
+                    <p class="text-[13px] sm:text-[14px] lg:text-[15px] text-gray-600 leading-relaxed">
+                        These collaborations strengthen our mission to bring IT careers to every region.
+                    </p>
+                    
+                     
+                </div>
+            </div>
+            
+            <!-- RIGHT COLUMN: Social Impact -->
+            <div class="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 overflow-hidden">
+                <!-- Image Top -->
+                <div class="relative overflow-hidden">
+                    <img src="images/socialimpact.webp" 
+                         alt="Social Impact" 
+                         class="w-full h-[200px] sm:h-[220px] lg:h-[240px] object-cover transform group-hover:scale-110 transition-transform duration-700" 
+                         loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
+                    <div class="absolute top-3 left-3">
+                        <span class="px-3 py-1 bg-white/95 backdrop-blur-sm text-blue-600 text-[10px] lg:text-[11px] font-bold uppercase tracking-wider rounded-full shadow-lg">
+                            Social Impact
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Content Below -->
+                <div class="p-5 lg:p-6 space-y-3">
+                    <h2 class="text-[20px] sm:text-[24px] lg:text-[28px] font-extrabold text-gray-900 leading-tight">
+                        Creating <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">Equal Opportunities</span>
+                    </h2>
+                    
+                    <p class="text-[13px] sm:text-[14px] lg:text-[15px] text-gray-700 leading-relaxed">
+                        We support scholarships, women-in-tech programs, and rural outreach to ensure students from all backgrounds get a fair chance.
+                    </p>
+                    
+                    <!-- Impact Cards - Better Mobile Layout -->
+                    <div class="grid grid-cols-3 gap-2 sm:gap-3 pt-2">
+                        <div class="text-center p-2 sm:p-2.5 bg-blue-50 rounded-lg hover:bg-blue-100 transition-all">
+                            <div class="w-10 h-10 sm:w-11 sm:h-11 bg-gradient-to-br from-blue-600 to-blue-400 rounded-lg flex items-center justify-center mx-auto mb-1.5">
+                                <i class="fas fa-graduation-cap text-white text-[14px] sm:text-[16px]"></i>
+                            </div>
+                            <p class="text-[10px] sm:text-[11px] font-bold text-gray-900 leading-tight">Scholarships</p>
+                        </div>
+                        
+                        <div class="text-center p-2 sm:p-2.5 bg-blue-50 rounded-lg hover:bg-blue-100 transition-all">
+                            <div class="w-10 h-10 sm:w-11 sm:h-11 bg-gradient-to-br from-blue-600 to-blue-400 rounded-lg flex items-center justify-center mx-auto mb-1.5">
+                                <i class="fas fa-female text-white text-[14px] sm:text-[16px]"></i>
+                            </div>
+                            <p class="text-[10px] sm:text-[11px] font-bold text-gray-900 leading-tight">Women in Tech</p>
+                        </div>
+                        
+                        <div class="text-center p-2 sm:p-2.5 bg-blue-50 rounded-lg hover:bg-blue-100 transition-all">
+                            <div class="w-10 h-10 sm:w-11 sm:h-11 bg-gradient-to-br from-blue-600 to-blue-400 rounded-lg flex items-center justify-center mx-auto mb-1.5">
+                                <i class="fas fa-map-marked-alt text-white text-[14px] sm:text-[16px]"></i>
+                            </div>
+                            <p class="text-[10px] sm:text-[11px] font-bold text-gray-900 leading-tight">Rural Outreach</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
         </div>
     </div>
 </section>
@@ -2063,108 +2851,12 @@
     </div>
 </section>
 
-<!-- SECTION 12: Join the Movement -->
-<section class="py-12 lg:py-20 bg-gradient-to-br from-blue-50 to-white fade-in-section">
-    <div class="max-w-5xl mx-auto px-4 lg:px-8 text-center">
-        <p class="journey-section-tag mb-3">BE PART OF THE CHANGE</p>
-        <h2 class="text-[28px] sm:text-[36px] lg:text-[48px] font-bold text-gray-900 mb-4">
-            Join the <span class="text-blue-600">Blujay Movement</span>
-        </h2>
-        <p class="text-[14px] sm:text-[16px] lg:text-[18px] text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Students, mentors, and partners are invited to join Blujay's mission. Together, we aim to create opportunities, strengthen skills, and build successful IT careers for lakhs of learners.
-        </p>
+ 
 
-        <div class="flex flex-col sm:flex-row gap-4 justify-center scale-in">
-            <a href="javascript:void(0)" onclick="openCallbackModal()" class="bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold text-[15px] hover:bg-blue-700 transition-all shadow-xl hover:shadow-2xl flex items-center justify-center gap-2 hover:scale-105">
-                <i class="fas fa-rocket"></i> Start Your Journey Today
-            </a>
-        
-        </div>
-    </div>
-</section>
+ 
 
-<!-- Online Learning Platform -->
-<section id="online-learning" class="py-12 lg:py-20 bg-white fade-in-section">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="mb-8 lg:mb-12 text-center">
-            <p class="text-[10px] lg:text-[11px] font-bold text-blue-600 mb-2 uppercase tracking-widest">EXPLORE ONLINE LEARNING</p>
-            <h2 class="text-[24px] sm:text-[28px] lg:text-[52px] font-bold text-blue-600 mb-2 lg:mb-3">
-                <span class="text-gray-900">Online</span> Learning Platform
-            </h2>
-            <p class="text-[13px] sm:text-[14px] lg:text-[18px] text-gray-600">Learn from anywhere with live interactive sessions and expert mentors from top companies.</p>
-        </div>
+ 
 
-        <div class="flex justify-center">
-            <div class="w-full max-w-6xl">
-                <div class="flex justify-center mb-6 lg:mb-8">
-                    <button class="px-4 lg:px-6 py-2.5 lg:py-3 bg-blue-50 text-blue-600 rounded-xl text-[12px] lg:text-[14px] font-medium hover:bg-blue-100 transition-colors">
-                        Online Learning Platform
-                    </button>
-                </div>
-
-                <div class="grid grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-3 stagger-children">
-                    <div class="rounded-xl overflow-hidden h-32 lg:h-44 relative group">
-                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
-                             alt="Online Learning" loading="lazy">
-                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all"></div>
-                    </div>
-
-                    <div class="rounded-xl overflow-hidden h-32 lg:h-44 relative group">
-                        <img src="https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?w=400" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
-                             alt="Student Learning" loading="lazy">
-                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all"></div>
-                    </div>
-
-                    <div class="rounded-xl overflow-hidden h-32 lg:h-44 relative group col-span-2 lg:col-span-1">
-                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
-                             alt="Group Learning" loading="lazy">
-                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Impact Created with COUNTER ANIMATION -->
-<section class="py-12 lg:py-20 bg-gradient-to-br from-blue-50 to-white fade-in-section" id="impact-section">
-    <div class="max-w-7xl mx-auto px-4 lg:px-8 text-center">
-        <p class="text-[10px] lg:text-[11px] font-bold text-blue-600 mb-2 uppercase tracking-widest">OUR IMPACT</p>
-        <h2 class="text-[28px] sm:text-[36px] lg:text-[48px] font-bold text-gray-900 mb-12 lg:mb-16">
-            Real Numbers, <span class="text-blue-600">Real Impact</span>
-        </h2>
-
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 stagger-children">
-            <div class="p-6 lg:p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all">
-                <p class="counter-number" data-target="11000">0</p>
-                <span class="text-[24px] lg:text-[36px] font-bold text-blue-600">+</span>
-                <p class="text-[13px] lg:text-[16px] text-gray-700 font-medium mt-2">Students Trained</p>
-            </div>
-
-            <div class="p-6 lg:p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all">
-                <p class="counter-number" data-target="95">0</p>
-                <span class="text-[24px] lg:text-[36px] font-bold text-blue-600">%</span>
-                <p class="text-[13px] lg:text-[16px] text-gray-700 font-medium mt-2">Placement Rate</p>
-            </div>
-
-            <div class="p-6 lg:p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all">
-                <p class="counter-number" data-target="250">0</p>
-                <span class="text-[24px] lg:text-[36px] font-bold text-blue-600">+</span>
-                <p class="text-[13px] lg:text-[16px] text-gray-700 font-medium mt-2">Hiring Partners</p>
-            </div>
-
-            <div class="p-6 lg:p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all">
-                <span class="text-[24px] lg:text-[36px] font-bold text-blue-600">₹</span>
-                <p class="counter-number" data-target="4.5">0</p>
-                <span class="text-[24px] lg:text-[36px] font-bold text-blue-600">L</span>
-                <p class="text-[13px] lg:text-[16px] text-gray-700 font-medium mt-2">Avg Package</p>
-            </div>
-        </div>
-    </div>
-</section>
 
 <!-- TESTIMONIALS with CAROUSEL -->
 <section class="py-12 lg:py-20 bg-white fade-in-section">
@@ -2184,201 +2876,257 @@
                 
                 <!-- Testimonial 1 -->
                 <div class="testimonial-slide">
-                    <div class="testimonial-card bg-white p-6 lg:p-8 rounded-2xl border border-gray-200 hover:border-blue-600 transition-all hover:shadow-xl h-full">
-                        <div class="flex items-center gap-3 mb-4">
-                            <img src="https://randomuser.me/api/portraits/men/32.jpg" 
-                                 class="w-12 h-12 rounded-full border-2 border-blue-600" 
-                                 alt="Student" loading="lazy">
-                            <div>
-                                <p class="font-bold text-[15px] text-gray-900">Rajesh Kumar</p>
-                                <p class="text-[12px] text-gray-600">Full Stack Developer @ TCS</p>
-                            </div>
+                    <div class="testimonial-card bg-blue-50 p-6 lg:p-8 rounded-2xl shadow-md hover:shadow-xl transition-all h-full relative">
+                        <!-- Stars at Top -->
+                        <div class="flex gap-1 mb-4">
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
                         </div>
-                        <div class="flex gap-1 mb-3">
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
+                        <!-- Quote Icon -->
+                        <div class="absolute top-6 right-6 text-blue-200 opacity-40">
+                            <i class="fas fa-quote-right text-[48px]"></i>
                         </div>
-                        <p class="text-[13px] lg:text-[14px] text-gray-600 leading-relaxed italic">
+                        <!-- Testimonial Text -->
+                        <p class="text-[14px] lg:text-[15px] text-gray-700 leading-relaxed mb-6 relative z-10">
                             "Blujay transformed my career completely. From zero coding knowledge to landing a ₹6 LPA job at TCS in just 6 months. The trainers are amazing!"
                         </p>
+                        <!-- Profile at Bottom -->
+                        <div class="flex items-center gap-3 mt-auto">
+                            <img src="https://ui-avatars.com/api/?name=Rajesh+Kumar&background=0057A0&color=fff&size=48" 
+                                 alt="Rajesh Kumar" 
+                                 class="w-12 h-12 rounded-full border-2 border-blue-600">
+                            <div>
+                                <p class="font-bold text-[14px] text-gray-900 mb-1">Rajesh Kumar</p>
+                                <p class="text-[12px] text-gray-600">Full Stack Developer at <span class="text-blue-600 font-semibold">TCS</span></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Testimonial 2 -->
                 <div class="testimonial-slide">
-                    <div class="testimonial-card bg-white p-6 lg:p-8 rounded-2xl border border-gray-200 hover:border-blue-600 transition-all hover:shadow-xl h-full">
-                        <div class="flex items-center gap-3 mb-4">
-                            <img src="https://randomuser.me/api/portraits/women/44.jpg" 
-                                 class="w-12 h-12 rounded-full border-2 border-blue-600" 
-                                 alt="Student" loading="lazy">
-                            <div>
-                                <p class="font-bold text-[15px] text-gray-900">Priya Sharma</p>
-                                <p class="text-[12px] text-gray-600">MERN Developer @ Wipro</p>
-                            </div>
+                    <div class="testimonial-card bg-blue-50 p-6 lg:p-8 rounded-2xl shadow-md hover:shadow-xl transition-all h-full relative">
+                        <!-- Stars at Top -->
+                        <div class="flex gap-1 mb-4">
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
                         </div>
-                        <div class="flex gap-1 mb-3">
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
+                        <!-- Quote Icon -->
+                        <div class="absolute top-6 right-6 text-blue-200 opacity-40">
+                            <i class="fas fa-quote-right text-[48px]"></i>
                         </div>
-                        <p class="text-[13px] lg:text-[14px] text-gray-600 leading-relaxed italic">
+                        <!-- Testimonial Text -->
+                        <p class="text-[14px] lg:text-[15px] text-gray-700 leading-relaxed mb-6 relative z-10">
                             "The MERN Stack course is incredible! Real-world projects, personalized mentorship, and unlimited placement drives helped me secure my dream job."
                         </p>
+                        <!-- Profile at Bottom -->
+                        <div class="flex items-center gap-3 mt-auto">
+                            <img src="https://ui-avatars.com/api/?name=Priya+Sharma&background=0057A0&color=fff&size=48" 
+                                 alt="Priya Sharma" 
+                                 class="w-12 h-12 rounded-full border-2 border-blue-600">
+                            <div>
+                                <p class="font-bold text-[14px] text-gray-900 mb-1">Priya Sharma</p>
+                                <p class="text-[12px] text-gray-600">MERN Developer at <span class="text-blue-600 font-semibold">Wipro</span></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Testimonial 3 -->
                 <div class="testimonial-slide">
-                    <div class="testimonial-card bg-white p-6 lg:p-8 rounded-2xl border border-gray-200 hover:border-blue-600 transition-all hover:shadow-xl h-full">
-                        <div class="flex items-center gap-3 mb-4">
-                            <img src="https://randomuser.me/api/portraits/men/67.jpg" 
-                                 class="w-12 h-12 rounded-full border-2 border-blue-600" 
-                                 alt="Student" loading="lazy">
-                            <div>
-                                <p class="font-bold text-[15px] text-gray-900">Arjun Patel</p>
-                                <p class="text-[12px] text-gray-600">Data Analyst @ Infosys</p>
-                            </div>
+                    <div class="testimonial-card bg-blue-50 p-6 lg:p-8 rounded-2xl shadow-md hover:shadow-xl transition-all h-full relative">
+                        <!-- Stars at Top -->
+                        <div class="flex gap-1 mb-4">
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
                         </div>
-                        <div class="flex gap-1 mb-3">
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
+                        <!-- Quote Icon -->
+                        <div class="absolute top-6 right-6 text-blue-200 opacity-40">
+                            <i class="fas fa-quote-right text-[48px]"></i>
                         </div>
-                        <p class="text-[13px] lg:text-[14px] text-gray-600 leading-relaxed italic">
+                        <!-- Testimonial Text -->
+                        <p class="text-[14px] lg:text-[15px] text-gray-700 leading-relaxed mb-6 relative z-10">
                             "Best investment in my career! The Data Science program gave me hands-on experience with real datasets. Got placed with ₹7.5 LPA package!"
                         </p>
+                        <!-- Profile at Bottom -->
+                        <div class="flex items-center gap-3 mt-auto">
+                            <img src="https://ui-avatars.com/api/?name=Arjun+Patel&background=0057A0&color=fff&size=48" 
+                                 alt="Arjun Patel" 
+                                 class="w-12 h-12 rounded-full border-2 border-blue-600">
+                            <div>
+                                <p class="font-bold text-[14px] text-gray-900 mb-1">Arjun Patel</p>
+                                <p class="text-[12px] text-gray-600">Data Analyst at <span class="text-blue-600 font-semibold">Infosys</span></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Testimonial 4 -->
                 <div class="testimonial-slide">
-                    <div class="testimonial-card bg-white p-6 lg:p-8 rounded-2xl border border-gray-200 hover:border-blue-600 transition-all hover:shadow-xl h-full">
-                        <div class="flex items-center gap-3 mb-4">
-                            <img src="https://randomuser.me/api/portraits/women/25.jpg" 
-                                 class="w-12 h-12 rounded-full border-2 border-blue-600" 
-                                 alt="Student" loading="lazy">
-                            <div>
-                                <p class="font-bold text-[15px] text-gray-900">Sneha Reddy</p>
-                                <p class="text-[12px] text-gray-600">Java Developer @ Accenture</p>
-                            </div>
+                    <div class="testimonial-card bg-blue-50 p-6 lg:p-8 rounded-2xl shadow-md hover:shadow-xl transition-all h-full relative">
+                        <!-- Stars at Top -->
+                        <div class="flex gap-1 mb-4">
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
                         </div>
-                        <div class="flex gap-1 mb-3">
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
+                        <!-- Quote Icon -->
+                        <div class="absolute top-6 right-6 text-blue-200 opacity-40">
+                            <i class="fas fa-quote-right text-[48px]"></i>
                         </div>
-                        <p class="text-[13px] lg:text-[14px] text-gray-600 leading-relaxed italic">
+                        <!-- Testimonial Text -->
+                        <p class="text-[14px] lg:text-[15px] text-gray-700 leading-relaxed mb-6 relative z-10">
                             "Java Full Stack course was perfect! The trainers explained every concept clearly. Now working at Accenture with ₹5.5 LPA!"
                         </p>
+                        <!-- Profile at Bottom -->
+                        <div class="flex items-center gap-3 mt-auto">
+                            <img src="https://ui-avatars.com/api/?name=Sneha+Reddy&background=0057A0&color=fff&size=48" 
+                                 alt="Sneha Reddy" 
+                                 class="w-12 h-12 rounded-full border-2 border-blue-600">
+                            <div>
+                                <p class="font-bold text-[14px] text-gray-900 mb-1">Sneha Reddy</p>
+                                <p class="text-[12px] text-gray-600">Java Developer at <span class="text-blue-600 font-semibold">Accenture</span></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Testimonial 5 -->
                 <div class="testimonial-slide">
-                    <div class="testimonial-card bg-white p-6 lg:p-8 rounded-2xl border border-gray-200 hover:border-blue-600 transition-all hover:shadow-xl h-full">
-                        <div class="flex items-center gap-3 mb-4">
-                            <img src="https://randomuser.me/api/portraits/men/54.jpg" 
-                                 class="w-12 h-12 rounded-full border-2 border-blue-600" 
-                                 alt="Student" loading="lazy">
-                            <div>
-                                <p class="font-bold text-[15px] text-gray-900">Vikram Singh</p>
-                                <p class="text-[12px] text-gray-600">DevOps Engineer @ Amazon</p>
-                            </div>
+                    <div class="testimonial-card bg-blue-50 p-6 lg:p-8 rounded-2xl shadow-md hover:shadow-xl transition-all h-full relative">
+                        <!-- Stars at Top -->
+                        <div class="flex gap-1 mb-4">
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
                         </div>
-                        <div class="flex gap-1 mb-3">
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
+                        <!-- Quote Icon -->
+                        <div class="absolute top-6 right-6 text-blue-200 opacity-40">
+                            <i class="fas fa-quote-right text-[48px]"></i>
                         </div>
-                        <p class="text-[13px] lg:text-[14px] text-gray-600 leading-relaxed italic">
+                        <!-- Testimonial Text -->
+                        <p class="text-[14px] lg:text-[15px] text-gray-700 leading-relaxed mb-6 relative z-10">
                             "DevOps course was industry-level training! Learned Docker, Kubernetes, AWS. Now at Amazon with ₹12 LPA. Thank you Blujay!"
                         </p>
+                        <!-- Profile at Bottom -->
+                        <div class="flex items-center gap-3 mt-auto">
+                            <img src="https://ui-avatars.com/api/?name=Vikram+Singh&background=0057A0&color=fff&size=48" 
+                                 alt="Vikram Singh" 
+                                 class="w-12 h-12 rounded-full border-2 border-blue-600">
+                            <div>
+                                <p class="font-bold text-[14px] text-gray-900 mb-1">Vikram Singh</p>
+                                <p class="text-[12px] text-gray-600">DevOps Engineer at <span class="text-blue-600 font-semibold">Amazon</span></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Testimonial 6 -->
                 <div class="testimonial-slide">
-                    <div class="testimonial-card bg-white p-6 lg:p-8 rounded-2xl border border-gray-200 hover:border-blue-600 transition-all hover:shadow-xl h-full">
-                        <div class="flex items-center gap-3 mb-4">
-                            <img src="https://randomuser.me/api/portraits/women/60.jpg" 
-                                 class="w-12 h-12 rounded-full border-2 border-blue-600" 
-                                 alt="Student" loading="lazy">
-                            <div>
-                                <p class="font-bold text-[15px] text-gray-900">Ananya Verma</p>
-                                <p class="text-[12px] text-gray-600">Python Developer @ IBM</p>
-                            </div>
+                    <div class="testimonial-card bg-blue-50 p-6 lg:p-8 rounded-2xl shadow-md hover:shadow-xl transition-all h-full relative">
+                        <!-- Stars at Top -->
+                        <div class="flex gap-1 mb-4">
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
                         </div>
-                        <div class="flex gap-1 mb-3">
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
+                        <!-- Quote Icon -->
+                        <div class="absolute top-6 right-6 text-blue-200 opacity-40">
+                            <i class="fas fa-quote-right text-[48px]"></i>
                         </div>
-                        <p class="text-[13px] lg:text-[14px] text-gray-600 leading-relaxed italic">
+                        <!-- Testimonial Text -->
+                        <p class="text-[14px] lg:text-[15px] text-gray-700 leading-relaxed mb-6 relative z-10">
                             "Python course changed my life! From housewife to Python developer at IBM. Blujay gave me confidence and skills. Forever grateful!"
                         </p>
+                        <!-- Profile at Bottom -->
+                        <div class="flex items-center gap-3 mt-auto">
+                            <img src="https://ui-avatars.com/api/?name=Ananya+Verma&background=0057A0&color=fff&size=48" 
+                                 alt="Ananya Verma" 
+                                 class="w-12 h-12 rounded-full border-2 border-blue-600">
+                            <div>
+                                <p class="font-bold text-[14px] text-gray-900 mb-1">Ananya Verma</p>
+                                <p class="text-[12px] text-gray-600">Python Developer at <span class="text-blue-600 font-semibold">IBM</span></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Testimonial 7 -->
                 <div class="testimonial-slide">
-                    <div class="testimonial-card bg-white p-6 lg:p-8 rounded-2xl border border-gray-200 hover:border-blue-600 transition-all hover:shadow-xl h-full">
-                        <div class="flex items-center gap-3 mb-4">
-                            <img src="https://randomuser.me/api/portraits/men/88.jpg" 
-                                 class="w-12 h-12 rounded-full border-2 border-blue-600" 
-                                 alt="Student" loading="lazy">
-                            <div>
-                                <p class="font-bold text-[15px] text-gray-900">Karthik Rao</p>
-                                <p class="text-[12px] text-gray-600">Security Analyst @ Tech Mahindra</p>
-                            </div>
+                    <div class="testimonial-card bg-blue-50 p-6 lg:p-8 rounded-2xl shadow-md hover:shadow-xl transition-all h-full relative">
+                        <!-- Stars at Top -->
+                        <div class="flex gap-1 mb-4">
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
                         </div>
-                        <div class="flex gap-1 mb-3">
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
+                        <!-- Quote Icon -->
+                        <div class="absolute top-6 right-6 text-blue-200 opacity-40">
+                            <i class="fas fa-quote-right text-[48px]"></i>
                         </div>
-                        <p class="text-[13px] lg:text-[14px] text-gray-600 leading-relaxed italic">
+                        <!-- Testimonial Text -->
+                        <p class="text-[14px] lg:text-[15px] text-gray-700 leading-relaxed mb-6 relative z-10">
                             "Cyber Security course was intense but worth it! Hands-on labs, ethical hacking practice. Now working at Tech Mahindra with ₹8 LPA!"
                         </p>
+                        <!-- Profile at Bottom -->
+                        <div class="flex items-center gap-3 mt-auto">
+                            <img src="https://ui-avatars.com/api/?name=Karthik+Rao&background=0057A0&color=fff&size=48" 
+                                 alt="Karthik Rao" 
+                                 class="w-12 h-12 rounded-full border-2 border-blue-600">
+                            <div>
+                                <p class="font-bold text-[14px] text-gray-900 mb-1">Karthik Rao</p>
+                                <p class="text-[12px] text-gray-600">Security Analyst at <span class="text-blue-600 font-semibold">Tech Mahindra</span></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Testimonial 8 -->
                 <div class="testimonial-slide">
-                    <div class="testimonial-card bg-white p-6 lg:p-8 rounded-2xl border border-gray-200 hover:border-blue-600 transition-all hover:shadow-xl h-full">
-                        <div class="flex items-center gap-3 mb-4">
-                            <img src="https://randomuser.me/api/portraits/women/72.jpg" 
-                                 class="w-12 h-12 rounded-full border-2 border-blue-600" 
-                                 alt="Student" loading="lazy">
-                            <div>
-                                <p class="font-bold text-[15px] text-gray-900">Divya Nair</p>
-                                <p class="text-[12px] text-gray-600">Business Analyst @ Capgemini</p>
-                            </div>
+                    <div class="testimonial-card bg-blue-50 p-6 lg:p-8 rounded-2xl shadow-md hover:shadow-xl transition-all h-full relative">
+                        <!-- Stars at Top -->
+                        <div class="flex gap-1 mb-4">
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
+                            <i class="fas fa-star text-yellow-400 text-[14px]"></i>
                         </div>
-                        <div class="flex gap-1 mb-3">
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
-                            <i class="fas fa-star text-yellow-400 text-[13px]"></i>
+                        <!-- Quote Icon -->
+                        <div class="absolute top-6 right-6 text-blue-200 opacity-40">
+                            <i class="fas fa-quote-right text-[48px]"></i>
                         </div>
-                        <p class="text-[13px] lg:text-[14px] text-gray-600 leading-relaxed italic">
+                        <!-- Testimonial Text -->
+                        <p class="text-[14px] lg:text-[15px] text-gray-700 leading-relaxed mb-6 relative z-10">
                             "Data Analytics course was perfect for career switch! Excel, Power BI, SQL all covered. Placed at Capgemini with ₹6.2 LPA package!"
                         </p>
+                        <!-- Profile at Bottom -->
+                        <div class="flex items-center gap-3 mt-auto">
+                            <img src="https://ui-avatars.com/api/?name=Divya+Nair&background=0057A0&color=fff&size=48" 
+                                 alt="Divya Nair" 
+                                 class="w-12 h-12 rounded-full border-2 border-blue-600">
+                            <div>
+                                <p class="font-bold text-[14px] text-gray-900 mb-1">Divya Nair</p>
+                                <p class="text-[12px] text-gray-600">Business Analyst at <span class="text-blue-600 font-semibold">Capgemini</span></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -2437,48 +3185,45 @@
                 <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM" loading="lazy">
             </div>
             <div class="company-logo-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Logo_of_Accenture.svg/1200px-Logo_of_Accenture.svg.png" alt="Accenture" loading="lazy">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Accenture.svg/2560px-Accenture.svg.png" alt="Accenture" loading="lazy">
             </div>
             <div class="company-logo-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Cognizant_logo_2022.svg" alt="Cognizant" loading="lazy">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Cognizant_logo_2022.svg/2560px-Cognizant_logo_2022.svg.png" alt="Capgemini" loading="lazy">
             </div>
             <div class="company-logo-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Capgemini_Logo.svg/1200px-Capgemini_Logo.svg.png" alt="Capgemini" loading="lazy">
+                <img src="https://download.logo.wine/logo/HCL_Technologies/HCL_Technologies-Logo.wine.png" alt="HCL" loading="lazy">
             </div>
             <div class="company-logo-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Logo_HCL_Technologies.svg" alt="HCL" loading="lazy">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Capgemini_201x_logo.svg/2560px-Capgemini_201x_logo.svg.png" alt="LTI Mindtree" loading="lazy">
             </div>
             <div class="company-logo-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/LTIMindtree_logo.svg/1200px-LTIMindtree_logo.svg.png" alt="LTI Mindtree" loading="lazy">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Tech_Mahindra_New_Logo.svg/1024px-Tech_Mahindra_New_Logo.svg.png" alt="Tech Mahindra" loading="lazy">
             </div>
             <div class="company-logo-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Tech_Mahindra_New_Logo.svg/1200px-Tech_Mahindra_New_Logo.svg.png" alt="Tech Mahindra" loading="lazy">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Paytm_Logo_%28standalone%29.svg/2560px-Paytm_Logo_%28standalone%29.svg.png" alt="Paytm" loading="lazy">
             </div>
             <div class="company-logo-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Paytm_logo.svg/1200px-Paytm_logo.svg.png" alt="Paytm" loading="lazy">
+                <img src="https://download.logo.wine/logo/Airtel_Uganda/Airtel_Uganda-Logo.wine.png" alt="Airtel" loading="lazy">
             </div>
             <div class="company-logo-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Airtel_logo.svg/1200px-Airtel_logo.svg.png" alt="Airtel" loading="lazy">
+                <img src="https://cdn.freebiesupply.com/logos/large/2x/flipkart-logo-png-transparent.png" alt="Flipkart" loading="lazy">
             </div>
             <div class="company-logo-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Flipkart_logo.svg/1200px-Flipkart_logo.svg.png" alt="Flipkart" loading="lazy">
+                <img src="https://1000logos.net/wp-content/uploads/2017/06/Samsung-emblem.png" alt="Samsung" loading="lazy">
             </div>
             <div class="company-logo-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" alt="Samsung" loading="lazy">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Genpact_logo.svg/1200px-Genpact_logo.svg.png" alt="Genpact" loading="lazy">
             </div>
             <div class="company-logo-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Genpact_logo.svg/1200px-Genpact_logo.svg.png" alt="Genpact" loading="lazy">
+                <img src="https://careers.dxc.com/wp-content/uploads/sites/3790/2025/12/DXC-Full-Color.png" alt="DXC Technology" loading="lazy">
             </div>
             <div class="company-logo-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/DXC_Technology_logo.svg/1200px-DXC_Technology_logo.svg.png" alt="DXC Technology" loading="lazy">
-            </div>
-            <div class="company-logo-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Mu_Sigma_company_logo.svg/1200px-Mu_Sigma_company_logo.svg.png" alt="Mu Sigma" loading="lazy">
+                <img src="https://www.mu-sigma.com/wp-content/uploads/2025/05/Mu-sigma-do-the-math-513-x-166-fin.webp" alt="Mu Sigma" loading="lazy">
             </div>
 
             <!-- Duplicate Set -->
             <div class="company-logo-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Tata_Consultancy_Services_Logo.svg" alt="TCS" loading="lazy">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Tata_Consultancy_Services_old_logo.svg/2560px-Tata_Consultancy_Services_old_logo.svg.png" alt="TCS" loading="lazy">
             </div>
             <div class="company-logo-item">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Wipro_Primary_Logo_Color_RGB.svg" alt="Wipro" loading="lazy">
@@ -2535,7 +3280,7 @@
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/DXC_Technology_logo.svg/1200px-DXC_Technology_logo.svg.png" alt="DXC Technology" loading="lazy">
             </div>
             <div class="company-logo-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Mu_Sigma_company_logo.svg/1200px-Mu_Sigma_company_logo.svg.png" alt="Mu Sigma" loading="lazy">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/LTIMindtree_logo.svg/1200px-LTIMindtree_logo.svg.png" alt="Mu Sigma" loading="lazy">
             </div>
         </div>
     </div>
@@ -2584,16 +3329,16 @@
                     <span class="font-medium text-[14px]">+91 9618721797</span>
                 </a>
 
-                <a href="mailto:blujaytechnlogies@gmail.com" class="social-link">
+                <a href="mailto:info@blujaytech.com" class="social-link">
                     <i class="fas fa-envelope"></i>
-                    <span class="font-medium text-[14px]">blujaytechnlogies@gmail.com</span>
+                    <span class="font-medium text-[14px]">info@blujaytech.com</span>
                 </a>
             </div>
 
             <div class="scale-in">
                 <div class="rounded-2xl overflow-hidden border-2 border-blue-600 shadow-2xl h-[400px] lg:h-[500px]">
                     <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.6233813450487!2d78.38666631487764!3d17.425420988065733!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb974c5c5c5c5c%3A0x5c5c5c5c5c5c5c5c!2sHyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin" 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.6233813450487!2d78.4417589!3d17.4373949!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb91dd2173a57d%3A0x42b4d293f39e1aa!2sBlujay%20Technologies!5e0!3m2!1sen!2sin!4v1704283200000!5m2!1sen!2sin" 
                         width="100%" 
                         height="100%" 
                         style="border:0;" 
@@ -2603,11 +3348,13 @@
                     </iframe>
                 </div>
                 <div class="mt-4 p-4 bg-white rounded-xl border border-gray-200 shadow-md hover:shadow-lg transition-shadow">
-                    <p class="font-bold text-[15px] text-gray-900 mb-1 flex items-center gap-2">
-                        <i class="fas fa-map-marker-alt text-blue-600"></i>
-                        Blujay Technologies - Hyderabad
-                    </p>
-                    <p class="text-[13px] text-gray-600">Madhapur, Hyderabad, Telangana 500081</p>
+                    <a href="https://www.google.com/maps/place/Blujay+Technologies/@17.4373949,78.4439476,17z/data=!4m14!1m7!3m6!1s0x3bcb91dd2173a57d:0x42b4d293f39e1aa!2sBlujay+Technologies!8m2!3d17.4373949!4d78.4439476!16s%2Fg%2F11lyysh6vk!3m5!1s0x3bcb91dd2173a57d:0x42b4d293f39e1aa!8m2!3d17.4373949!4d78.4439476!16s%2Fg%2F11lyysh6vk?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="block hover:bg-gray-50 transition-colors rounded-xl p-4 -m-4">
+                        <p class="font-bold text-[15px] text-gray-900 mb-1 flex items-center gap-2">
+                            <i class="fas fa-map-marker-alt text-blue-600"></i>
+                            Blujay Technologies - Hyderabad
+                        </p>
+                        <p class="text-[13px] text-gray-600">Ameerpet, Hyderabad, Telangana 500038</p>
+                    </a>
                 </div>
             </div>
 
@@ -2616,77 +3363,118 @@
 </section>
 
 <!-- Footer -->
-<footer class="bg-gray-900 text-white py-12 lg:py-16">
+<footer class="bg-[#0d1b2a] text-white py-12 lg:py-16">
     <div class="max-w-7xl mx-auto px-4 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8 mb-8">
             
-            <div>
-                <img src="logo.png" alt="Blujay" class="h-10 mb-4" loading="lazy">
-                <p class="text-[13px] text-gray-400 leading-relaxed">
-                    Empowering 1 Million IT Careers!
-                </p>
-            </div>
-
-            <div>
-                <h4 class="text-[15px] font-bold mb-4">Quick Links</h4>
-                <ul class="space-y-2 text-[13px]">
-                    <li><a href="profilepushing.html" class="text-gray-400 hover:text-white transition-colors">Profile Pushing</a></li>
-                    <li><a href="jobsupport.html" class="text-gray-400 hover:text-white transition-colors">Job Support</a></li>
-                    <li><a href="jobroadmap.html" class="text-gray-400 hover:text-white transition-colors">Job Roadmap</a></li>
-                    <li><a href="aboutus.html" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
-                    <li><a href="blog.html" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="text-[15px] font-bold mb-4">Offerings</h4>
-                <ul class="space-y-2 text-[13px]">
-                    <li><a href="courses.html" class="text-gray-400 hover:text-white transition-colors">Courses-Recorded</a></li>
-                    <li><a href="courses-online.html" class="text-gray-400 hover:text-white transition-colors">Courses-Online</a></li>
-                    <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
-                     
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="text-[15px] font-bold mb-4">Contact Us</h4>
-                <ul class="space-y-3 text-[13px]">
-                    <li class="flex items-center gap-2 text-gray-400">
-                        <i class="fas fa-phone text-blue-600"></i>
-                        <span>+91 96187 21797</span>
-                    </li>
-                    <li class="flex items-center gap-2 text-gray-400">
-                        <i class="fas fa-envelope text-blue-600"></i>
-                        <span>blujaytechnlogies@gmail.com</span>
-                    </li>
-                    <li class="flex items-center gap-2 text-gray-400">
-                        <i class="fas fa-map-marker-alt text-blue-600"></i>
-                        <span>HMDA MYTRIVANAM BUILDING, 502, Kumar Basti, Srinivasa Nagar, Ameerpet, Hyderabad, Telangana 500016</span>
-                    </li>
-                </ul>
-
-                <div class="flex gap-3 mt-4">
-                    <a href="https://linkedin.com/company/blujay-technologies" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all hover:scale-110">
-                        <i class="fab fa-linkedin text-[14px]"></i>
-                    </a>
-                    <a href="https://instagram.com/blujaytech" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all hover:scale-110">
-                        <i class="fab fa-instagram text-[14px]"></i>
-                    </a>
-                    <a href="https://facebook.com/blujaytechnologies" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all hover:scale-110">
-                        <i class="fab fa-facebook text-[14px]"></i>
-                    </a>
-                    <a href="https://youtube.com/@blujaytech" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all hover:scale-110">
-                        <i class="fab fa-youtube text-[14px]"></i>
-                    </a>
+            <!-- Company Info -->
+            <div class="lg:col-span-1 text-center lg:text-left">
+                <div class="flex items-center justify-center lg:justify-start gap-3 mb-4">
+                    <img src="logo.png" alt="Blujay Technologies" class="h-10 w-auto">
                 </div>
+                <p class="text-sm text-gray-400 leading-relaxed mb-4">
+                    Empowering careers and businesses through quality IT education and professional digital services.
+                </p>
+                <div class="space-y-2 text-sm text-gray-400">
+                    <div class="flex items-start gap-2 justify-center lg:justify-start">
+                        <i class="fas fa-map-marker-alt mt-1 flex-shrink-0"></i>
+                        <span>Ameerpet, Hyderabad, India</span>
+                    </div>
+                    <div class="flex items-center gap-2 justify-center lg:justify-start">
+                        <i class="fas fa-phone"></i>
+                        <span>+91 96187 21797</span>
+                    </div>
+                    <div class="flex items-center gap-2 justify-center lg:justify-start">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@blujaytech.com</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Courses -->
+            <div class="text-center lg:text-left">
+                <h4 class="text-base font-semibold mb-4">Courses</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="all-courses.html" class="hover:text-white transition-colors">Full Stack Development</a></li>
+                    <li><a href="all-courses.html" class="hover:text-white transition-colors">Data Science</a></li>
+                    <li><a href="all-courses.html" class="hover:text-white transition-colors">Cloud Computing</a></li>
+                    <li><a href="all-courses.html" class="hover:text-white transition-colors">Digital Marketing</a></li>
+                    <li><a href="all-courses.html" class="hover:text-white transition-colors">All Courses</a></li>
+                </ul>
+            </div>
+
+            <!-- Career Support -->
+            <div class="text-center lg:text-left">
+                <h4 class="text-base font-semibold mb-4">Career Support</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="profilepushing.html" class="hover:text-white transition-colors">Profile Pushing</a></li>
+                    <li><a href="jobsupport.html" class="hover:text-white transition-colors">Job Support</a></li>
+                    <li><a href="jobroadmap.html" class="hover:text-white transition-colors">Interview Preparation</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Placement Assistance</a></li>
+                </ul>
+            </div>
+
+            <!-- Services -->
+            <div class="text-center lg:text-left">
+                <h4 class="text-base font-semibold mb-4">Services</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="services.html" class="hover:text-white transition-colors">Digital Marketing</a></li>
+                    <li><a href="services.html" class="hover:text-white transition-colors">Web Development</a></li>
+                    <li><a href="services.html" class="hover:text-white transition-colors">SEO Services</a></li>
+                    <li><a href="services.html" class="hover:text-white transition-colors">Custom Solutions</a></li>
+                </ul>
+            </div>
+
+            <!-- Company -->
+            <div class="text-center lg:text-left">
+                <h4 class="text-base font-semibold mb-4">Company</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="aboutus.html" class="hover:text-white transition-colors">About Us</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+                    <li><a href="blog.html" class="hover:text-white transition-colors">Blog</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Resources -->
+            <div class="text-center lg:text-left">
+                <h4 class="text-base font-semibold mb-4">Resources</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="#" class="hover:text-white transition-colors">Success Stories</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Community</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">FAQs</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Terms & Privacy</a></li>
+                </ul>
             </div>
 
         </div>
 
-        <div class="border-t border-gray-800 pt-6 text-center">
-            <p class="text-[12px] text-gray-500">
-                © 2020 Blujay Technologies. All rights reserved. | Privacy Policy | Terms & Conditions
-            </p>
+        <!-- Bottom Section -->
+        <div class="border-t border-gray-800 pt-6">
+            <div class="flex flex-col lg:flex-row justify-between items-center gap-4">
+                <p class="text-xs text-gray-500 text-center lg:text-left">
+                     2026 Blujay Technologies. All rights reserved.
+                </p>
+                
+                <!-- Social Media Links -->
+                <div class="flex gap-3">
+                    <a href="https://facebook.com/blujaytechnologies" target="_blank" rel="noopener noreferrer" class="w-8 h-8 flex items-center justify-center hover:text-blue-500 transition-colors">
+                        <i class="fab fa-facebook text-base"></i>
+                    </a>
+                    <a href="https://twitter.com/blujaytech" target="_blank" rel="noopener noreferrer" class="w-8 h-8 flex items-center justify-center hover:text-blue-400 transition-colors">
+                        <i class="fab fa-twitter text-base"></i>
+                    </a>
+                    <a href="https://linkedin.com/company/blujay-technologies" target="_blank" rel="noopener noreferrer" class="w-8 h-8 flex items-center justify-center hover:text-blue-600 transition-colors">
+                        <i class="fab fa-linkedin text-base"></i>
+                    </a>
+                    <a href="https://instagram.com/blujaytech" target="_blank" rel="noopener noreferrer" class="w-8 h-8 flex items-center justify-center hover:text-pink-500 transition-colors">
+                        <i class="fab fa-instagram text-base"></i>
+                    </a>
+                    <a href="https://youtube.com/@blujaytech" target="_blank" rel="noopener noreferrer" class="w-8 h-8 flex items-center justify-center hover:text-red-500 transition-colors">
+                        <i class="fab fa-youtube text-base"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </footer>
@@ -2697,7 +3485,7 @@
         
         <div class="flex flex-col lg:flex-row max-h-[85vh] overflow-visible">
             <!-- Left Side - Branding Section (Desktop/Tablet) -->
-            <div class="hidden md:flex md:w-[45%] lg:w-[40%] bg-gradient-to-br from-[#0057A0] via-[#0057A0] to-[#00447C] text-white p-6 lg:p-8 flex-col justify-between relative overflow-hidden">
+            <div class="hidden md:flex md:w-[45%] lg:w-[40%] bg-gradient-to-br from-[#1D5D7F] via-[#1D5D7F] to-[#144A66] text-white p-6 lg:p-8 flex-col justify-between relative overflow-hidden">
                 <!-- Background Pattern -->
                 <div class="absolute inset-0 opacity-10">
                     <div class="absolute top-0 right-0 w-48 h-48 bg-white rounded-full -mr-24 -mt-24"></div>
@@ -2714,7 +3502,7 @@
                     
                     <div class="mt-4">
                         <p class="text-[12px] text-blue-50 leading-relaxed">
-                            We carefully listen to your app requirements, thoroughly analyze them, and recommend the most effective approach for your development needs.
+                            Helping 1 Million People To Build Their Future in IT
                         </p>
                     </div>
                 </div>
@@ -2725,11 +3513,11 @@
                         <div class="space-y-1.5">
                             <div class="flex items-center gap-2 text-[12px]">
                                 <i class="fas fa-phone text-white text-opacity-80 text-[11px]"></i>
-                                <span>+91 98765 43210</span>
+                                <span>+91 9618 721 797</span>
                             </div>
                             <div class="flex items-center gap-2 text-[12px]">
                                 <i class="fas fa-envelope text-white text-opacity-80 text-[11px]"></i>
-                                <span>info@blujay.tech</span>
+                                <span>info@blujaytech.com</span>
                             </div>
                         </div>
                     </div>
@@ -2739,7 +3527,7 @@
             <!-- Right Side - Form Section -->
             <div class="w-full md:w-[55%] lg:w-[60%] relative bg-white max-h-[85vh] md:max-h-none overflow-visible">
                 <!-- Mobile Header -->
-                <div class="md:hidden bg-gradient-to-r from-[#0057A0] to-[#00447C] text-white p-5 relative">
+                <div class="md:hidden bg-gradient-to-r from-[#1D5D7F] to-[#144A66] text-white p-5 relative">
                     <button onclick="closeCallbackModal()" class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full hover:bg-white hover:bg-opacity-20 transition-all">
                         <i class="fas fa-times text-[16px]"></i>
                     </button>
@@ -2767,21 +3555,21 @@
                     <div>
                         <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Full Name *</label>
                         <input type="text" name="name" required 
-                            class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0057A0] focus:border-[#0057A0] outline-none text-[13px] lg:text-[14px] transition-all"
+                            class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D5D7F] focus:border-[#1D5D7F] outline-none text-[13px] lg:text-[14px] transition-all"
                             placeholder="John Doe">
                     </div>
 
                     <div>
                         <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Email Address *</label>
                         <input type="email" name="email" required 
-                            class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0057A0] focus:border-[#0057A0] outline-none text-[13px] lg:text-[14px] transition-all"
+                            class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D5D7F] focus:border-[#1D5D7F] outline-none text-[13px] lg:text-[14px] transition-all"
                             placeholder="john@example.com">
                     </div>
 
                     <div>
                         <label class="block text-[12px] lg:text-[13px] font-semibold text-gray-700 mb-1.5 lg:mb-2">Phone Number *</label>
                         <input type="tel" name="phone" required 
-                            class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0057A0] focus:border-[#0057A0] outline-none text-[13px] lg:text-[14px] transition-all"
+                            class="w-full px-3.5 lg:px-4 py-2 lg:py-2.5 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D5D7F] focus:border-[#1D5D7F] outline-none text-[13px] lg:text-[14px] transition-all"
                             placeholder="+91 XXXXX XXXXX">
                     </div>
 
@@ -2827,7 +3615,7 @@
 
                     <!-- Submit Button -->
                     <button type="submit" id="submitBtn"
-                        class="w-full bg-[#0057A0] text-white py-2.5 lg:py-3 rounded-lg font-semibold text-[14px] lg:text-[15px] hover:bg-[#00447C] transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 mt-4 lg:mt-5">
+                        class="w-full bg-[#1D5D7F] text-white py-2.5 lg:py-3 rounded-lg font-semibold text-[14px] lg:text-[15px] hover:bg-[#144A66] transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 mt-4 lg:mt-5">
                         <span>Submit Now</span>
                         <i class="fas fa-arrow-right text-[12px]"></i>
                     </button>
@@ -2876,7 +3664,41 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 100);
 });
 
-// ===== 2. NAVBAR SCROLL EFFECT =====
+// ===== 2. ANIMATED COUNTERS =====
+const animateCounter = (element, target, duration = 2000, isDecimal = false) => {
+    let start = 0;
+    const increment = target / (duration / 16); // 60fps
+    const timer = setInterval(() => {
+        start += increment;
+        if (start >= target) {
+            element.textContent = isDecimal ? target.toFixed(1) : Math.ceil(target).toLocaleString();
+            clearInterval(timer);
+        } else {
+            element.textContent = isDecimal ? start.toFixed(1) : Math.ceil(start).toLocaleString();
+        }
+    }, 16);
+};
+
+const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+            entry.target.classList.add('counted');
+            const target = parseFloat(entry.target.getAttribute('data-target'));
+            const isDecimal = entry.target.getAttribute('data-decimal') === 'true';
+            animateCounter(entry.target, target, 2000, isDecimal);
+        }
+    });
+}, {
+    threshold: 0.5
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.counter').forEach(counter => {
+        counterObserver.observe(counter);
+    });
+});
+
+// ===== 3. NAVBAR SCROLL EFFECT =====
 const navbar = document.getElementById('navbar');
 let lastScroll = 0;
 
@@ -2892,7 +3714,7 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
-// ===== 3. MOBILE MENU =====
+// ===== 4. MOBILE MENU =====
 const mobileToggle = document.getElementById('mobile-toggle');
 const mobileClose = document.getElementById('mobile-close');
 const mobileMenu = document.getElementById('mobile-menu');
@@ -3028,41 +3850,6 @@ if (heroWrap && heroDots) {
     scheduleNext();
 }
 
-// ===== 5. COUNTER ANIMATION =====
-const counterSection = document.getElementById('impact-section');
-const counters = document.querySelectorAll('.counter-number');
-let counterAnimated = false;
-
-function animateCounter(counter) {
-    const target = parseFloat(counter.getAttribute('data-target'));
-    const duration = 2200;
-    const increment = target / (duration / 16);
-    let current = 0;
-
-    const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-            counter.textContent = target % 1 === 0 ? target : target.toFixed(1);
-            clearInterval(timer);
-        } else {
-            counter.textContent = current % 1 === 0 ? Math.floor(current) : current.toFixed(1);
-        }
-    }, 16);
-}
-
-const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting && !counterAnimated) {
-            counterAnimated = true;
-            counters.forEach(counter => animateCounter(counter));
-        }
-    });
-}, { threshold: 0.5 });
-
-if (counterSection) {
-    counterObserver.observe(counterSection);
-}
-
 // ===== 6. CAREER PATHWAY ANIMATION =====
 const pathwaySection = document.getElementById('career-pathway-section');
 const pathwaySteps = document.querySelectorAll('.pathway-step');
@@ -3176,7 +3963,7 @@ if (testimonialTrack) {
  */
 
 // SheetDB API Configuration - REPLACE THIS WITH YOUR ACTUAL SHEETDB URL
-const SHEETDB_URL = 'https://sheetdb.io/api/v1/7s7xiynldn2sf'; // ⚠️ REPLACE THIS!
+const SHEETDB_URL = 'https://sheetdb.io/api/v1/7s7xiynldn2sf'; // ?? REPLACE THIS!
 
 // Open Modal
 function openCallbackModal() {
@@ -3226,6 +4013,12 @@ document.getElementById('callbackModal')?.addEventListener('click', function(e) 
         closeCallbackModal();
     }
 });
+
+// ===== AUTO-POPUP CALLBACK MODAL AFTER 10 SECONDS =====
+// This will trigger the callback modal automatically after 10 seconds on every page load/reload
+setTimeout(function() {
+    openCallbackModal();
+}, 10000); // 10000 milliseconds = 10 seconds
 
 // ===== CUSTOM SERVICE DROPDOWN FUNCTIONALITY =====
 const serviceDropdownTrigger = document.getElementById('serviceDropdownTrigger');
@@ -3405,9 +4198,18 @@ window.addEventListener('scroll', () => {
 </script>
 
 <!-- WhatsApp Floating Button -->
-<a href="https://wa.me/919618721797" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Chat on WhatsApp">
+<a href="https://wa.me/919618721797" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Chat on WhatsApp" onclick="trackWhatsAppClick('floating-button', 'Homepage inquiry')">
     <i class="fab fa-whatsapp"></i>
 </a>
+
+<!-- Google Analytics 4 - Event Tracking -->
+<script src="js/analytics.js"></script>
+<script>
+// Track homepage view
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('📊 Homepage loaded - GA4 tracking active');
+});
+</script>
 
 </body>
 </html>

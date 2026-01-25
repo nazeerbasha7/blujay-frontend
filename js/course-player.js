@@ -20,7 +20,11 @@ const auth = firebase.auth();
 const db = firebase.firestore();
 
 // Backend API
-const API_URL = 'https://blujay-backend.onrender.com/api';
+// Smart API URL - Auto-detects environment
+const API_URL = window.API_CONFIG?.getApiUrl() || 
+    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+        ? 'http://localhost:5000/api' 
+        : 'https://blujay-backend.onrender.com/api');
 
 // ============================================
 // AUTHENTICATED FETCH HELPER
@@ -31,7 +35,7 @@ async function authenticatedFetch(endpoint, options = {}) {
   if (!token) {
     console.error('❌ No auth token found');
     alert('Session expired. Please login again.');
-    window.location.href = 'login.html';
+    window.location.href = 'login';
     return null;
   }
 
@@ -55,7 +59,7 @@ async function authenticatedFetch(endpoint, options = {}) {
       console.error('❌ Authentication failed - token invalid');
       localStorage.clear();
       alert('Session expired. Please login again.');
-      window.location.href = 'login.html';
+      window.location.href = 'login';
       return null;
     }
 
@@ -160,7 +164,7 @@ async function checkAuthenticationStatus() {
   const token = localStorage.getItem('authToken');
   if (!token) {
     console.log('❌ No token found, redirecting to login...');
-    window.location.href = 'login.html';
+    window.location.href = 'login';
     return false;
   }
 
@@ -174,7 +178,7 @@ async function checkAuthenticationStatus() {
     return true;
   } catch (error) {
     console.error('❌ Auth check error:', error);
-    window.location.href = 'login.html';
+    window.location.href = 'login';
     return false;
   }
 }
@@ -185,7 +189,7 @@ async function checkAuthenticationStatus() {
 auth.onAuthStateChanged(async (user) => {
   if (!user) {
     console.log('❌ No Firebase user, redirecting to login...');
-    window.location.href = 'login.html';
+    window.location.href = 'login';
     return;
   }
 
@@ -632,6 +636,7 @@ if (logoutBtn) {
   logoutBtn.addEventListener('click', () => {
     if (!confirm('Are you sure you want to logout?')) return;
     localStorage.clear();
+    sessionStorage.clear();
     auth
       .signOut()
       .then(() => (window.location.href = 'index.html'))

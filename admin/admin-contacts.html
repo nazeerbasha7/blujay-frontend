@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Submissions - Admin Dashboard</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .contact-table {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .table-header {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            font-weight: 600;
+        }
+        .table-row:hover {
+            background: #f8fafc;
+        }
+        .badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .badge-new { background: #dbeafe; color: #1e40af; }
+        .badge-today { background: #dcfce7; color: #166534; }
+        .badge-yesterday { background: #fef3c7; color: #92400e; }
+        .badge-week { background: #e0e7ff; color: #4338ca; }
+        .badge-older { background: #f3f4f6; color: #6b7280; }
+        .stats-card {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .loading-spinner {
+            border: 3px solid #f3f4f6;
+            border-top: 3px solid #3b82f6;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <i class="fas fa-envelope text-2xl text-blue-600"></i>
+                <h1 class="text-xl font-bold text-gray-800">Contact Submissions</h1>
+            </div>
+            <div class="flex items-center gap-4">
+                <button onclick="refreshData()" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2">
+                    <i class="fas fa-sync-alt"></i> Refresh
+                </button>
+                <a href="admin-dashboard.html" class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700">
+                    <i class="fas fa-arrow-left"></i> Back
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="stats-card">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm">Total Submissions</p>
+                        <p class="text-3xl font-bold text-gray-800 mt-1" id="totalCount">0</p>
+                    </div>
+                    <div class="bg-blue-100 p-3 rounded-full">
+                        <i class="fas fa-inbox text-blue-600 text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stats-card">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm">Today</p>
+                        <p class="text-3xl font-bold text-green-600 mt-1" id="todayCount">0</p>
+                    </div>
+                    <div class="bg-green-100 p-3 rounded-full">
+                        <i class="fas fa-calendar-day text-green-600 text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stats-card">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm">This Week</p>
+                        <p class="text-3xl font-bold text-yellow-600 mt-1" id="weekCount">0</p>
+                    </div>
+                    <div class="bg-yellow-100 p-3 rounded-full">
+                        <i class="fas fa-calendar-week text-yellow-600 text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stats-card">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm">This Month</p>
+                        <p class="text-3xl font-bold text-purple-600 mt-1" id="monthCount">0</p>
+                    </div>
+                    <div class="bg-purple-100 p-3 rounded-full">
+                        <i class="fas fa-calendar-alt text-purple-600 text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loadingState" class="flex flex-col items-center justify-center py-12">
+            <div class="loading-spinner"></div>
+            <p class="text-gray-600 mt-4">Loading contacts...</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="errorState" class="hidden bg-red-50 border border-red-200 rounded-lg p-6 text-center">
+            <i class="fas fa-exclamation-triangle text-red-500 text-4xl mb-3"></i>
+            <p class="text-red-700 font-semibold">Failed to load contacts</p>
+            <p class="text-red-600 text-sm mt-2" id="errorMessage"></p>
+            <button onclick="refreshData()" class="mt-4 px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
+                Try Again
+            </button>
+        </div>
+
+        <!-- Contacts Table -->
+        <div id="contactsTable" class="contact-table hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="table-header">
+                            <th class="px-6 py-4 text-left">#</th>
+                            <th class="px-6 py-4 text-left">Name</th>
+                            <th class="px-6 py-4 text-left">Email</th>
+                            <th class="px-6 py-4 text-left">Mobile</th>
+                            <th class="px-6 py-4 text-left">Service</th>
+                            <th class="px-6 py-4 text-left">Message</th>
+                            <th class="px-6 py-4 text-left">Submitted</th>
+                            <th class="px-6 py-4 text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="contactsBody">
+                        <!-- Rows will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="hidden bg-white rounded-lg p-12 text-center">
+            <i class="fas fa-inbox text-gray-300 text-6xl mb-4"></i>
+            <p class="text-gray-600 text-lg font-semibold">No contact submissions yet</p>
+            <p class="text-gray-500 text-sm mt-2">Contact form submissions will appear here</p>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:5000/api';
+        let allContacts = [];
+
+        // Check authentication
+        const token = localStorage.getItem('authToken');
+        const userRole = localStorage.getItem('userRole');
+
+        if (!token || userRole !== 'admin') {
+            alert('Access denied. Admin authentication required.');
+            window.location.href = '../login.html';
+        }
+
+        // Fetch contacts on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchContacts();
+        });
+
+        async function fetchContacts() {
+            try {
+                showLoading();
+                
+                const response = await fetch(`${API_URL}/contact`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    allContacts = data.contacts || [];
+                    displayContacts(allContacts);
+                    updateStats(allContacts);
+                } else {
+                    throw new Error(data.message || 'Failed to fetch contacts');
+                }
+
+            } catch (error) {
+                console.error('Error fetching contacts:', error);
+                showError(error.message);
+            }
+        }
+
+        function displayContacts(contacts) {
+            const tbody = document.getElementById('contactsBody');
+            const loadingState = document.getElementById('loadingState');
+            const errorState = document.getElementById('errorState');
+            const contactsTable = document.getElementById('contactsTable');
+            const emptyState = document.getElementById('emptyState');
+
+            loadingState.classList.add('hidden');
+            errorState.classList.add('hidden');
+
+            if (contacts.length === 0) {
+                contactsTable.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            contactsTable.classList.remove('hidden');
+
+            tbody.innerHTML = contacts.map((contact, index) => {
+                const timeInfo = getTimeInfo(contact.submittedAt);
+                return `
+                    <tr class="table-row border-b border-gray-100">
+                        <td class="px-6 py-4 text-gray-600">${index + 1}</td>
+                        <td class="px-6 py-4">
+                            <div class="font-semibold text-gray-800">${contact.fullName}</div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <a href="mailto:${contact.email}" class="text-blue-600 hover:underline">${contact.email}</a>
+                        </td>
+                        <td class="px-6 py-4">
+                            <a href="tel:+91${contact.mobile}" class="text-gray-700">+91 ${contact.mobile}</a>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="text-sm text-gray-700">${formatServiceType(contact.serviceType)}</span>
+                        </td>
+                        <td class="px-6 py-4 max-w-xs">
+                            <div class="text-sm text-gray-600 truncate" title="${contact.message || 'No message'}">
+                                ${contact.message || 'No message'}
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex flex-col gap-1">
+                                <span class="badge ${timeInfo.badgeClass}">${timeInfo.label}</span>
+                                <span class="text-xs text-gray-500">${timeInfo.time}</span>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 text-center">
+                            <button onclick="viewDetails('${contact._id}')" class="text-blue-600 hover:text-blue-800 mx-1" title="View Details">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button onclick="deleteContact('${contact._id}')" class="text-red-600 hover:text-red-800 mx-1" title="Delete">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function getTimeInfo(submittedAt) {
+            const now = new Date();
+            const submitDate = new Date(submittedAt);
+            const diffMs = now - submitDate;
+            const diffMins = Math.floor(diffMs / 60000);
+            const diffHours = Math.floor(diffMs / 3600000);
+            const diffDays = Math.floor(diffMs / 86400000);
+
+            const time = submitDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+            const date = submitDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+            if (diffMins < 1) return { label: 'Just now', time: time, badgeClass: 'badge-new' };
+            if (diffMins < 60) return { label: `${diffMins}m ago`, time: time, badgeClass: 'badge-new' };
+            if (diffHours < 24 && now.getDate() === submitDate.getDate()) {
+                return { label: 'Today', time: time, badgeClass: 'badge-today' };
+            }
+            if (diffDays === 1 || (diffHours < 48 && now.getDate() - submitDate.getDate() === 1)) {
+                return { label: 'Yesterday', time: time, badgeClass: 'badge-yesterday' };
+            }
+            if (diffDays <= 7) {
+                return { label: `${diffDays} days ago`, time: time, badgeClass: 'badge-week' };
+            }
+            return { label: date, time: time, badgeClass: 'badge-older' };
+        }
+
+        function updateStats(contacts) {
+            const now = new Date();
+            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            const weekAgo = new Date(now - 7 * 24 * 60 * 60 * 1000);
+            const monthAgo = new Date(now.getFullYear(), now.getMonth(), 1);
+
+            const todayCount = contacts.filter(c => new Date(c.submittedAt) >= today).length;
+            const weekCount = contacts.filter(c => new Date(c.submittedAt) >= weekAgo).length;
+            const monthCount = contacts.filter(c => new Date(c.submittedAt) >= monthAgo).length;
+
+            document.getElementById('totalCount').textContent = contacts.length;
+            document.getElementById('todayCount').textContent = todayCount;
+            document.getElementById('weekCount').textContent = weekCount;
+            document.getElementById('monthCount').textContent = monthCount;
+        }
+
+        function formatServiceType(type) {
+            const serviceMap = {
+                'online-courses': 'Online Courses',
+                'web-development': 'Web Development',
+                'lms-solutions': 'LMS Solutions',
+                'course-development': 'Course Development',
+                'placement-support': 'Placement Support',
+                'technical-training': 'Technical Training',
+                'custom-software': 'Custom Software',
+                'ui-ux-design': 'UI/UX Design',
+                'consulting': 'Consulting',
+                'other': 'Other'
+            };
+            return serviceMap[type] || type;
+        }
+
+        function showLoading() {
+            document.getElementById('loadingState').classList.remove('hidden');
+            document.getElementById('errorState').classList.add('hidden');
+            document.getElementById('contactsTable').classList.add('hidden');
+            document.getElementById('emptyState').classList.add('hidden');
+        }
+
+        function showError(message) {
+            document.getElementById('loadingState').classList.add('hidden');
+            document.getElementById('errorState').classList.remove('hidden');
+            document.getElementById('contactsTable').classList.add('hidden');
+            document.getElementById('emptyState').classList.add('hidden');
+            document.getElementById('errorMessage').textContent = message;
+        }
+
+        function refreshData() {
+            fetchContacts();
+        }
+
+        function viewDetails(contactId) {
+            const contact = allContacts.find(c => c._id === contactId);
+            if (!contact) return;
+
+            const timeInfo = getTimeInfo(contact.submittedAt);
+            
+            alert(`
+Contact Details:
+
+Name: ${contact.fullName}
+Email: ${contact.email}
+Mobile: +91 ${contact.mobile}
+Service: ${formatServiceType(contact.serviceType)}
+Message: ${contact.message || 'No message'}
+
+Submitted: ${timeInfo.label} at ${timeInfo.time}
+IP Address: ${contact.ipAddress || 'N/A'}
+User Agent: ${contact.userAgent || 'N/A'}
+            `.trim());
+        }
+
+        async function deleteContact(contactId) {
+            if (!confirm('Are you sure you want to delete this contact submission?')) {
+                return;
+            }
+
+            try {
+                // Note: You'll need to add a DELETE route in the backend
+                alert('Delete functionality coming soon!');
+                // const response = await fetch(`${API_URL}/contact/${contactId}`, {
+                //     method: 'DELETE',
+                //     headers: { 'Authorization': `Bearer ${token}` }
+                // });
+                // if (response.ok) {
+                //     fetchContacts();
+                // }
+            } catch (error) {
+                console.error('Error deleting contact:', error);
+                alert('Failed to delete contact');
+            }
+        }
+    </script>
+</body>
+</html>

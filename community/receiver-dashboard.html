@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Seeker Dashboard | Blujay Tech Community</title>
+    
+    <script src="../js/api-config.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="community-styles.css">
+    
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        :root {
+            --blujay-primary: #0057A0;
+            --blujay-hover: #00447C;
+            --blujay-light: #E6F1FB;
+            --blujay-dark: #00345E;
+            --blujay-gradient: linear-gradient(135deg, #0057A0 0%, #0084D6 100%);
+        }
+        body { 
+            background: linear-gradient(135deg, #f8fafc 0%, var(--blujay-light) 100%); 
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .stat-card { 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+            border-radius: 16px;
+            border-left: 4px solid var(--blujay-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        }
+        .stat-card:hover { 
+            transform: translateY(-6px); 
+            box-shadow: 0 12px 32px rgba(0, 87, 160, 0.15);
+        }
+        
+        .profile-card { 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+            border-radius: 16px;
+            border: 2px solid transparent;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        }
+        .profile-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 16px 40px rgba(0, 87, 160, 0.12);
+            border-color: var(--blujay-primary);
+        }
+        
+        .btn-primary {
+            background: var(--blujay-gradient);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 87, 160, 0.25);
+            font-weight: 600;
+        }
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 87, 160, 0.35);
+            background: linear-gradient(135deg, #00447C 0%, #0057A0 100%);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal.show { display: flex; }
+        
+        @media (max-width: 768px) {
+            .stat-card { margin-bottom: 1rem; }
+            .profile-card { padding: 1rem !important; }
+        }
+    </style>
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in { animation: fadeIn 0.5s ease-out; }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .modal-content { animation: slideIn 0.3s ease-out; }
+    </style>
+</head>
+<body>
+    
+    <!-- Navbar -->
+    <nav class="bg-gradient-to-r from-blue-600 to-blue-500 shadow-lg sticky top-0 z-40" style="background: var(--blujay-gradient);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <div class="flex items-center gap-3">
+                    <img src="../images/logo.webp" alt="Blujay Tech" class="h-10 sm:h-12">
+                    <div class="text-white">
+                        <h2 class="font-bold text-lg sm:text-xl">Community Portal</h2>
+                        <p class="text-xs sm:text-sm opacity-90">Job Seeker Dashboard</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3 sm:gap-4">
+                    <a href="receiver-profile.html" class="text-white hover:text-blue-100 transition flex items-center gap-2 text-sm sm:text-base">
+                        <i class="fas fa-edit"></i> <span class="hidden sm:inline">Edit Profile</span>
+                    </a>
+                    <button onclick="handleLogout()" class="bg-white/20 hover:bg-white/30 text-white px-3 sm:px-4 py-2 rounded-lg transition flex items-center gap-2 text-sm sm:text-base">
+                        <i class="fas fa-sign-out-alt"></i> <span class="hidden sm:inline">Logout</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        
+        <!-- Welcome Section -->
+        <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl shadow-xl p-6 md:p-8 mb-8 text-white fade-in">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-bold mb-2">
+                        Welcome back, <span id="userName">User</span>! 👋
+                    </h1>
+                    <p class="opacity-90">Browse professionals and send connection requests</p>
+                </div>
+                <button onclick="loadAvailableGivers()" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+                    <i class="fas fa-sync-alt mr-2"></i>Refresh
+                </button>
+            </div>
+        </div>
+        
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="stat-card bg-white rounded-xl shadow-md p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-500 text-sm font-medium mb-1">Pending Requests</p>
+                        <p id="pendingCount" class="text-3xl font-bold text-orange-600">0</p>
+                    </div>
+                    <div class="w-14 h-14 bg-orange-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-clock text-2xl text-orange-600"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stat-card bg-white rounded-xl shadow-md p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-500 text-sm font-medium mb-1">Awaiting Admin</p>
+                        <p id="awaitingCount" class="text-3xl font-bold text-blue-600">0</p>
+                    </div>
+                    <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-hourglass-half text-2xl text-blue-600"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stat-card bg-white rounded-xl shadow-md p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-500 text-sm font-medium mb-1">Approved Connections</p>
+                        <p id="approvedCount" class="text-3xl font-bold text-green-600">0</p>
+                    </div>
+                    <div class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-check-circle text-2xl text-green-600"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Approved Connections Section -->
+        <div id="approvedSection" class="bg-white rounded-xl shadow-md p-6 mb-8" style="display: none;">
+            <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                <i class="fas fa-check-circle text-green-600"></i>
+                Approved Connections
+            </h3>
+            <div id="approvedList" class="space-y-4">
+                <!-- Approved connections will load here -->
+            </div>
+        </div>
+        
+        <!-- Awaiting Admin Approval Section -->
+        <div id="awaitingSection" class="bg-white rounded-xl shadow-md p-6 mb-8" style="display: none;">
+            <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                <i class="fas fa-hourglass-half text-blue-600"></i>
+                Awaiting Admin Approval
+            </h3>
+            <div id="awaitingList" class="space-y-4">
+                <!-- Awaiting connections will load here -->
+            </div>
+        </div>
+        
+        <!-- Available Professionals -->
+        <div class="bg-white rounded-xl shadow-md p-6 fade-in">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-bold text-gray-800 flex items-center gap-2">
+                    <i class="fas fa-users text-blue-600"></i>
+                    Available Professionals
+                </h3>
+                <span class="text-sm text-gray-500">Verified professionals ready to help</span>
+            </div>
+            
+            <div id="loadingSpinner" class="text-center py-12">
+                <div class="animate-spin rounded-full h-16 w-16 border-b-4 border-blue-600 mx-auto mb-4"></div>
+                <p class="text-gray-500">Loading professionals...</p>
+            </div>
+            
+            <div id="giversGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" style="display: none;">
+                <!-- Givers will load here -->
+            </div>
+            
+            <div id="noGiversMessage" class="text-center py-12" style="display: none;">
+                <i class="fas fa-users-slash text-6xl text-gray-300 mb-4"></i>
+                <p class="text-gray-500 text-lg">No professionals available at the moment</p>
+                <p class="text-gray-400 text-sm mt-2">Check back later or refresh the page</p>
+            </div>
+        </div>
+        
+    </div>
+    
+    <!-- Contact Details Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 overflow-hidden">
+            <!-- Modal Header -->
+            <div class="bg-gradient-to-r from-blue-600 to-purple-600 p-6 text-white">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-2xl font-bold flex items-center gap-2">
+                        <i class="fas fa-address-card"></i>
+                        Contact Details
+                    </h3>
+                    <button onclick="closeContactModal()" class="text-white hover:text-gray-200 transition">
+                        <i class="fas fa-times text-2xl"></i>
+                    </button>
+                </div>
+                <p class="text-sm opacity-90 mt-1">Connection approved by admin</p>
+            </div>
+            
+            <!-- Modal Body -->
+            <div id="contactDetails" class="p-6 space-y-4">
+                <!-- Details will be populated here -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Firebase & Scripts -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
+        import { getAuth, onAuthStateChanged, signOut, setPersistence, browserLocalPersistence } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+        
+        // Use the correct Blujay Tech Firebase config
+        const firebaseConfig = {
+            apiKey: "AIzaSyCiedANEie5u-2XQOjdsUFgdkE7s08gArY",
+            authDomain: "blujay-tech.firebaseapp.com",
+            projectId: "blujay-tech",
+            storageBucket: "blujay-tech.firebasestorage.app",
+            messagingSenderId: "586422050005",
+            appId: "1:586422050005:web:737ba2502d1b283ea6165c",
+            measurementId: "G-1JE665W8D0"
+        };
+        
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        
+        let currentUser = null;
+        let allGivers = [];
+        let allConnections = [];
+        let authUnsubscribe = null;
+        let authCheckComplete = false;
+        
+        console.log('🏘️ Receiver Dashboard - Starting...');
+        
+        // Set persistence FIRST before any auth checks
+        setPersistence(auth, browserLocalPersistence).then(() => {
+            console.log('✅ Auth persistence set to LOCAL');
+            
+            // Now check auth - ONLY RUN ONCE using unsubscribe
+            authUnsubscribe = onAuthStateChanged(auth, async (user) => {
+                if (authCheckComplete) {
+                    console.log('⏸️ Auth check already complete, skipping');
+                    return;
+                }
+                
+                console.log('🔔 Auth state changed');
+                
+                if (!user) {
+                    console.log('❌ No user authenticated');
+                    // Give a small delay to ensure Firebase has fully loaded
+                    setTimeout(() => {
+                        if (!currentUser) {
+                            console.log('❌ Redirecting to login after timeout');
+                            window.location.href = '../login.html?redirect=community';
+                        }
+                    }, 1000);
+                    return;
+                }
+                
+                console.log('✅ User authenticated:', user.email);
+                currentUser = user;
+                authCheckComplete = true;
+                
+                // Unsubscribe to prevent re-runs
+                if (authUnsubscribe) {
+                    console.log('🔕 Unsubscribing from auth listener');
+                    authUnsubscribe();
+                    authUnsubscribe = null;
+                }
+                
+                // Now run profile check
+                await checkProfile();
+            });
+        }).catch((error) => {
+            console.error('❌ Error setting persistence:', error);
+        });
+        
+        async function checkProfile() {
+            try {
+                console.log('🔄 Checking community profile...');
+                const token = await currentUser.getIdToken();
+                const API_URL = window.API_CONFIG?.getApiUrl() || 'http://localhost:5000/api';
+                const response = await fetch(`${API_URL}/community/my-profile`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                console.log('📊 Profile check response:', response.status);
+                
+                if (!response.ok && response.status === 404) {
+                    console.log('❌ No profile exists - Redirecting to role selection');
+                    alert('Please complete your profile to access the dashboard.');
+                    window.location.href = 'role-selection.html?role=receiver';
+                    return;
+                }
+                
+                if (!response.ok) {
+                    console.error('❌ Profile check failed:', response.status);
+                    alert('Error loading profile. Please try again.');
+                    window.location.href = 'index.html';
+                    return;
+                }
+                
+                const data = await response.json();
+                console.log('✅ Profile loaded:', data.profile);
+                
+                if (!data.profile) {
+                    console.log('❌ No profile data - Redirecting to role selection');
+                    alert('Please complete your profile to access the dashboard.');
+                    window.location.href = 'role-selection.html?role=receiver';
+                    return;
+                }
+                
+                // Check if wrong role - use profileType OR role field
+                const userRole = data.profile.profileType || data.profile.role;
+                console.log('👤 User role from profile:', userRole);
+                
+                if (userRole && userRole !== 'RECEIVER') {
+                    console.log('⚠️ Wrong role detected - user is', userRole, '- redirecting to giver dashboard');
+                    window.location.href = 'giver-dashboard.html';
+                    return;
+                }
+                
+                // CRITICAL: Check verification status - MUST be VERIFIED to access dashboard
+                const verificationStatus = data.profile.verificationStatus;
+                console.log('🔍 Verification Status:', verificationStatus);
+                
+                if (!verificationStatus || verificationStatus !== 'VERIFIED') {
+                    console.log('⏳ Profile NOT verified (Status:', verificationStatus, ') - Redirecting to verification pending');
+                    window.location.href = 'verification-pending.html?role=receiver';
+                    return;
+                }
+                
+                console.log('✅ Profile VERIFIED - Allowing dashboard access');
+                
+                // Check if profile is active
+                if (data.profile.isActive === false) {
+                    console.log('❌ Profile is inactive');
+                    alert('Your profile has been deactivated. Please contact admin.');
+                    window.location.href = 'index.html';
+                    return;
+                }
+                
+                console.log('✅ All checks passed - loading dashboard');
+                document.getElementById('userName').textContent = data.profile.fullName?.split(' ')[0] || currentUser.displayName?.split(' ')[0] || 'User';
+                
+                await loadAvailableGivers();
+                await loadConnections();
+                setInterval(loadConnections, 30000); // Auto-refresh every 30 seconds
+            } catch (error) {
+                console.error('❌ Error in checkProfile:', error);
+                // Don't redirect on error - allow dashboard to load
+                document.getElementById('userName').textContent = currentUser?.displayName?.split(' ')[0] || 'User';
+                try {
+                    await loadAvailableGivers();
+                } catch (e) {
+                    console.error('❌ Error loading givers:', e);
+                    document.getElementById('loadingSpinner').style.display = 'none';
+                }
+            }
+        }
+        
+        window.loadAvailableGivers = async function() {
+            try {
+                console.log('🔄 Loading available givers...');
+                
+                if (!currentUser) {
+                    console.error('❌ No current user');
+                    document.getElementById('loadingSpinner').style.display = 'none';
+                    return;
+                }
+                
+                const token = await currentUser.getIdToken();
+                const API_URL = window.API_CONFIG?.getApiUrl() || 'http://localhost:5000/api';
+                const response = await fetch(`${API_URL}/community/profiles?type=GIVER&status=VERIFIED`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                console.log('✅ Givers loaded:', data.profiles?.length || 0);
+                allGivers = data.profiles || [];
+                
+                document.getElementById('loadingSpinner').style.display = 'none';
+                
+                if (allGivers.length === 0) {
+                    document.getElementById('noGiversMessage').style.display = 'block';
+                    document.getElementById('giversGrid').style.display = 'none';
+                } else {
+                    document.getElementById('noGiversMessage').style.display = 'none';
+                    document.getElementById('giversGrid').style.display = 'grid';
+                    renderGivers();
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('loadingSpinner').style.display = 'none';
+                document.getElementById('noGiversMessage').style.display = 'block';
+            }
+        };
+        
+        function renderGivers() {
+            const grid = document.getElementById('giversGrid');
+            grid.innerHTML = allGivers.map(giver => {
+                const alreadyConnected = allConnections.some(conn => 
+                    conn.receiver._id === giver._id || conn.sender._id === giver._id
+                );
+                
+                return `
+                    <div class="profile-card bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-blue-400">
+                        <div class="flex items-start gap-4 mb-4">
+                            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full flex items-center justify-center text-white text-2xl font-bold flex-shrink-0">
+                                ${giver.fullName.charAt(0)}
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <h4 class="font-bold text-gray-800 text-lg truncate">${giver.fullName}</h4>
+                                <p class="text-sm text-gray-600 truncate">${giver.currentRole || 'Professional'}</p>
+                                ${giver.companyName ? `<p class="text-xs text-gray-500 truncate">${giver.companyName}</p>` : ''}
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4 space-y-2 text-sm text-gray-600">
+                            <p><i class="fas fa-map-marker-alt text-blue-600 w-4"></i> ${giver.location || 'Not specified'}</p>
+                            ${giver.experienceYears ? `<p><i class="fas fa-briefcase text-blue-600 w-4"></i> ${giver.experienceYears} years experience</p>` : ''}
+                            ${giver.industry ? `<p><i class="fas fa-industry text-blue-600 w-4"></i> ${giver.industry}</p>` : ''}
+                        </div>
+                        
+                        ${giver.skills && giver.skills.length > 0 ? `
+                        <div class="mb-4">
+                            <p class="text-xs text-gray-500 mb-2">Skills:</p>
+                            <div class="flex flex-wrap gap-1">
+                                ${giver.skills.slice(0, 3).map(skill => `
+                                    <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">${skill}</span>
+                                `).join('')}
+                                ${giver.skills.length > 3 ? `<span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">+${giver.skills.length - 3}</span>` : ''}
+                            </div>
+                        </div>
+                        ` : ''}
+                        
+                        <button onclick="sendConnectionRequest('${giver.userId._id || giver.userId}', this)"
+                            ${alreadyConnected ? 'disabled' : ''}
+                            class="btn-primary w-full text-white font-semibold py-3 rounded-lg ${alreadyConnected ? 'opacity-50 cursor-not-allowed' : ''}">
+                            ${alreadyConnected ? '<i class="fas fa-check mr-2"></i>Already Connected' : '<i class="fas fa-paper-plane mr-2"></i>Send Request'}
+                        </button>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        async function loadConnections() {
+            try {
+                console.log('🔄 Loading connections...');
+                
+                if (!currentUser) {
+                    console.error('❌ No current user');
+                    return;
+                }
+                
+                const token = await currentUser.getIdToken();
+                const API_URL = window.API_CONFIG?.getApiUrl() || 'http://localhost:5000/api';
+                console.log('📡 Fetching from:', `${API_URL}/community/connections`);
+                
+                const response = await fetch(`${API_URL}/community/connections`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('❌ API Error:', response.status, errorText);
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                console.log('✅ API Response:', data);
+                console.log('✅ Connections loaded:', data.connections?.length || 0);
+                
+                if (data.connections && data.connections.length > 0) {
+                    console.log('📋 First connection structure:', data.connections[0]);
+                }
+                
+                allConnections = data.connections || [];
+                
+                // Update stats
+                const pending = allConnections.filter(c => c.status === 'REQUESTED').length;
+                const awaiting = allConnections.filter(c => c.status === 'USER_ACCEPTED').length;
+                const approved = allConnections.filter(c => c.status === 'ADMIN_APPROVED').length;
+                
+                console.log('📊 Stats - Pending:', pending, 'Awaiting:', awaiting, 'Approved:', approved);
+                
+                document.getElementById('pendingCount').textContent = pending;
+                document.getElementById('awaitingCount').textContent = awaiting;
+                document.getElementById('approvedCount').textContent = approved;
+                
+                // Show approved connections
+                if (approved > 0) {
+                    document.getElementById('approvedSection').style.display = 'block';
+                    renderApprovedConnections();
+                } else {
+                    document.getElementById('approvedSection').style.display = 'none';
+                }
+                
+                // Show awaiting connections
+                if (awaiting > 0) {
+                    document.getElementById('awaitingSection').style.display = 'block';
+                    renderAwaitingConnections();
+                } else {
+                    document.getElementById('awaitingSection').style.display = 'none';
+                }
+                
+                // Re-render givers to update button states
+                if (allGivers.length > 0) {
+                    renderGivers();
+                }
+            } catch (error) {
+                console.error('❌ Error loading connections:', error);
+                // Don't throw - just log and continue
+            }
+        }
+        
+        function renderApprovedConnections() {
+            try {
+                console.log('🎨 Rendering approved connections...');
+                const approvedConns = allConnections.filter(c => c.status === 'ADMIN_APPROVED');
+                console.log('✅ Approved connections:', approvedConns.length);
+                const list = document.getElementById('approvedList');
+                
+                if (approvedConns.length === 0) {
+                    list.innerHTML = '<p class="text-gray-500 text-center py-4">No approved connections yet</p>';
+                    return;
+                }
+                
+                list.innerHTML = approvedConns.map(conn => {
+                    console.log('Processing approved connection:', conn);
+                    // Backend returns otherUser and otherProfile
+                    const otherProfile = conn.otherProfile || {};
+                    const otherUser = conn.otherUser || {};
+                    
+                    // Safeguard: Skip if no valid data
+                    if (!otherUser.name && !otherUser.email && !otherProfile.fullName) {
+                        console.warn('⚠️ Skipping connection with no data:', conn._id);
+                        return '';
+                    }
+                    
+                    return `
+                        <div class="bg-gradient-to-r from-green-50 to-blue-50 border-2 border-green-200 rounded-xl p-4 flex items-center justify-between gap-4">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-blue-500 rounded-full flex items-center justify-center text-white text-xl font-bold">
+                                    ${(otherProfile.fullName || otherUser.name || 'U').charAt(0)}
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold text-gray-800">${otherProfile.fullName || otherUser.name || 'Unknown'}</h5>
+                                    <p class="text-sm text-gray-600">${otherProfile.currentRole || otherProfile.jobTitle || 'Professional'}</p>
+                                </div>
+                            </div>
+                            <button onclick="viewContactDetails('${conn._id}')" 
+                                class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-lg font-semibold hover:shadow-lg transition">
+                                <i class="fas fa-address-card mr-2"></i>View Contact
+                            </button>
+                        </div>
+                    `;
+                }).filter(html => html.trim() !== '').join('');
+                console.log('✅ Approved connections rendered successfully');
+            } catch (error) {
+                console.error('❌ Error in renderApprovedConnections:', error);
+                document.getElementById('approvedList').innerHTML = '<p class="text-red-500 text-center py-4">Error loading connections</p>';
+            }
+        }
+        
+        function renderAwaitingConnections() {
+            try {
+                console.log('🎨 Rendering awaiting connections...');
+                const awaitingConns = allConnections.filter(c => c.status === 'USER_ACCEPTED');
+                console.log('⏳ Awaiting connections:', awaitingConns.length);
+                const list = document.getElementById('awaitingList');
+                
+                if (awaitingConns.length === 0) {
+                    list.innerHTML = '<p class="text-gray-500 text-center py-4">No connections awaiting admin approval</p>';
+                    return;
+                }
+                
+                list.innerHTML = awaitingConns.map(conn => {
+                    console.log('Processing awaiting connection:', conn);
+                    const otherProfile = conn.otherProfile || {};
+                    const otherUser = conn.otherUser || {};
+                    
+                    if (!otherUser.name && !otherUser.email && !otherProfile.fullName) {
+                        console.warn('⚠️ Skipping connection with no data:', conn._id);
+                        return '';
+                    }
+                    
+                    return `
+                        <div class="bg-gradient-to-r from-blue-50 to-purple-50 border-2 border-blue-300 rounded-xl p-6">
+                            <div class="flex items-start gap-4 mb-4">
+                                <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0">
+                                    ${(otherProfile.fullName || otherUser.name || 'U').charAt(0)}
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="text-lg font-bold text-gray-800">${otherProfile.fullName || otherUser.name || 'Unknown'}</h4>
+                                    <p class="text-sm text-gray-600">${otherProfile.currentRole || otherProfile.jobTitle || 'Professional'}</p>
+                                    <p class="text-xs text-gray-500 mt-1"><i class="fas fa-map-marker-alt mr-1"></i>${otherProfile.location || 'Location not set'}</p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-blue-100 border-2 border-blue-300 rounded-lg p-4 text-center">
+                                <i class="fas fa-hourglass-half text-blue-600 text-2xl mb-2"></i>
+                                <p class="font-semibold text-blue-800">Awaiting Admin Approval</p>
+                                <p class="text-sm text-blue-600 mt-1">The professional accepted your request. Admin will review and approve to reveal contact details.</p>
+                            </div>
+                        </div>
+                    `;
+                }).filter(html => html.trim() !== '').join('');
+                console.log('✅ Awaiting connections rendered successfully');
+            } catch (error) {
+                console.error('❌ Error in renderAwaitingConnections:', error);
+                document.getElementById('awaitingList').innerHTML = '<p class="text-red-500 text-center py-4">Error loading connections</p>';
+            }
+        }
+        
+        window.sendConnectionRequest = async function(giverId, buttonElement) {
+            // Get the button element if not passed directly
+            if (!buttonElement) {
+                buttonElement = event.target;
+            }
+            
+            if (!confirm('Send connection request to this professional?')) return;
+            
+            // Disable button immediately and update UI
+            buttonElement.disabled = true;
+            buttonElement.classList.add('opacity-50', 'cursor-not-allowed', 'bg-gray-400');
+            buttonElement.classList.remove('btn-primary');
+            buttonElement.innerHTML = '<i class="fas fa-clock mr-2"></i>Sending...';
+            
+            try {
+                console.log('📤 Sending connection request to:', giverId);
+                const token = await currentUser.getIdToken();
+                const API_URL = window.API_CONFIG?.getApiUrl() || 'http://localhost:5000/api';
+                const url = `${API_URL}/community/connection/request`;
+                console.log('🎯 Posting to:', url);
+                
+                const payload = { targetUserId: giverId };
+                console.log('📦 Payload:', payload);
+                
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(payload)
+                });
+                
+                console.log('📊 Response status:', response.status);
+                
+                const data = await response.json();
+                console.log('📊 Response data:', data);
+                
+                if (response.ok) {
+                    buttonElement.innerHTML = '<i class="fas fa-check mr-2"></i>Request Sent';
+                    alert('✅ Connection request sent successfully!');
+                    await loadConnections();
+                    await loadAvailableGivers(); // Refresh to update button state
+                } else {
+                    console.error('❌ Request failed:', data);
+                    // Re-enable button on error
+                    buttonElement.disabled = false;
+                    buttonElement.classList.remove('opacity-50', 'cursor-not-allowed', 'bg-gray-400');
+                    buttonElement.classList.add('btn-primary');
+                    buttonElement.innerHTML = '<i class="fas fa-paper-plane mr-2"></i>Send Request';
+                    alert('❌ ' + (data.message || 'Failed to send request'));
+                }
+            } catch (error) {
+                console.error('❌ Error sending request:', error);
+                // Re-enable button on error
+                buttonElement.disabled = false;
+                buttonElement.classList.remove('opacity-50', 'cursor-not-allowed', 'bg-gray-400');
+                buttonElement.classList.add('btn-primary');
+                buttonElement.innerHTML = '<i class="fas fa-paper-plane mr-2"></i>Send Request';
+                alert('❌ Error: ' + error.message);
+            }
+        };
+        
+        window.viewContactDetails = function(connectionId) {
+            const conn = allConnections.find(c => c._id === connectionId);
+            if (!conn) return;
+            
+            // Backend returns otherUser and otherProfile
+            const otherProfile = conn.otherProfile || {};
+            const otherUser = conn.otherUser || {};
+            
+            const detailsHtml = `
+                <div class="space-y-4">
+                    <div class="text-center mb-4">
+                        <div class="w-20 h-20 mx-auto bg-gradient-to-br from-green-500 to-blue-500 rounded-full flex items-center justify-center text-white text-3xl font-bold mb-3">
+                            ${(otherProfile.fullName || otherUser.name || 'U').charAt(0)}
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-800">${otherProfile.fullName || otherUser.name || 'Unknown'}</h4>
+                        <p class="text-gray-600">${otherProfile.currentRole || otherProfile.jobTitle || 'Professional'}</p>
+                    </div>
+                    
+                    ${otherProfile.mobileNumber || conn.mobileNumbersRevealed ? `
+                    <div class="bg-green-50 border-2 border-green-200 rounded-xl p-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-phone text-green-600"></i>
+                                <span class="font-semibold text-gray-700">Mobile Number</span>
+                            </div>
+                            <button onclick="copyToClipboard('${otherProfile.mobileNumber}')" class="text-blue-600 hover:text-blue-700 text-sm">
+                                <i class="fas fa-copy mr-1"></i>Copy
+                            </button>
+                        </div>
+                        <a href="tel:${otherProfile.mobileNumber}" class="text-lg font-bold text-green-700 hover:text-green-800">
+                            ${otherProfile.mobileNumber}
+                        </a>
+                    </div>
+                    ` : ''}
+                    
+                    ${otherProfile.email || otherUser.email ? `
+                    <div class="bg-blue-50 border-2 border-blue-200 rounded-xl p-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-envelope text-blue-600"></i>
+                                <span class="font-semibold text-gray-700">Email Address</span>
+                            </div>
+                            <button onclick="copyToClipboard('${otherProfile.email || otherUser.email}')" class="text-blue-600 hover:text-blue-700 text-sm">
+                                <i class="fas fa-copy mr-1"></i>Copy
+                            </button>
+                        </div>
+                        <a href="mailto:${otherProfile.email || otherUser.email}" class="text-lg font-bold text-blue-700 hover:text-blue-800 break-all">
+                            ${otherProfile.email || otherUser.email}
+                        </a>
+                    </div>
+                    ` : ''}
+                    
+                    ${otherProfile.linkedIn ? `
+                        <div class="bg-purple-50 border-2 border-purple-200 rounded-xl p-4">
+                            <div class="flex items-center gap-2 mb-2">
+                                <i class="fab fa-linkedin text-purple-600"></i>
+                                <span class="font-semibold text-gray-700">LinkedIn Profile</span>
+                            </div>
+                            <a href="${otherProfile.linkedIn}" target="_blank" class="text-purple-700 hover:text-purple-800 text-sm break-all">
+                                ${otherProfile.linkedIn}
+                            </a>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+            
+            document.getElementById('contactDetails').innerHTML = detailsHtml;
+            document.getElementById('contactModal').classList.add('show');
+        };
+        
+        window.closeContactModal = function() {
+            document.getElementById('contactModal').classList.remove('show');
+        };
+        
+        window.copyToClipboard = function(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('✅ Copied to clipboard!');
+            });
+        };
+        
+        // Close modal on outside click
+        document.getElementById('contactModal').addEventListener('click', (e) => {
+            if (e.target.id === 'contactModal') {
+                window.closeContactModal();
+            }
+        });
+        
+        window.handleLogout = async function() {
+            if (confirm('Are you sure you want to logout?')) {
+                try {
+                    await signOut(auth);
+                    console.log('✅ Logged out successfully, redirecting to community index...');
+                    window.location.href = 'index.html';
+                } catch (error) {
+                    console.error('❌ Logout error:', error);
+                    alert('Error logging out. Please try again.');
+                }
+            }
+        };
+    </script>
+    
+</body>
+</html>
